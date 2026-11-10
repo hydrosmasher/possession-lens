@@ -7,6 +7,7 @@ from .rnn import train,predict,rnn_features,RNN_VERSION
 from .pipeline import (discover,teams_from_metadata,read_tracking,N_FRAMES,GAMES,GAME,BLOCKS,
                        write_submission,pm,digest,intervals)
 from .statistics import team_statistics,tracklet_statistics
+from .model import decode
 
 def train_external(root,out,epochs=5,single_match_pilot=False):
     out=Path(out)
@@ -61,17 +62,21 @@ def predict_provided(root,checkpoint,out):
     with np.load(checkpoint,allow_pickle=False) as d:
         if str(d['version'])!=RNN_VERSION:raise ValueError('Incompatible RNN model version')
         model={k:d[k] for k in ('mean','scale','wx','wh','bh','wy','by')}
+        penalty=float(d['transition_penalty']) if 'transition_penalty' in d.files else 0.0
+        if not np.isfinite(penalty) or penalty<0:raise ValueError('Invalid frozen transition penalty')
     labels=np.full(N_FRAMES,'X',dtype='<U1')
     for a,b in BLOCKS:
         sequence={'xy':xy[a:b],'speed':speed[a:b],'teams':teams,'ball':ball[a:b],'ball_speed':bs[a:b]}
-        labels[a:b]=np.array(['H','A','D'])[np.argmax(predict(model,rnn_features(sequence,pitch)),axis=1)]
+        probs=predict(model,rnn_features(sequence,pitch))
+        labels[a:b]=np.array(['H','A','D'])[decode(probs,penalty)]
     import pandas as pd
     reason=pm.validate_submission(pd.DataFrame({'frame':np.arange(N_FRAMES),'label':labels}),N_FRAMES)
     if reason:raise ValueError(reason)
     out.mkdir(parents=True,exist_ok=True);write_submission(str(out/'possession.csv'),labels)
     stats=team_statistics(labels)
     stats.update({'teams':{'H':names[0],'A':names[1]},'model_sha256':digest(checkpoint),
-                  'prediction_sha256':digest(out/'possession.csv'),'evaluated_against_competition_truth':False})
+                  'prediction_sha256':digest(out/'possession.csv'),'evaluated_against_competition_truth':False,'decoder':'offline Viterbi',
+                  'transition_penalty':penalty})
     (out/'team-statistics.json').write_text(json.dumps(stats,indent=2)+'\n')
     proxy=tracklet_statistics(labels,xy,ball,teams)
     (out/'tracklet-proxies.json').write_text(json.dumps(proxy,indent=2)+'\n')

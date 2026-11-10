@@ -1,5 +1,9 @@
 # Possession Lens — team possession RNN
 
+## Reduced-switching RNN
+
+The external-validation-selected offline decoder improves spell F1 from 0.3408 to 0.5138 on clean data and from 0.2787 to 0.4848 under ball dropout. This is validation evidence from one match, not a held-out-match result. See [RNN_IMPROVEMENT.md](RNN_IMPROVEMENT.md) for the full comparison and three-match reproduction command. Use `models/rnn-decoded-001.npz` to apply the frozen decoder.
+
 ## Open in Jupyter
 
 On this Mac, double-click **Open Possession Lens.command** in the project folder. It uses the existing local Jupyter environment when available and opens `notebooks/01_Possession_Lens.ipynb` with a named project kernel. The existing local Python 3.15 / NumPy 2.5.4 / pandas 3.1.1 environment passed the project's 19 tests; the canonical pinned reproduction environment remains Python 3.12 with requirements.txt.
@@ -59,7 +63,7 @@ The RNN reads tactical player/ball positions and speeds. Homography, tags and vi
 
 ## GitHub preparation
 
-Source, requirements, authors, model card, small external-trained model checkpoints and the vendored licence can be committed. `data/`, `work/`, original videos, external raw inputs and local generated predictions must stay excluded. Each judge obtains licensed match assets independently. Do not commit local symlink manifests or absolute machine paths. The source is published at https://github.com/hydrosmasher/possession-lens; licensed match data stays local.
+Source, requirements, authors, model card, small external-trained model checkpoints and the vendored licence can be committed. `data/`, `work/`, original videos, external raw inputs and local generated predictions must stay excluded. Each judge obtains licensed match assets independently. Do not commit local symlink manifests or absolute machine paths. The shareable source is published at https://github.com/hydrosmasher/possession-lens.
 
 The earlier workflow and experiment details follow.
 

@@ -1,0 +1,51 @@
+{
+  "architecture": "numpy-tanh-rnn-v1",
+  "hidden_units": 24,
+  "epochs": 5,
+  "fps": 25,
+  "training_loss": [
+    0.6521159625344352,
+    0.36219507403239254,
+    0.27702391594844944,
+    0.2377184256296949,
+    0.20955462979292866
+  ],
+  "external_sources_sha256": {
+    "J03WOH": {
+      "original_xml_sha256": "ec4dcf30200aad694dea263d5289485fcd0ca42badddaeb7c81f5cd5a4229d4f",
+      "cache_sha256": "ea643c18455026e1a2e726186a285108567ef8d0b3d6018a95f6913f83862e21",
+      "input_kind": "previously parsed external Sportec cache"
+    }
+  },
+  "mode": "single_match_temporal_pilot",
+  "split": {
+    "match": "J03WOH",
+    "train_first_half_frames": [
+      0,
+      48496
+    ],
+    "validation_first_half_frames": [
+      48696,
+      69424
+    ],
+    "test": "entire second half",
+    "purged_frames": 200,
+    "warning": "Same teams and match in all partitions. This does not establish cross-match generalisation."
+  },
+  "validation_only": true,
+  "previously_viewed_test_not_scored": true,
+  "validation_metrics": {
+    "spell_f1_mean": 0.3408163265306122,
+    "macro_f1": 0.9109447747224931,
+    "alive_dead_f1": 0.9850541928123216,
+    "n_gt_spells": 60,
+    "n_pred_spells": 136,
+    "n_graded": 20728
+  },
+  "competition_data_used_for_training": false,
+  "model_sha256": "a947dbd78b99caf208dd7273266b70c447d4c89dbe16ba9e9839d025e5f132bb",
+  "limitations": [
+    "Initial recurrent model; hyperparameters are not yet externally optimised.",
+    "Validation metrics are development evidence, not a fresh test or competition score."
+  ]
+}

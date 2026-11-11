@@ -8,6 +8,7 @@ from .model import instantaneous_features,softmax
 RNN_VERSION='numpy-tanh-rnn-v1'
 RNN_REFINED_VERSION='numpy-tanh-rnn-v1-split-decoder-v1'
 RNN_SYMMETRIC_VERSION='numpy-tanh-rnn-v1-team-symmetric-v1'
+RNN_DWELL_VERSION='numpy-tanh-rnn-v1-spell-balanced-dwell-v1'
 
 def rnn_features(sequence,pitch):
     # Current observation and one backward difference only; no future context.
@@ -28,7 +29,7 @@ def forward(model,x,h0=None):
     hs=np.asarray(states);p=softmax(hs@model['wy']+model['by'])
     return p,hs
 
-def loss_gradients(model,x,y,h0=None,weights=None):
+def loss_gradients(model,x,y,h0=None,weights=None,normalise_weights=True):
     p,hs=forward(model,x,h0);valid=(y>=0)&(y<3)
     indices=np.flatnonzero(valid)
     if weights is None:
@@ -39,7 +40,7 @@ def loss_gradients(model,x,y,h0=None,weights=None):
     else:
         weights=np.asarray(weights,dtype=np.float32)
         if weights.shape!=y.shape or not np.isfinite(weights).all() or (weights<0).any():raise ValueError('Invalid sample weights')
-        w=weights*valid;n=max(1.0,float(w.sum()))
+        w=weights*valid;n=max(1.0,float(w.sum()) if normalise_weights else float(valid.sum()))
         loss=float((-np.log(np.maximum(p[indices,y[valid]],1e-8))*w[valid]).sum()/n)
         dy=p.copy();dy[~valid]=0;dy[indices,y[valid]]-=1;dy*=w[:,None]/n
     grads={k:np.zeros_like(model[k]) for k in ('wx','wh','bh','wy','by')}
@@ -52,9 +53,16 @@ def loss_gradients(model,x,y,h0=None,weights=None):
         dh_next=dz@model['wh'].T
     return loss,grads,hs[-1]
 
-def train(sequences,epochs=5,hidden=24,seed=42,chunk=128,sample_weights=None):
+def train(sequences,epochs=5,hidden=24,seed=42,chunk=128,sample_weights=None,weight_normalisation='chunk'):
     # Standardisation fits training observations only, never validation/test/match inputs.
+    if weight_normalisation not in ('chunk','global'):raise ValueError('Invalid sample weight normalisation')
     if sample_weights is not None and (len(sample_weights)!=len(sequences) or any(len(w)!=len(y) for w,(x,y) in zip(sample_weights,sequences))):raise ValueError('Sample weights must match training sequences')
+    if sample_weights is not None and weight_normalisation=='global':
+        total=sum(float(np.asarray(w)[(y>=0)&(y<3)].sum()) for w,(x,y) in zip(sample_weights,sequences))
+        count=sum(int(((y>=0)&(y<3)).sum()) for x,y in sequences)
+        mean_weight=total/max(1,count)
+        if not np.isfinite(mean_weight) or mean_weight<=0:raise ValueError('Invalid global sample weights')
+        sample_weights=[np.asarray(w,dtype=np.float32)/mean_weight for w in sample_weights]
     model=initialise(np.concatenate([x for x,y in sequences]),hidden,seed)
     moments={k:np.zeros_like(model[k]) for k in ('wx','wh','bh','wy','by')};variances={k:v.copy() for k,v in moments.items()}
     history=[];step=0
@@ -65,7 +73,8 @@ def train(sequences,epochs=5,hidden=24,seed=42,chunk=128,sample_weights=None):
             weights=None if sample_weights is None else sample_weights[si]
             for a in range(0,len(x),chunk):
                 loss,grads,h=loss_gradients(model,x[a:a+chunk],y[a:a+chunk],h,
-                                            None if weights is None else weights[a:a+chunk])
+                                            None if weights is None else weights[a:a+chunk],
+                                            normalise_weights=weight_normalisation=='chunk')
                 losses.append(loss);norm=np.sqrt(sum(float((g*g).sum()) for g in grads.values()));step+=1
                 for k,g in grads.items():
                     g*=min(1,5/max(norm,1e-8));moments[k]=.9*moments[k]+.1*g;variances[k]=.999*variances[k]+.001*g*g

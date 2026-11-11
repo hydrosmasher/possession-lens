@@ -1,6 +1,10 @@
 # Possession Lens — team possession RNN
 
-## Latest model: team-symmetric RNN
+## Latest model: boundary-aware symmetric RNN
+
+Recommended: `models/rnn-boundary-001.npz`. On fresh Fortuna Düsseldorf–St. Pauli tracking, clean spell F1 improves from 0.4860 to 0.5025, clean misses fall from 246 to 237 and false-positive spells from 81 to 75. Ball-dropout F1 is essentially unchanged (0.4232 to 0.4234). No sub-0.4-second predicted spells appear; clean merge-overlap count remains unchanged. The more aggressive spell-balanced model is experimental because it increases false positives and worsens dropout F1. See [RNN_RECOVERY.md](RNN_RECOVERY.md) for complete results, limits and reproduction.
+
+## Previous model: team-symmetric RNN
 
 The frozen team-symmetric checkpoint improves clean spell F1 on a new Bochum–Leverkusen test from 0.2884 (previous RNN) to 0.3707, versus baseline 0.2838. Under synthetic ball dropout it scores 0.2883 versus 0.2426 and 0.2083. The recurrent weights are unchanged; exact team-permutation averaging improves transfer. See [RNN_SYMMETRY.md](RNN_SYMMETRY.md) for the experiment history, limits and commands. Use `models/rnn-symmetric-001.npz`; this candidate has one independent external test.
 

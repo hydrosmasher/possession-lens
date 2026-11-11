@@ -12,6 +12,7 @@ MATCHES = {
 }
 # Kept separate so adding a fresh test cannot change the original three-match split.
 FRESH_MATCHES = {
+ 'J03WQQ': {'home':'DFL-CLU-00000P','away':'DFL-CLU-00000H','competition':'000002'},
  'J03WN1': {'home':'DFL-CLU-00000S','away':'DFL-CLU-00000B','competition':'000001'},
 }
 ALL_MATCHES = {**MATCHES, **FRESH_MATCHES}

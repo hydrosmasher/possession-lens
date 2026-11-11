@@ -29,6 +29,19 @@ Then open `local/dashboard.html`, or use the Mac launcher. Inference refuses non
 
 For Jupyter, install `requirements-notebook.txt` and double-click **Open Notebook.command**, or run `python -m jupyterlab notebooks/01_Possession_Lens.ipynb`. Downloads, training and inference switches are off by default.
 
+## Use files already in Downloads
+
+On this Mac, double-click **Import Local Data.command**. It verifies and copies supported completed external XML files into `data/external/raw`, keeps the originals, ignores partial downloads and writes a local manifest. It never uses the network. Existing parsed match caches stay in `data/external/cache`.
+
+```sh
+python -m possession_lens import-external --source ~/Downloads
+python -m possession_lens player-report --run-dir local/run --out local/player-control
+```
+
+The player report exports anonymous-track contributions, a frame-based control-interval ledger and a JSON summary. Its checks reconcile every track and unassigned interval against team control time. The dashboard's Player control tab also saves a CSV for the selected team. These are full-match proximity estimates, not verified individual-player possession.
+
+The older `download-external` command now checks local Downloads first and requires `--allow-network` before fetching anything missing. Optional missing metadata does not block local import or existing cached team experiments.
+
 ## Folder guide
 
 | Folder | What belongs here |
@@ -48,6 +61,8 @@ The Desktop folder is the canonical working repository connected to `hydrosmashe
 ## What player control means today
 
 The supplied slots are anonymous, fragmented tracklets, not stable player IDs or shirt numbers. The dashboard therefore shows **track-associated proximity estimates**, not named-player possession percentages. Missing evidence, other-team nearest tracks and numerical distance ties remain unassigned. Shares include unassigned time in the team-possession denominator. A per-track control-bout ledger is exported for future automatic identity work. These estimates do not confirm ball contact; nearby ball-flight frames can still be associated.
+
+The first motion-based identity-linking experiment remains disabled: its best external validation setting had 3,570 correct links and 18 false links (99.4983% precision), below the predeclared 99.5% requirement. The held-out identity test was therefore not run. See `reports/external/identity-link-002-report.json`; no competition tracks were merged. Synthetic fragmentation is easier than real tracking errors.
 
 Reliable individual-player statistics require automatic identity association and independent validation. Manual identity corrections on the provided match are prohibited. No club/player names are inferred from slot numbers.
 

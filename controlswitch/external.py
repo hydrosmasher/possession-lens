@@ -23,10 +23,16 @@ def source_files(match_id):
     c=ALL_MATCHES[match_id]['competition']
     return [f'DFL_{kind}_DFL-COM-{c}_DFL-MAT-{match_id}.xml' for kind in ('02_01_matchinformation','04_03_positions_raw_observed')]
 
-def download_external(out, ids):
+def download_external(out, ids, *, allow_network=False, source=None):
     """Reproducible user-runnable downloader. Leaves partial downloads with .part suffix."""
+    from .local_data import import_local
     import urllib.request
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
+    import_local(source or Path.home()/"Downloads",out,ids)
+    missing=[name for mid in ids for name in source_files(mid) if not (out/name).exists()]
+    if missing and not allow_network:
+        raise ValueError("Local files imported. Some optional/raw files are absent; existing caches remain usable. Network is off. Use --allow-network only if you want to fetch missing files.")
+    if not missing:return
     for mid in ids:
         for name in source_files(mid):
             dest=out/name

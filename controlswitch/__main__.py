@@ -17,8 +17,13 @@ def main():
     dashboard=sub.add_parser('dashboard',help='Build a private offline dashboard from a local prediction run')
     dashboard.add_argument('--run-dir',type=Path,required=True)
     dashboard.add_argument('--out',type=Path,default=Path('local'))
+    local_import=sub.add_parser('import-external',help='Import already downloaded external XMLs without network access')
+    local_import.add_argument('--source',type=Path,default=Path.home()/'Downloads')
+    local_import.add_argument('--destination',type=Path,default=Path('data/external/raw'))
     download=sub.add_parser('download-external',help='Download pinned CC-BY-4.0 external match files')
-    download.add_argument('--out',type=Path,default=Path('work/external/raw'))
+    download.add_argument('--out',type=Path,default=Path('data/external/raw'))
+    download.add_argument('--allow-network',action='store_true',help='Explicitly allow fetching missing external files after checking Downloads')
+    download.add_argument('--source',type=Path,default=Path.home()/'Downloads')
     download.add_argument('--matches',nargs='+',default=['J03WOH','J03WPY','J03WMX'])
     experiment=sub.add_parser('benchmark',help='Fit and evaluate using external matches only')
     experiment.add_argument('--external-root',required=True,type=Path)
@@ -40,9 +45,16 @@ def main():
     inference.add_argument('--data-root',type=Path,required=True)
     inference.add_argument('--model',type=Path,required=True)
     inference.add_argument('--out',type=Path,required=True)
+    player=sub.add_parser('player-report',help='Export anonymous-track contribution and interval CSVs; no identity claims')
+    player.add_argument('--run-dir',type=Path,required=True)
+    player.add_argument('--out',type=Path,default=Path('local/player-control'))
     args=parser.parse_args()
     try:
-        if args.command=='dashboard':
+        if args.command=='player-report':
+            from .player_report import export_player_report
+            export_player_report(args.run_dir,args.out)
+            print('Anonymous-track reports exported locally. Player identities remain unverified.')
+        elif args.command=='dashboard':
             from .dashboard import export_local
             export_local(args.run_dir,args.out)
             print('Private local dashboard saved. Nothing uploaded.')
@@ -64,9 +76,13 @@ def main():
             from .rnn_project import predict_provided
             predict_provided(args.data_root,args.model,args.out)
             print(f'Predictions and statistics saved in {args.out.resolve()}. No competition accuracy check performed.')
+        elif args.command=='import-external':
+            from .local_data import import_local
+            report=import_local(args.source,args.destination)
+            print(f'Imported or verified {len(report["assets"])} existing external files. No network access; originals unchanged.')
         elif args.command=='download-external':
             from .external import download_external
-            download_external(args.out,args.matches)
+            download_external(args.out,args.matches,allow_network=args.allow_network,source=args.source)
         elif args.command=='develop':
             from .development import develop
             report=develop(args.external_root,args.pilot_dir,args.out)

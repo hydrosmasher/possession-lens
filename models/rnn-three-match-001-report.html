@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Possession Lens — held-out match</title><style>body{font:17px system-ui;max-width:1000px;margin:50px auto;padding:24px;background:#f4f6f3;color:#163d32}h1{font-size:38px}table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;padding:15px;border-bottom:1px solid #ddd}.note{padding:20px;background:#e4ecdf}pre{white-space:pre-wrap;font-size:13px}</style><p>POSSESSION LENS / 11 NOVEMBER 2026</p><h1>RNN beats baseline on held-out match</h1><p class="note">One complete match each for training, validation and testing. External-only evidence; no competition score.</p><table><tr><th>Method</th><th>Clean spell F1</th><th>Ball-dropout spell F1</th><th>Clean spell count</th></tr><tr><td>baseline_selected</td><td>0.3072</td><td>0.2234</td><td>360</td></tr><tr><td>rnn_raw</td><td>0.2600</td><td>0.1794</td><td>958</td></tr><tr><td>rnn_selected</td><td>0.3831</td><td>0.3634</td><td>292</td></tr></table><p>Reference: 511 spells. Decoding reduces excessive switching but undercounts possessions. The result is encouraging, with substantial remaining error.</p><p>Frozen choice: plain 24-unit RNN + offline Viterbi penalty 24. Baseline: validation-selected +/-50-frame smoothing. Training: J03WOH; validation: J03WPY; test: J03WMX.</p><p>Viterbi uses future evidence. Synthetic ball dropout is approximately 40% in contiguous 0.8–4-second runs. This test has now been viewed and must not guide further tuning.</p><h2>Full explanation and reproduction</h2><pre># Possession Lens: held-out external match result
+
+Evaluated 11 November 2026. **The selected RNN beats the official baseline on the held-out match in both conditions.** This is one external match, not a competition score or a guarantee of qualification.
+
+Training: both halves of J03WOH (137,214 frames). Validation/model selection: both halves of J03WPY (146,211 frames). Held-out test: both halves of J03WMX (145,967 frames). No competition data was used for training, tuning or scoring. The original previously viewed J03WOH second-half test was not used as a test again; it is now explicitly part of training in this new cross-match experiment.
+
+## Held-out test
+
+| Method | Clean spell F1 | Ball-dropout spell F1 | Clean predicted spells |
+|---|---:|---:|---:|
+| Official baseline (selected smooth50) | 0.3072 | 0.2234 | 360 |
+| RNN without decoding | 0.2600 | 0.1794 | 958 |
+| Selected RNN + decoder | 0.3831 | 0.3634 | 292 |
+
+The reference has **511 possession spells**. The decoder removes excess switching but also misses/merges possessions: 292 predictions is below the reference, and the absolute spell F1 remains modest. Spell count alone is not the optimisation criterion.
+
+Clean frame macro F1 is 0.8765 for the decoded RNN, 0.8695 for the raw RNN and 0.4150 for the baseline. Ball-dropout macro F1 is 0.8242, 0.7789 and 0.4241 respectively. The spell F1 improvement over the baseline is about **25% relative on clean tracking** and **63% under synthetic ball dropout**. These percentages are relative score gains, not percentage-point increases in accuracy.
+
+## Frozen selection
+
+The predeclared experiment compared five-epoch plain and team-swapped/ball-dropout augmented RNNs. J03WPY validation selected the **plain 24-unit tanh RNN with an offline Viterbi transition penalty of 24**. This differs from the earlier single-match penalty of 6 because selection now uses a separate full validation match. Both the baseline window and RNN settings were selected on mean clean/masked validation spell F1. The baseline chose +/-50-frame smoothing. The checkpoint and settings were written before any held-out test predictions or metrics were computed.
+
+On J03WPY validation, the selected RNN scored 0.4997 clean and 0.4086 masked, versus baseline 0.3171 and 0.2208. The test result is lower and is the appropriate evidence for transfer to an unseen match.
+
+Synthetic dropout removes approximately 40% of ball observations in fixed-seed contiguous 20–100 frame runs (0.8–4 seconds). It does not reproduce every real tracking error. Recurrent features use current/trailing observations, but Viterbi decoding uses future evidence, so this is an **offline** analysis model.
+
+## Reproduce
+
+From the project root, with the pinned Python environment, complete XML downloads in Downloads and the original J03WOH cache available:
+
+```sh
+python -m controlswitch.rnn_benchmark \
+  --external-root &quot;$HOME/Downloads&quot; work/external/cache \
+  --out work/rnn-three-match-reproduction --epochs 5 --evaluate-test
+```
+
+The source hashes, all validation trials, settings and metrics are in `rnn-three-match-001-report.json`. The saved checkpoint is `rnn-three-match-001.npz`. A reproduction repeats a now-viewed test; it is not a new independent test. Do not use J03WMX results to tune further changes. Use another external match for future independent evaluation.
+
+Frozen competition inference, without fitting or checking against video/ground truth:
+
+```sh
+python -m possession_lens rnn-predict \
+  --data-root data/raw/provided \
+  --model models/rnn-three-match-001.npz \
+  --out work/rnn/predictions-three-match-001
+```
+
+Individual outputs remain unverified tracklet proxies, not named-player contribution statistics.
+
+Data attribution: Bassek et al. (2025), *An integrated dataset of spatiotemporal and event data in elite soccer*, doi:10.1038/s41597-025-04505-y; IDSSE/Sportec, CC BY 4.0. Dataset: https://figshare.com/articles/dataset/28196177.
+</pre></html>

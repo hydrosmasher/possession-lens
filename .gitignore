@@ -1,15 +1,17 @@
+# Licensed inputs and private match outputs: never publish.
+data/
+local/
+work/
+exports/*
+!exports/README.md
 .venv/
 __pycache__/
 *.pyc
-work/
-data/
 *.mp4
+*.npy
 *.npz
 !models/*.npz
-*.npy
+!models/archive/*.npz
 .DS_Store
-outputs/*
-!outputs/.gitkeep
-
 .ipynb_checkpoints/
 .jupyter/

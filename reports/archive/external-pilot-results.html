@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Control Switch · External experiment</title><style>body{font:16px system-ui;background:#f5f5ee;color:#173c32;max-width:1000px;margin:50px auto;padding:20px}h1{font-size:42px}table{border-collapse:collapse;width:100%;background:white}td,th{padding:14px;text-align:left;border-bottom:1px solid #ddd}.note{padding:20px;background:#e7ebdc}pre{white-space:pre-wrap;font-size:12px}</style><p>CONTROL SWITCH / EXTERNAL EVALUATION</p><h1>Does boundary verification help?</h1><div class="note">single_match_temporal_pilot. Exploratory external evidence; no competition score.</div><table><tr><th>Condition</th><th>Model</th><th>spellF1</th><th>macroF1</th><th>Alive/dead F1</th></tr><tr><td>clean</td><td>baseline_selected</td><td>0.3391</td><td>0.3820</td><td>0.6694</td></tr><tr><td>clean</td><td>baseline_smooth50</td><td>0.3391</td><td>0.3820</td><td>0.6694</td></tr><tr><td>clean</td><td>direct_classifier</td><td>0.6000</td><td>0.9235</td><td>0.9823</td></tr><tr><td>clean</td><td>sequence</td><td>0.6482</td><td>0.9212</td><td>0.9827</td></tr><tr><td>clean</td><td>control_switch</td><td>0.6489</td><td>0.9220</td><td>0.9834</td></tr><tr><td>masked</td><td>baseline_selected</td><td>0.2385</td><td>0.3985</td><td>0.6572</td></tr><tr><td>masked</td><td>baseline_smooth50</td><td>0.2385</td><td>0.3985</td><td>0.6572</td></tr><tr><td>masked</td><td>direct_classifier</td><td>0.4200</td><td>0.8726</td><td>0.9496</td></tr><tr><td>masked</td><td>sequence</td><td>0.5530</td><td>0.8791</td><td>0.9553</td></tr><tr><td>masked</td><td>control_switch</td><td>0.5746</td><td>0.8853</td><td>0.9584</td></tr></table><h2>Limits</h2><ul><li>One held-out half of one external match</li><li>No competition accuracy measured; no competition inputs used in fitting or selection.</li><li>No confidence interval or multi-match significance claim.</li><li>Only ball dropout tested; real tracker errors and tag integration are not covered.</li></ul><h2>Frozen settings</h2><pre>{
+  &quot;baseline&quot;: {
+    &quot;model&quot;: &quot;baseline&quot;,
+    &quot;window&quot;: 50,
+    &quot;validation_spellF1&quot;: 0.23820224719101124
+  },
+  &quot;sequence&quot;: {
+    &quot;model&quot;: &quot;sequence&quot;,
+    &quot;penalty&quot;: 12,
+    &quot;validation_spellF1&quot;: 0.5215686274509803
+  },
+  &quot;control_switch&quot;: {
+    &quot;model&quot;: &quot;control_switch&quot;,
+    &quot;penalty&quot;: 12,
+    &quot;strength&quot;: 1,
+    &quot;validation_spellF1&quot;: 0.5442307692307693
+  }
+}</pre><p>Data: Bassek et al. (2025), IDSSE/Sportec, CC BY 4.0. doi:10.1038/s41597-025-04505-y.</p></html>

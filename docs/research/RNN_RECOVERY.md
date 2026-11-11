@@ -68,7 +68,7 @@ python -m controlswitch.rnn_fresh_test \
   --out work/recovery-reproduction
 ```
 
-To retrain the verifier, use `python -m controlswitch.rnn_boundaries --help`; to reproduce the duration-weighted experiment, use `python -m controlswitch.rnn_spell_balance --help`. Both commands accept only the recorded J03WOH/J03WPY training and validation caches and cannot take a test-match cache as those roles. Full protocols, hashes, all validation trials, diagnostics and test metrics are in `models/rnn-boundary-001-report.json`.
+To retrain the verifier, use `python -m controlswitch.rnn_boundaries --help`; to reproduce the duration-weighted experiment, use `python -m controlswitch.rnn_spell_balance --help`. Both commands accept only the recorded J03WOH/J03WPY training and validation caches and cannot take a test-match cache as those roles. Full protocols, hashes, all validation trials, diagnostics and test metrics are in `reports/external/rnn-boundary-001-report.json`.
 
 J03WQQ is now viewed. Further changes need another independent match; do not use any of the three viewed tests for tuning. Competition data stays local, with no training/calibration or output/video checks. Individual outputs remain unverified tracklet proxies.
 

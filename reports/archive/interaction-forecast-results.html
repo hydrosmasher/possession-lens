@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Control Switch · Interaction and forecasting development</title><style>body{font:16px system-ui;max-width:1100px;margin:50px auto;padding:20px;background:#f5f5ee;color:#173c32}table{border-collapse:collapse;background:white;width:100%}td,th{padding:12px;border-bottom:1px solid #ddd;text-align:left}.notice{background:#e7ebdc;padding:20px}pre{white-space:pre-wrap}</style><h1>Interactions + one-second turnover risk</h1><p class="notice">VALIDATION ONLY. The previously viewed test partition was not scored again. No competition data was used.</p><h2>Possession detection</h2><table><tr><th>Condition</th><th>Method</th><th>spellF1 ↑</th><th>macroF1 ↑</th></tr><tr><td>clean</td><td>baseline_smooth50</td><td>0.2690</td><td>0.4246</td></tr><tr><td>clean</td><td>interaction_sequence</td><td>0.5804</td><td>0.9294</td></tr><tr><td>clean</td><td>interaction_control_switch</td><td>0.5398</td><td>0.9302</td></tr><tr><td>masked</td><td>baseline_smooth50</td><td>0.2156</td><td>0.4527</td></tr><tr><td>masked</td><td>interaction_sequence</td><td>0.4500</td><td>0.8697</td></tr><tr><td>masked</td><td>interaction_control_switch</td><td>0.4183</td><td>0.8659</td></tr></table><h2>Causal turnover forecast</h2><p>Predict a direct live team-to-team change within the next second. No future observations or offline detector probabilities are inputs. AP should exceed its prevalence reference; lower Brier is better.</p><table><tr><th>Condition</th><th>Average precision ↑</th><th>Prevalence reference</th><th>Brier ↓</th><th>Training-prior Brier ↓</th></tr><tr><td>clean</td><td>0.2343</td><td>0.0896</td><td>0.0834</td><td>0.0825</td></tr><tr><td>masked</td><td>0.1778</td><td>0.0896</td><td>0.0857</td><td>0.0825</td></tr></table><h2>What this does not prove</h2><ul><li>Validation data has been used for development; results are not unbiased test performance.</li><li>No confirmed ball-contact labels: only interaction evidence is implemented.</li><li>Forecast metrics are frame-level and do not establish useful event-level warnings.</li><li>Fresh external matches are required before promoting either addition.</li></ul><h2>Protocol</h2><pre>{
+  &quot;status&quot;: &quot;validation_only&quot;,
+  &quot;original_test_report_sha256&quot;: &quot;9fdd9874b5cf46bb1b1a2cfd202feb21ab8c376465fc7faeb5978b497ffb01be&quot;,
+  &quot;test_partition_scored&quot;: false,
+  &quot;competition_data_used&quot;: false,
+  &quot;split&quot;: {
+    &quot;match&quot;: &quot;J03WOH&quot;,
+    &quot;train_first_half_frames&quot;: [
+      0,
+      48496
+    ],
+    &quot;validation_first_half_frames&quot;: [
+      48696,
+      69424
+    ],
+    &quot;test&quot;: &quot;entire second half&quot;,
+    &quot;purged_frames&quot;: 200,
+    &quot;warning&quot;: &quot;Same teams and match in all partitions. This does not establish cross-match generalisation.&quot;
+  },
+  &quot;interaction_evidence&quot;: &quot;Proximity, ball direction change, relative velocity, alignment and closing movement. No touch ground truth.&quot;,
+  &quot;interaction_candidate_threshold&quot;: 0.25,
+  &quot;interaction_candidate_separation_frames&quot;: 12,
+  &quot;forecast_horizon_frames&quot;: 25,
+  &quot;forecast_threshold&quot;: 0.2,
+  &quot;fps&quot;: 25,
+  &quot;forecast_target&quot;: &quot;Direct H\u2194A change within the next second, before any stoppage; current dead frames excluded.&quot;,
+  &quot;forecast_inputs&quot;: &quot;Current and trailing observations only. No offline detector probabilities or future observations.&quot;,
+  &quot;provider_caveat&quot;: &quot;Source tracking may have been smoothed offline; causal feature construction does not establish live sensor availability.&quot;,
+  &quot;settings&quot;: &quot;Use the original validation-selected sequence penalties without re-tuning for the new features.&quot;
+}</pre><p>External data: IDSSE/Sportec, Bassek et al. (2025), CC BY 4.0. doi:10.1038/s41597-025-04505-y.</p></html>

@@ -13,7 +13,10 @@ def main():
     web.add_argument('--run-dir',type=Path)
     web.add_argument('--port',type=int,default=8765)
     demo=sub.add_parser('export-demo',help='Create a self-contained synthetic HTML demo; no server needed')
-    demo.add_argument('--out',type=Path,default=Path('outputs/control-switch-demo.html'))
+    demo.add_argument('--out',type=Path,default=Path('dashboard.html'))
+    dashboard=sub.add_parser('dashboard',help='Build a private offline dashboard from a local prediction run')
+    dashboard.add_argument('--run-dir',type=Path,required=True)
+    dashboard.add_argument('--out',type=Path,default=Path('local'))
     download=sub.add_parser('download-external',help='Download pinned CC-BY-4.0 external match files')
     download.add_argument('--out',type=Path,default=Path('work/external/raw'))
     download.add_argument('--matches',nargs='+',default=['J03WOH','J03WPY','J03WMX'])
@@ -39,7 +42,11 @@ def main():
     inference.add_argument('--out',type=Path,required=True)
     args=parser.parse_args()
     try:
-        if args.command=='baseline':
+        if args.command=='dashboard':
+            from .dashboard import export_local
+            export_local(args.run_dir,args.out)
+            print('Private local dashboard saved. Nothing uploaded.')
+        elif args.command=='baseline':
             summary=run_baselines(args.data_root,args.out)
             print('Tracking alignment verified; four full-length CSVs passed the official format validator.')
             print(f'Run saved to {args.out.resolve()}')

@@ -3,7 +3,7 @@ import json
 import numpy as np
 from .external import MATCHES,load_sportec
 from .experiment import split_data,aggregate
-from .rnn import train,predict,rnn_features,RNN_VERSION
+from .rnn import train,predict,rnn_features,RNN_VERSION,RNN_REFINED_VERSION,RNN_SYMMETRIC_VERSION,observation_probabilities
 from .pipeline import (discover,teams_from_metadata,read_tracking,N_FRAMES,GAMES,GAME,BLOCKS,
                        write_submission,pm,digest,intervals)
 from .statistics import team_statistics,tracklet_statistics
@@ -60,15 +60,19 @@ def predict_provided(root,checkpoint,out):
             _,players,b=line.strip().split(':');p=np.array([[float(x) for x in g.split(',')] for g in players.rstrip(';').split(';')]);b=np.array([float(x) for x in b.split(',')])
             xy[i]=(p[:,:2]-.5)*pitch;speed[i]=p[:,2];ball[i]=(b[:2]-.5)*pitch;bs[i]=b[2]
     with np.load(checkpoint,allow_pickle=False) as d:
-        if str(d['version'])!=RNN_VERSION:raise ValueError('Incompatible RNN model version')
+        if str(d['version']) not in (RNN_VERSION,RNN_REFINED_VERSION,RNN_SYMMETRIC_VERSION):raise ValueError('Incompatible RNN model version')
+        if str(d['version'])==RNN_REFINED_VERSION and 'stop_penalty' not in d.files:raise ValueError('Refined checkpoint is missing stop penalty')
         model={k:d[k] for k in ('mean','scale','wx','wh','bh','wy','by')}
         penalty=float(d['transition_penalty']) if 'transition_penalty' in d.files else 0.0
         if not np.isfinite(penalty) or penalty<0:raise ValueError('Invalid frozen transition penalty')
+        stop_penalty=float(d['stop_penalty']) if 'stop_penalty' in d.files else None
+        symmetric=str(d['version'])==RNN_SYMMETRIC_VERSION
+        if symmetric and ('symmetric' not in d.files or not bool(d['symmetric'])):raise ValueError('Missing symmetry setting')
     labels=np.full(N_FRAMES,'X',dtype='<U1')
     for a,b in BLOCKS:
         sequence={'xy':xy[a:b],'speed':speed[a:b],'teams':teams,'ball':ball[a:b],'ball_speed':bs[a:b]}
-        probs=predict(model,rnn_features(sequence,pitch))
-        labels[a:b]=np.array(['H','A','D'])[decode(probs,penalty)]
+        probs=observation_probabilities(model,sequence,pitch,symmetric=symmetric)
+        labels[a:b]=np.array(['H','A','D'])[decode(probs,penalty,stop_penalty=stop_penalty)]
     import pandas as pd
     reason=pm.validate_submission(pd.DataFrame({'frame':np.arange(N_FRAMES),'label':labels}),N_FRAMES)
     if reason:raise ValueError(reason)
@@ -76,7 +80,7 @@ def predict_provided(root,checkpoint,out):
     stats=team_statistics(labels)
     stats.update({'teams':{'H':names[0],'A':names[1]},'model_sha256':digest(checkpoint),
                   'prediction_sha256':digest(out/'possession.csv'),'evaluated_against_competition_truth':False,'decoder':'offline Viterbi',
-                  'transition_penalty':penalty})
+                  'transition_penalty':penalty,'stop_penalty':stop_penalty,'team_symmetric':symmetric})
     (out/'team-statistics.json').write_text(json.dumps(stats,indent=2)+'\n')
     proxy=tracklet_statistics(labels,xy,ball,teams)
     (out/'tracklet-proxies.json').write_text(json.dumps(proxy,indent=2)+'\n')

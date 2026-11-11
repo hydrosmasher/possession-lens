@@ -1,5 +1,9 @@
 # Possession Lens — team possession RNN
 
+## Latest model: team-symmetric RNN
+
+The frozen team-symmetric checkpoint improves clean spell F1 on a new Bochum–Leverkusen test from 0.2884 (previous RNN) to 0.3707, versus baseline 0.2838. Under synthetic ball dropout it scores 0.2883 versus 0.2426 and 0.2083. The recurrent weights are unchanged; exact team-permutation averaging improves transfer. See [RNN_SYMMETRY.md](RNN_SYMMETRY.md) for the experiment history, limits and commands. Use `models/rnn-symmetric-001.npz`; this candidate has one independent external test.
+
 ## Reduced-switching RNN
 
 The external-validation-selected offline decoder improves spell F1 from 0.3408 to 0.5138 on clean data and from 0.2787 to 0.4848 under ball dropout. This is validation evidence from one match, not a held-out-match result. See [RNN_IMPROVEMENT.md](RNN_IMPROVEMENT.md) for the full comparison and three-match reproduction command. Use `models/rnn-decoded-001.npz` to apply the frozen decoder.

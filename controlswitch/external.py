@@ -10,11 +10,16 @@ MATCHES = {
  'J03WPY': {'home':'DFL-CLU-00000P','away':'DFL-CLU-000005','competition':'000002'},
  'J03WMX': {'home':'DFL-CLU-000008','away':'DFL-CLU-00000G','competition':'000001'},
 }
+# Kept separate so adding a fresh test cannot change the original three-match split.
+FRESH_MATCHES = {
+ 'J03WN1': {'home':'DFL-CLU-00000S','away':'DFL-CLU-00000B','competition':'000001'},
+}
+ALL_MATCHES = {**MATCHES, **FRESH_MATCHES}
 # Team IDs above are transcribed from the public matchinformation XML (not inferred from labels).
 BASE='https://huggingface.co/datasets/pysport/idsse-data/resolve/a715a38dfbaf5f58e431727c2b78d174101a703c/'
 
 def source_files(match_id):
-    c=MATCHES[match_id]['competition']
+    c=ALL_MATCHES[match_id]['competition']
     return [f'DFL_{kind}_DFL-COM-{c}_DFL-MAT-{match_id}.xml' for kind in ('02_01_matchinformation','04_03_positions_raw_observed')]
 
 def download_external(out, ids):
@@ -34,7 +39,7 @@ def download_external(out, ids):
             temp.rename(dest)
 
 def load_sportec(path, match_id, cache_dir):
-    if match_id not in MATCHES:raise ValueError('Unsupported match; add independently verified team metadata first')
+    if match_id not in ALL_MATCHES:raise ValueError('Unsupported match; add independently verified team metadata first')
     path=Path(path);cache_dir=Path(cache_dir);cache_dir.mkdir(parents=True,exist_ok=True)
     sha=digest(path);cache=cache_dir/f'{match_id}-{sha[:12]}.npz'
     if cache.exists():
@@ -48,7 +53,7 @@ def load_sportec(path, match_id, cache_dir):
         if event=='end' and e.tag=='PitchSize':pitch=(float(e.get('X')),float(e.get('Y')))
         if event=='end' and e.tag=='Frame' and current:
             period,team,person=current
-            if team in (MATCHES[match_id]['home'],MATCHES[match_id]['away'],'BALL'):
+            if team in (ALL_MATCHES[match_id]['home'],ALL_MATCHES[match_id]['away'],'BALL'):
                 a=e.attrib
                 series.append((int(a['N']),float(a.get('X','nan')),float(a.get('Y','nan')),
                                float(a.get('S','nan'))/3.6,int(a.get('BallStatus','-1')),int(a.get('BallPossession','0'))))
@@ -75,7 +80,7 @@ def load_sportec(path, match_id, cache_dir):
             ai=a[:,0].astype(int)
             if len(np.unique(ai))!=len(ai):raise ValueError('Duplicate player frames')
             ix=ai-ids[0];valid=(ix>=0)&(ix<len(ids));xy[ix[valid],slot]=a[valid,1:3];speed[ix[valid],slot]=a[valid,3]
-            teams.append(0 if team==MATCHES[match_id]['home'] else 1)
+            teams.append(0 if team==ALL_MATCHES[match_id]['home'] else 1)
         y=np.full(len(ids),3,dtype=np.int8);y[b[:,4]==0]=2
         for possession in (1,2):y[(b[:,4]==1)&(b[:,5]==possession)]=possession-1
         sequences.append({'xy':xy,'speed':speed,'teams':np.array(teams),'ball':b[:,1:3].astype(np.float32),

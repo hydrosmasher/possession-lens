@@ -136,7 +136,7 @@ def boundary_targets(y,radius=12):
     changes=np.r_[False,(y[1:]!=y[:-1])&valid]
     return (rolling(changes[:,None].astype(float),radius)[:,0]>0).astype(np.int8)
 
-def decode(p,penalty,boundary=None,strength=0):
+def decode(p,penalty,boundary=None,strength=0,stop_penalty=None):
     """Viterbi over stay / H↔A / stop / restart explanations at every frame.
 
     No hard candidate pruning: a missed candidate cannot forbid a genuine transition.
@@ -146,8 +146,15 @@ def decode(p,penalty,boundary=None,strength=0):
     costs=np.full(n,penalty,dtype=float)
     if boundary is not None:costs=penalty*np.clip(1+strength*(1-2*boundary),.15,3)
     eye=np.eye(3,dtype=bool)
+    matrix=np.full((3,3),penalty,dtype=float)
+    if stop_penalty is not None:
+        if not np.isfinite(stop_penalty) or stop_penalty<0:raise ValueError('Invalid stop/restart penalty')
+        matrix[2,:]=stop_penalty;matrix[:,2]=stop_penalty
+    np.fill_diagonal(matrix,0)
+    if stop_penalty is not None and boundary is not None:raise ValueError('Separate stop penalty does not support boundary scaling')
     for i in range(1,n):
-        candidates=score[:,None]-np.where(eye,0,costs[i])
+        cost=matrix if boundary is None else np.where(eye,0,costs[i])
+        candidates=score[:,None]-cost
         back[i]=np.argmax(candidates,axis=0);score=candidates[back[i],np.arange(3)]+logp[i]
     labels=np.empty(n,dtype=np.int8);labels[-1]=np.argmax(score)
     for i in range(n-1,0,-1):labels[i-1]=back[i,labels[i]]

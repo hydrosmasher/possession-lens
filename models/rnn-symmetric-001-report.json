@@ -1,0 +1,1245 @@
+{
+  "date": "2026-11-11",
+  "status": "candidate_confirmed_on_one_new_external_match",
+  "selected_model": "rnn-symmetric-001.npz",
+  "model_sha256": "e26fd5df6a0a8f4dc1a5f7d44330534ca097ee38a45529c3e9c15cc892158bfc",
+  "fresh_match": {
+    "protocol": {
+      "status": "frozen_before_fresh_test",
+      "match": {
+        "match_id": "J03WN1",
+        "title": "VfL Bochum 1848:Bayer 04 Leverkusen",
+        "metadata_sha256": "5490286436c86e6f80a538d2b1b379d0efd016e0defcaf594bc59d9ef5079f4c"
+      },
+      "model_sha256": "e26fd5df6a0a8f4dc1a5f7d44330534ca097ee38a45529c3e9c15cc892158bfc",
+      "team_penalty": 24.0,
+      "stop_penalty": 24.0,
+      "team_symmetric": true,
+      "baseline_window": 50,
+      "dropout_seed": 300,
+      "selection_on_this_match": false,
+      "training_on_this_match": false,
+      "competition_data_used": false,
+      "training_match": "J03WOH",
+      "validation_match": "J03WPY",
+      "previously_viewed_test": "J03WMX",
+      "reference_checkpoint_sha256": "5c89537076ca6c51ff712f30fdf82b52e297ccf345095db55d0530c69ede7ec6",
+      "reference_penalty": 24.0,
+      "protocol_note": "Fixed smooth50 baseline, raw/decoded candidate, and optional frozen current model. No parameter sweep or selection."
+    },
+    "tracking_sha256": "56ef948961a18e150dba0b7b16869d0008ff66f3050a0c355d31fa5b8ec2fcec",
+    "test_results": {
+      "baseline_smooth50": {
+        "clean": {
+          "spell_f1_mean": 0.28376068376068375,
+          "macro_f1": 0.3488337121573147,
+          "alive_dead_f1": 0.651401842448723,
+          "n_gt_spells": 500,
+          "n_pred_spells": 436,
+          "n_graded": 141561
+        },
+        "masked": {
+          "spell_f1_mean": 0.20825610783487786,
+          "macro_f1": 0.3547329597800198,
+          "alive_dead_f1": 0.6371371346741531,
+          "n_gt_spells": 500,
+          "n_pred_spells": 687,
+          "n_graded": 141561
+        },
+        "mean_clean_masked_spell_f1": 0.2460083957977808
+      },
+      "rnn_raw": {
+        "clean": {
+          "spell_f1_mean": 0.19204712812960237,
+          "macro_f1": 0.811638207232452,
+          "alive_dead_f1": 0.9742900627343257,
+          "n_gt_spells": 500,
+          "n_pred_spells": 1537,
+          "n_graded": 141561
+        },
+        "masked": {
+          "spell_f1_mean": 0.1315352697095436,
+          "macro_f1": 0.72058631365114,
+          "alive_dead_f1": 0.8678075731033553,
+          "n_gt_spells": 500,
+          "n_pred_spells": 1428,
+          "n_graded": 141561
+        },
+        "mean_clean_masked_spell_f1": 0.161791198919573
+      },
+      "rnn_decoded": {
+        "clean": {
+          "spell_f1_mean": 0.3707189542483661,
+          "macro_f1": 0.829705313824424,
+          "alive_dead_f1": 0.9868014808094702,
+          "n_gt_spells": 500,
+          "n_pred_spells": 265,
+          "n_graded": 141561
+        },
+        "masked": {
+          "spell_f1_mean": 0.2882882882882883,
+          "macro_f1": 0.7541602630478201,
+          "alive_dead_f1": 0.9083416757851606,
+          "n_gt_spells": 500,
+          "n_pred_spells": 277,
+          "n_graded": 141561
+        },
+        "mean_clean_masked_spell_f1": 0.3295036212683272
+      },
+      "reference_decoded": {
+        "clean": {
+          "spell_f1_mean": 0.2884041331802526,
+          "macro_f1": 0.7600727782915104,
+          "alive_dead_f1": 0.9630952919361403,
+          "n_gt_spells": 500,
+          "n_pred_spells": 371,
+          "n_graded": 141561
+        },
+        "masked": {
+          "spell_f1_mean": 0.24261555806087937,
+          "macro_f1": 0.7023010283980753,
+          "alive_dead_f1": 0.8662657827771204,
+          "n_gt_spells": 500,
+          "n_pred_spells": 387,
+          "n_graded": 141561
+        },
+        "mean_clean_masked_spell_f1": 0.265509845620566
+      }
+    },
+    "limitations": [
+      "One additional external match; no competition score.",
+      "Synthetic ball dropout does not model all real tracking errors.",
+      "This match has now been viewed; further tuning requires another independent test.",
+      "Offline Viterbi uses future evidence."
+    ]
+  },
+  "symmetry_validation": {
+    "protocol": {
+      "validation_only": true,
+      "validation_match": "J03WPY",
+      "penalties": [
+        6,
+        12,
+        24,
+        48
+      ],
+      "new_training": false,
+      "source_model_sha256": "5c89537076ca6c51ff712f30fdf82b52e297ccf345095db55d0530c69ede7ec6",
+      "operation": "average original and team-swapped RNN probabilities with output H/A realigned",
+      "J03WMX_loaded": false,
+      "competition_data_used": false,
+      "fresh_test_required": true
+    },
+    "selected_validation": {
+      "symmetric": true,
+      "penalty": 24,
+      "clean": {
+        "spell_f1_mean": 0.48703703703703705,
+        "macro_f1": 0.8972598520794346,
+        "alive_dead_f1": 0.9907497386063103,
+        "n_gt_spells": 421,
+        "n_pred_spells": 227,
+        "n_graded": 146211
+      },
+      "masked": {
+        "spell_f1_mean": 0.42406015037593986,
+        "macro_f1": 0.8422295516798995,
+        "alive_dead_f1": 0.9422007618166011,
+        "n_gt_spells": 421,
+        "n_pred_spells": 244,
+        "n_graded": 146211
+      },
+      "selection_spell_f1": 0.4555485937064885
+    },
+    "validation_trials": [
+      {
+        "symmetric": false,
+        "penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.45965317919075144,
+          "macro_f1": 0.8876714227238757,
+          "alive_dead_f1": 0.9865375052947568,
+          "n_gt_spells": 421,
+          "n_pred_spells": 444,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3252336448598131,
+          "macro_f1": 0.8058935066119277,
+          "alive_dead_f1": 0.9301998643932844,
+          "n_gt_spells": 421,
+          "n_pred_spells": 542,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.39244341202528227
+      },
+      {
+        "symmetric": false,
+        "penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.4833545108005083,
+          "macro_f1": 0.8909260021011152,
+          "alive_dead_f1": 0.9875584922808611,
+          "n_gt_spells": 421,
+          "n_pred_spells": 366,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.37652582159624415,
+          "macro_f1": 0.8212631352350174,
+          "alive_dead_f1": 0.9349534759158455,
+          "n_gt_spells": 421,
+          "n_pred_spells": 431,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4299401661983762
+      },
+      {
+        "symmetric": false,
+        "penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.49972144846796657,
+          "macro_f1": 0.893296785138712,
+          "alive_dead_f1": 0.9881585974475607,
+          "n_gt_spells": 421,
+          "n_pred_spells": 297,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.4086137281292059,
+          "macro_f1": 0.8316639998502571,
+          "alive_dead_f1": 0.9393437519457071,
+          "n_gt_spells": 421,
+          "n_pred_spells": 322,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4541675882985862
+      },
+      {
+        "symmetric": false,
+        "penalty": 48,
+        "clean": {
+          "spell_f1_mean": 0.4787786259541985,
+          "macro_f1": 0.8928724607100529,
+          "alive_dead_f1": 0.9883033765724234,
+          "n_gt_spells": 421,
+          "n_pred_spells": 234,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.41853512705530643,
+          "macro_f1": 0.8401106019169514,
+          "alive_dead_f1": 0.9459910566371462,
+          "n_gt_spells": 421,
+          "n_pred_spells": 248,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4486568765047525
+      },
+      {
+        "symmetric": true,
+        "penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.4840940525587829,
+          "macro_f1": 0.8927712317027848,
+          "alive_dead_f1": 0.9889451440453267,
+          "n_gt_spells": 421,
+          "n_pred_spells": 302,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3949431099873578,
+          "macro_f1": 0.8237172669187891,
+          "alive_dead_f1": 0.9251889499446747,
+          "n_gt_spells": 421,
+          "n_pred_spells": 370,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.43951858127307036
+      },
+      {
+        "symmetric": true,
+        "penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.49659259259259264,
+          "macro_f1": 0.8965940396275469,
+          "alive_dead_f1": 0.9895042333540339,
+          "n_gt_spells": 421,
+          "n_pred_spells": 254,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.4142661179698216,
+          "macro_f1": 0.8306881517480083,
+          "alive_dead_f1": 0.9316774064638593,
+          "n_gt_spells": 421,
+          "n_pred_spells": 308,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4554293552812071
+      },
+      {
+        "symmetric": true,
+        "penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.48703703703703705,
+          "macro_f1": 0.8972598520794346,
+          "alive_dead_f1": 0.9907497386063103,
+          "n_gt_spells": 421,
+          "n_pred_spells": 227,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.42406015037593986,
+          "macro_f1": 0.8422295516798995,
+          "alive_dead_f1": 0.9422007618166011,
+          "n_gt_spells": 421,
+          "n_pred_spells": 244,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4555485937064885
+      },
+      {
+        "symmetric": true,
+        "penalty": 48,
+        "clean": {
+          "spell_f1_mean": 0.4447368421052632,
+          "macro_f1": 0.8883282755910716,
+          "alive_dead_f1": 0.9919586197575913,
+          "n_gt_spells": 421,
+          "n_pred_spells": 187,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.4096774193548387,
+          "macro_f1": 0.8460976608687883,
+          "alive_dead_f1": 0.9520375,
+          "n_gt_spells": 421,
+          "n_pred_spells": 199,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.42720713073005095
+      }
+    ],
+    "candidate_sha256": "e26fd5df6a0a8f4dc1a5f7d44330534ca097ee38a45529c3e9c15cc892158bfc",
+    "test_results": null,
+    "limitations": [
+      "Validation reused after earlier experiments; fresh independent evidence required.",
+      "Team symmetry averaging doubles recurrent inference cost.",
+      "Offline decoder uses future observations."
+    ]
+  },
+  "rejected_refinement": {
+    "protocol": {
+      "status": "validation_only_development",
+      "epochs": 5,
+      "seed": 42,
+      "hidden_units": 24,
+      "training_match": "J03WOH",
+      "validation_match": "J03WPY",
+      "training_boosts": [
+        3,
+        6
+      ],
+      "transition_weight_radius_frames": 12,
+      "team_penalties": [
+        6,
+        12,
+        24
+      ],
+      "stop_penalties": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "selection": "mean clean/masked validation spell F1; never match a target spell count",
+      "validation_dropout_seed": 100,
+      "competition_data_used": false,
+      "test_match_loaded": false,
+      "previously_viewed_J03WMX_not_scored": true,
+      "fresh_test_required": true,
+      "reference_model_sha256": "5c89537076ca6c51ff712f30fdf82b52e297ccf345095db55d0530c69ede7ec6",
+      "cache_sha256": {
+        "training": "ea643c18455026e1a2e726186a285108567ef8d0b3d6018a95f6913f83862e21",
+        "validation": "0926927ace16d7022f850f6142d9825bbbc8670d1e46214bdaa3193844f162ba"
+      },
+      "original_source_sha256": {
+        "J03WOH": "ec4dcf30200aad694dea263d5289485fcd0ca42badddaeb7c81f5cd5a4229d4f",
+        "J03WPY": "845202c29ad93d696653436da426a7cdaefb848298e07b7343de6529581671e1"
+      }
+    },
+    "reference_validation": {
+      "clean": {
+        "spell_f1_mean": 0.49972144846796657,
+        "macro_f1": 0.893296785138712,
+        "alive_dead_f1": 0.9881585974475607,
+        "n_gt_spells": 421,
+        "n_pred_spells": 297,
+        "n_graded": 146211
+      },
+      "masked": {
+        "spell_f1_mean": 0.4086137281292059,
+        "macro_f1": 0.8316639998502571,
+        "alive_dead_f1": 0.9393437519457071,
+        "n_gt_spells": 421,
+        "n_pred_spells": 322,
+        "n_graded": 146211
+      },
+      "selection_spell_f1": 0.4541675882985862
+    },
+    "selected_validation": {
+      "model": "reference",
+      "team_penalty": 24.0,
+      "stop_penalty": 24.0,
+      "clean": {
+        "spell_f1_mean": 0.49972144846796657,
+        "macro_f1": 0.893296785138712,
+        "alive_dead_f1": 0.9881585974475607,
+        "n_gt_spells": 421,
+        "n_pred_spells": 297,
+        "n_graded": 146211
+      },
+      "masked": {
+        "spell_f1_mean": 0.4086137281292059,
+        "macro_f1": 0.8316639998502571,
+        "alive_dead_f1": 0.9393437519457071,
+        "n_gt_spells": 421,
+        "n_pred_spells": 322,
+        "n_graded": 146211
+      },
+      "selection_spell_f1": 0.4541675882985862
+    },
+    "validation_trials": [
+      {
+        "model": "reference",
+        "team_penalty": 6,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.4571428571428572,
+          "macro_f1": 0.8875470166270659,
+          "alive_dead_f1": 0.9864583525250106,
+          "n_gt_spells": 421,
+          "n_pred_spells": 447,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3181166837256909,
+          "macro_f1": 0.8033774916270641,
+          "alive_dead_f1": 0.9273178900710324,
+          "n_gt_spells": 421,
+          "n_pred_spells": 556,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.38762977043427405
+      },
+      {
+        "model": "reference",
+        "team_penalty": 6,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.45965317919075144,
+          "macro_f1": 0.8876714227238757,
+          "alive_dead_f1": 0.9865375052947568,
+          "n_gt_spells": 421,
+          "n_pred_spells": 444,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3252336448598131,
+          "macro_f1": 0.8058935066119277,
+          "alive_dead_f1": 0.9301998643932844,
+          "n_gt_spells": 421,
+          "n_pred_spells": 542,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.39244341202528227
+      },
+      {
+        "model": "reference",
+        "team_penalty": 6,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.46071842410196984,
+          "macro_f1": 0.8880323943691423,
+          "alive_dead_f1": 0.9868687488494815,
+          "n_gt_spells": 421,
+          "n_pred_spells": 442,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3366631243358129,
+          "macro_f1": 0.8099986716436787,
+          "alive_dead_f1": 0.9352798356471395,
+          "n_gt_spells": 421,
+          "n_pred_spells": 520,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.3986907742188914
+      },
+      {
+        "model": "reference",
+        "team_penalty": 6,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.46861143523920656,
+          "macro_f1": 0.8888958819982159,
+          "alive_dead_f1": 0.9875707461844581,
+          "n_gt_spells": 421,
+          "n_pred_spells": 436,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.34285714285714286,
+          "macro_f1": 0.8146014550118554,
+          "alive_dead_f1": 0.9436392715010103,
+          "n_gt_spells": 421,
+          "n_pred_spells": 503,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4057342890481747
+      },
+      {
+        "model": "reference",
+        "team_penalty": 12,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.4723192019950124,
+          "macro_f1": 0.8887609820089128,
+          "alive_dead_f1": 0.9859592849988632,
+          "n_gt_spells": 421,
+          "n_pred_spells": 381,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3378260869565218,
+          "macro_f1": 0.8062990386190925,
+          "alive_dead_f1": 0.9261041373206517,
+          "n_gt_spells": 421,
+          "n_pred_spells": 499,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4050726444757671
+      },
+      {
+        "model": "reference",
+        "team_penalty": 12,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.47858942065491183,
+          "macro_f1": 0.8897510331374249,
+          "alive_dead_f1": 0.9866011667178385,
+          "n_gt_spells": 421,
+          "n_pred_spells": 373,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3623421354764639,
+          "macro_f1": 0.8164339457788463,
+          "alive_dead_f1": 0.9295585269291103,
+          "n_gt_spells": 421,
+          "n_pred_spells": 450,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.42046577806568786
+      },
+      {
+        "model": "reference",
+        "team_penalty": 12,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.4833545108005083,
+          "macro_f1": 0.8909260021011152,
+          "alive_dead_f1": 0.9875584922808611,
+          "n_gt_spells": 421,
+          "n_pred_spells": 366,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.37652582159624415,
+          "macro_f1": 0.8212631352350174,
+          "alive_dead_f1": 0.9349534759158455,
+          "n_gt_spells": 421,
+          "n_pred_spells": 431,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4299401661983762
+      },
+      {
+        "model": "reference",
+        "team_penalty": 12,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.4905370843989769,
+          "macro_f1": 0.8916741066362569,
+          "alive_dead_f1": 0.9881487937055428,
+          "n_gt_spells": 421,
+          "n_pred_spells": 361,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3836144578313253,
+          "macro_f1": 0.825308817232293,
+          "alive_dead_f1": 0.9407756911160429,
+          "n_gt_spells": 421,
+          "n_pred_spells": 409,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4370757711151511
+      },
+      {
+        "model": "reference",
+        "team_penalty": 24,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.476670870113493,
+          "macro_f1": 0.8881024287619107,
+          "alive_dead_f1": 0.9849550990281707,
+          "n_gt_spells": 421,
+          "n_pred_spells": 372,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.344994499449945,
+          "macro_f1": 0.8064767458038542,
+          "alive_dead_f1": 0.9255751014884981,
+          "n_gt_spells": 421,
+          "n_pred_spells": 488,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.41083268478171897
+      },
+      {
+        "model": "reference",
+        "team_penalty": 24,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.5037234042553191,
+          "macro_f1": 0.8909707751620305,
+          "alive_dead_f1": 0.9854475478472576,
+          "n_gt_spells": 421,
+          "n_pred_spells": 331,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.38125000000000003,
+          "macro_f1": 0.8162982762402843,
+          "alive_dead_f1": 0.9281537905327066,
+          "n_gt_spells": 421,
+          "n_pred_spells": 411,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4424867021276596
+      },
+      {
+        "model": "reference",
+        "team_penalty": 24,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.4918395573997234,
+          "macro_f1": 0.8925940392715548,
+          "alive_dead_f1": 0.9873753662986786,
+          "n_gt_spells": 421,
+          "n_pred_spells": 302,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.4026109660574413,
+          "macro_f1": 0.8275194341516171,
+          "alive_dead_f1": 0.9333391561492056,
+          "n_gt_spells": 421,
+          "n_pred_spells": 345,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.44722526172858235
+      },
+      {
+        "model": "reference",
+        "team_penalty": 24,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.49972144846796657,
+          "macro_f1": 0.893296785138712,
+          "alive_dead_f1": 0.9881585974475607,
+          "n_gt_spells": 421,
+          "n_pred_spells": 297,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.4086137281292059,
+          "macro_f1": 0.8316639998502571,
+          "alive_dead_f1": 0.9393437519457071,
+          "n_gt_spells": 421,
+          "n_pred_spells": 322,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4541675882985862
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 6,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.4485549132947977,
+          "macro_f1": 0.8819751931900424,
+          "alive_dead_f1": 0.9841836892363793,
+          "n_gt_spells": 421,
+          "n_pred_spells": 444,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.31793814432989687,
+          "macro_f1": 0.7945889635019614,
+          "alive_dead_f1": 0.9191237152074424,
+          "n_gt_spells": 421,
+          "n_pred_spells": 549,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.3832465288123473
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 6,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.45261932479627476,
+          "macro_f1": 0.882459812923905,
+          "alive_dead_f1": 0.9847757153188569,
+          "n_gt_spells": 421,
+          "n_pred_spells": 438,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3234490010515247,
+          "macro_f1": 0.7974756096876607,
+          "alive_dead_f1": 0.9230384526421734,
+          "n_gt_spells": 421,
+          "n_pred_spells": 530,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.3880341629238997
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 6,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.4584905660377358,
+          "macro_f1": 0.8836220273128924,
+          "alive_dead_f1": 0.9856115107913669,
+          "n_gt_spells": 421,
+          "n_pred_spells": 427,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.33254054054054055,
+          "macro_f1": 0.8028036752187625,
+          "alive_dead_f1": 0.9298518560172949,
+          "n_gt_spells": 421,
+          "n_pred_spells": 504,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.3955155532891382
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 6,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.45924170616113746,
+          "macro_f1": 0.8842449679367568,
+          "alive_dead_f1": 0.9862991747456133,
+          "n_gt_spells": 421,
+          "n_pred_spells": 423,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.34146341463414637,
+          "macro_f1": 0.8089213313685826,
+          "alive_dead_f1": 0.9394384062476683,
+          "n_gt_spells": 421,
+          "n_pred_spells": 481,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4003525603976419
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 12,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.47135678391959795,
+          "macro_f1": 0.8820441259435761,
+          "alive_dead_f1": 0.9835923633057708,
+          "n_gt_spells": 421,
+          "n_pred_spells": 375,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.33077765607886095,
+          "macro_f1": 0.7942443896938056,
+          "alive_dead_f1": 0.9174749682210687,
+          "n_gt_spells": 421,
+          "n_pred_spells": 492,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.40106721999922945
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 12,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.47692307692307684,
+          "macro_f1": 0.8828796413885603,
+          "alive_dead_f1": 0.9848232886789771,
+          "n_gt_spells": 421,
+          "n_pred_spells": 359,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.35660377358490564,
+          "macro_f1": 0.8034802712306927,
+          "alive_dead_f1": 0.9203628589877816,
+          "n_gt_spells": 421,
+          "n_pred_spells": 427,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.41676342525399124
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 12,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.48311688311688317,
+          "macro_f1": 0.8841000759948642,
+          "alive_dead_f1": 0.985690396707372,
+          "n_gt_spells": 421,
+          "n_pred_spells": 349,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.36048780487804877,
+          "macro_f1": 0.8086688932309881,
+          "alive_dead_f1": 0.9287676203942964,
+          "n_gt_spells": 421,
+          "n_pred_spells": 399,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.42180234399746597
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 12,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.4853403141361256,
+          "macro_f1": 0.8850993240470718,
+          "alive_dead_f1": 0.9867612147371667,
+          "n_gt_spells": 421,
+          "n_pred_spells": 343,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.37417721518987335,
+          "macro_f1": 0.8152867000553048,
+          "alive_dead_f1": 0.9380286251697206,
+          "n_gt_spells": 421,
+          "n_pred_spells": 369,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.42975876466299945
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 24,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.4680958385876418,
+          "macro_f1": 0.8817239211740756,
+          "alive_dead_f1": 0.9827871135456319,
+          "n_gt_spells": 421,
+          "n_pred_spells": 372,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3304730473047305,
+          "macro_f1": 0.7940795567811022,
+          "alive_dead_f1": 0.9169595479291571,
+          "n_gt_spells": 421,
+          "n_pred_spells": 488,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.39928444294618615
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 24,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.47161803713527856,
+          "macro_f1": 0.883998718277077,
+          "alive_dead_f1": 0.9835974251052241,
+          "n_gt_spells": 421,
+          "n_pred_spells": 333,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3592727272727273,
+          "macro_f1": 0.8059824829813644,
+          "alive_dead_f1": 0.9191744190425973,
+          "n_gt_spells": 421,
+          "n_pred_spells": 404,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.41544538220400296
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 24,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.4851540616246498,
+          "macro_f1": 0.8874677722142991,
+          "alive_dead_f1": 0.9851826241572618,
+          "n_gt_spells": 421,
+          "n_pred_spells": 293,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.38569536423841055,
+          "macro_f1": 0.8167130205969421,
+          "alive_dead_f1": 0.9275453115896177,
+          "n_gt_spells": 421,
+          "n_pred_spells": 334,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4354247129315302
+      },
+      {
+        "model": "boundary_weight_3",
+        "team_penalty": 24,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.4926136363636363,
+          "macro_f1": 0.8886132329510446,
+          "alive_dead_f1": 0.9864794848387652,
+          "n_gt_spells": 421,
+          "n_pred_spells": 283,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.39721835883171075,
+          "macro_f1": 0.8248564292324959,
+          "alive_dead_f1": 0.9370958992935836,
+          "n_gt_spells": 421,
+          "n_pred_spells": 298,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.44491599759767353
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 6,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.44129930394431555,
+          "macro_f1": 0.8828299396142961,
+          "alive_dead_f1": 0.9851706028646717,
+          "n_gt_spells": 421,
+          "n_pred_spells": 441,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3181628392484342,
+          "macro_f1": 0.7942947404297628,
+          "alive_dead_f1": 0.9153710071261275,
+          "n_gt_spells": 421,
+          "n_pred_spells": 537,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.37973107159637487
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 6,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.4430913348946136,
+          "macro_f1": 0.88285023357812,
+          "alive_dead_f1": 0.9853512188798281,
+          "n_gt_spells": 421,
+          "n_pred_spells": 433,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.32145922746781114,
+          "macro_f1": 0.798848738944883,
+          "alive_dead_f1": 0.9200813174925863,
+          "n_gt_spells": 421,
+          "n_pred_spells": 511,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.38227528118121235
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 6,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.4467532467532468,
+          "macro_f1": 0.883864171105388,
+          "alive_dead_f1": 0.9865139980505139,
+          "n_gt_spells": 421,
+          "n_pred_spells": 426,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.33010989010989006,
+          "macro_f1": 0.8042666107660067,
+          "alive_dead_f1": 0.9267148574442342,
+          "n_gt_spells": 421,
+          "n_pred_spells": 489,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.38843156843156845
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 6,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.448513674197384,
+          "macro_f1": 0.8853657714622898,
+          "alive_dead_f1": 0.9880727102377446,
+          "n_gt_spells": 421,
+          "n_pred_spells": 420,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.34272727272727266,
+          "macro_f1": 0.8137410277450949,
+          "alive_dead_f1": 0.939088884187997,
+          "n_gt_spells": 421,
+          "n_pred_spells": 459,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.3956204734623283
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 12,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.45844980940279545,
+          "macro_f1": 0.8818564962040781,
+          "alive_dead_f1": 0.9844614624505929,
+          "n_gt_spells": 421,
+          "n_pred_spells": 366,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.33200883002207504,
+          "macro_f1": 0.7945080378595263,
+          "alive_dead_f1": 0.9145439810485632,
+          "n_gt_spells": 421,
+          "n_pred_spells": 485,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.39522931971243525
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 12,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.46640926640926644,
+          "macro_f1": 0.8825114345226543,
+          "alive_dead_f1": 0.9850478949091201,
+          "n_gt_spells": 421,
+          "n_pred_spells": 356,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.34204946996466434,
+          "macro_f1": 0.8022144074023286,
+          "alive_dead_f1": 0.9191687062882624,
+          "n_gt_spells": 421,
+          "n_pred_spells": 428,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4042293681869654
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 12,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.46909090909090906,
+          "macro_f1": 0.8837434116879673,
+          "alive_dead_f1": 0.9861112825767584,
+          "n_gt_spells": 421,
+          "n_pred_spells": 349,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3524848484848485,
+          "macro_f1": 0.8082263521114909,
+          "alive_dead_f1": 0.9263913824057451,
+          "n_gt_spells": 421,
+          "n_pred_spells": 404,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.4107878787878788
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 12,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.4700653594771242,
+          "macro_f1": 0.8855073119154647,
+          "alive_dead_f1": 0.9880586704168364,
+          "n_gt_spells": 421,
+          "n_pred_spells": 344,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3730622617534943,
+          "macro_f1": 0.8198126093685936,
+          "alive_dead_f1": 0.9386140341040066,
+          "n_gt_spells": 421,
+          "n_pred_spells": 366,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.42156381061530923
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 24,
+        "stop_penalty": 3,
+        "clean": {
+          "spell_f1_mean": 0.46675224646983315,
+          "macro_f1": 0.8824463352741728,
+          "alive_dead_f1": 0.9836517482431038,
+          "n_gt_spells": 421,
+          "n_pred_spells": 358,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3343680709534368,
+          "macro_f1": 0.794567306244772,
+          "alive_dead_f1": 0.9141039633290717,
+          "n_gt_spells": 421,
+          "n_pred_spells": 481,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.400560158711635
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 24,
+        "stop_penalty": 6,
+        "clean": {
+          "spell_f1_mean": 0.46813186813186813,
+          "macro_f1": 0.8822799308023677,
+          "alive_dead_f1": 0.9840814535023893,
+          "n_gt_spells": 421,
+          "n_pred_spells": 307,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.34852941176470587,
+          "macro_f1": 0.8027436203324853,
+          "alive_dead_f1": 0.9182379744310567,
+          "n_gt_spells": 421,
+          "n_pred_spells": 395,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.408330639948287
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 24,
+        "stop_penalty": 12,
+        "clean": {
+          "spell_f1_mean": 0.4735042735042735,
+          "macro_f1": 0.8833223312188179,
+          "alive_dead_f1": 0.9857481598577287,
+          "n_gt_spells": 421,
+          "n_pred_spells": 281,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.37952755905511804,
+          "macro_f1": 0.8132640388306686,
+          "alive_dead_f1": 0.9255034099457269,
+          "n_gt_spells": 421,
+          "n_pred_spells": 341,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.42651591627969576
+      },
+      {
+        "model": "boundary_weight_6",
+        "team_penalty": 24,
+        "stop_penalty": 24,
+        "clean": {
+          "spell_f1_mean": 0.476546762589928,
+          "macro_f1": 0.8850397656644967,
+          "alive_dead_f1": 0.9877464893013155,
+          "n_gt_spells": 421,
+          "n_pred_spells": 274,
+          "n_graded": 146211
+        },
+        "masked": {
+          "spell_f1_mean": 0.3983240223463687,
+          "macro_f1": 0.8255932130114904,
+          "alive_dead_f1": 0.9384455105210951,
+          "n_gt_spells": 421,
+          "n_pred_spells": 295,
+          "n_graded": 146211
+        },
+        "selection_spell_f1": 0.43743539246814833
+      }
+    ],
+    "training_losses": {
+      "boundary_weight_3": [
+        0.4588705513622865,
+        0.26221878520379716,
+        0.2285596845748132,
+        0.21174816622056275,
+        0.19963685565310546
+      ],
+      "boundary_weight_6": [
+        0.46900166137506777,
+        0.27609495532925465,
+        0.24137363747604848,
+        0.2260814998668852,
+        0.21403072562333375
+      ]
+    },
+    "candidate_sha256": "61337558a8e70018cf5c51eb340df58263c9aac623fa1ed54dcadde952fbd9f0",
+    "test_results": null,
+    "limitations": [
+      "J03WPY has been reused for development; selection may overfit this match.",
+      "No new independent test has been performed. Do not replace the tested checkpoint based on validation alone.",
+      "Weighted training labels are supervision only; inference needs observations, never labels.",
+      "Viterbi uses future evidence and is for offline analysis."
+    ],
+    "checkpoint_format_note": "Repacked format version for split decoder support; recurrent weights and scores unchanged."
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "summary": "Team-permutation averaging of frozen RNN probabilities improves J03WN1 test results. Boundary-weighted training and separate stop penalties did not improve the validation criterion.",
+  "limitations": [
+    "The symmetric model has one independent test match; do not attribute earlier J03WMX numbers to it.",
+    "Both J03WMX and J03WN1 are now viewed tests. Future model changes need another independent check.",
+    "Decoded possession spell counts remain too low.",
+    "No competition score or video-output check."
+  ]
+}

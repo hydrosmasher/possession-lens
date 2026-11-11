@@ -62,3 +62,7 @@ The risk ranking exceeds the constant-score reference, but probability error is 
 ## Reduced-switching development run
 
 The original recurrent weights plus an external-validation-selected offline Viterbi penalty of 6 improved clean validation spellF1 from 0.3408 to 0.5138 and masked validation spellF1 from 0.2787 to 0.4848. Clean predicted spells fell from 136 to 56 against 60 reference spells. Team-swap/dropout augmented training was also tested but not selected on mean clean/masked validation performance. The scorer-selected baseline achieved 0.2690 clean and 0.2156 masked. These remain single-match validation results; no fresh test has been scored. See RNN_IMPROVEMENT.md and models/rnn-decoded-001-report.json.
+
+## Team-symmetric inference and fourth-match confirmation
+
+The latest checkpoint is models/rnn-symmetric-001.npz. It averages original and team-swapped recurrent probabilities with H/A outputs realigned, followed by offline penalty-24 Viterbi decoding. Weights and training standardisation are unchanged. Selected on J03WPY validation, it scored 0.3707 clean / 0.2883 masked spell F1 on fresh J03WN1, versus the previous model 0.2884 / 0.2426 and baseline 0.2838 / 0.2083. This candidate was not scored on J03WMX after development. Separate stop penalties and transition-weighted training did not improve validation and were rejected. The full audit is in RNN_SYMMETRY.md and models/rnn-symmetric-001-report.json. Both external tests are now viewed; subsequent changes require fresh evidence.

@@ -1,0 +1,14 @@
+{
+  "validation_only": true,
+  "promoted_to_default": false,
+  "checkpoint_sha256": "7938947dbfcb7a2549d558071c1d03d40f641989d8da32c726dd0084e694651e",
+  "driver_sha256": "c4da5b7a0b3664e9ed112bdc425e54f2f8278a4f8286106f8d72819c7a39656e",
+  "runtime_sha256": "cd1418c36300144079bc1985d416e7c8cbec21bb8b64f4795cf0e2e4e7c3995a",
+  "selected": {
+    "variant": "bigru2_boundary",
+    "iteration": 12,
+    "penalty": 24,
+    "boundary_strength": 1,
+    "selection_spell_f1": 0.5527322404371586
+  }
+}

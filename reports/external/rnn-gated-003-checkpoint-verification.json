@@ -1,0 +1,24 @@
+{
+  "sha256": "7938947dbfcb7a2549d558071c1d03d40f641989d8da32c726dd0084e694651e",
+  "score": {
+    "clean": {
+      "spell_f1_mean": 0.5721311475409838,
+      "macro_f1": 0.5785546994362553,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 199,
+      "n_graded": 91462
+    },
+    "masked": {
+      "spell_f1_mean": 0.5333333333333333,
+      "macro_f1": 0.570699772640974,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 176,
+      "n_graded": 91462
+    },
+    "selection_spell_f1": 0.5527322404371586
+  },
+  "diagnostics_identical_after_reload": true,
+  "validation_only": true
+}

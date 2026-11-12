@@ -13,6 +13,9 @@ VERSIONS=(RNN_VERSION,RNN_REFINED_VERSION,RNN_SYMMETRIC_VERSION,RNN_DWELL_VERSIO
 def load_frozen(path):
     with np.load(path,allow_pickle=False) as d:
         version=str(d['version'])
+        if version=='torch-gated-possession-v1':
+            from .gated_rnn import load_checkpoint
+            return load_checkpoint(path)
         from .rnn_deep import VERSION as DEEP_VERSION,parameters
         if version in (DEEP_VERSION,DEEP_BOUNDARY_VERSION,CONTEXT_VERSION,INTERACTION_CONTEXT_VERSION):
             sizes=d['sizes'];model={k:d[k] for k in ('mean','scale','sizes','wo','bo')}
@@ -53,6 +56,9 @@ def load_frozen(path):
             'min_frames':minimum,'head':head,'strength':strength}
 
 def infer_frozen(frozen,sequence,pitch,mask=None):
+    if frozen.get('gated'):
+        from .gated_rnn import infer
+        return infer(frozen,sequence,pitch,mask)
     if frozen.get('interaction_context'):
         from .interaction_context import observation_probabilities as richer_probabilities
         p=richer_probabilities(frozen['model'],sequence,pitch,mask)

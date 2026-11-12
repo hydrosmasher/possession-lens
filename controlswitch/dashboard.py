@@ -57,10 +57,9 @@ def export_html(out,payload=None):
         if any(p.get('mode')!='external_named' or p.get('named_players',{}).get('source_kind')!='external_provider_stable_ids' for p in library['matches']):raise ValueError('Example library requires provider-mapped external players')
         library_script='window.__POSSESSION_LENS_LIBRARY__='+json.dumps(library,allow_nan=False,separators=(',',':')).replace('<','\\u003c')+';'
     research_script=''
-    research_path=web.parents[1]/'reports/external/rnn-interaction-context-001-report.json'
-    if research_path.exists():
-        r=json.loads(research_path.read_text());candidate=r.get('selected')
-        if candidate:research_script='window.__POSSESSION_LENS_RESEARCH__='+json.dumps({'reference':r['reference_validation']['selection_spell_f1'],'candidate':candidate['selection_spell_f1']})+';'
+    from .evidence import research_summary
+    research=research_summary(web.parents[1])
+    if research:research_script='window.__POSSESSION_LENS_RESEARCH__='+json.dumps(research)+';'
     evidence_script=''
     evidence_path=web.parents[1]/'reports/external/rnn-europe-context-001-report.json'
     if evidence_path.exists():

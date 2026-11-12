@@ -29,3 +29,20 @@ def export_report(report_path,out):
    d=report['diagnostics'][key][condition];parts.append(f'<tr><td>{condition} / {key}</td>'+''.join(f'<td>{d[f]}</td>' for f in ('missed_reference_spells_at_iou_0_5','false_positive_spells_at_iou_0_5','predicted_spells_under_0_4_seconds','predictions_overlapping_multiple_reference_spells'))+'</tr>')
  parts.append('</table><p>Short-spell and merge counts are descriptive proxies. They do not establish that every short prediction is wrong.</p><h2>Why this is a fresh check</h2><p>The candidate and reference checkpoints, seed 300, baseline window 50 and primary metric were recorded before downloading or scoring J03WR9. Candidate: rnn-capacity-002-1layer-experimental.npz. Current model: rnn-boundary-001.npz. Training used J03WOH; validation used J03WPY. No fitting or tuning occurred on this match.</p><h2>What remains uncertain</h2><ul>'+''.join('<li>'+html.escape(v)+'</li>' for v in report['limitations'])+'</ul><p>Models remain frozen. The default is not automatically replaced by this report.</p><small>Data: <a href="https://doi.org/10.1038/s41597-025-04505-y">Bassek et al. (2025), IDSSE/Sportec</a>, CC BY 4.0. Full source and model SHA-256 values, all metrics and the preregistered scoring plan are in the adjacent JSON.</small></main>')
  Path(out).write_text('\n'.join(parts));return s
+
+
+def research_summary(root):
+    """Latest eligible validation result; never replaces frozen fresh-test evidence."""
+    from pathlib import Path
+    import json
+    for filename,label in [('rnn-gated-003-report.json','Gated RNN'),('rnn-interaction-context-001-report.json','Interaction RNN')]:
+        path=Path(root)/'reports/external'/filename
+        if not path.exists():continue
+        report=json.loads(path.read_text());candidate=report.get('selected')
+        if candidate:
+            return {'name':({'gru1':'GRU','bigru2':'Bidirectional GRU','bilstm2':'Bidirectional LSTM','bigru2_boundary':'Bidirectional GRU + boundary head'}.get(candidate.get('variant'),label)),
+                    'reference':report['reference_validation']['selection_spell_f1'],
+                    'candidate':candidate['selection_spell_f1'],'fresh_test':False,'promoted':False,
+                    'short_pulses_reference':sum(report['reference_diagnostics'][c]['predicted_spells_under_0_4_seconds'] for c in ('clean','masked')) if report.get('reference_diagnostics') else None,
+                    'short_pulses_candidate':sum(candidate['diagnostics'][c]['predicted_spells_under_0_4_seconds'] for c in ('clean','masked')) if candidate.get('diagnostics') else None}
+    return None

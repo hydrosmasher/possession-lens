@@ -15,10 +15,9 @@ def serve(run_dir=None,port=8765):
     if evidence.exists():
         from .evidence import summary
         payload['external_evidence']=summary(json.loads(evidence.read_text()))
-    research=web.parents[1]/'reports/external/rnn-interaction-context-001-report.json'
-    if research.exists():
-        r=json.loads(research.read_text())
-        if r.get('selected'):payload['research_status']={'reference':r['reference_validation']['selection_spell_f1'],'candidate':r['selected']['selection_spell_f1']}
+    from .evidence import research_summary
+    research=research_summary(web.parents[1])
+    if research:payload['research_status']=research
     static={'/':('index.html','text/html; charset=utf-8'),'/app.js':('app.js','text/javascript; charset=utf-8'),'/style.css':('style.css','text/css; charset=utf-8')}
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):

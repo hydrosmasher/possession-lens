@@ -135,3 +135,8 @@ python -m possession_lens export-demo --out dashboard.html
 ```
 
 **Authors:** Hrishikesh Karmalkar, Basel, Omar, Michail and Paul. [Source on GitHub](https://github.com/hydrosmasher/possession-lens).
+
+
+### Optional gated GRU/LSTM experiment
+
+The gated architecture comparison uses the existing external training/validation split only. The selected bidirectional GRU with boundary supervision improves mean validation spell F1 from 0.5126 to 0.5527, with fewer misses and false positives, but more very short pulses (0 to 8). This is not a fresh-test result and does not replace production/gallery weights. See [the full experiment guide](docs/external/GATED_RNN_003.md), the updated notebook, and the archived `rnn-gated-003-validation-only.npz`. Optional training/inference requires Python 3.11/3.12 and `requirements-gated.txt`; the default website and NumPy model remain usable without PyTorch.

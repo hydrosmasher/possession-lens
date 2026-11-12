@@ -1,0 +1,87 @@
+{
+  "experiment": "gated-003",
+  "train": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "validation": [
+    "2269"
+  ],
+  "viewed_tests_loaded": false,
+  "competition_data_used": false,
+  "variants": [
+    {
+      "name": "gru1",
+      "cell": "gru",
+      "layers": 1,
+      "bidirectional": false,
+      "boundary": false
+    },
+    {
+      "name": "bigru2",
+      "cell": "gru",
+      "layers": 2,
+      "bidirectional": true,
+      "boundary": false
+    },
+    {
+      "name": "bilstm2",
+      "cell": "lstm",
+      "layers": 2,
+      "bidirectional": true,
+      "boundary": false
+    },
+    {
+      "name": "bigru2_boundary",
+      "cell": "gru",
+      "layers": 2,
+      "bidirectional": true,
+      "boundary": true
+    }
+  ],
+  "seed": 42,
+  "iterations": 12,
+  "windows_per_iteration": 512,
+  "batch_size": 32,
+  "core_frames": 256,
+  "context_each_side_frames": 64,
+  "scoring_iterations": [
+    4,
+    8,
+    12
+  ],
+  "decoder_penalties": [
+    24,
+    36,
+    48,
+    60
+  ],
+  "boundary_strengths": [
+    0,
+    0.5,
+    1
+  ],
+  "features": "130 geometry/interaction values; learned continuous 48-dimensional projection, no player/team ID embedding",
+  "regularisation": {
+    "dropout": 0.15,
+    "weight_decay": 0.0001,
+    "layer_norm": "projection and recurrent output per timestep",
+    "clip_max_norm": 1.0,
+    "initialisation": "Xavier input/output, orthogonal recurrent gate blocks, LSTM input forget bias 1"
+  },
+  "training": "AdamW lr .001; bounded-window BPTT; no cross-window state, no teacher forcing; unknown/context/padded labels excluded",
+  "inference": "matching overlap-save windows, team-symmetric average, offline bidirectional context where configured",
+  "selection": "highest validation clean/masked spell F1 > reference, with pooled misses, merge overlaps and false positives <= reference and historical short-pulse guard",
+  "reference_sha256": "46ab975e8d6f30fd58f0a1e36dce7b6268d7f7f74f2e6f7063ceb0a1ba101091",
+  "anchor_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "torch": "2.9.1",
+  "python": "3.12.14",
+  "inapplicable_methods": {
+    "scheduled_sampling": "no previous label is ever an input; no teacher-forcing exposure bias",
+    "word_embeddings": "continuous tracking features, not text tokens; use learned continuous projection",
+    "language_RL": "no language generation or diversity objective; use supervised labels and guarded spell decoding"
+  }
+}

@@ -1,6 +1,6 @@
 """Import existing licensed external XMLs. Never downloads or moves originals."""
 from pathlib import Path
-import json,shutil
+import json,shutil,re
 import xml.etree.ElementTree as ET
 from .external import ALL_MATCHES,source_files
 from .pipeline import digest
@@ -27,7 +27,9 @@ def import_local(source,destination,matches=None):
         present=[]
         for name in source_files(match):
             target=destination/name
-            found=sorted(set(source.rglob(name)))
+            stem=Path(name).stem
+            duplicate=re.compile(re.escape(stem)+r' \(\d+\)\.xml$')
+            found=sorted(set(source.rglob(name))|{p for p in source.rglob(stem+' (*)'+'.xml') if duplicate.fullmatch(p.name)})
             if len(found)>1:
                 hashes={digest(p) for p in found}
                 if len(hashes)>1:raise ValueError(f'Conflicting duplicate external XML: {name}')

@@ -1,4 +1,4 @@
-"""Export the shareable synthetic judge dashboard. Licensed match data stays local."""
+"""Export the shareable named external demo. Challenge match data stays local."""
 from .dashboard import export_html
 
 def export_demo(out):

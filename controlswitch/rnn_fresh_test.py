@@ -4,7 +4,7 @@ import argparse
 import json
 import xml.etree.ElementTree as ET
 import numpy as np
-from .external import FRESH_MATCHES,load_sportec,period_arrays
+from .external import FRESH_MATCHES,HOLDOUT_MATCHES,load_sportec,period_arrays
 from .pipeline import digest
 from .model import instantaneous_features,decode,probabilities
 from .rnn_boundaries import BOUNDARY_VERSION,invariant_boundary_features,dwell_decode,spell_diagnostics
@@ -13,9 +13,9 @@ from .rnn_benchmark import conditions,evaluate
 from .experiment import baseline_prediction
 
 def verify_metadata(path,match='J03WN1'):
-    if match not in FRESH_MATCHES:raise ValueError('Not a designated fresh external match')
+    if match not in {**FRESH_MATCHES,**HOLDOUT_MATCHES}:raise ValueError('Not a designated fresh external match')
     root=ET.parse(path).getroot();general=root.find('.//General')
-    spec=FRESH_MATCHES[match]
+    spec={**FRESH_MATCHES,**HOLDOUT_MATCHES}[match]
     if general is None or general.get('MatchId')!='DFL-MAT-'+match:raise ValueError('Metadata match identity mismatch')
     if general.get('HomeTeamId')!=spec['home'] or general.get('GuestTeamId')!=spec['away']:raise ValueError('Metadata home/away roles mismatch')
     if general.get('CompetitionId')!='DFL-COM-'+spec['competition']:raise ValueError('Metadata competition mismatch')

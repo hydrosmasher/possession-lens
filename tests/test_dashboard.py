@@ -3,11 +3,13 @@ from pathlib import Path
 from controlswitch.dashboard import demo_payload,export_html,export_local
 
 class DashboardTests(unittest.TestCase):
- def test_offline_demo_has_no_remote_assets_and_is_clearly_invented(self):
+ def test_offline_demo_is_named_external_and_has_no_remote_assets(self):
     with tempfile.TemporaryDirectory() as tmp:
         p=export_html(Path(tmp)/'dashboard.html');s=p.read_text()
         self.assertIn('window.__POSSESSION_LENS_DATA__=',s)
-        self.assertIn('synthetic_demo',s)
+        payload=demo_payload();self.assertEqual(payload['mode'],'external_named')
+        self.assertTrue(payload['named_players']['rows']);self.assertTrue(any(r['person_id']!='UNASSIGNED' and r['player_name'] for r in payload['named_players']['rows']))
+        self.assertNotIn('Blue XI vs Claret XI',s)
         self.assertNotIn('<script src=',s);self.assertNotIn('<link rel="stylesheet"',s)
         self.assertNotIn('http://fonts.',s);self.assertNotIn('https://fonts.',s)
  def test_private_run_export_preserves_track_identity_warning(self):

@@ -1,0 +1,313 @@
+{
+  "protocol": {
+    "status": "frozen_before_new_match_download_or_scoring",
+    "match_id": "J03WR9",
+    "candidate": "rnn-capacity-002-1layer-experimental.npz",
+    "reference": "rnn-boundary-001.npz",
+    "checkpoint_sha256": {
+      "rnn-capacity-002-1layer-experimental.npz": "0d5002ed75e879d638df91e71a19b9a66373cf32a20aa43395aa407aae7bf8f7",
+      "rnn-boundary-001.npz": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332"
+    },
+    "primary_metric": "mean clean and simulated-ball-dropout spell F1; strict greater means candidate wins this match",
+    "baseline_window": 50,
+    "dropout_seed": 300,
+    "flicker_proxy": "predicted spells shorter than 0.4 seconds",
+    "model_selection_after_test": false,
+    "tuning_on_this_match": false,
+    "competition_data_used": false,
+    "dataset": "IDSSE/Sportec CC BY 4.0",
+    "source_revision": "a715a38dfbaf5f58e431727c2b78d174101a703c",
+    "previously_viewed_matches": [
+      "J03WOH",
+      "J03WPY",
+      "J03WMX",
+      "J03WN1",
+      "J03WQQ"
+    ],
+    "limitations": [
+      "One fresh match is limited evidence; do not tune after inspecting results.",
+      "Unseen-match does not necessarily imply unseen clubs."
+    ]
+  },
+  "source": {
+    "protocol_sha256": "24f0e6bf9a45f55394ceb374f7594fbf915959beb40b81fee4f041dfa786d032",
+    "metadata": {
+      "match_id": "J03WR9",
+      "title": "Fortuna D\u00fcsseldorf:1. FC Kaiserslautern",
+      "metadata_sha256": "429b584e89df3e3e8b81f4bd0d004b38bd0b4298bb390b8fb43efccb60963e01"
+    },
+    "tracking_sha256": "70b63069189019066fb7e3d9db891122edfe787f3a43ba522ebe45ed89ea0269",
+    "test_started": true,
+    "training_on_test": false
+  },
+  "fresh_match_results": {
+    "baseline": {
+      "clean": {
+        "spell_f1_mean": 0.3152046783625731,
+        "macro_f1": 0.4095178373292973,
+        "alive_dead_f1": 0.7350835322195705,
+        "n_gt_spells": 370,
+        "n_pred_spells": 314,
+        "n_graded": 146810
+      },
+      "masked": {
+        "spell_f1_mean": 0.2289389067524116,
+        "macro_f1": 0.4123016148317047,
+        "alive_dead_f1": 0.71824141098985,
+        "n_gt_spells": 370,
+        "n_pred_spells": 563,
+        "n_graded": 146810
+      },
+      "mean_clean_masked_spell_f1": 0.27207179255749236
+    },
+    "candidate": {
+      "clean": {
+        "spell_f1_mean": 0.5217391304347826,
+        "macro_f1": 0.9117213600625301,
+        "alive_dead_f1": 0.9906779413055563,
+        "n_gt_spells": 370,
+        "n_pred_spells": 228,
+        "n_graded": 146810
+      },
+      "masked": {
+        "spell_f1_mean": 0.4315955766192734,
+        "macro_f1": 0.8666452220946939,
+        "alive_dead_f1": 0.95750825816476,
+        "n_gt_spells": 370,
+        "n_pred_spells": 263,
+        "n_graded": 146810
+      },
+      "mean_clean_masked_spell_f1": 0.476667353527028
+    },
+    "current": {
+      "clean": {
+        "spell_f1_mean": 0.5322091062394604,
+        "macro_f1": 0.9093006708294268,
+        "alive_dead_f1": 0.9921067402591329,
+        "n_gt_spells": 370,
+        "n_pred_spells": 223,
+        "n_graded": 146810
+      },
+      "masked": {
+        "spell_f1_mean": 0.4504201680672269,
+        "macro_f1": 0.8687965555601954,
+        "alive_dead_f1": 0.9592170627956094,
+        "n_gt_spells": 370,
+        "n_pred_spells": 225,
+        "n_graded": 146810
+      },
+      "mean_clean_masked_spell_f1": 0.49131463715334367
+    }
+  },
+  "diagnostics": {
+    "candidate": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 41,
+            "matched_at_iou_0_5": 3,
+            "recall": 0.07317073170731707
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 101,
+            "matched_at_iou_0_5": 17,
+            "recall": 0.16831683168316833
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 57,
+            "recall": 0.41304347826086957
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 90,
+            "matched_at_iou_0_5": 80,
+            "recall": 0.8888888888888888
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 157,
+        "missed_reference_spells_at_iou_0_5": 213,
+        "false_positive_spells_at_iou_0_5": 71,
+        "predicted_spells_under_0_4_seconds": 0,
+        "predictions_overlapping_multiple_reference_spells": 53,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 41,
+            "matched_at_iou_0_5": 3,
+            "recall": 0.07317073170731707
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 101,
+            "matched_at_iou_0_5": 10,
+            "recall": 0.09900990099009901
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 51,
+            "recall": 0.3695652173913043
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 90,
+            "matched_at_iou_0_5": 76,
+            "recall": 0.8444444444444444
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 140,
+        "missed_reference_spells_at_iou_0_5": 230,
+        "false_positive_spells_at_iou_0_5": 123,
+        "predicted_spells_under_0_4_seconds": 0,
+        "predictions_overlapping_multiple_reference_spells": 50,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    },
+    "current": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 41,
+            "matched_at_iou_0_5": 4,
+            "recall": 0.0975609756097561
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 101,
+            "matched_at_iou_0_5": 17,
+            "recall": 0.16831683168316833
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 54,
+            "recall": 0.391304347826087
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 90,
+            "matched_at_iou_0_5": 84,
+            "recall": 0.9333333333333333
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 159,
+        "missed_reference_spells_at_iou_0_5": 211,
+        "false_positive_spells_at_iou_0_5": 64,
+        "predicted_spells_under_0_4_seconds": 0,
+        "predictions_overlapping_multiple_reference_spells": 53,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 41,
+            "matched_at_iou_0_5": 4,
+            "recall": 0.0975609756097561
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 101,
+            "matched_at_iou_0_5": 9,
+            "recall": 0.0891089108910891
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 38,
+            "recall": 0.2753623188405797
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 90,
+            "matched_at_iou_0_5": 81,
+            "recall": 0.9
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 132,
+        "missed_reference_spells_at_iou_0_5": 238,
+        "false_positive_spells_at_iou_0_5": 93,
+        "predicted_spells_under_0_4_seconds": 0,
+        "predictions_overlapping_multiple_reference_spells": 53,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    }
+  },
+  "candidate_minus_current_primary": -0.014647283626315677,
+  "candidate_beats_current_primary": false,
+  "candidate_beats_baseline_primary": true,
+  "competition_accuracy_measured": false,
+  "default_model_changed": false,
+  "limitations": [
+    "One previously unused match; not proof of statistical significance or general superiority.",
+    "Fortuna D\u00fcsseldorf appears in training and validation, so clubs are not fully unseen.",
+    "This match is now viewed; no parameter tuning may be justified as fresh-test selection.",
+    "Simulated missing ball observations do not reproduce all competition tracking errors.",
+    "No prediction was compared against challenge video or challenge truth."
+  ],
+  "published_source_verification": {
+    "match_id": "J03WR9",
+    "tracking_sha256": "70b63069189019066fb7e3d9db891122edfe787f3a43ba522ebe45ed89ea0269",
+    "published_source": "https://huggingface.co/datasets/pysport/idsse-data/blob/main/DFL_04_03_positions_raw_observed_DFL-COM-000002_DFL-MAT-J03WR9.xml",
+    "file_commit": "a715a38",
+    "download_transport": "original Figshare file 51643532, used because the mirror was slow",
+    "model_and_scoring_protocol_changed": false
+  },
+  "source_sha256_matches_published_file": true
+}

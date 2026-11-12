@@ -4,11 +4,11 @@ A clear view of team possession, built for More Than a Hack in Barcelona.
 
 ## Open the match centre
 
-**On this Mac:** double-click **Open Possession Lens.command**. It opens the private local match analysis when available, otherwise the clearly labelled demo.
+**On this Mac:** double-click **Open Possession Lens.command**. It opens the named external-match demo. Use Open local analysis to load your private match JSON when needed.
 
-**On any computer:** open **dashboard.html** in a browser. No installation, server or internet is needed. This shared file contains invented demo data. Use **Open match analysis** to load a local analysis JSON or possession CSV; files are read in your browser and never uploaded.
+**On any computer:** open **dashboard.html** in a browser. No installation, server or internet is needed. This shared file starts with the named Bochum–Leverkusen external example. Use **Open match analysis** to load a local analysis JSON or possession CSV; files are read in your browser and never uploaded.
 
-The dashboard brings team percentages, control time, possession spells, a match timeline, anonymous track estimates and external model evidence into one interface. The palette is inspired by Barcelona; this is an independent hackathon project.
+The dashboard brings team percentages, control time, possession spells, a match timeline, named external player estimates and model evidence into one interface. The palette is inspired by Barcelona; this is an independent hackathon project.
 
 ## Recreate an organiser-match analysis
 
@@ -25,7 +25,7 @@ python -m possession_lens rnn-predict \
 python -m possession_lens dashboard --run-dir local/run --out local
 ```
 
-Then open `local/dashboard.html`, or use the Mac launcher. Inference refuses nonempty output run folders; use a new folder for a new run. The export step renders existing predictions and does not train, calibrate or tune anything.
+Then open `local/dashboard.html` or load `local/match-analysis.json` using Open local analysis. The Mac launcher keeps the named external demo as its default. Inference refuses nonempty output run folders; use a new folder for a new run. The export step renders existing predictions and does not train, calibrate or tune anything.
 
 For Jupyter, install `requirements-notebook.txt` and double-click **Open Notebook.command**, or run `python -m jupyterlab notebooks/01_Possession_Lens.ipynb`. Downloads, training and inference switches are off by default.
 
@@ -58,9 +58,17 @@ The older `download-external` command now checks local Downloads first and requi
 
 The Desktop folder is the canonical working repository connected to `hydrosmasher/possession-lens`. Keep only that copy in GitHub Desktop. Previous copies and historical private runs are preserved in the separate backup folder rather than mixed into the working project.
 
+## Fresh-match decision: keep the current model
+
+A frozen test on previously unused Fortuna Düsseldorf–Kaiserslautern (J03WR9) favoured the current boundary-aware RNN. Mean clean/ball-dropout spell F1: **current 0.4913**, longer-trained candidate **0.4767**, baseline **0.2721**. Candidate clean/dropout scores were 0.5217/0.4316; current scores were 0.5322/0.4504. The longer-trained model is not promoted. Both had zero predicted spells shorter than 0.4 seconds; under dropout the candidate missed fewer spells but added more false positives.
+
+The match and settings were declared before downloading/scoring; source and frozen weights were verified. It shares a club with training, and one new match is limited evidence. No parameters were tuned after seeing it. J03WR9 is now viewed; J03WOY remains unused. See [the full fresh-match report](reports/external/rnn-fresh-J03WR9-001-report.html).
+
+The refreshed offline UI uses a dark blaugrana theme, larger possession figures, simpler Match / Players / Model evidence tabs, searchable player contributions and the fresh comparison. [UI guide](docs/UI_GUIDE.md). Visual browser QA remains unverified because local-file preview was blocked; automated checks passed.
+
 ## Named players and deeper RNN experiments
 
-Click **Named-player example** in the dashboard to load the external Bochum–Leverkusen match offline. Its player names and shirts are automatically joined by provider PersonId + team to the external roster. Shares remain estimated proximity associations. This example does not name players in the challenge match: the provided metadata contains generic names and sequential slot numbers, and no reliable mapping has been supplied. Never replace those slots with guessed squad names or manual video annotations.
+The dashboard opens the named external Bochum–Leverkusen match by default. There is no anonymous demo. Its player names and shirts are automatically joined by provider PersonId + team to the external roster. Shares remain estimated proximity associations. This example does not name players in the challenge match: the provided metadata contains generic names and sequential slot numbers, and no reliable mapping has been supplied. Never replace those slots with guessed squad names or manual video annotations.
 
 We compared 1, 2 and 3 recurrent layers, each with 24 hidden units, for up to 32 sampled training iterations. Dropout, L2 regularisation, clipped gradients, fixed clean training/validation loss probes and early stopping are implemented. The one-layer model still gives the best validation spell segmentation; adding layers did not improve that objective. The longer-trained candidate is experimental, not the default. See [the learning curves and results](reports/external/rnn-capacity-002-report.html) and [reproduction instructions](docs/RNN_CAPACITY.md).
 

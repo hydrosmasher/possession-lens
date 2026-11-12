@@ -9,10 +9,10 @@ def main():
     base=sub.add_parser('baseline',help='Validate tactical tracking and reproduce the four official baselines')
     base.add_argument('--data-root',required=True,type=Path)
     base.add_argument('--out',required=True,type=Path)
-    web=sub.add_parser('serve',help='Open the local judge dashboard (synthetic demo by default)')
+    web=sub.add_parser('serve',help='Open the local judge dashboard (named external demo by default)')
     web.add_argument('--run-dir',type=Path)
     web.add_argument('--port',type=int,default=8765)
-    demo=sub.add_parser('export-demo',help='Create a self-contained synthetic HTML demo; no server needed')
+    demo=sub.add_parser('export-demo',help='Create a self-contained named external HTML demo; no server needed')
     demo.add_argument('--out',type=Path,default=Path('dashboard.html'))
     dashboard=sub.add_parser('dashboard',help='Build a private offline dashboard from a local prediction run')
     dashboard.add_argument('--run-dir',type=Path,required=True)
@@ -106,7 +106,7 @@ def main():
         elif args.command=='export-demo':
             from .export import export_demo
             export_demo(args.out)
-            print(f'Synthetic standalone demo saved to {args.out.resolve()}')
+            print(f'Named external demo saved to {args.out.resolve()}')
         else:
             from .server import serve
             serve(args.run_dir,args.port)

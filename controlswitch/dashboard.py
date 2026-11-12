@@ -1,33 +1,16 @@
 """One offline dashboard for shareable demo data and private local match analyses."""
 from pathlib import Path
 import json
-import numpy as np
-from .statistics import team_statistics
 from .pipeline import BLOCKS,FPS,pm,describe
 
 
 def demo_payload():
-    rng=np.random.default_rng(17);n=150000;blocks=[[0,67500],[82500,n]];segments=[]
-    for half,(a,b) in enumerate(blocks):
-        if segments and segments[-1][1]<a:segments.append([segments[-1][1],a,'X'])
-        t=a;last=None
-        while t<b:
-            k=str(rng.choice(['H','A','D'],p=[.55 if half else .61,.35 if half else .29,.10]))
-            stop=min(b,t+int(rng.integers(80,850)))
-            if segments and segments[-1][2]==k and segments[-1][1]==t:segments[-1][1]=stop
-            else:segments.append([t,stop,k])
-            t=stop
-    labels=np.empty(n,dtype='<U1')
-    for a,b,k in segments:labels[a:b]=k
-    stats=team_statistics(labels);rows=[]
-    for team in 'HA':
-        total=stats['counts'][team]/25
-        for slot,share in enumerate([18,16,12,10,8],1):rows.append({'team':team,'track_slot':slot+(0 if team=='H' else 5),'associated_control_seconds':total*share/100,'percent_of_team_possession':share})
-        rows.append({'team':team,'track_slot':'UNASSIGNED','associated_control_seconds':total*.36,'percent_of_team_possession':36})
-    return {'schema_version':2,'mode':'synthetic_demo','title':'Blue XI vs Claret XI · illustrative match',
-            'model_name':'Invented demo · no match accuracy claim','n_frames':n,'fps':25,'blocks':blocks,
-            'teams':{'H':'Blue XI','A':'Claret XI'},'timeline':segments,
-            'tracklets':{'rows':rows,'ambiguity_note':'These anonymous demo tracks are invented.'}}
+    """The public demo always uses externally mapped player identities."""
+    path=Path(__file__).resolve().parents[1]/'examples/external-named-analysis.json'
+    if not path.exists():raise ValueError('The named external demo is missing; restore the examples folder.')
+    payload=json.loads(path.read_text())
+    if payload.get('mode')!='external_named' or payload.get('named_players',{}).get('source_kind')!='external_provider_stable_ids':raise ValueError('The demo requires external provider roster mappings')
+    return payload
 
 
 def from_run(run_dir):
@@ -63,7 +46,13 @@ def export_html(out,payload=None):
         if named.get('mode')!='external_named' or named.get('named_players',{}).get('source_kind')!='external_provider_stable_ids':raise ValueError('Bundled name example must use external provider identities')
         named_data=json.dumps(named,allow_nan=False,separators=(',',':')).replace('<','\\u003c')
         named_script='window.__POSSESSION_LENS_NAMED_EXAMPLE__='+named_data+';'
-    html=html.replace('</body>','<script>window.__POSSESSION_LENS_DATA__='+data+';'+named_script+'</script><script>'+(web/'app.js').read_text()+'</script></body>')
+    evidence_script=''
+    evidence_path=web.parents[1]/'reports/external/rnn-fresh-J03WR9-001-report.json'
+    if evidence_path.exists():
+        from .evidence import summary
+        evidence_data=json.dumps(summary(json.loads(evidence_path.read_text())),allow_nan=False,separators=(',',':')).replace('<','\\u003c')
+        evidence_script='window.__POSSESSION_LENS_EVIDENCE__='+evidence_data+';'
+    html=html.replace('</body>','<script>window.__POSSESSION_LENS_DATA__='+data+';'+named_script+evidence_script+'</script><script>'+(web/'app.js').read_text()+'</script></body>')
     out=Path(out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(html)
     return out
 

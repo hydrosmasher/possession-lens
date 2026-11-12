@@ -15,7 +15,11 @@ FRESH_MATCHES = {
  'J03WQQ': {'home':'DFL-CLU-00000P','away':'DFL-CLU-00000H','competition':'000002'},
  'J03WN1': {'home':'DFL-CLU-00000S','away':'DFL-CLU-00000B','competition':'000001'},
 }
-ALL_MATCHES = {**MATCHES, **FRESH_MATCHES}
+# Dedicated preregistered holdout; never changes the original training/validation split.
+HOLDOUT_MATCHES = {
+ 'J03WR9': {'home':'DFL-CLU-00000P','away':'DFL-CLU-00000I','competition':'000002'},
+}
+ALL_MATCHES = {**MATCHES, **FRESH_MATCHES, **HOLDOUT_MATCHES}
 # Team IDs above are transcribed from the public matchinformation XML (not inferred from labels).
 BASE='https://huggingface.co/datasets/pysport/idsse-data/resolve/a715a38dfbaf5f58e431727c2b78d174101a703c/'
 

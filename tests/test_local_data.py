@@ -28,3 +28,8 @@ class LocalImportTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Network is off'):
                 download_external(Path(tmp)/'out',['J03WN1'],source=source)
             fetch.assert_not_called()
+ def test_browser_numbered_download_is_imported_without_renaming_original(self):
+    with tempfile.TemporaryDirectory() as tmp:
+        source=Path(tmp)/'Downloads';source.mkdir();dest=Path(tmp)/'raw';name=source_files('J03WR9')[1];numbered=source/(Path(name).stem+' (1).xml')
+        numbered.write_text('<Positions><MetaData MatchId="DFL-MAT-J03WR9"/><Frame N="1"/></Positions>')
+        report=import_local(source,dest,['J03WR9']);self.assertEqual(len(report['assets']),1);self.assertTrue((dest/name).exists());self.assertTrue(numbered.exists())

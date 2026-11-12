@@ -1,0 +1,30 @@
+{
+  "status": "frozen_before_new_match_download_or_scoring",
+  "match_id": "J03WR9",
+  "candidate": "rnn-capacity-002-1layer-experimental.npz",
+  "reference": "rnn-boundary-001.npz",
+  "checkpoint_sha256": {
+    "rnn-capacity-002-1layer-experimental.npz": "0d5002ed75e879d638df91e71a19b9a66373cf32a20aa43395aa407aae7bf8f7",
+    "rnn-boundary-001.npz": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332"
+  },
+  "primary_metric": "mean clean and simulated-ball-dropout spell F1; strict greater means candidate wins this match",
+  "baseline_window": 50,
+  "dropout_seed": 300,
+  "flicker_proxy": "predicted spells shorter than 0.4 seconds",
+  "model_selection_after_test": false,
+  "tuning_on_this_match": false,
+  "competition_data_used": false,
+  "dataset": "IDSSE/Sportec CC BY 4.0",
+  "source_revision": "a715a38dfbaf5f58e431727c2b78d174101a703c",
+  "previously_viewed_matches": [
+    "J03WOH",
+    "J03WPY",
+    "J03WMX",
+    "J03WN1",
+    "J03WQQ"
+  ],
+  "limitations": [
+    "One fresh match is limited evidence; do not tune after inspecting results.",
+    "Unseen-match does not necessarily imply unseen clubs."
+  ]
+}

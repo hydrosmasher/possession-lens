@@ -70,3 +70,6 @@ The latest checkpoint is models/rnn-symmetric-001.npz. It averages original and 
 ## Boundary-aware recovery (11 November 2026)
 
 Latest recommended checkpoint: models/rnn-boundary-001.npz. A training-only logistic boundary verifier adjusts transition costs around the frozen symmetric RNN. Selected on J03WPY, it improves J03WQQ clean spell F1 from 0.4860 to 0.5025, misses from 246 to 237 and false positives from 81 to 75. Dropout F1 is essentially unchanged. Clean merge-overlap count stays at 55; masked count falls 49 to 47. The duration-weighted alternative recovers more spells but adds false positives and is experimental. The new test shares a home club with training, score gains are modest and no significance/competition claim is made. All three test matches are now viewed. See RNN_RECOVERY.md for the full audit.
+
+## Fresh holdout J03WR9, 12 November 2026
+The current rnn-boundary-001.npz remains the submission default. Frozen longer-training candidate mean clean/dropout spell F1 0.4767 vs current 0.4913 and baseline 0.2721. Candidate did not win the primary metric, despite earlier retrospective gains on two matches. No tuning followed this fresh check. J03WR9 is now viewed and shares a club with training. See FRESH_MATCH_J03WR9.md and the exact external report.

@@ -1,0 +1,33 @@
+{
+  "family": "context",
+  "iteration": 7,
+  "penalty": 48,
+  "passes_false_positive_guard": true,
+  "validation_improved": true,
+  "candidate_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "families": {
+    "instantaneous": {
+      "sha256": "55cf4f48e9d0221d080131f7828f33910904da961c883fae0dcc38bfdc6b9eea",
+      "iteration": 14,
+      "penalty": 48,
+      "eligible": true
+    },
+    "context": {
+      "sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+      "iteration": 7,
+      "penalty": 48,
+      "eligible": true
+    }
+  },
+  "reference_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "production_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "baseline_window": 125,
+  "source_sha256": {
+    "europe_context.py": "2a3ad29ed77fd8f5affc56a7b701833efb2b6ea8bf565af5470348e521237334",
+    "rnn_deep.py": "8405033fb59fda0af7ca85e393da4e891011bbf3279c160b996e0d828660c193",
+    "rnn_runtime.py": "88bfac902cf7ff7d5912ec0742ca85d8df5f449676ba26545f95d100b6b7f79c",
+    "model.py": "d88299418c9aa2eae1821907cf44d80ac76d856c224ddfe8b85a5a4862725c64",
+    "skillcorner_europe.py": "9ee9464f774e8f40d84ebd5ca849f47309cc0e33f1d352d01d618e8ab83706a6"
+  },
+  "test_labels_read_at_freeze": false
+}

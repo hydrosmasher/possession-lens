@@ -58,6 +58,16 @@ The older `download-external` command now checks local Downloads first and requi
 
 The Desktop folder is the canonical working repository connected to `hydrosmasher/possession-lens`. Keep only that copy in GitHub Desktop. Previous copies and historical private runs are preserved in the separate backup folder rather than mixed into the working project.
 
+## Latest expanded-data temporal-context experiment
+
+Training expanded from three to five top-five-league matches by adding Inter–Juventus and Liverpool–Manchester City. A data-only RNN and an RNN with surrounding tracking context were trained from scratch. The validation-selected **context** candidate was frozen before the fresh **Barcelona–Real Madrid (18 December 2019)** test. Neither earlier test was used for training or tuning.
+
+Mean clean/dropout spell F1 on this same fresh match: **selected candidate 0.6286**, **previous European RNN 0.5804**, **baseline 0.4484**. Candidate beats previous: **True**. Clean missed spells: **125 → 115**; possible merge overlaps: **29 → 27**; false positives: **49 → 37**. Check dropout diagnostics too; a higher F1 can have tradeoffs.
+
+Experimental recommendation: candidate. Production default unchanged: these partial H/A labels cannot validate full-match dead-ball behaviour. These are partial automatic H/A labels, not independently annotated full-match ground truth or official challenge accuracy. The target of 0.8–0.9 is not established by this experiment. The new experimental weights are `models/rnn-europe-context-001-experimental.npz`; validation-selected family ablations are archived separately. The notebook now shows this latest experiment before historical results, including optional verified import and reproduction cells. The test is now viewed; no post-test tuning was performed.
+
+[Full results](reports/external/rnn-europe-context-001-report.html) · [Method, provenance and reproduction](docs/external/EUROPE_CONTEXT.md).
+
 ## Latest spell-recovery attempt: no new improvement
 
 The latest notebook includes the recovery experiment and the new reserved **Bayern–Dortmund (9 November 2019)** test. Spell-balanced RNN loss and balanced boundary heads failed to improve validation within the false-positive limits, so they were rejected. The selected checkpoint is **identical to `rnn-europe-001-experimental.npz`**. Do not present the new match score as an algorithm improvement.

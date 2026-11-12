@@ -1,0 +1,158 @@
+{
+  "4039": [
+    {
+      "period": 1,
+      "native_frames": 28967,
+      "labelled_native_frames": 18402,
+      "label_coverage": 0.6352746228466876,
+      "valid_runs": 33,
+      "median_valid_run_seconds": 43.4,
+      "direct_labelled_team_changes": 91,
+      "identified_observations": 238627,
+      "anonymous_observations": 1500,
+      "ball_observed_fraction": 0.5308454448165153
+    },
+    {
+      "period": 2,
+      "native_frames": 29454,
+      "labelled_native_frames": 18027,
+      "label_coverage": 0.6120391118354044,
+      "valid_runs": 36,
+      "median_valid_run_seconds": 43.4,
+      "direct_labelled_team_changes": 95,
+      "identified_observations": 237808,
+      "anonymous_observations": 3219,
+      "ball_observed_fraction": 0.5243090921436817
+    }
+  ],
+  "3749": [
+    {
+      "period": 1,
+      "native_frames": 27598,
+      "labelled_native_frames": 21017,
+      "label_coverage": 0.761540691354446,
+      "valid_runs": 29,
+      "median_valid_run_seconds": 48.3,
+      "direct_labelled_team_changes": 115,
+      "identified_observations": 199764,
+      "anonymous_observations": 18960,
+      "ball_observed_fraction": 0.4986593231393579
+    },
+    {
+      "period": 2,
+      "native_frames": 29156,
+      "labelled_native_frames": 20405,
+      "label_coverage": 0.6998559473178763,
+      "valid_runs": 37,
+      "median_valid_run_seconds": 39.7,
+      "direct_labelled_team_changes": 90,
+      "identified_observations": 222269,
+      "anonymous_observations": 10991,
+      "ball_observed_fraction": 0.5134106187405679
+    }
+  ],
+  "3518": [
+    {
+      "period": 1,
+      "native_frames": 27027,
+      "labelled_native_frames": 19648,
+      "label_coverage": 0.726976726976727,
+      "valid_runs": 34,
+      "median_valid_run_seconds": 42.4,
+      "direct_labelled_team_changes": 93,
+      "identified_observations": 234022,
+      "anonymous_observations": 9970,
+      "ball_observed_fraction": 0.5781255781255781
+    },
+    {
+      "period": 2,
+      "native_frames": 29433,
+      "labelled_native_frames": 18676,
+      "label_coverage": 0.6345258723201849,
+      "valid_runs": 35,
+      "median_valid_run_seconds": 48.7,
+      "direct_labelled_team_changes": 96,
+      "identified_observations": 252326,
+      "anonymous_observations": 3407,
+      "ball_observed_fraction": 0.5457819454353956
+    }
+  ],
+  "2068": [
+    {
+      "period": 1,
+      "native_frames": 29053,
+      "labelled_native_frames": 16430,
+      "label_coverage": 0.5655181908925068,
+      "valid_runs": 39,
+      "median_valid_run_seconds": 38.8,
+      "direct_labelled_team_changes": 108,
+      "identified_observations": 220233,
+      "anonymous_observations": 8279,
+      "ball_observed_fraction": 0.46009018001583313
+    },
+    {
+      "period": 2,
+      "native_frames": 29995,
+      "labelled_native_frames": 18854,
+      "label_coverage": 0.6285714285714286,
+      "valid_runs": 39,
+      "median_valid_run_seconds": 35.9,
+      "direct_labelled_team_changes": 107,
+      "identified_observations": 245761,
+      "anonymous_observations": 6673,
+      "ball_observed_fraction": 0.525420903483914
+    }
+  ],
+  "2440": [
+    {
+      "period": 1,
+      "native_frames": 28133,
+      "labelled_native_frames": 18072,
+      "label_coverage": 0.6423772793516511,
+      "valid_runs": 40,
+      "median_valid_run_seconds": 33.3,
+      "direct_labelled_team_changes": 91,
+      "identified_observations": 210445,
+      "anonymous_observations": 9758,
+      "ball_observed_fraction": 0.5714996623182739
+    },
+    {
+      "period": 2,
+      "native_frames": 29437,
+      "labelled_native_frames": 18294,
+      "label_coverage": 0.6214627849305296,
+      "valid_runs": 42,
+      "median_valid_run_seconds": 35.8,
+      "direct_labelled_team_changes": 106,
+      "identified_observations": 231387,
+      "anonymous_observations": 4724,
+      "ball_observed_fraction": 0.5681964874137989
+    }
+  ],
+  "2269": [
+    {
+      "period": 1,
+      "native_frames": 27035,
+      "labelled_native_frames": 18217,
+      "label_coverage": 0.6738302200850749,
+      "valid_runs": 34,
+      "median_valid_run_seconds": 42.4,
+      "direct_labelled_team_changes": 122,
+      "identified_observations": 244543,
+      "anonymous_observations": 12317,
+      "ball_observed_fraction": 0.5185130386535972
+    },
+    {
+      "period": 2,
+      "native_frames": 27100,
+      "labelled_native_frames": 18371,
+      "label_coverage": 0.6778966789667896,
+      "valid_runs": 31,
+      "median_valid_run_seconds": 38.1,
+      "direct_labelled_team_changes": 102,
+      "identified_observations": 252045,
+      "anonymous_observations": 7743,
+      "ball_observed_fraction": 0.515239852398524
+    }
+  ]
+}

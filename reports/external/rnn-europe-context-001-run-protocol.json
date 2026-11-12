@@ -1,0 +1,61 @@
+{
+  "experiment_id": "europe-context-001",
+  "train": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "validation": [
+    "2269"
+  ],
+  "sealed_test": "2841",
+  "test_title": "Barcelona\u2013Real Madrid, La Liga, 18 December 2019",
+  "viewed_tests_excluded": [
+    "3442",
+    "2417"
+  ],
+  "source_revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+  "test_previously_parsed": false,
+  "families": [
+    "instantaneous-expanded-data",
+    "multiscale-context-expanded-data"
+  ],
+  "architecture": "one-layer 24-unit tanh RNN; context = instantaneous features + centred \u00b10.48s mean + centred \u00b12s mean + contrast of \u00b10.48s means at \u00b11s (120 features); offline tracking only",
+  "training": "from scratch, unweighted known-frame CE, dropout0.15, L2 0.0001, Adam, clip norm5, 16 sampled iterations, 1024 windows/iteration, 128-frame windows, 16-window batch, seed42",
+  "decoder_penalties": [
+    3,
+    12,
+    24,
+    48
+  ],
+  "selection": "highest mean clean/dropout validation spell F1 among new candidates passing false-positive <=110% reference and short pulses <=reference+5. If none eligible, freeze best new F1 candidate as rejected experimental diagnostic; never substitute reference silently. Ties prefer earlier iteration and smaller penalty.",
+  "primary_metric": "conditional provider-labelled possession-spell F1",
+  "diagnostics": [
+    "IoU0.5 missed spells",
+    "false positives",
+    "geometric merges",
+    "short pulses"
+  ],
+  "test_policy": "checksum only before candidate, baseline and comparator freeze; score once; no post-test tuning",
+  "dropout_seeds": {
+    "train": 42,
+    "validation": 100,
+    "test": 500
+  },
+  "unknown_policy": "unknown X retained, excluded loss, never invented dead labels",
+  "production_promotion": false,
+  "competition_data_used": false,
+  "limitations": [
+    "Automatic partial H/A labels are not independent full-match ground truth.",
+    "Validation has been repeatedly reused.",
+    "Heldout teams have appeared in an earlier viewed test but not in this training pool.",
+    "Context is offline, uses future tracking, and can span unknown-label gaps without filling their labels."
+  ],
+  "maximum_iterations": 16,
+  "reference_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "production_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "test_ablations": "Evaluate both validation-selected frozen families and comparators; never choose using test scores",
+  "training_augmentation": "home/away swap \u00d7 clean/fixed contiguous ball dropout; four sequences per half"
+}

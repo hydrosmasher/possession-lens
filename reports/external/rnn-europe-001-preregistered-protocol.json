@@ -1,0 +1,213 @@
+{
+  "status": "preregistered_before_tracking_download_or_label_inspection",
+  "training_matches": [
+    "4039",
+    "3749",
+    "3518"
+  ],
+  "validation_matches": [
+    "2269"
+  ],
+  "sealed_test_match": "3442",
+  "heldout_title": "Real Madrid vs Barcelona, 1 March 2020",
+  "scope": "top five European domestic leagues only",
+  "source_revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+  "source_catalog": {
+    "updated_date": "2026-11-12",
+    "scope": "Only domestic Premier League, La Liga, Bundesliga, Serie A and Ligue 1",
+    "primary_metric": "possession-spell F1",
+    "secondary_metric": "frame-level macro F1",
+    "target": [
+      0.8,
+      0.9
+    ],
+    "score_guaranteed": false,
+    "excluded": [
+      "A-League",
+      "World Cup",
+      "2. Bundesliga",
+      "amateur leagues",
+      "unverified competitions",
+      "cups/Champions League"
+    ],
+    "license": "MIT in the pinned official historical SkillCorner repository; retain notice and credit",
+    "license_url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/LICENSE",
+    "readme_url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/README.md",
+    "matches": [
+      {
+        "match_id": "4039",
+        "league": "Premier League",
+        "home": "Manchester City",
+        "away": "Liverpool Football Club",
+        "date": "2020-07-02",
+        "provider": "SkillCorner",
+        "revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+        "folder": "https://github.com/SkillCorner/opendata/tree/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/4039",
+        "metadata_status": "closed",
+        "files": [
+          {
+            "name": "match_data.json",
+            "size": 15835,
+            "sha": "8af6634222dea82b895c8bfb0258ceb90bfe5b0e",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/4039/match_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/4039/match_data.json"
+          },
+          {
+            "name": "structured_data.json",
+            "size": 55724843,
+            "sha": "ba8420673320c984c140a49285cae9dd8504258f",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/4039/structured_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/4039/structured_data.json"
+          }
+        ],
+        "verification": "Official historical folder and metadata fetched; tracking file existence/size/git SHA verified, full tracking not downloaded/audited",
+        "training_eligibility": "pending possession/dead-state coverage and annotation-semantics audit",
+        "planned_role": "not yet assigned; keep untouched evaluation matches before fitting"
+      },
+      {
+        "match_id": "3442",
+        "league": "La Liga",
+        "home": "Real Madrid CF",
+        "away": "FC Barcelona",
+        "date": "2020-03-01",
+        "provider": "SkillCorner",
+        "revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+        "folder": "https://github.com/SkillCorner/opendata/tree/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3442",
+        "metadata_status": "closed",
+        "files": [
+          {
+            "name": "match_data.json",
+            "size": 14421,
+            "sha": "2d773eac7d54df953b51ea606f9cca82a9fc7ccd",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3442/match_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3442/match_data.json"
+          },
+          {
+            "name": "structured_data.json",
+            "size": 69271465,
+            "sha": "9489f2c579ded0a7a116bbe6f9431b2a3e45f6bc",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3442/structured_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3442/structured_data.json"
+          }
+        ],
+        "verification": "Official historical folder and metadata fetched; tracking file existence/size/git SHA verified, full tracking not downloaded/audited",
+        "training_eligibility": "pending possession/dead-state coverage and annotation-semantics audit",
+        "planned_role": "not yet assigned; keep untouched evaluation matches before fitting"
+      },
+      {
+        "match_id": "3749",
+        "league": "Bundesliga",
+        "home": "Borussia Dortmund",
+        "away": "FC Bayern Munchen",
+        "date": "2020-05-26",
+        "provider": "SkillCorner",
+        "revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+        "folder": "https://github.com/SkillCorner/opendata/tree/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3749",
+        "metadata_status": "closed",
+        "files": [
+          {
+            "name": "match_data.json",
+            "size": 15926,
+            "sha": "21c727b486aaa1f6a6cc5b62301e395127875f7e",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3749/match_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3749/match_data.json"
+          },
+          {
+            "name": "structured_data.json",
+            "size": 53242393,
+            "sha": "607715a47cf2ca6250ef2e3373e9c576c6589e8c",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3749/structured_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3749/structured_data.json"
+          }
+        ],
+        "verification": "Official historical folder and metadata fetched; tracking file existence/size/git SHA verified, full tracking not downloaded/audited",
+        "training_eligibility": "pending possession/dead-state coverage and annotation-semantics audit",
+        "planned_role": "not yet assigned; keep untouched evaluation matches before fitting"
+      },
+      {
+        "match_id": "3518",
+        "league": "Serie A",
+        "home": "Juventus",
+        "away": "Inter Milan",
+        "date": "2020-03-08",
+        "provider": "SkillCorner",
+        "revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+        "folder": "https://github.com/SkillCorner/opendata/tree/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3518",
+        "metadata_status": "closed",
+        "files": [
+          {
+            "name": "match_data.json",
+            "size": 17607,
+            "sha": "ce7f165733840d9adc911a51cb20e7dc6d727714",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3518/match_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3518/match_data.json"
+          },
+          {
+            "name": "structured_data.json",
+            "size": 57500828,
+            "sha": "af0207e2325157346754bec4a7f5ec60d2c1374f",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3518/structured_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/3518/structured_data.json"
+          }
+        ],
+        "verification": "Official historical folder and metadata fetched; tracking file existence/size/git SHA verified, full tracking not downloaded/audited",
+        "training_eligibility": "pending possession/dead-state coverage and annotation-semantics audit",
+        "planned_role": "not yet assigned; keep untouched evaluation matches before fitting"
+      },
+      {
+        "match_id": "2269",
+        "league": "Ligue 1",
+        "home": "Paris Saint-Germain",
+        "away": "Olympique de Marseille",
+        "date": "2019-10-27",
+        "provider": "SkillCorner",
+        "revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+        "folder": "https://github.com/SkillCorner/opendata/tree/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/2269",
+        "metadata_status": "live",
+        "files": [
+          {
+            "name": "match_data.json",
+            "size": 14252,
+            "sha": "86ea889735d1b942850e83e05311f58fcfbdcec5",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/2269/match_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/2269/match_data.json"
+          },
+          {
+            "name": "structured_data.json",
+            "size": 61487206,
+            "sha": "73be7a4c93e7b0f79115b496c933e69874fccd3a",
+            "url": "https://github.com/SkillCorner/opendata/blob/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/2269/structured_data.json",
+            "download_url": "https://raw.githubusercontent.com/SkillCorner/opendata/1ed50b775f93075c2a6d00d0d795f13b7b89709e/data/matches/2269/structured_data.json"
+          }
+        ],
+        "verification": "Official historical folder and metadata fetched; tracking file existence/size/git SHA verified, full tracking not downloaded/audited",
+        "training_eligibility": "pending possession/dead-state coverage and annotation-semantics audit",
+        "planned_role": "not yet assigned; keep untouched evaluation matches before fitting"
+      }
+    ],
+    "limits": [
+      "Historical files were removed from current master; use the pinned official commit URLs.",
+      "Possession supervision is provider-generated; independent ground truth is not established.",
+      "Audit absent frames, camera cuts, unknown possession and dead-ball semantics before supervised spell training.",
+      "Existing baseline model has 2. Bundesliga training ancestry; a strict new top-five-only training pool requires retraining, not relabelling the current checkpoint."
+    ]
+  },
+  "reference_checkpoint": "rnn-boundary-001.npz",
+  "reference_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "primary_metric": "mean clean and simulated-ball-dropout possession-spell F1 on provider-labelled valid runs",
+  "secondary_metrics": [
+    "clean spell F1",
+    "dropout spell F1",
+    "frame macro F1",
+    "label coverage",
+    "misses/false positives/merges"
+  ],
+  "required_label_audit": "Do not infer dead ball from null possession. Train/evaluate only if supplied possession labels support a meaningful spell comparison. Preserve unknowns. If labels are inadequate, report the limitation before claiming an improvement.",
+  "test_access_policy": "Download and checksum held-out file only; do not parse or inspect its possession labels until candidate and decoder are frozen.",
+  "candidate_scope": "retrain from European first-division matches; no second-division inputs in new training",
+  "seed": 42,
+  "validation_dropout_seed": 100,
+  "test_dropout_seed": 300,
+  "competition_data_used": false,
+  "no_post_test_tuning": true
+}

@@ -1,0 +1,45 @@
+{
+  "split": {
+    "train": [
+      "4039",
+      "3749",
+      "3518"
+    ],
+    "validation": [
+      "2269"
+    ],
+    "test": [
+      "3442"
+    ]
+  },
+  "hidden_sizes": [
+    [
+      24
+    ],
+    [
+      24,
+      24
+    ]
+  ],
+  "max_iterations": 12,
+  "windows_per_iteration": 1024,
+  "dropout": 0.15,
+  "l2": 0.0001,
+  "seed": 42,
+  "decoder_penalties": [
+    3,
+    12,
+    24,
+    48
+  ],
+  "checkpoint_selection": "best mean clean/masked validation spell F1 across iteration/depth/penalty",
+  "reference_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "evaluation": "conditional provider-labelled H/A spells; NOT full-match independent ground truth",
+  "unknown_policy": "X, no dead labels, gaps not bridged",
+  "native_fps": 10,
+  "common_fps": 25,
+  "resampling": "adjacent finite tracking linear interpolation; causal label hold; no labels in features",
+  "source": "SkillCorner MIT pinned original release",
+  "test_read_before_freeze": false,
+  "competition_data_used": false
+}

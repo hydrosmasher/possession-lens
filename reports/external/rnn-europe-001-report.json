@@ -1,0 +1,157 @@
+{
+  "protocol": {
+    "split": {
+      "train": [
+        "4039",
+        "3749",
+        "3518"
+      ],
+      "validation": [
+        "2269"
+      ],
+      "test": [
+        "3442"
+      ]
+    },
+    "hidden_sizes": [
+      [
+        24
+      ],
+      [
+        24,
+        24
+      ]
+    ],
+    "max_iterations": 12,
+    "windows_per_iteration": 1024,
+    "dropout": 0.15,
+    "l2": 0.0001,
+    "seed": 42,
+    "decoder_penalties": [
+      3,
+      12,
+      24,
+      48
+    ],
+    "checkpoint_selection": "best mean clean/masked validation spell F1 across iteration/depth/penalty",
+    "reference_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+    "evaluation": "conditional provider-labelled H/A spells; NOT full-match independent ground truth",
+    "unknown_policy": "X, no dead labels, gaps not bridged",
+    "native_fps": 10,
+    "common_fps": 25,
+    "resampling": "adjacent finite tracking linear interpolation; causal label hold; no labels in features",
+    "source": "SkillCorner MIT pinned original release",
+    "test_read_before_freeze": false,
+    "competition_data_used": false
+  },
+  "frozen": {
+    "score": 0.48696741854636594,
+    "layers": 1,
+    "iteration": 5,
+    "penalty": 48,
+    "candidate_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+    "reference_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+    "baseline_window": 125,
+    "adapter_sha256": "9ee9464f774e8f40d84ebd5ca849f47309cc0e33f1d352d01d618e8ab83706a6",
+    "test_labels_read": false
+  },
+  "test_audit": [
+    {
+      "period": 1,
+      "native_frames": 27094,
+      "labelled_native_frames": 22111,
+      "label_coverage": 0.8160847420093009,
+      "valid_runs": 29,
+      "median_valid_run_seconds": 35.1,
+      "direct_labelled_team_changes": 126,
+      "identified_observations": 341274,
+      "anonymous_observations": 4702,
+      "ball_observed_fraction": 0.746585959991142
+    },
+    {
+      "period": 2,
+      "native_frames": 28834,
+      "labelled_native_frames": 17430,
+      "label_coverage": 0.604494693764306,
+      "valid_runs": 42,
+      "median_valid_run_seconds": 29.75,
+      "direct_labelled_team_changes": 98,
+      "identified_observations": 267844,
+      "anonymous_observations": 6855,
+      "ball_observed_fraction": 0.5258375528889505
+    }
+  ],
+  "test_results": {
+    "candidate": {
+      "clean": {
+        "spell_f1_mean": 0.5654008438818565,
+        "macro_f1": 0.5967708932646415,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 295,
+        "n_pred_spells": 179,
+        "n_graded": 98852
+      },
+      "masked": {
+        "spell_f1_mean": 0.5202558635394456,
+        "macro_f1": 0.5806807605648902,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 295,
+        "n_pred_spells": 174,
+        "n_graded": 98852
+      },
+      "selection_spell_f1": 0.5428283537106511
+    },
+    "current": {
+      "clean": {
+        "spell_f1_mean": 0.3861003861003861,
+        "macro_f1": 0.530792636214016,
+        "alive_dead_f1": 0.9126269126269126,
+        "n_gt_spells": 295,
+        "n_pred_spells": 223,
+        "n_graded": 98852
+      },
+      "masked": {
+        "spell_f1_mean": 0.231433506044905,
+        "macro_f1": 0.45551639204226607,
+        "alive_dead_f1": 0.790549716760672,
+        "n_gt_spells": 295,
+        "n_pred_spells": 284,
+        "n_graded": 98852
+      },
+      "selection_spell_f1": 0.30876694607264554
+    },
+    "baseline": {
+      "clean": {
+        "spell_f1_mean": 0.435650623885918,
+        "macro_f1": 0.5709059477521117,
+        "alive_dead_f1": 0.9888659878175392,
+        "n_gt_spells": 295,
+        "n_pred_spells": 266,
+        "n_graded": 98852
+      },
+      "masked": {
+        "spell_f1_mean": 0.4106007067137809,
+        "macro_f1": 0.5527521552410072,
+        "alive_dead_f1": 0.984179833012203,
+        "n_gt_spells": 295,
+        "n_pred_spells": 271,
+        "n_graded": 98852
+      },
+      "selection_spell_f1": 0.42312566529984946
+    }
+  },
+  "candidate_beats_current": true,
+  "promoted_to_default": false,
+  "limitations": [
+    "Automatically generated provider labels; this is a weak-supervision transfer experiment.",
+    "Only observed H/A-labelled runs are scored; no supervised dead-ball state.",
+    "Unknown gaps fragment spells and can inflate F1: these scores do not establish the official challenge target.",
+    "Training checkpoint selected repeatedly on one validation match; one test match is limited evidence.",
+    "Interpolated 25 Hz frames are not independent observations.",
+    "Offline decoder uses future evidence; not live forecasting.",
+    "Existing current comparator has second-division training ancestry; new candidate trained from scratch only on selected top-five-league matches."
+  ],
+  "test_access_status": "viewed_once_after_checkpoint_and_decoder_freeze",
+  "experiment_id": "rnn-europe-001",
+  "model_decision": "Experimental European-transfer checkpoint; current default retained. Conditional provider labels do not assess dead-ball recognition or complete match spells."
+}

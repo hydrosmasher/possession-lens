@@ -58,6 +58,14 @@ The older `download-external` command now checks local Downloads first and requi
 
 The Desktop folder is the canonical working repository connected to `hydrosmasher/possession-lens`. Keep only that copy in GitHub Desktop. Previous copies and historical private runs are preserved in the separate backup folder rather than mixed into the working project.
 
+## Latest European transfer test and notebook
+
+The updated `notebooks/01_Possession_Lens.ipynb` walks through the latest five-match experiment, source verification, split, label audit, training history and results. Double-click **Open Notebook.command**, then run cells from top to bottom. Training and challenge inference remain disabled by default.
+
+A new RNN was trained from scratch on Manchester City–Liverpool, Dortmund–Bayern and Juventus–Inter, selected on PSG–Marseille, then tested once on reserved Real Madrid–Barcelona. Mean clean/dropout possession-spell F1: **candidate 0.5428**, **current 0.3088**, **baseline 0.4231**. The candidate wins this conditional transfer test; it has not reached 0.8–0.9. One layer at iteration 5 beat deeper and later checkpoints. The candidate produced 179 clean spells against 295 labelled reference spells, leaving under-segmentation unresolved.
+
+These are partial automatic SkillCorner labels, with unknown gaps and no supervised dead-ball state. Scores are agreement on labelled runs, not complete-match independent ground truth or official challenge accuracy. The new weights are saved as `models/rnn-europe-001-experimental.npz`; **the production default remains unchanged**. Test labels were opened after freezing settings; this match is now viewed and must not be used for tuning. [Results](reports/external/rnn-europe-001-report.html) · [Protocol and reproduction](docs/external/EUROPE_EXPERIMENT.md).
+
 ## Fresh-match decision: keep the current model
 
 A frozen test on previously unused Fortuna Düsseldorf–Kaiserslautern (J03WR9) favoured the current boundary-aware RNN. Mean clean/ball-dropout spell F1: **current 0.4913**, longer-trained candidate **0.4767**, baseline **0.2721**. Candidate clean/dropout scores were 0.5217/0.4316; current scores were 0.5322/0.4504. The longer-trained model is not promoted. Both had zero predicted spells shorter than 0.4 seconds; under dropout the candidate missed fewer spells but added more false positives.

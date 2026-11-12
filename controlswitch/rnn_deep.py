@@ -68,7 +68,7 @@ def cross_entropy(m,x,y,batch=32):
   total+=float(-np.log(np.maximum(p[bi,ti,v],1e-8)).sum());n+=len(v)
  return total/max(1,n)
 
-def train(sequences,validation,sizes=(24,24),epochs=16,dropout=.15,l2=.0001,patience=3,seed=42,max_windows=1024,on_epoch=None,train_probe_sequences=None):
+def train(sequences,validation,sizes=(24,24),epochs=16,dropout=.15,l2=.0001,patience=3,seed=42,max_windows=1024,on_epoch=None,train_probe_sequences=None,on_epoch_model=None):
  if epochs<1 or patience<1 or max_windows<1:raise ValueError('Invalid training limits')
  m=initialise(np.concatenate([x for x,y in sequences]),sizes,seed);x,y=windows(sequences);vx,vy=windows(validation)
  px,py=windows(train_probe_sequences) if train_probe_sequences is not None else (x,y)
@@ -85,6 +85,7 @@ def train(sequences,validation,sizes=(24,24),epochs=16,dropout=.15,l2=.0001,pati
   if val_ce<best_loss-1e-4:best_loss=val_ce;best={k:v.copy() for k,v in m.items()};stale=0;best_epoch=epoch
   else:stale+=1
   if on_epoch:on_epoch(row)
+  if on_epoch_model:on_epoch_model(row,{k:v.copy() for k,v in m.items()})
   print(f'Stack {len(sizes)} iteration {epoch}: train CE {train_ce:.4f}; validation CE {val_ce:.4f}; gap {val_ce-train_ce:.4f}',flush=True)
   if stale>=patience:break
  return best,history,best_epoch

@@ -1,0 +1,11 @@
+{
+  "score": 0.48696741854636594,
+  "layers": 1,
+  "iteration": 5,
+  "penalty": 48,
+  "candidate_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "reference_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "baseline_window": 125,
+  "adapter_sha256": "9ee9464f774e8f40d84ebd5ca849f47309cc0e33f1d352d01d618e8ab83706a6",
+  "test_labels_read": false
+}

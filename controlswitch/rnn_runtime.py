@@ -4,13 +4,15 @@ from .rnn import (RNN_VERSION,RNN_REFINED_VERSION,RNN_SYMMETRIC_VERSION,RNN_DWEL
 from .rnn_boundaries import BOUNDARY_VERSION,dwell_decode,invariant_boundary_features
 from .model import probabilities,decode
 
+DEEP_BOUNDARY_VERSION='numpy-stacked-tanh-rnn-boundary-v2'
+
 VERSIONS=(RNN_VERSION,RNN_REFINED_VERSION,RNN_SYMMETRIC_VERSION,RNN_DWELL_VERSION,BOUNDARY_VERSION)
 
 def load_frozen(path):
     with np.load(path,allow_pickle=False) as d:
         version=str(d['version'])
         from .rnn_deep import VERSION as DEEP_VERSION,parameters
-        if version==DEEP_VERSION:
+        if version in (DEEP_VERSION,DEEP_BOUNDARY_VERSION):
             sizes=d['sizes'];model={k:d[k] for k in ('mean','scale','sizes','wo','bo')}
             if sizes.ndim!=1 or not 1<=len(sizes)<=3 or not np.issubdtype(sizes.dtype,np.integer) or ((sizes<1)|(sizes>128)).any():raise ValueError('Invalid stacked recurrent sizes')
             for l in range(len(sizes)):
@@ -23,7 +25,14 @@ def load_frozen(path):
             if model['wo'].shape!=(width,3) or model['bo'].shape!=(3,) or not all(np.isfinite(v).all() for v in model.values()):raise ValueError('Invalid stacked weights')
             penalty=float(d['transition_penalty'])
             if not np.isfinite(penalty) or penalty<0 or not bool(d['symmetric']):raise ValueError('Invalid stacked decoder')
-            return {'model':model,'version':version,'symmetric':True,'penalty':penalty,'stop_penalty':None,'min_frames':None,'head':None,'strength':0.,'deep':True}
+            head={k:d['event_'+k] for k in ('mean','scale','weights')} if version==DEEP_BOUNDARY_VERSION else None
+            strength=float(d['boundary_strength']) if head is not None else 0.
+            minimum=int(d['min_frames']) if head is not None else None
+            if head is not None:
+                width=len(head['mean'])
+                if head['mean'].ndim!=1 or head['scale'].shape!=(width,) or head['weights'].shape!=(width+1,2) or (head['scale']<=0).any() or not all(np.isfinite(v).all() for v in head.values()):raise ValueError('Invalid stacked boundary head')
+                if not np.isfinite(strength) or strength<0 or not 1<=minimum<=100:raise ValueError('Invalid stacked boundary decoder')
+            return {'model':model,'version':version,'symmetric':True,'penalty':penalty,'stop_penalty':None,'min_frames':minimum,'head':head,'strength':strength,'deep':True}
         if version not in VERSIONS:raise ValueError('Unsupported frozen model version')
         model={k:d[k] for k in ('mean','scale','wx','wh','bh','wy','by')}
         if not all(np.isfinite(v).all() for v in model.values()):raise ValueError('Nonfinite recurrent model')

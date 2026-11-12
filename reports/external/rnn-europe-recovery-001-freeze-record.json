@@ -1,0 +1,18 @@
+{
+  "name": "previous_european",
+  "selection_spell_f1": 0.48696741854636594,
+  "penalty": 48.0,
+  "strength": 0,
+  "iteration": null,
+  "candidate_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "reference_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "production_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "baseline_window": 125,
+  "test_labels_read_at_freeze": false,
+  "source_hashes": {
+    "europe_recovery.py": "834ac9b22768df7dbdaeaee0c01cdb461653bdae4a5286f85103e28852c2ed11",
+    "rnn_deep.py": "8405033fb59fda0af7ca85e393da4e891011bbf3279c160b996e0d828660c193",
+    "rnn_runtime.py": "71ca55eb2437c868af9ed0966e13555766030d6cb8bc8c6a0800268b4a65ebef",
+    "skillcorner_europe.py": "9ee9464f774e8f40d84ebd5ca849f47309cc0e33f1d352d01d618e8ab83706a6"
+  }
+}

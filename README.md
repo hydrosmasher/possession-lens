@@ -58,6 +58,14 @@ The older `download-external` command now checks local Downloads first and requi
 
 The Desktop folder is the canonical working repository connected to `hydrosmasher/possession-lens`. Keep only that copy in GitHub Desktop. Previous copies and historical private runs are preserved in the separate backup folder rather than mixed into the working project.
 
+## Latest spell-recovery attempt: no new improvement
+
+The latest notebook includes the recovery experiment and the new reserved **Bayern–Dortmund (9 November 2019)** test. Spell-balanced RNN loss and balanced boundary heads failed to improve validation within the false-positive limits, so they were rejected. The selected checkpoint is **identical to `rnn-europe-001-experimental.npz`**. Do not present the new match score as an algorithm improvement.
+
+On the fresh match, mean clean/dropout possession-spell F1 was **retained European RNN 0.5625**, **baseline 0.3852**, **older production model 0.2494**. The retained European RNN's clean predictions still miss 151 labelled spells and have 37 possible merge overlaps. The 0.8–0.9 target remains unmet. Labels are partial and automatic, with no supervised dead-ball state; this is conditional transfer evidence, not challenge accuracy. Both clubs also appear in training. The match is now viewed and excluded from future tuning.
+
+The notebook shows misses, false positives, merge overlaps, short pulses, loss history and the exact freeze decision. Rejected weights are preserved in `models/archive/rnn-europe-recovery-001-weighted-rejected.npz`; production defaults remain unchanged. [Full report](reports/external/rnn-europe-recovery-001-report.html) · [Recovery method and reproduction](docs/external/EUROPE_RECOVERY.md).
+
 ## Latest European transfer test and notebook
 
 The updated `notebooks/01_Possession_Lens.ipynb` walks through the latest five-match experiment, source verification, split, label audit, training history and results. Double-click **Open Notebook.command**, then run cells from top to bottom. Training and challenge inference remain disabled by default.

@@ -1,0 +1,48 @@
+{
+  "experiment_id": "europe-recovery-001",
+  "train": [
+    "4039",
+    "3749",
+    "3518"
+  ],
+  "validation": [
+    "2269"
+  ],
+  "sealed_test": "2417",
+  "test_title": "Bayern Munich\u2013Borussia Dortmund, Bundesliga, 9 November 2019",
+  "source_revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+  "test_previously_parsed": false,
+  "test_shares_clubs_with_training": true,
+  "viewed_test_3442_excluded_from_development": true,
+  "training": "one-layer 24-unit RNN from scratch, spell-balanced frame loss; 12 sampled iterations; 1024 windows; seed42; dropout0.15; L2 0.0001; clipped norm5",
+  "loss_weights": "min(4,sqrt(10 seconds / observed spell duration)), floor0.5; direct known H/A boundary neighbourhood x1.5; unknown weight0; unknown-censored spells retain weight1 before boundary multiplier",
+  "decoder_penalties": [
+    3,
+    12,
+    24,
+    48
+  ],
+  "boundary_strengths": [
+    0,
+    0.5,
+    1
+  ],
+  "minimum_frames": 1,
+  "boundary_head": "team-invariant geometry/trajectory/RNN score changes, balanced logistic, train-only, 35 epochs, near-unknown target windows excluded",
+  "selection": "highest mean clean/masked validation spellF1 subject to summed IoU0.5 false positives <=110% of previous European RNN and short pulse count <= reference+5; include unchanged previous model as fallback",
+  "dropout_seeds": {
+    "train": 42,
+    "validation": 100,
+    "test": 400
+  },
+  "test_policy": "checksum only until candidate, baseline and comparators frozen; score once, no post-test tuning",
+  "metric_scope": "conditional automatic provider-labelled H/A valid runs; no invented dead state",
+  "competition_data_used": false,
+  "target_not_guaranteed": [
+    0.8,
+    0.9
+  ],
+  "reference_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "production_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "maximum_iterations": 12
+}

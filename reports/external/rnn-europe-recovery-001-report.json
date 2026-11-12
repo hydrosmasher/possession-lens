@@ -1,0 +1,893 @@
+{
+  "protocol": {
+    "experiment_id": "europe-recovery-001",
+    "train": [
+      "4039",
+      "3749",
+      "3518"
+    ],
+    "validation": [
+      "2269"
+    ],
+    "sealed_test": "2417",
+    "test_title": "Bayern Munich\u2013Borussia Dortmund, Bundesliga, 9 November 2019",
+    "source_revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+    "test_previously_parsed": false,
+    "test_shares_clubs_with_training": true,
+    "viewed_test_3442_excluded_from_development": true,
+    "training": "one-layer 24-unit RNN from scratch, spell-balanced frame loss; 12 sampled iterations; 1024 windows; seed42; dropout0.15; L2 0.0001; clipped norm5",
+    "loss_weights": "min(4,sqrt(10 seconds / observed spell duration)), floor0.5; direct known H/A boundary neighbourhood x1.5; unknown weight0; unknown-censored spells retain weight1 before boundary multiplier",
+    "decoder_penalties": [
+      3,
+      12,
+      24,
+      48
+    ],
+    "boundary_strengths": [
+      0,
+      0.5,
+      1
+    ],
+    "minimum_frames": 1,
+    "boundary_head": "team-invariant geometry/trajectory/RNN score changes, balanced logistic, train-only, 35 epochs, near-unknown target windows excluded",
+    "selection": "highest mean clean/masked validation spellF1 subject to summed IoU0.5 false positives <=110% of previous European RNN and short pulse count <= reference+5; include unchanged previous model as fallback",
+    "dropout_seeds": {
+      "train": 42,
+      "validation": 100,
+      "test": 400
+    },
+    "test_policy": "checksum only until candidate, baseline and comparators frozen; score once, no post-test tuning",
+    "metric_scope": "conditional automatic provider-labelled H/A valid runs; no invented dead state",
+    "competition_data_used": false,
+    "target_not_guaranteed": [
+      0.8,
+      0.9
+    ],
+    "reference_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+    "production_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+    "maximum_iterations": 12
+  },
+  "frozen": {
+    "name": "previous_european",
+    "selection_spell_f1": 0.48696741854636594,
+    "penalty": 48.0,
+    "strength": 0,
+    "iteration": null,
+    "candidate_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+    "reference_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+    "production_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+    "baseline_window": 125,
+    "test_labels_read_at_freeze": false,
+    "source_hashes": {
+      "europe_recovery.py": "834ac9b22768df7dbdaeaee0c01cdb461653bdae4a5286f85103e28852c2ed11",
+      "rnn_deep.py": "8405033fb59fda0af7ca85e393da4e891011bbf3279c160b996e0d828660c193",
+      "rnn_runtime.py": "71ca55eb2437c868af9ed0966e13555766030d6cb8bc8c6a0800268b4a65ebef",
+      "skillcorner_europe.py": "9ee9464f774e8f40d84ebd5ca849f47309cc0e33f1d352d01d618e8ab83706a6"
+    }
+  },
+  "validation_reference": {
+    "clean": {
+      "spell_f1_mean": 0.5142857142857143,
+      "macro_f1": 0.5561821735741046,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 187,
+      "n_graded": 91462
+    },
+    "masked": {
+      "spell_f1_mean": 0.45964912280701753,
+      "macro_f1": 0.5407412554915967,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 167,
+      "n_graded": 91462
+    },
+    "selection_spell_f1": 0.48696741854636594
+  },
+  "validation_reference_diagnostics": {
+    "clean": {
+      "recall_by_duration": [
+        {
+          "duration_seconds": [
+            0,
+            1
+          ],
+          "reference_spells": 28,
+          "matched_at_iou_0_5": 3,
+          "recall": 0.10714285714285714
+        },
+        {
+          "duration_seconds": [
+            1,
+            3
+          ],
+          "reference_spells": 53,
+          "matched_at_iou_0_5": 6,
+          "recall": 0.11320754716981132
+        },
+        {
+          "duration_seconds": [
+            3,
+            10
+          ],
+          "reference_spells": 85,
+          "matched_at_iou_0_5": 29,
+          "recall": 0.3411764705882353
+        },
+        {
+          "duration_seconds": [
+            10,
+            null
+          ],
+          "reference_spells": 123,
+          "matched_at_iou_0_5": 85,
+          "recall": 0.6910569105691057
+        }
+      ],
+      "matched_reference_spells_at_iou_0_5": 123,
+      "missed_reference_spells_at_iou_0_5": 166,
+      "false_positive_spells_at_iou_0_5": 64,
+      "predicted_spells_under_0_4_seconds": 9,
+      "predictions_overlapping_multiple_reference_spells": 36,
+      "note": "Merge count is descriptive overlap, not a separately validated event metric."
+    },
+    "masked": {
+      "recall_by_duration": [
+        {
+          "duration_seconds": [
+            0,
+            1
+          ],
+          "reference_spells": 28,
+          "matched_at_iou_0_5": 1,
+          "recall": 0.03571428571428571
+        },
+        {
+          "duration_seconds": [
+            1,
+            3
+          ],
+          "reference_spells": 53,
+          "matched_at_iou_0_5": 4,
+          "recall": 0.07547169811320754
+        },
+        {
+          "duration_seconds": [
+            3,
+            10
+          ],
+          "reference_spells": 85,
+          "matched_at_iou_0_5": 22,
+          "recall": 0.25882352941176473
+        },
+        {
+          "duration_seconds": [
+            10,
+            null
+          ],
+          "reference_spells": 123,
+          "matched_at_iou_0_5": 77,
+          "recall": 0.6260162601626016
+        }
+      ],
+      "matched_reference_spells_at_iou_0_5": 104,
+      "missed_reference_spells_at_iou_0_5": 185,
+      "false_positive_spells_at_iou_0_5": 63,
+      "predicted_spells_under_0_4_seconds": 8,
+      "predictions_overlapping_multiple_reference_spells": 41,
+      "note": "Merge count is descriptive overlap, not a separately validated event metric."
+    }
+  },
+  "validation_selected": {
+    "scores": {
+      "clean": {
+        "spell_f1_mean": 0.5142857142857143,
+        "macro_f1": 0.5561821735741046,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 187,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.45964912280701753,
+        "macro_f1": 0.5407412554915967,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 167,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.48696741854636594
+    },
+    "diagnostics": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 28,
+            "matched_at_iou_0_5": 3,
+            "recall": 0.10714285714285714
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 53,
+            "matched_at_iou_0_5": 6,
+            "recall": 0.11320754716981132
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 85,
+            "matched_at_iou_0_5": 29,
+            "recall": 0.3411764705882353
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 123,
+            "matched_at_iou_0_5": 85,
+            "recall": 0.6910569105691057
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 123,
+        "missed_reference_spells_at_iou_0_5": 166,
+        "false_positive_spells_at_iou_0_5": 64,
+        "predicted_spells_under_0_4_seconds": 9,
+        "predictions_overlapping_multiple_reference_spells": 36,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 28,
+            "matched_at_iou_0_5": 1,
+            "recall": 0.03571428571428571
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 53,
+            "matched_at_iou_0_5": 4,
+            "recall": 0.07547169811320754
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 85,
+            "matched_at_iou_0_5": 22,
+            "recall": 0.25882352941176473
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 123,
+            "matched_at_iou_0_5": 77,
+            "recall": 0.6260162601626016
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 104,
+        "missed_reference_spells_at_iou_0_5": 185,
+        "false_positive_spells_at_iou_0_5": 63,
+        "predicted_spells_under_0_4_seconds": 8,
+        "predictions_overlapping_multiple_reference_spells": 41,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    }
+  },
+  "test_audit": [
+    {
+      "period": 1,
+      "native_frames": 27631,
+      "labelled_native_frames": 20876,
+      "label_coverage": 0.7555282110672795,
+      "valid_runs": 24,
+      "median_valid_run_seconds": 60.7,
+      "direct_labelled_team_changes": 110,
+      "identified_observations": 231640,
+      "anonymous_observations": 6270,
+      "ball_observed_fraction": 0.572834859397054
+    },
+    {
+      "period": 2,
+      "native_frames": 28229,
+      "labelled_native_frames": 19193,
+      "label_coverage": 0.6799036451875731,
+      "valid_runs": 30,
+      "median_valid_run_seconds": 40.15,
+      "direct_labelled_team_changes": 124,
+      "identified_observations": 221585,
+      "anonymous_observations": 3403,
+      "ball_observed_fraction": 0.5321832158418648
+    }
+  ],
+  "test_results": {
+    "candidate": {
+      "clean": {
+        "spell_f1_mean": 0.5733615221987315,
+        "macro_f1": 0.5690781504745113,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 288,
+        "n_pred_spells": 185,
+        "n_graded": 100169
+      },
+      "masked": {
+        "spell_f1_mean": 0.5517241379310344,
+        "macro_f1": 0.5644303099405682,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 288,
+        "n_pred_spells": 176,
+        "n_graded": 100169
+      },
+      "selection_spell_f1": 0.5625428300648829
+    },
+    "previous_european": {
+      "clean": {
+        "spell_f1_mean": 0.5733615221987315,
+        "macro_f1": 0.5690781504745113,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 288,
+        "n_pred_spells": 185,
+        "n_graded": 100169
+      },
+      "masked": {
+        "spell_f1_mean": 0.5517241379310344,
+        "macro_f1": 0.5644303099405682,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 288,
+        "n_pred_spells": 176,
+        "n_graded": 100169
+      },
+      "selection_spell_f1": 0.5625428300648829
+    },
+    "production_current": {
+      "clean": {
+        "spell_f1_mean": 0.28070175438596495,
+        "macro_f1": 0.4832007746851173,
+        "alive_dead_f1": 0.858264754827091,
+        "n_gt_spells": 288,
+        "n_pred_spells": 339,
+        "n_graded": 100169
+      },
+      "masked": {
+        "spell_f1_mean": 0.21818181818181817,
+        "macro_f1": 0.4334855986171024,
+        "alive_dead_f1": 0.7643601240956499,
+        "n_gt_spells": 288,
+        "n_pred_spells": 339,
+        "n_graded": 100169
+      },
+      "selection_spell_f1": 0.24944178628389158
+    },
+    "baseline": {
+      "clean": {
+        "spell_f1_mean": 0.3910034602076125,
+        "macro_f1": 0.5257384624870524,
+        "alive_dead_f1": 0.9957994987468672,
+        "n_gt_spells": 288,
+        "n_pred_spells": 290,
+        "n_graded": 100169
+      },
+      "masked": {
+        "spell_f1_mean": 0.3793333333333333,
+        "macro_f1": 0.5139550957913566,
+        "alive_dead_f1": 0.9866514246404887,
+        "n_gt_spells": 288,
+        "n_pred_spells": 312,
+        "n_graded": 100169
+      },
+      "selection_spell_f1": 0.3851683967704729
+    }
+  },
+  "test_diagnostics": {
+    "candidate": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 2,
+            "recall": 0.08
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 7,
+            "recall": 0.18421052631578946
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 31,
+            "recall": 0.3563218390804598
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 97,
+            "recall": 0.7028985507246377
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 137,
+        "missed_reference_spells_at_iou_0_5": 151,
+        "false_positive_spells_at_iou_0_5": 48,
+        "predicted_spells_under_0_4_seconds": 7,
+        "predictions_overlapping_multiple_reference_spells": 37,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 3,
+            "recall": 0.12
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 5,
+            "recall": 0.13157894736842105
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 33,
+            "recall": 0.3793103448275862
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 93,
+            "recall": 0.6739130434782609
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 134,
+        "missed_reference_spells_at_iou_0_5": 154,
+        "false_positive_spells_at_iou_0_5": 42,
+        "predicted_spells_under_0_4_seconds": 7,
+        "predictions_overlapping_multiple_reference_spells": 42,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    },
+    "previous_european": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 2,
+            "recall": 0.08
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 7,
+            "recall": 0.18421052631578946
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 31,
+            "recall": 0.3563218390804598
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 97,
+            "recall": 0.7028985507246377
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 137,
+        "missed_reference_spells_at_iou_0_5": 151,
+        "false_positive_spells_at_iou_0_5": 48,
+        "predicted_spells_under_0_4_seconds": 7,
+        "predictions_overlapping_multiple_reference_spells": 37,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 3,
+            "recall": 0.12
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 5,
+            "recall": 0.13157894736842105
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 33,
+            "recall": 0.3793103448275862
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 93,
+            "recall": 0.6739130434782609
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 134,
+        "missed_reference_spells_at_iou_0_5": 154,
+        "false_positive_spells_at_iou_0_5": 42,
+        "predicted_spells_under_0_4_seconds": 7,
+        "predictions_overlapping_multiple_reference_spells": 42,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    },
+    "production_current": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 0,
+            "recall": 0.0
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 4,
+            "recall": 0.10526315789473684
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 27,
+            "recall": 0.3103448275862069
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 51,
+            "recall": 0.3695652173913043
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 82,
+        "missed_reference_spells_at_iou_0_5": 206,
+        "false_positive_spells_at_iou_0_5": 257,
+        "predicted_spells_under_0_4_seconds": 0,
+        "predictions_overlapping_multiple_reference_spells": 39,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 0,
+            "recall": 0.0
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 3,
+            "recall": 0.07894736842105263
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 26,
+            "recall": 0.2988505747126437
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 35,
+            "recall": 0.2536231884057971
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 64,
+        "missed_reference_spells_at_iou_0_5": 224,
+        "false_positive_spells_at_iou_0_5": 275,
+        "predicted_spells_under_0_4_seconds": 1,
+        "predictions_overlapping_multiple_reference_spells": 29,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    },
+    "baseline": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 0,
+            "recall": 0.0
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 2,
+            "recall": 0.05263157894736842
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 16,
+            "recall": 0.1839080459770115
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 102,
+            "recall": 0.7391304347826086
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 120,
+        "missed_reference_spells_at_iou_0_5": 168,
+        "false_positive_spells_at_iou_0_5": 170,
+        "predicted_spells_under_0_4_seconds": 18,
+        "predictions_overlapping_multiple_reference_spells": 43,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 25,
+            "matched_at_iou_0_5": 0,
+            "recall": 0.0
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 38,
+            "matched_at_iou_0_5": 1,
+            "recall": 0.02631578947368421
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 87,
+            "matched_at_iou_0_5": 17,
+            "recall": 0.19540229885057472
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 138,
+            "matched_at_iou_0_5": 97,
+            "recall": 0.7028985507246377
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 115,
+        "missed_reference_spells_at_iou_0_5": 173,
+        "false_positive_spells_at_iou_0_5": 197,
+        "predicted_spells_under_0_4_seconds": 29,
+        "predictions_overlapping_multiple_reference_spells": 39,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    }
+  },
+  "candidate_beats_previous_european": false,
+  "promoted_to_default": false,
+  "test_status": "viewed_once_after_freeze",
+  "limitations": [
+    "Automatic provider labels, partial observed H/A runs, no supervised dead-ball state.",
+    "Unknown gaps censor spells and may inflate scores; this is not official challenge accuracy.",
+    "Fresh test shares both clubs with training; this is a different match, not unseen-team generalisation.",
+    "Validation PSG\u2013Marseille has been reused repeatedly; selection may overfit it.",
+    "Merge counts are geometric overlap diagnostics, not confirmed event annotations.",
+    "Offline boundary context and Viterbi use future evidence.",
+    "The fresh test must never be used for subsequent tuning."
+  ],
+  "recovery_changes_accepted": false,
+  "decision": "Recovery changes rejected on validation. Selected checkpoint is byte-identical to the previous European RNN; fresh-match result is additional evidence, not an algorithm improvement.",
+  "best_weighted_validation_trial": {
+    "iteration": 11,
+    "penalty": 24,
+    "selection_spell_f1": 0.4784756431308156,
+    "passes_false_positive_guard": false,
+    "diagnostics": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 28,
+            "matched_at_iou_0_5": 2,
+            "recall": 0.07142857142857142
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 53,
+            "matched_at_iou_0_5": 9,
+            "recall": 0.16981132075471697
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 85,
+            "matched_at_iou_0_5": 33,
+            "recall": 0.38823529411764707
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 123,
+            "matched_at_iou_0_5": 84,
+            "recall": 0.6829268292682927
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 128,
+        "missed_reference_spells_at_iou_0_5": 161,
+        "false_positive_spells_at_iou_0_5": 105,
+        "predicted_spells_under_0_4_seconds": 11,
+        "predictions_overlapping_multiple_reference_spells": 30,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 28,
+            "matched_at_iou_0_5": 1,
+            "recall": 0.03571428571428571
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 53,
+            "matched_at_iou_0_5": 8,
+            "recall": 0.1509433962264151
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 85,
+            "matched_at_iou_0_5": 26,
+            "recall": 0.3058823529411765
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 123,
+            "matched_at_iou_0_5": 82,
+            "recall": 0.6666666666666666
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 117,
+        "missed_reference_spells_at_iou_0_5": 172,
+        "false_positive_spells_at_iou_0_5": 98,
+        "predicted_spells_under_0_4_seconds": 9,
+        "predictions_overlapping_multiple_reference_spells": 33,
+        "note": "Merge count is descriptive overlap, not a separately validated event metric."
+      }
+    }
+  },
+  "target_reached": false
+}

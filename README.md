@@ -2,6 +2,14 @@
 
 A clear view of team possession, built for More Than a Hack in Barcelona.
 
+## Ten named matches, one offline website
+
+Open `dashboard.html` or double-click **Open Possession Lens.command**, then use **Choose your match**. The library contains nine historical SkillCorner examples plus Bochum–Leverkusen. Team possession, timelines, named-player estimated impacts, search and exports update with the selected match. The Model evidence tab now shows the frozen context-RNN result (0.6286 vs 0.5804 previous European RNN), not the older capacity experiment.
+
+Every displayed person is joined to a provider roster. Anonymous tracks and missing evidence stay unresolved; no guessed names or anonymous player rows are shown. Mapped proximity control covers about 34–59% of team control across these examples, with the rest explicitly unresolved. This is estimated involvement, not confirmed ball contact, passing impact or causal value. The H/A-only examples show stopped play as “Not classified”. Challenge individual rows remain hidden because no permitted name mapping exists.
+
+A finer decoder search on development data did not pass the improvement criteria; the context checkpoint remains unchanged. No further anonymously open, properly licensed top-five tracking + possession dataset was verified, so there is **no new fresh-match score**. Free-but-gated Premier League collections are documented for possible future access; event-only data are not substituted for tracking truth. [Source audit](docs/data-sources/OPEN_ACCESS_AUDIT_2026-11-12.md). The latest notebook includes the gallery, mapping coverage and this research status.
+
 ## Open the match centre
 
 **On this Mac:** double-click **Open Possession Lens.command**. It opens the named external-match demo. Use Open local analysis to load your private match JSON when needed.

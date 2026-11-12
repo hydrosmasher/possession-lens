@@ -1,0 +1,21 @@
+{
+  "validation_only": [
+    "2269"
+  ],
+  "new_test_match": null,
+  "viewed_tests_loaded": false,
+  "penalties": [
+    18,
+    24,
+    30,
+    36,
+    42,
+    48,
+    54
+  ],
+  "selection": "max validation mean spell F1, pooled misses and merge overlaps <= context reference, false positives and short pulses constrained against original European anchor",
+  "model_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "anchor_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "fresh_evaluation_status": "blocked_pending_new_licensed_top_five_tracking_and_labels",
+  "competition_data_used": false
+}

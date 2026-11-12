@@ -6,6 +6,10 @@ from .pipeline import BLOCKS,FPS,pm,describe
 
 def demo_payload():
     """The public demo always uses externally mapped player identities."""
+    library=Path(__file__).resolve().parents[1]/'examples/match-library.json'
+    if library.exists():
+        matches=json.loads(library.read_text())['matches']
+        return next(p for p in matches if p.get('example_id')=='skillcorner-2841')
     path=Path(__file__).resolve().parents[1]/'examples/external-named-analysis.json'
     if not path.exists():raise ValueError('The named external demo is missing; restore the examples folder.')
     payload=json.loads(path.read_text())
@@ -46,13 +50,19 @@ def export_html(out,payload=None):
         if named.get('mode')!='external_named' or named.get('named_players',{}).get('source_kind')!='external_provider_stable_ids':raise ValueError('Bundled name example must use external provider identities')
         named_data=json.dumps(named,allow_nan=False,separators=(',',':')).replace('<','\\u003c')
         named_script='window.__POSSESSION_LENS_NAMED_EXAMPLE__='+named_data+';'
+    library_script=''
+    library_path=web.parents[1]/'examples/match-library.json'
+    if library_path.exists():
+        library=json.loads(library_path.read_text())
+        if any(p.get('mode')!='external_named' or p.get('named_players',{}).get('source_kind')!='external_provider_stable_ids' for p in library['matches']):raise ValueError('Example library requires provider-mapped external players')
+        library_script='window.__POSSESSION_LENS_LIBRARY__='+json.dumps(library,allow_nan=False,separators=(',',':')).replace('<','\\u003c')+';'
     evidence_script=''
-    evidence_path=web.parents[1]/'reports/external/rnn-fresh-J03WR9-001-report.json'
+    evidence_path=web.parents[1]/'reports/external/rnn-europe-context-001-report.json'
     if evidence_path.exists():
         from .evidence import summary
         evidence_data=json.dumps(summary(json.loads(evidence_path.read_text())),allow_nan=False,separators=(',',':')).replace('<','\\u003c')
         evidence_script='window.__POSSESSION_LENS_EVIDENCE__='+evidence_data+';'
-    html=html.replace('</body>','<script>window.__POSSESSION_LENS_DATA__='+data+';'+named_script+evidence_script+'</script><script>'+(web/'app.js').read_text()+'</script></body>')
+    html=html.replace('</body>','<script>window.__POSSESSION_LENS_DATA__='+data+';'+named_script+library_script+evidence_script+'</script><script>'+(web/'app.js').read_text()+'</script></body>')
     out=Path(out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(html)
     return out
 

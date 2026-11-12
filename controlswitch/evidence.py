@@ -3,6 +3,14 @@ from pathlib import Path
 import json,html,math
 
 def summary(report):
+ if 'test_results' in report:
+  results=report['test_results'];mapping={'baseline':'baseline','current':'previous_european','candidate':'candidate'};values={}
+  for key,source in mapping.items():
+   row=results[source];a=float(row['clean']['spell_f1_mean']);b=float(row['masked']['spell_f1_mean']);mean=float(row['selection_spell_f1'])
+   if not all(math.isfinite(v) and 0<=v<=1 for v in (a,b,mean)) or not math.isclose(mean,(a+b)/2,abs_tol=1e-10):raise ValueError('External evidence metrics do not reconcile')
+   values[key]={'clean':a,'dropout':b,'mean':mean}
+  delta=values['candidate']['mean']-values['current']['mean']
+  return {'match_id':'2841','match_title':'Barcelona–Real Madrid · 18 December 2019','models':values,'labels':{'baseline':'Baseline','current':'Previous European RNN','candidate':'Context RNN'},'candidate_minus_current':delta,'candidate_wins':delta>0,'note':'Frozen fresh-match comparison. Partial automatic H/A labels, not full-match challenge accuracy. No dead-ball evaluation. Target 0.8 remains unmet.','source':'SkillCorner historical open data, MIT.'}
  results=report['fresh_match_results'];values={}
  for key in ('baseline','current','candidate'):
   row=results[key];clean=float(row['clean']['spell_f1_mean']);masked=float(row['masked']['spell_f1_mean']);mean=float(row['mean_clean_masked_spell_f1'])

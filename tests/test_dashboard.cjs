@@ -10,3 +10,7 @@ Lens.validate(named);assert.throws(()=>Lens.validate({...named,mode:'licensed_lo
 const contributions={...named,named_players:{...named.named_players,rows:[{team:'H',person_id:'a',player_name:'Ada Example',associated_control_seconds:3,percent_of_team_possession:30},{team:'H',person_id:'b',player_name:'Ben Example',associated_control_seconds:5,percent_of_team_possession:50},{team:'H',person_id:'UNASSIGNED',player_name:'Unassigned control',associated_control_seconds:2,percent_of_team_possession:20},{team:'A',person_id:'c',player_name:'Ada Away',associated_control_seconds:4,percent_of_team_possession:100}]}};
 assert.deepEqual(Lens.playerRows(contributions,'H','ADA').map(r=>r.person_id),['a','UNASSIGNED']);assert.deepEqual(Lens.playerRows(contributions,'H','missing').map(r=>r.person_id),['UNASSIGNED']);assert.deepEqual(Lens.playerRows(contributions,'H').map(r=>r.person_id),['b','a','UNASSIGNED']);
 console.log('Player search passed: names, team separation, sorting and unassigned coverage.');
+const fs=require('node:fs');const path=require('node:path');
+const lib=JSON.parse(fs.readFileSync(path.join(__dirname,'../examples/match-library.json'),'utf8'));
+assert.equal(lib.matches.length,10);for(const match of lib.matches){Lens.validate(match);assert.equal(match.mode,'external_named');assert.ok(match.named_players.rows.filter(p=>p.person_id!=='UNASSIGNED').every(p=>p.player_name.trim()));}
+console.log('All ten match-library payloads passed timeline and provider-name validation.');

@@ -9,7 +9,9 @@ def serve(run_dir=None,port=8765):
     payload=from_run(run_dir) if run_dir else demo_payload();web=Path(__file__).parent/'web'
     example=web.parents[1]/'examples/external-named-analysis.json'
     if example.exists():payload['bundled_named_example']=json.loads(example.read_text())
-    evidence=web.parents[1]/'reports/external/rnn-fresh-J03WR9-001-report.json'
+    library=web.parents[1]/'examples/match-library.json'
+    if library.exists():payload['match_library']=json.loads(library.read_text())
+    evidence=web.parents[1]/'reports/external/rnn-europe-context-001-report.json'
     if evidence.exists():
         from .evidence import summary
         payload['external_evidence']=summary(json.loads(evidence.read_text()))

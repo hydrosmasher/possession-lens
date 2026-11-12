@@ -25,10 +25,13 @@ def interpolate(a,positions):
     exact=np.isclose(positions,lo);out[exact]=a[lo[exact]]
     return out.astype(np.float32)
 
-def load_match(root,mid):
+def load_match(root,mid,recover_provider_ids=False,id_gap_frames=10):
     p=Path(root)/mid;m=json.loads((p/'match_data.json').read_text());frames=json.loads((p/'structured_data.json').read_text())
     players=[x for x in m['players'] if x.get('trackable_object') is not None]
     ids={x['trackable_object']:i for i,x in enumerate(players)}
+    if recover_provider_ids:
+        from .control_recovery import recover_ids
+        recover_ids(frames,{x['trackable_object']:0 if x['team_id']==m['home_team']['id'] else 1 for x in players},id_gap_frames)
     team=np.array([0 if x['team_id']==m['home_team']['id'] else 1 for x in players]+[0]*22+[1]*22,np.int8)
     parts=[];audit=[]
     for period in (1,2):

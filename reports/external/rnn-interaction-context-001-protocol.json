@@ -1,0 +1,31 @@
+{
+  "train": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "validation": [
+    "2269"
+  ],
+  "viewed_tests_loaded": false,
+  "new_test_results": null,
+  "features": "120 offline multiscale geometry + 10 causal team-pooled proximity/trajectory/movement interactions",
+  "architecture": "one 24-unit tanh recurrent layer, from scratch",
+  "max_sampled_iterations": 12,
+  "windows_per_iteration": 1024,
+  "seed": 42,
+  "dropout": 0.15,
+  "l2": 0.0001,
+  "penalties": [
+    24,
+    36,
+    48,
+    60
+  ],
+  "selection": "highest validation clean/dropout spell F1 with misses and geometric merges <= context reference, false-switch guard anchored to original European RNN",
+  "reference_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "anchor_sha256": "77567660e104cfc8ddd54914b5c0d1c33a39f10e99bb4b0a0323cbfac9861a25",
+  "competition_data_used": false
+}

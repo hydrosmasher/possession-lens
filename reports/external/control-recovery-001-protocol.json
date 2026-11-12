@@ -1,0 +1,35 @@
+{
+  "train": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "validation": [
+    "2269"
+  ],
+  "id_gaps_native_frames": [
+    5,
+    10,
+    20
+  ],
+  "ball_gaps_25hz_frames": [
+    10,
+    20,
+    30
+  ],
+  "minimum_proxy_precision": 0.995,
+  "minimum_validation_recovered_frames": 500,
+  "selection": "highest recovered count on training with >=99.5% proxy precision; independent validation gate, no validation retuning",
+  "identity_rule": "same contiguous provider track_id and same roster ID on both sides; no motion identity guesses",
+  "control_rule": "same named owner anchors, same team, continuous player observations, uncontested <=2m interpolated ball corridor",
+  "competition_data_used": false,
+  "viewed_test_matches_used_for_selection": false,
+  "model_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "limitations": [
+    "Withheld provider IDs and proximity associations are surrogate references, not independent human truth.",
+    "Automatic provider identity mistakes can persist.",
+    "Synthetic missingness may differ from natural missingness."
+  ]
+}

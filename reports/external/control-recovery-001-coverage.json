@@ -1,0 +1,203 @@
+{
+  "rows": [
+    {
+      "match_id": "skillcorner-2068",
+      "team": "H",
+      "direct_percent": 44.46435595961362,
+      "new_mapped_percent": 44.562699418680886,
+      "gain_percentage_points": 0.09834345906726583,
+      "direct_seconds": 813.84,
+      "provider_id_recovered_seconds": 0.8,
+      "short_ball_gap_seconds": 1.0,
+      "total_seconds": 1830.32
+    },
+    {
+      "match_id": "skillcorner-2068",
+      "team": "A",
+      "direct_percent": 44.266625631556,
+      "new_mapped_percent": 44.34356646405581,
+      "gain_percentage_points": 0.07694083249980821,
+      "direct_seconds": 690.4,
+      "provider_id_recovered_seconds": 0.0,
+      "short_ball_gap_seconds": 1.2000000000000002,
+      "total_seconds": 1559.6399999999999
+    },
+    {
+      "match_id": "skillcorner-2269",
+      "team": "H",
+      "direct_percent": 46.5009865244952,
+      "new_mapped_percent": 46.60383695058982,
+      "gain_percentage_points": 0.10285042609462636,
+      "direct_seconds": 886.1600000000001,
+      "provider_id_recovered_seconds": 0.0,
+      "short_ball_gap_seconds": 1.96,
+      "total_seconds": 1905.68
+    },
+    {
+      "match_id": "skillcorner-2269",
+      "team": "A",
+      "direct_percent": 43.77544804591069,
+      "new_mapped_percent": 43.88124779583856,
+      "gain_percentage_points": 0.10579974992786845,
+      "direct_seconds": 546.1600000000001,
+      "provider_id_recovered_seconds": 0.0,
+      "short_ball_gap_seconds": 1.32,
+      "total_seconds": 1247.6399999999999
+    },
+    {
+      "match_id": "skillcorner-2417",
+      "team": "H",
+      "direct_percent": 45.72280448138778,
+      "new_mapped_percent": 45.74990964943983,
+      "gain_percentage_points": 0.02710516805204577,
+      "direct_seconds": 1012.12,
+      "provider_id_recovered_seconds": 0.0,
+      "short_ball_gap_seconds": 0.6000000000000001,
+      "total_seconds": 2213.6
+    },
+    {
+      "match_id": "skillcorner-2417",
+      "team": "A",
+      "direct_percent": 43.997685854787385,
+      "new_mapped_percent": 44.016970398225816,
+      "gain_percentage_points": 0.019284543438431,
+      "direct_seconds": 547.56,
+      "provider_id_recovered_seconds": 0.24,
+      "short_ball_gap_seconds": 0.0,
+      "total_seconds": 1244.52
+    },
+    {
+      "match_id": "skillcorner-2440",
+      "team": "H",
+      "direct_percent": 41.85360248609406,
+      "new_mapped_percent": 42.062517953672995,
+      "gain_percentage_points": 0.2089154675789331,
+      "direct_seconds": 641.0799999999999,
+      "provider_id_recovered_seconds": 0.88,
+      "short_ball_gap_seconds": 2.3200000000000003,
+      "total_seconds": 1531.72
+    },
+    {
+      "match_id": "skillcorner-2440",
+      "team": "A",
+      "direct_percent": 43.117071957449255,
+      "new_mapped_percent": 43.18212256299386,
+      "gain_percentage_points": 0.06505060554460584,
+      "direct_seconds": 901.44,
+      "provider_id_recovered_seconds": 1.08,
+      "short_ball_gap_seconds": 0.28,
+      "total_seconds": 2090.68
+    },
+    {
+      "match_id": "skillcorner-2841",
+      "team": "H",
+      "direct_percent": 50.98383232403268,
+      "new_mapped_percent": 51.25738110060936,
+      "gain_percentage_points": 0.27354877657667487,
+      "direct_seconds": 1081.0,
+      "provider_id_recovered_seconds": 0.36,
+      "short_ball_gap_seconds": 5.44,
+      "total_seconds": 2120.2799999999997
+    },
+    {
+      "match_id": "skillcorner-2841",
+      "team": "A",
+      "direct_percent": 42.55596442808955,
+      "new_mapped_percent": 42.79553817847287,
+      "gain_percentage_points": 0.23957375038331463,
+      "direct_seconds": 888.1600000000001,
+      "provider_id_recovered_seconds": 1.08,
+      "short_ball_gap_seconds": 3.92,
+      "total_seconds": 2087.04
+    },
+    {
+      "match_id": "skillcorner-3442",
+      "team": "H",
+      "direct_percent": 43.96727091903622,
+      "new_mapped_percent": 44.05316215360969,
+      "gain_percentage_points": 0.0858912345734737,
+      "direct_seconds": 778.0799999999999,
+      "provider_id_recovered_seconds": 0.0,
+      "short_ball_gap_seconds": 1.52,
+      "total_seconds": 1769.6799999999998
+    },
+    {
+      "match_id": "skillcorner-3442",
+      "team": "A",
+      "direct_percent": 51.56205312831211,
+      "new_mapped_percent": 51.70505206843762,
+      "gain_percentage_points": 0.1429989401255085,
+      "direct_seconds": 1225.96,
+      "provider_id_recovered_seconds": 0.0,
+      "short_ball_gap_seconds": 3.4000000000000004,
+      "total_seconds": 2377.64
+    },
+    {
+      "match_id": "skillcorner-3518",
+      "team": "H",
+      "direct_percent": 47.24755221246376,
+      "new_mapped_percent": 47.32949531453544,
+      "gain_percentage_points": 0.08194310207168343,
+      "direct_seconds": 899.48,
+      "provider_id_recovered_seconds": 0.0,
+      "short_ball_gap_seconds": 1.56,
+      "total_seconds": 1903.76
+    },
+    {
+      "match_id": "skillcorner-3518",
+      "team": "A",
+      "direct_percent": 47.419121591677744,
+      "new_mapped_percent": 47.57306463275255,
+      "gain_percentage_points": 0.15394304107480394,
+      "direct_seconds": 813.2,
+      "provider_id_recovered_seconds": 1.08,
+      "short_ball_gap_seconds": 1.56,
+      "total_seconds": 1714.92
+    },
+    {
+      "match_id": "skillcorner-3749",
+      "team": "H",
+      "direct_percent": 33.96335707543122,
+      "new_mapped_percent": 34.042735776194974,
+      "gain_percentage_points": 0.07937870076375475,
+      "direct_seconds": 633.24,
+      "provider_id_recovered_seconds": 0.2,
+      "short_ball_gap_seconds": 1.28,
+      "total_seconds": 1864.48
+    },
+    {
+      "match_id": "skillcorner-3749",
+      "team": "A",
+      "direct_percent": 41.36992364722806,
+      "new_mapped_percent": 41.63992475378997,
+      "gain_percentage_points": 0.27000110656190657,
+      "direct_seconds": 747.72,
+      "provider_id_recovered_seconds": 2.36,
+      "short_ball_gap_seconds": 2.52,
+      "total_seconds": 1807.4
+    },
+    {
+      "match_id": "skillcorner-4039",
+      "team": "H",
+      "direct_percent": 45.42160942384531,
+      "new_mapped_percent": 45.514771339254295,
+      "gain_percentage_points": 0.09316191540898444,
+      "direct_seconds": 877.6,
+      "provider_id_recovered_seconds": 1.08,
+      "short_ball_gap_seconds": 0.72,
+      "total_seconds": 1932.12
+    },
+    {
+      "match_id": "skillcorner-4039",
+      "team": "A",
+      "direct_percent": 46.680559690384044,
+      "new_mapped_percent": 46.69888016122014,
+      "gain_percentage_points": 0.01832047083609467,
+      "direct_seconds": 815.36,
+      "provider_id_recovered_seconds": 0.04,
+      "short_ball_gap_seconds": 0.28,
+      "total_seconds": 1746.68
+    }
+  ],
+  "note": "Deployment coverage summary, not independent identity/contact accuracy."
+}

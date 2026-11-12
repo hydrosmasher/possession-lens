@@ -15,3 +15,6 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints/
 .jupyter/
+
+# Finder/iCloud duplicate copies stay local.
+* [2-9].*

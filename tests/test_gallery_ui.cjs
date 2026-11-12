@@ -35,3 +35,4 @@ vm.runInNewContext(source,context);
  const named=library.matches[0];get('example-match').value=named.example_id;get('example-match').handlers.change();get('player-search').value='NO_MATCH_999';get('player-search').handlers.input();assert.equal(get('player-rows').children.length,0);
  console.log('Gallery UI checks passed: all ten match switches, both teams, named-only rows, search and unsupported dead-ball display.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
+const Lens=require('../controlswitch/web/app.js');const verified=library.matches.find(m=>m.example_id==='sportec-J03WN1');assert.equal(Lens.eventStats(verified).H.shots,10);assert.equal(Lens.eventStats(verified).A.shots,11);assert.equal(Lens.eventStats(verified).H.touches,null);assert.equal(Lens.eventStats(initial),null);assert.equal(Lens.eventStats(verified,'first').H.shots+Lens.eventStats(verified,'second').H.shots,10);

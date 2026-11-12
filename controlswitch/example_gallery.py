@@ -5,6 +5,7 @@ import numpy as np
 from .skillcorner_europe import load_match,digest
 from .rnn_runtime import load_frozen,infer_frozen
 from .statistics import tracklet_statistics
+from .control_recovery import ownership,bridge_control,ledger_from_ownership
 from .pipeline import intervals
 
 MATCHES={'2068':('Serie A','2019-10-06'),'2269':('Ligue 1','2019-10-27'),'2417':('Bundesliga','2019-11-09'),'2440':('Premier League','2019-11-10'),'2841':('La Liga','2019-12-18'),'3442':('La Liga','2020-03-01'),'3518':('Serie A','2020-03-08'),'3749':('Bundesliga','2020-05-26'),'4039':('Premier League','2020-07-02')}
@@ -32,14 +33,27 @@ def named_ledger(ledger,players,team_seconds):
         if not np.isclose(total+unassigned[t],team_seconds[t],atol=1e-5):raise ValueError('Named + unresolved control does not reconcile')
     return result,unassigned
 
-def build_match(raw,mid,model):
+def build_match(raw,mid,model,recovery=None):
     path=Path(raw)/mid;m=json.loads((path/'match_data.json').read_text());players=roster(m);parts,_=load_match(raw,mid);state=load_frozen(model)
+    config=recovery or {};id_enabled=config.get('identity',{}).get('enabled',False);ball_enabled=config.get('ball',{}).get('enabled',False)
+    recovered_parts=load_match(raw,mid,recover_provider_ids=True,id_gap_frames=config['identity']['chosen']['gap'])[0] if id_enabled else parts
+    breakdown={t:{'direct_seconds':0.,'provider_id_recovered_seconds':0.,'short_ball_gap_seconds':0.,'total_seconds':0.} for t in 'HA'}
     totals={t:0. for t in 'HA'};unassigned={t:0. for t in 'HA'};merged={};blocks=[];labels=[];offset=0
-    for s,pitch in parts:
+    for half,(s,pitch) in enumerate(parts):
         codes,_=infer_frozen(state,s,pitch);y=np.array(['H','A','D'])[codes]
         observable=np.isfinite(s['xy']).all(2).any(1)|np.isfinite(s['ball']).all(1)
         y[~observable]='X'  # Observation coverage, never provider possession labels.
-        ledger=tracklet_statistics(y,s['xy'],s['ball'],s['teams']);seconds={t:float((y==t).sum()/25) for t in 'HA'}
+        original=ownership(y,s['xy'],s['ball'],s['teams']);enriched=recovered_parts[half][0]
+        if ball_enabled:owners,added=bridge_control(y,enriched['xy'],s['ball'],s['teams'],len(players),config['ball']['chosen']['gap'])
+        else:owners=ownership(y,enriched['xy'],s['ball'],s['teams']);added=np.zeros(len(y),bool)
+        original_named=(original>=0)&(original<len(players));owners[original_named]=original[original_named]
+        named_now=(owners>=0)&(owners<len(players));new=named_now&~original_named
+        for t in 'HA':
+            active=y==t;breakdown[t]['direct_seconds']+=float(np.sum(active&original_named)/25)
+            breakdown[t]['provider_id_recovered_seconds']+=float(np.sum(active&new&~added)/25)
+            breakdown[t]['short_ball_gap_seconds']+=float(np.sum(active&new&added)/25)
+            breakdown[t]['total_seconds']+=float(np.sum(active)/25)
+        ledger=ledger_from_ownership(y,owners,s['teams']);seconds={t:float((y==t).sum()/25) for t in 'HA'}
         named,missing=named_ledger(ledger,players,seconds)
         for key,p in named.items():
             if key not in merged:merged[key]={**p,'associated_control_seconds':0.,'associated_bouts':0}
@@ -51,16 +65,27 @@ def build_match(raw,mid,model):
         rows.append({'person_id':'UNASSIGNED','player_name':'Unassigned control','shirt_number':None,'team':t,'associated_control_seconds':unassigned[t],'associated_bouts':None})
     for row in rows:row['percent_of_team_possession']=100*row['associated_control_seconds']/totals[row['team']] if totals[row['team']] else None
     league,date=MATCHES[mid]
-    return {'schema_version':2,'mode':'external_named','example_id':'skillcorner-'+mid,'league':league,'date':date,'title':m['home_team']['name']+' vs '+m['away_team']['name'],'model_name':'Context RNN · estimated control; H/A only','dead_ball_supported':False,'time_basis':'Tracking time · halves concatenated','n_frames':offset,'fps':25,'blocks':blocks,'teams':{'H':m['home_team']['name'],'A':m['away_team']['name']},'timeline':intervals(np.concatenate(labels)),'tracklets':None,'named_players':{'source_kind':'external_provider_stable_ids','match_id':mid,'identity_join':'Provider trackable_object joined to match roster; anonymous tracks never renamed','metadata_sha256':digest(path/'match_data.json'),'tracking_sha256':digest(path/'structured_data.json'),'model_sha256':digest(model),'rows':rows,'warning':'Estimated proximity involvement, not confirmed touches, passes or causal impact. Only provider-mapped players are displayed; unresolved control remains in the denominator. H/A-only model does not classify stopped play. SkillCorner historical open data, MIT; transformed summaries.'}}
+    return {'schema_version':2,'mode':'external_named','example_id':'skillcorner-'+mid,'league':league,'date':date,'title':m['home_team']['name']+' vs '+m['away_team']['name'],'model_name':'Context RNN · estimated control; H/A only','dead_ball_supported':False,'time_basis':'Tracking time · halves concatenated','n_frames':offset,'fps':25,'blocks':blocks,'teams':{'H':m['home_team']['name'],'A':m['away_team']['name']},'timeline':intervals(np.concatenate(labels)),'tracklets':None,'named_players':{'source_kind':'external_provider_stable_ids','match_id':mid,'identity_join':'Provider trackable_object joined to match roster; anonymous tracks never renamed','metadata_sha256':digest(path/'match_data.json'),'tracking_sha256':digest(path/'structured_data.json'),'model_sha256':digest(model),'rows':rows,'coverage_breakdown':breakdown,'recovery_audit':'reports/external/control-recovery-001-report.json','warning':'Estimated proximity involvement, not confirmed touches, passes or causal impact. Provider-mapped names only. Audited same-track ID continuity and short bracketed missing-ball gaps add inferred coverage; neither is confirmed contact. Unresolved control stays in the denominator. H/A-only model does not classify stopped play. SkillCorner historical open data, MIT; transformed summaries.'}}
 
 def build(raw,model,out):
     out=Path(out);out.mkdir(parents=True,exist_ok=True);matches=[]
+    audit=Path(__file__).resolve().parents[1]/'reports/external/control-recovery-001-report.json'
+    recovery=json.loads(audit.read_text()) if audit.exists() else None
     for mid in MATCHES:
-        payload=build_match(raw,mid,model);matches.append(payload)
+        payload=build_match(raw,mid,model,recovery);matches.append(payload)
         (out/(mid+'.json')).write_text(json.dumps(payload,allow_nan=False,separators=(',',':'))+'\n');print('Built named external example',mid,len(payload['named_players']['rows'])-2,'players',flush=True)
     legacy=Path(__file__).resolve().parents[1]/'examples/external-named-analysis.json'
     if legacy.exists():
-        p=json.loads(legacy.read_text());p.update(example_id='sportec-J03WN1',league='Bundesliga',date='2023-05-27');matches.append(p)
+        p=json.loads(legacy.read_text());p.update(example_id='sportec-J03WN1',league='Bundesliga',date='2023-05-27')
+        event_path=legacy.parent/'verified-events-J03WN1.json'
+        if event_path.exists():
+            events=json.loads(event_path.read_text());p['verified_events']=events
+            indexed={r['person_id']:r for r in p['named_players']['rows']}
+            for pid,stats in events['players'].items():
+                if pid in indexed:indexed[pid]['verified_events']={k:stats[k] for k in ('touches','completed_passes','shots','shots_on_target','goals')}
+                elif any(stats[k]>0 for k in ('completed_passes','shots')):
+                    p['named_players']['rows'].append({'person_id':pid,'player_name':stats['player_name'],'shirt_number':stats['shirt_number'],'team':stats['team'],'associated_control_seconds':0.,'percent_of_team_possession':0.,'verified_events':{k:stats[k] for k in ('touches','completed_passes','shots','shots_on_target','goals')}})
+        matches.append(p)
     library={'schema_version':1,'matches':matches,'unavailable_examples':[{'match_id':'J03WMX','title':'Cologne–Bayern','reason':'Verified provider roster unavailable locally; no guessed names.'}],'note':'Licensed external summaries only. No challenge data. All displayed people have provider roster mappings; unassigned time is not a person.'}
     (out.parent/'match-library.json').write_text(json.dumps(library,allow_nan=False,separators=(',',':'))+'\n');return library
 

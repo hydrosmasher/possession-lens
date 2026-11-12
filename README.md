@@ -2,6 +2,14 @@
 
 A clear view of team possession, built for More Than a Hack in Barcelona.
 
+## Latest: audited recovery and verified match events
+
+The website separates direct named control, recovered continuity and unresolved time. Same-track provider ID recovery and short missing-ball control gaps passed withheld-observation validation, but their **natural coverage gains are small: 0.02–0.28 percentage points per SkillCorner team**. No names were guessed, no proximity radius was enlarged, and proxy validation is not confirmed-contact accuracy. [Method and results](docs/external/CONTROL_RECOVERY.md).
+
+A new interaction-context RNN improves **validation** spell F1 from 0.5042 to 0.5126 with fewer misses and possible merges under the same switching safeguards. It has **no new fresh test** and remains archived as `models/archive/rnn-interaction-context-validation-only.npz`. Gallery/production models remain unchanged; the last frozen context-001 fresh-test mean is 0.6286.
+
+Choose **Bochum–Leverkusen · verified events** in the website library for source-recorded completed passes (271–253), shots (10–11), shots on target (5–2), named-player event counts and an event timeline including substitutions. Other matches show unavailable event counters. Touch totals remain unavailable everywhere; control bouts are not counted as touches. [Definitions and CC BY 4.0 provenance](docs/external/VERIFIED_EVENTS.md). The latest notebook includes all results and disabled reproduction cells.
+
 ## Ten named matches, one offline website
 
 Open `dashboard.html` or double-click **Open Possession Lens.command**, then use **Choose your match**. The library contains nine historical SkillCorner examples plus Bochum–Leverkusen. Team possession, timelines, named-player estimated impacts, search and exports update with the selected match. The Model evidence tab now shows the frozen context-RNN result (0.6286 vs 0.5804 previous European RNN), not the older capacity experiment.

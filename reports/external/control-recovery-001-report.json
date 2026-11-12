@@ -1,0 +1,316 @@
+{
+  "protocol": {
+    "train": [
+      "4039",
+      "3749",
+      "3518",
+      "2068",
+      "2440"
+    ],
+    "validation": [
+      "2269"
+    ],
+    "id_gaps_native_frames": [
+      5,
+      10,
+      20
+    ],
+    "ball_gaps_25hz_frames": [
+      10,
+      20,
+      30
+    ],
+    "minimum_proxy_precision": 0.995,
+    "minimum_validation_recovered_frames": 500,
+    "selection": "highest recovered count on training with >=99.5% proxy precision; independent validation gate, no validation retuning",
+    "identity_rule": "same contiguous provider track_id and same roster ID on both sides; no motion identity guesses",
+    "control_rule": "same named owner anchors, same team, continuous player observations, uncontested <=2m interpolated ball corridor",
+    "competition_data_used": false,
+    "viewed_test_matches_used_for_selection": false,
+    "model_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+    "limitations": [
+      "Withheld provider IDs and proximity associations are surrogate references, not independent human truth.",
+      "Automatic provider identity mistakes can persist.",
+      "Synthetic missingness may differ from natural missingness."
+    ]
+  },
+  "identity": {
+    "training_trials": [
+      {
+        "gap": 5,
+        "recovered": 98576,
+        "correct": 98576,
+        "precision": 1.0
+      },
+      {
+        "gap": 10,
+        "recovered": 374077,
+        "correct": 374027,
+        "precision": 0.9998663376791409
+      },
+      {
+        "gap": 20,
+        "recovered": 478310,
+        "correct": 478120,
+        "precision": 0.9996027680792792
+      }
+    ],
+    "chosen": {
+      "gap": 20,
+      "recovered": 478310,
+      "correct": 478120,
+      "precision": 0.9996027680792792
+    },
+    "validation": {
+      "recovered": 103592,
+      "correct": 103572,
+      "precision": 0.9998069348984477
+    },
+    "enabled": true
+  },
+  "ball": {
+    "training_trials": [
+      {
+        "gap": 10,
+        "recovered": 3369,
+        "correct": 3365,
+        "precision": 0.9988127040664886
+      },
+      {
+        "gap": 20,
+        "recovered": 12534,
+        "correct": 12494,
+        "precision": 0.996808680389341
+      },
+      {
+        "gap": 30,
+        "recovered": 20059,
+        "correct": 19924,
+        "precision": 0.9932698539309038
+      }
+    ],
+    "chosen": {
+      "gap": 20,
+      "recovered": 12534,
+      "correct": 12494,
+      "precision": 0.996808680389341
+    },
+    "validation": {
+      "recovered": 1986,
+      "correct": 1984,
+      "precision": 0.998992950654582
+    },
+    "enabled": true
+  },
+  "details": {
+    "identity": {
+      "4039": {
+        "5": {
+          "recovered": 19512,
+          "correct": 19512,
+          "precision": 1.0,
+          "withheld": 116093
+        },
+        "10": {
+          "recovered": 77542,
+          "correct": 77542,
+          "precision": 1.0,
+          "withheld": 116093
+        },
+        "20": {
+          "recovered": 100146,
+          "correct": 100136,
+          "precision": 0.9999001457871508,
+          "withheld": 116093
+        }
+      },
+      "3749": {
+        "5": {
+          "recovered": 18996,
+          "correct": 18996,
+          "precision": 1.0,
+          "withheld": 107121
+        },
+        "10": {
+          "recovered": 67124,
+          "correct": 67094,
+          "precision": 0.9995530659674632,
+          "withheld": 107121
+        },
+        "20": {
+          "recovered": 84359,
+          "correct": 84239,
+          "precision": 0.9985775080311525,
+          "withheld": 107121
+        }
+      },
+      "3518": {
+        "5": {
+          "recovered": 20505,
+          "correct": 20505,
+          "precision": 1.0,
+          "withheld": 120335
+        },
+        "10": {
+          "recovered": 81272,
+          "correct": 81272,
+          "precision": 1.0,
+          "withheld": 120335
+        },
+        "20": {
+          "recovered": 103209,
+          "correct": 103209,
+          "precision": 1.0,
+          "withheld": 120335
+        }
+      },
+      "2068": {
+        "5": {
+          "recovered": 19725,
+          "correct": 19725,
+          "precision": 1.0,
+          "withheld": 113762
+        },
+        "10": {
+          "recovered": 75307,
+          "correct": 75287,
+          "precision": 0.9997344204390031,
+          "withheld": 113762
+        },
+        "20": {
+          "recovered": 96559,
+          "correct": 96499,
+          "precision": 0.9993786182541244,
+          "withheld": 113762
+        }
+      },
+      "2440": {
+        "5": {
+          "recovered": 19838,
+          "correct": 19838,
+          "precision": 1.0,
+          "withheld": 110469
+        },
+        "10": {
+          "recovered": 72832,
+          "correct": 72832,
+          "precision": 1.0,
+          "withheld": 110469
+        },
+        "20": {
+          "recovered": 94037,
+          "correct": 94037,
+          "precision": 1.0,
+          "withheld": 110469
+        }
+      },
+      "2269": {
+        "5": {
+          "recovered": 22069,
+          "correct": 22069,
+          "precision": 1.0,
+          "withheld": 123538
+        },
+        "10": {
+          "recovered": 83174,
+          "correct": 83174,
+          "precision": 1.0,
+          "withheld": 123538
+        },
+        "20": {
+          "recovered": 103592,
+          "correct": 103572,
+          "precision": 0.9998069348984477,
+          "withheld": 123538
+        }
+      }
+    },
+    "ball": {
+      "4039": {
+        "10": {
+          "correct": 830,
+          "recovered": 834
+        },
+        "20": {
+          "correct": 3069,
+          "recovered": 3092
+        },
+        "30": {
+          "correct": 4480,
+          "recovered": 4509
+        }
+      },
+      "3749": {
+        "10": {
+          "correct": 560,
+          "recovered": 560
+        },
+        "20": {
+          "correct": 1820,
+          "recovered": 1825
+        },
+        "30": {
+          "correct": 2982,
+          "recovered": 3013
+        }
+      },
+      "3518": {
+        "10": {
+          "correct": 662,
+          "recovered": 662
+        },
+        "20": {
+          "correct": 2795,
+          "recovered": 2795
+        },
+        "30": {
+          "correct": 4617,
+          "recovered": 4621
+        }
+      },
+      "2068": {
+        "10": {
+          "correct": 697,
+          "recovered": 697
+        },
+        "20": {
+          "correct": 2227,
+          "recovered": 2229
+        },
+        "30": {
+          "correct": 3615,
+          "recovered": 3660
+        }
+      },
+      "2440": {
+        "10": {
+          "correct": 616,
+          "recovered": 616
+        },
+        "20": {
+          "correct": 2583,
+          "recovered": 2593
+        },
+        "30": {
+          "correct": 4230,
+          "recovered": 4256
+        }
+      },
+      "2269": {
+        "10": {
+          "correct": 634,
+          "recovered": 636
+        },
+        "20": {
+          "correct": 1984,
+          "recovered": 1986
+        },
+        "30": {
+          "correct": 2929,
+          "recovered": 2931
+        }
+      }
+    }
+  },
+  "fresh_test_results": null
+}

@@ -21,3 +21,11 @@ Impact is estimated proximity involvement and associated bouts, not confirmed co
 Model evidence now shows the fixed 2841 context-RNN comparison, including the conditional-label limitation and unmet 0.8 target. Match library examples include development matches and viewed tests; they do not supply ten independent model evaluations.
 
 Validation: payload checks, named/anonymous ledger tests, all ten match switches, both teams, search and unsupported dead-ball display were tested. Layout/browser visual QA remains unverified in this environment; no local-file security restriction was bypassed.
+
+## Recovery and verified-event update
+
+The Players panel now shows the portion recovered through audited continuity, included in mapped control rather than double-counted. The warning distinguishes inferred time from observed contact. The natural gain is small, not a broad move to complete individual coverage.
+
+The Match panel includes source-recorded event totals and a separate event timeline. Select Bochum–Leverkusen (marked “verified events”) for completed passes, shots, shots on target, named-player stats, goals and substitutions. Half filters affect event stats and chronology. Other matches have no verified event feed and show unavailable counters. Touch counts remain unavailable, including Bochum; estimated control involvements are not touches. Player CSV exports include only available provider-coded metrics, with blanks for unsupported counts.
+
+The Model evidence panel keeps the previous frozen test score and separately states the new validation-only interaction-RNN result. It does not present that development gain as new test accuracy.

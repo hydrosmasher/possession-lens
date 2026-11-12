@@ -48,9 +48,16 @@ def main():
     player=sub.add_parser('player-report',help='Export anonymous-track contribution and interval CSVs; no identity claims')
     player.add_argument('--run-dir',type=Path,required=True)
     player.add_argument('--out',type=Path,default=Path('local/player-control'))
+    names=sub.add_parser('named-external',help='Build a named-player example from external stable IDs and provider roster')
+    for key in ('tracking','metadata','cache','model','out'):names.add_argument('--'+key,type=Path,required=True)
+    names.add_argument('--match',choices=['J03WN1','J03WQQ'],required=True)
     args=parser.parse_args()
     try:
-        if args.command=='player-report':
+        if args.command=='named-external':
+            from .player_mapping import build_external
+            build_external(args.tracking,args.metadata,args.cache,args.model,args.match,args.out)
+            print('External named-player example saved. Challenge identities remain unresolved.')
+        elif args.command=='player-report':
             from .player_report import export_player_report
             export_player_report(args.run_dir,args.out)
             print('Anonymous-track reports exported locally. Player identities remain unverified.')

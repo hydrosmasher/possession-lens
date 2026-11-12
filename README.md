@@ -58,6 +58,12 @@ The older `download-external` command now checks local Downloads first and requi
 
 The Desktop folder is the canonical working repository connected to `hydrosmasher/possession-lens`. Keep only that copy in GitHub Desktop. Previous copies and historical private runs are preserved in the separate backup folder rather than mixed into the working project.
 
+## Named players and deeper RNN experiments
+
+Click **Named-player example** in the dashboard to load the external Bochum–Leverkusen match offline. Its player names and shirts are automatically joined by provider PersonId + team to the external roster. Shares remain estimated proximity associations. This example does not name players in the challenge match: the provided metadata contains generic names and sequential slot numbers, and no reliable mapping has been supplied. Never replace those slots with guessed squad names or manual video annotations.
+
+We compared 1, 2 and 3 recurrent layers, each with 24 hidden units, for up to 32 sampled training iterations. Dropout, L2 regularisation, clipped gradients, fixed clean training/validation loss probes and early stopping are implemented. The one-layer model still gives the best validation spell segmentation; adding layers did not improve that objective. The longer-trained candidate is experimental, not the default. See [the learning curves and results](reports/external/rnn-capacity-002-report.html) and [reproduction instructions](docs/RNN_CAPACITY.md).
+
 ## What player control means today
 
 The supplied slots are anonymous, fragmented tracklets, not stable player IDs or shirt numbers. The dashboard therefore shows **track-associated proximity estimates**, not named-player possession percentages. Missing evidence, other-team nearest tracks and numerical distance ties remain unassigned. Shares include unassigned time in the team-possession denominator. A per-track control-bout ledger is exported for future automatic identity work. These estimates do not confirm ball contact; nearby ball-flight frames can still be associated.

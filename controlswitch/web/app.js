@@ -35,11 +35,18 @@ const Lens=(()=>{
   const named=!!d.named_players;const rows=(named?d.named_players.rows.map(r=>({...r,track_slot:r.person_id})):d.tracklets?.rows||[]).filter(r=>r.team===team);const q=query.trim().toLocaleLowerCase();
   return rows.filter(r=>r.track_slot==='UNASSIGNED'||(r.associated_control_seconds>0||named&&r.verified_events&&(r.verified_events.completed_passes>0||r.verified_events.shots>0))&&(!q||String(named?r.player_name:'Anonymous track '+r.track_slot).toLocaleLowerCase().includes(q))).sort((a,b)=>a.track_slot==='UNASSIGNED'?1:b.track_slot==='UNASSIGNED'?-1:b.associated_control_seconds-a.associated_control_seconds);
  }
- return{validate,stats,csv,colours,escape,playerRows,eventStats};
+ function windowStats(d,a,b){return stats({...d,blocks:d.blocks.map(([lo,hi])=>[Math.max(lo,a),Math.min(hi,b)]).filter(([lo,hi])=>hi>lo)});}
+ function controlWindows(d,period='all',seconds=300){
+  const blocks=stats(d,period).blocks;const result=[];for(const [a,b] of blocks)for(let lo=a;lo<b;lo+=seconds*d.fps){const hi=Math.min(b,lo+seconds*d.fps);result.push({start:lo,end:hi,...windowStats(d,lo,hi)});}return result;
+ }
+ function spellProfile(d,blocks){const bins=[{label:'Under 5s',min:0,max:5},{label:'5–15s',min:5,max:15},{label:'15–30s',min:15,max:30},{label:'30s or more',min:30,max:Infinity}].map(b=>({...b,H:0,A:0}));
+ for(const [a,b] of blocks)for(const [lo,hi,k] of d.timeline){if(!['H','A'].includes(k))continue;const seconds=(Math.min(hi,b)-Math.max(lo,a))/d.fps;if(seconds<=0)continue;bins.find(v=>seconds>=v.min&&seconds<v.max)[k]++;}return bins;
+ }
+ return{validate,stats,csv,colours,escape,playerRows,eventStats,windowStats,controlWindows,spellProfile};
 })();
 if(typeof module!=='undefined')module.exports=Lens;
 if(typeof document!=='undefined'){
- const $=id=>document.getElementById(id);let data,original,library=[],playerTeam='H',period='all';
+ const $=id=>document.getElementById(id);let data,original,library=[],playerTeam='H',period='all',selectedWindow=null;
  const text=(id,value)=>{$(id).textContent=value;};
  const pct=n=>n===null?'—':`${n.toFixed(1)}%`;
  const duration=seconds=>{const s=Math.round(seconds);return s>=60?`${Math.floor(s/60)}m ${String(s%60).padStart(2,'0')}s`:`${s}s`;};
@@ -60,13 +67,33 @@ if(typeof document!=='undefined'){
   else{const k=s.home>=s.away?'H':'A',share=Math.max(s.home,s.away);text('takeaway',Math.abs(s.home-s.away)<2?'An evenly balanced possession contest.':`${data.teams[k]} held more of the ball.`);text('takeaway-detail',`${data.teams[k]} had ${share.toFixed(1)}% of estimated live team control${period==='all'?' across the match':' in this half'}. Possession alone does not measure attacking quality.`);}
   $('load-named-example').hidden=data.mode==='external_named'||!window.__POSSESSION_LENS_NAMED_EXAMPLE__;
   if(library.some(m=>m.example_id===data.example_id))$('example-match').value=data.example_id;
-  drawTimeline(s);renderPlayers();renderVerifiedEvents();
+  selectedWindow=null;drawTimeline(s);renderPlayers();renderVerifiedEvents();renderExplorer();
  }
+ function duel(parent,label,left,right,unit=''){
+  const row=document.createElement('div');row.className='duel';const caption=document.createElement('div');caption.className='duel-caption';
+  const format=v=>v===null||v===undefined?'Not available':typeof v==='number'?`${Number.isInteger(v)?v:v.toFixed(1)}${unit}`:v;
+  for(const value of [format(left),label,format(right)]){const span=document.createElement('span');span.textContent=value;caption.append(span);}const track=document.createElement('div');track.className='duel-track';const total=(left||0)+(right||0);
+  for(const [v,k]of [[left,'H'],[right,'A']]){const bar=document.createElement('span');bar.style.width=`${total?100*(v||0)/total:50}%`;bar.style.background=v===null?'#465369':Lens.colours[k];track.append(bar);}row.append(caption,track);parent.append(row);
+ }
+ function renderExplorer(){
+  const windows=Lens.controlWindows(data,period,Number($('window-size').value)||300);$('control-windows').replaceChildren();
+  for(const w of windows){const b=document.createElement('button');b.className='control-window';b.setAttribute('aria-pressed',String(selectedWindow?.[0]===w.start));b.setAttribute('aria-label',`${clock(w.start)} to ${clock(w.end)}: ${w.home===null?'no live control':data.teams.H+' '+w.home.toFixed(1)+' percent'}`);const caption=document.createElement('span');caption.textContent=clock(w.start);const bar=document.createElement('span');bar.className='window-column';bar.style.background=w.home===null?'#465369':`linear-gradient(to top, ${Lens.colours.H} ${w.home||0}%, ${Lens.colours.A} ${w.home||0}%)`;b.append(bar,caption);b.addEventListener('click',()=>{selectedWindow=[w.start,w.end];renderExplorer();});$('control-windows').append(b);}
+  const st=selectedWindow?Lens.windowStats(data,...selectedWindow):Lens.stats(data,period);text('window-title',selectedWindow?`${clock(selectedWindow[0])} – ${clock(selectedWindow[1])}`:period==='all'?'Entire analysed match':period==='first'?'First half':'Second half');text('window-summary',`${st.spells} possession spells · ${duration(st.live)} live control · average ${st.average.toFixed(1)}s`);
+  $('window-balance').replaceChildren();duel($('window-balance'),'Live control share',st.home,st.away,'%');$('window-metrics').replaceChildren();duel($('window-metrics'),'Control time (seconds)',st.counts.H/25,st.counts.A/25);
+  $('spell-profile').replaceChildren();for(const bin of Lens.spellProfile(data,st.blocks)){const b=document.createElement('button');b.className='spell-bucket';const label=document.createElement('span');label.textContent=bin.label;const value=document.createElement('strong');value.textContent=bin.H+bin.A;b.append(label,value);b.addEventListener('click',()=>text('spell-detail',`${bin.label}: ${data.teams.H} ${bin.H} spells · ${data.teams.A} ${bin.A} spells`));$('spell-profile').append(b);}text('spell-detail','Choose a bucket to see the team breakdown.');
+ }
+ $('window-size').addEventListener('change',()=>{selectedWindow=null;renderExplorer();});$('window-reset').addEventListener('click',()=>{selectedWindow=null;renderExplorer();});
+ function renderComparison(reset=false){
+  const rows=(data.named_players?.rows||[]).filter(r=>r.team===playerTeam&&r.person_id!=='UNASSIGNED');for(const [id,index]of [['compare-one',0],['compare-two',1]]){const old=$(id).value;$(id).replaceChildren();for(const r of rows){const o=document.createElement('option');o.value=r.person_id;o.textContent=r.player_name;$(id).append(o);}$(id).value=!reset&&rows.some(r=>r.person_id===old)?old:rows[Math.min(index,rows.length-1)]?.person_id||'';$(id).disabled=!rows.length;}
+  $('player-duels').replaceChildren();const a=rows.find(r=>r.person_id===$('compare-one').value),b=rows.find(r=>r.person_id===$('compare-two').value);text('compare-note',rows.length?'Full-match totals. Unresolved team control stays in the denominator. Colours identify player one and player two here.':'No permitted player mapping is available.');if(!a||!b)return;
+  duel($('player-duels'),'Team control share',a.percent_of_team_possession,b.percent_of_team_possession,'%');duel($('player-duels'),'Estimated control seconds',a.associated_control_seconds,b.associated_control_seconds);duel($('player-duels'),'Control involvements',a.associated_bouts??null,b.associated_bouts??null);for(const [key,label]of [['completed_passes','Verified completed passes'],['shots','Verified shots'],['shots_on_target','Verified shots on target']])duel($('player-duels'),label,a.verified_events?.[key]??null,b.verified_events?.[key]??null);
+ }
+ for(const id of ['compare-one','compare-two'])$(id).addEventListener('change',()=>renderComparison());
  function drawTimeline(s){
   const a=period==='all'?0:s.blocks[0][0],b=period==='all'?data.n_frames:s.blocks.at(-1)[1];
   const ns='http://www.w3.org/2000/svg';const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 1000 66');svg.setAttribute('preserveAspectRatio','none');
   for(const [start,end,k] of data.timeline){const lo=Math.max(a,start),hi=Math.min(b,end);if(hi<=lo)continue;const rect=document.createElementNS(ns,'rect');rect.setAttribute('x',(lo-a)/(b-a)*1000);rect.setAttribute('width',(hi-lo)/(b-a)*1000);rect.setAttribute('height','66');rect.setAttribute('fill',Lens.colours[k]);
-   const name=k==='H'||k==='A'?data.teams[k]:k==='D'?'Stopped play':'Outside analysed play / unknown';const label=`${clock(lo)}–${clock(hi)} · ${name} · ${duration((hi-lo)/25)}`;const title=document.createElementNS(ns,'title');title.textContent=label;rect.append(title);rect.addEventListener('mouseenter',()=>text('timeline-detail',label));rect.addEventListener('click',()=>text('timeline-detail',label));svg.append(rect);}
+   const name=k==='H'||k==='A'?data.teams[k]:k==='D'?'Stopped play':'Outside analysed play / unknown';const label=`${clock(lo)}–${clock(hi)} · ${name} · ${duration((hi-lo)/25)}`;const title=document.createElementNS(ns,'title');title.textContent=label;rect.append(title);rect.addEventListener('mouseenter',()=>text('timeline-detail',label));rect.addEventListener('click',()=>{text('timeline-detail',label);selectedWindow=[lo,hi];renderExplorer();});svg.append(rect);}
   $('timeline').replaceChildren(svg);$('timeline-ticks').replaceChildren();for(let i=0;i<=6;i++){const span=document.createElement('span');span.textContent=clock(a+(b-a)*i/6);$('timeline-ticks').append(span);}text('timeline-detail',(data.time_basis||'Video time')+' · hover or tap a stretch to explore team control.');
  }
  function renderPlayers(){
@@ -79,6 +106,7 @@ if(typeof document!=='undefined'){
   for(const r of shown){const unknown=r.track_slot==='UNASSIGNED';const row=document.createElement('div');row.className=`player-row ${playerTeam==='A'?'away-track':''} ${unknown?'unassigned-row':''}`;
    const icon=document.createElement('span');icon.className='track-icon';icon.textContent=unknown?'?':named?(r.shirt_number||'•'):`T${r.track_slot}`;const label=document.createElement('span');label.className='track-name';label.textContent=unknown?'Unassigned control':named?r.player_name:`Anonymous track ${r.track_slot}`;const note=document.createElement('small');note.textContent=unknown?'No defensible individual attribution':named?`Roster mapped · ${r.associated_bouts??'—'} control involvements`:'Identity unverified';if(r.verified_events){const ev=r.verified_events;note.textContent+=` · Verified: ${ev.completed_passes} completed passes · ${ev.shots} shots · ${ev.shots_on_target} on target`; }label.append(note);
    const bar=document.createElement('div');bar.className='track-bar';const fill=document.createElement('span');fill.style.width=`${r.percent_of_team_possession||0}%`;bar.append(fill);const value=document.createElement('span');value.className='track-value';value.textContent=pct(r.percent_of_team_possession);const time=document.createElement('span');time.className='track-time';time.textContent=duration(r.associated_control_seconds);row.append(icon,label,bar,value,time);$('player-rows').append(row);}
+  renderComparison();
   text('player-note',!rows.length?'Named-player mapping is unavailable for this analysis. No individual names are guessed.':`${data.mode==='synthetic_demo'?'Illustrative demo tracks. ':''}Full-match figures; half filters affect the team overview only. Shares include unassigned time and use the selected team's total possession as denominator. ${data.named_players?.warning||data.tracklets?.ambiguity_note||''}`);
  }
  function setupLibrary(value){
@@ -91,6 +119,7 @@ if(typeof document!=='undefined'){
   const ev=data.verified_events;const eventCounts=Lens.eventStats(data,period);text('event-home',data.teams.H);text('event-away',data.teams.A);$('event-totals').replaceChildren();
   for(const [key,label] of [['touches','Touches'],['completed_passes','Completed passes'],['shots','Shots'],['shots_on_target','Shots on target']]){const row=document.createElement('tr');for(const value of [label,...['H','A'].map(t=>eventCounts?.[t]?.[key]??null)]){const cell=document.createElement('td');cell.textContent=value===null?'Not available':typeof value==='number'?value.toLocaleString():value;row.append(cell);}$('event-totals').append(row);}
   text('event-source',ev?`${ev.source} · Completed passes include crosses and set pieces; on-target shots are provider-coded goals or saved shots.`:'No verified event feed is loaded for this match. Choose Bochum–Leverkusen in the library for source-recorded pass/shot stats and events. Tracking control does not supply touch totals.');
+  $('event-duels').replaceChildren();for(const [key,label]of [['completed_passes','Completed passes'],['shots','Shots'],['shots_on_target','Shots on target'],['goals','Goals']])duel($('event-duels'),label,eventCounts?.H?.[key]??null,eventCounts?.A?.[key]??null);
   $('event-type').disabled=!ev;$('event-list').replaceChildren();const mode=$('event-type').value||'key';const selected=(ev?.timeline||[]).filter(e=>period==='all'||e.period===(period==='first'?1:2)).filter(e=>mode==='all'||mode==='shots'&&['shot','goal'].includes(e.type)||mode==='passes'&&e.type==='completed_pass'||mode==='key'&&['goal','substitution'].includes(e.type));
   for(const e of selected){const li=document.createElement('li');const minute=Math.floor(e.period_seconds/60)+(e.period===2?45:0);const seconds=Math.floor(e.period_seconds%60);li.textContent=`${e.period===2?'2H':'1H'} ${minute}:${String(seconds).padStart(2,'0')} · ${data.teams[e.team]} · ${e.player_name} · ${e.type==='substitution'?'on for '+e.player_out:e.type==='completed_pass'?'completed pass'+(e.recipient_name?' to '+e.recipient_name:''):e.type==='goal'?'GOAL':'shot'+(e.on_target?' on target':'')}`;$('event-list').append(li);}
   text('event-timeline-note',ev?`Showing ${selected.length} provider-recorded events in this filter. Match clock is relative to each half kickoff. Touch totals are not supplied.`:'Verified event timeline unavailable. The possession timeline above remains a model estimate.');

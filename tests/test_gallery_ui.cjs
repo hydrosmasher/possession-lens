@@ -32,6 +32,17 @@ vm.runInNewContext(source,context);
   }
   if(match.dead_ball_supported===false)assert.equal(get('dead-time').textContent,'Not classified');
  }
+ // Window selection and reset must change the detail summary without changing player full-match totals.
+ get('window-size').value='60';get('window-size').handlers.change();
+ assert.ok(get('control-windows').children.length>2);
+ get('control-windows').children[0].handlers.click();assert.match(get('window-title').textContent,/–/);
+ get('window-reset').handlers.click();assert.equal(get('window-title').textContent,'Entire analysed match');
+ get('spell-profile').children[0].handlers.click();assert.match(get('spell-detail').textContent,/spells/);
+ get('period').value='first';get('period').handlers.change();assert.equal(get('window-title').textContent,'First half');
+ const evMatch=library.matches.find(m=>m.verified_events);get('example-match').value=evMatch.example_id;get('example-match').handlers.change();
+ assert.equal(get('event-duels').children.length,4);assert.equal(get('player-duels').children.length,6);
+ const options=get('compare-two').children;get('compare-two').value=options.at(-1).value;get('compare-two').handlers.change();assert.equal(get('compare-two').value,options.at(-1).value);
+ const noEvents=library.matches.find(m=>!m.verified_events);get('example-match').value=noEvents.example_id;get('example-match').handlers.change();assert.equal(get('event-duels').children[0].children[0].children[0].textContent,'Not available');
  const named=library.matches[0];get('example-match').value=named.example_id;get('example-match').handlers.change();get('player-search').value='NO_MATCH_999';get('player-search').handlers.input();assert.equal(get('player-rows').children.length,0);
  console.log('Gallery UI checks passed: all ten match switches, both teams, named-only rows, search and unsupported dead-ball display.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

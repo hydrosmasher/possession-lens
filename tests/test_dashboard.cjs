@@ -14,3 +14,13 @@ const fs=require('node:fs');const path=require('node:path');
 const lib=JSON.parse(fs.readFileSync(path.join(__dirname,'../examples/match-library.json'),'utf8'));
 assert.equal(lib.matches.length,10);for(const match of lib.matches){Lens.validate(match);assert.equal(match.mode,'external_named');assert.ok(match.named_players.rows.filter(p=>p.person_id!=='UNASSIGNED').every(p=>p.player_name.trim()));}
 console.log('All ten match-library payloads passed timeline and provider-name validation.');
+// Clipping a possession at a window/half boundary must not count time outside it.
+const clip={fps:25,blocks:[[0,500],[750,1000]],timeline:[[0,250,'H'],[250,500,'A'],[500,750,'X'],[750,1000,'H']]};
+assert.equal(Lens.windowStats(clip,125,375).counts.H,125);
+assert.equal(Lens.windowStats(clip,125,375).counts.A,125);
+assert.equal(Lens.controlWindows(clip,'all',10).length,3);
+assert.equal(Lens.controlWindows(clip,'second',10)[0].start,750);
+assert.equal(Lens.windowStats(clip,500,750).home,null);
+assert.equal(Lens.spellProfile(clip,[[125,375]])[1].H,1);
+assert.equal(Lens.spellProfile(clip,[[125,375]])[1].A,1);
+console.log('Control explorer checks passed: clipped windows, half boundaries, unknown-only intervals and spell buckets.');

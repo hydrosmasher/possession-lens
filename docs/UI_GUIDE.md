@@ -29,3 +29,9 @@ The Players panel now shows the portion recovered through audited continuity, in
 The Match panel includes source-recorded event totals and a separate event timeline. Select Bochum–Leverkusen (marked “verified events”) for completed passes, shots, shots on target, named-player stats, goals and substitutions. Half filters affect event stats and chronology. Other matches have no verified event feed and show unavailable counters. Touch counts remain unavailable, including Bochum; estimated control involvements are not touches. Player CSV exports include only available provider-coded metrics, with blanks for unsupported counts.
 
 The Model evidence panel keeps the previous frozen test score and separately states the new validation-only interaction-RNN result. It does not present that development gain as new test accuracy.
+
+
+### Interactive control explorer
+Choose 1-, 5- or 10-minute windows and click a column to inspect its estimated team share, control time and spell lengths. Reset returns to the entire selected half or match. Clicking a possession segment also selects that segment in the explorer. Window clocks use recording time, not an inferred football match clock. Bins restart at each analysed block and never span the half-time gap. Spell lengths are clipped to the selected window. These charts describe control, not territory, momentum or attacking pressure.
+
+In Players, choose two provider-mapped names for full-match side-by-side control shares, seconds, involvements and verified events when available. Half and window filters do not filter player totals. The two comparison colours identify the selected players, not their teams. Team event comparisons use verified feeds only; missing events remain unavailable.

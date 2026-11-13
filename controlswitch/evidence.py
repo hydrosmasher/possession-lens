@@ -35,7 +35,7 @@ def research_summary(root):
     """Latest eligible validation result; never replaces frozen fresh-test evidence."""
     from pathlib import Path
     import json
-    for filename,label in [('rnn-gated-003-report.json','Gated RNN'),('rnn-interaction-context-001-report.json','Interaction RNN')]:
+    for filename,label in [('rnn-gated-decoder-004-report.json','Refined GRU boundary decoder'),('rnn-gated-003-report.json','Gated RNN'),('rnn-interaction-context-001-report.json','Interaction RNN')]:
         path=Path(root)/'reports/external'/filename
         if not path.exists():continue
         report=json.loads(path.read_text());candidate=report.get('selected')
@@ -43,6 +43,6 @@ def research_summary(root):
             return {'name':({'gru1':'GRU','bigru2':'Bidirectional GRU','bilstm2':'Bidirectional LSTM','bigru2_boundary':'Bidirectional GRU + boundary head'}.get(candidate.get('variant'),label)),
                     'reference':report['reference_validation']['selection_spell_f1'],
                     'candidate':candidate['selection_spell_f1'],'fresh_test':False,'promoted':False,
-                    'short_pulses_reference':sum(report['reference_diagnostics'][c]['predicted_spells_under_0_4_seconds'] for c in ('clean','masked')) if report.get('reference_diagnostics') else None,
-                    'short_pulses_candidate':sum(candidate['diagnostics'][c]['predicted_spells_under_0_4_seconds'] for c in ('clean','masked')) if candidate.get('diagnostics') else None}
+                    'short_pulses_reference':sum(report['reference_diagnostics'][c]['full_prediction_spells_under_0_4_seconds'] for c in ('clean','masked')) if report.get('reference_diagnostics') and all('full_prediction_spells_under_0_4_seconds' in report['reference_diagnostics'][c] for c in ('clean','masked')) else None,
+                    'short_pulses_candidate':sum(candidate['diagnostics'][c]['full_prediction_spells_under_0_4_seconds'] for c in ('clean','masked')) if candidate.get('diagnostics') and all('full_prediction_spells_under_0_4_seconds' in candidate['diagnostics'][c] for c in ('clean','masked')) else None}
     return None

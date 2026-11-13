@@ -10,7 +10,7 @@ class Element{
  querySelector(){return new Element();}
  focus(){}
 }
-const elements=new Map(),get=id=>{if(!elements.has(id)){const e=new Element();e.parentElement=new Element();elements.set(id,e);}return elements.get(id);};
+const elements=new Map(),get=id=>{if(!elements.has(id)){const e=new Element();e.parentElement=new Element();e.id=id;elements.set(id,e);}return elements.get(id);};
 const tabs=['overview','players','evidence'].map(panel=>{const e=new Element('button');e.dataset.panel=panel;return e;});
 const document={getElementById:get,createElement:t=>new Element(t),createElementNS:(ns,t)=>new Element(t),querySelectorAll:s=>s==='.tab'?tabs:s==='.panel'?['overview','players','evidence'].map(get):[]};
 const source=fs.readFileSync(path.join(__dirname,'../controlswitch/web/app.js'),'utf8');
@@ -43,6 +43,9 @@ vm.runInNewContext(source,context);
  assert.equal(get('event-duels').children.length,4);assert.equal(get('player-duels').children.length,5);
  const options=get('compare-two').children;get('compare-two').value=options.at(-1).value;get('compare-two').handlers.change();assert.equal(get('compare-two').value,options.at(-1).value);
  const noEvents=library.matches.find(m=>!m.verified_events);get('example-match').value=noEvents.example_id;get('example-match').handlers.change();assert.equal(get('event-duels').children.length,0);assert.equal(get('player-duels').children.length,3);assert.equal(get('player-event-empty').hidden,false);get('explore-player-events').handlers.click();assert.equal(get('player-event-empty').hidden,true);assert.equal(get('player-duels').children.length,5);assert.equal(get('match-title').textContent,evMatch.title);
+ get('nav-players').handlers.click();assert.equal(get('players').hidden,false);assert.equal(get('period').parentElement.hidden,true);assert.equal(get('player-period-note').hidden,false);
+ get('nav-control').handlers.click();assert.equal(get('overview').hidden,false);assert.equal(get('period').parentElement.hidden,false);
+ get('nav-events').handlers.click();assert.equal(get('overview').hidden,false);assert.equal(get('match-title').textContent,evMatch.title);assert.equal(get('verified-events-content').hidden,false);assert.match(get('data-availability').textContent,/Verified events · available/);
  const named=library.matches[0];get('example-match').value=named.example_id;get('example-match').handlers.change();get('player-search').value='NO_MATCH_999';get('player-search').handlers.input();assert.equal(get('player-rows').children.length,0);
  console.log('Gallery UI checks passed: all ten match switches, both teams, named-only rows, search and unsupported dead-ball display.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

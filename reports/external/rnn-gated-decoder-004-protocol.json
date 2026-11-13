@@ -1,0 +1,28 @@
+{
+  "study": "gated-decoder-004",
+  "training_performed": false,
+  "validation": [
+    "2269"
+  ],
+  "test_loaded": false,
+  "competition_data_used": false,
+  "status": "reproduction of already-viewed in-memory validation study; not preregistered new evidence",
+  "weights_sha256": "7938947dbfcb7a2549d558071c1d03d40f641989d8da32c726dd0084e694651e",
+  "validation_seed": 100,
+  "dwell_floors_frames": [
+    1,
+    5,
+    10
+  ],
+  "penalties": [
+    20,
+    24,
+    28
+  ],
+  "strengths": [
+    0.75,
+    1.0
+  ],
+  "guards": "misses<=318, false positives<=115, merge overlaps<=66, full-sequence short predictions=0",
+  "selection": "highest eligible mean clean/masked spell F1 above saved gated reference; no promotion"
+}

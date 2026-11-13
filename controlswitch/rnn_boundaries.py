@@ -65,12 +65,30 @@ def load_base(checkpoint):
         if str(d['version'])!=RNN_SYMMETRIC_VERSION:raise ValueError('Expected frozen symmetric RNN')
         return {k:d[k] for k in ('mean','scale','wx','wh','bh','wy','by')},float(d['transition_penalty'])
 
+def pulse_audit(y,pred):
+    """Separate short full predictions from short fragments at label gaps.
+
+    Full-prediction counts describe all H/A runs, not verified erroneous events.
+    Censored fragments are not evidence of rapid possession switching.
+    """
+    threshold_frames=10  # All pipeline sequences use25Hz: 0.4 seconds.
+    y=np.asarray(y);pred=np.asarray(pred)
+    if y.ndim!=1 or pred.shape!=y.shape:raise ValueError('Invalid pulse audit input')
+    full=pm.possession_spells(pred,[(0,len(pred))]) if len(pred) else []
+    scored=pm.possession_spells(pred,pm.valid_runs(y)) if len(pred) else []
+    short=[(a,b,k) for a,b,k in scored if b-a<threshold_frames]
+    censored=sum(any(aa<=a and bb>=b and kk==k and bb-aa>=threshold_frames for aa,bb,kk in full) for a,b,k in short)
+    return {'full_prediction_spells_under_0_4_seconds':sum(b-a<threshold_frames for a,b,k in full),
+            'scored_short_fragments_from_longer_predictions':censored,
+            'scored_spells_under_0_4_seconds':len(short)}
+
 def spell_diagnostics(rows,preds):
     result={}
     for condition in ('clean','masked'):
-        durations=[];hits=[];pred_lengths=[];merges=0
+        durations=[];hits=[];pred_lengths=[];merges=0;full_short=0;censored_short=0
         for (s,_,c,_),pred in zip(rows,preds):
             if c!=condition:continue
+            audit=pulse_audit(s['y'],pred);full_short+=audit['full_prediction_spells_under_0_4_seconds'];censored_short+=audit['scored_short_fragments_from_longer_predictions']
             runs=pm.valid_runs(s['y']);gt=pm.possession_spells(s['y'],runs);ps=pm.possession_spells(pred,runs)
             overlap=pm.spell_overlaps(gt,ps);matched=pm.matched_gt_flags(overlap,len(gt),.5)
             durations.extend([(b-a)/25 for a,b,_ in gt]);hits.extend(matched);pred_lengths.extend([(b-a)/25 for a,b,_ in ps])
@@ -87,7 +105,9 @@ def spell_diagnostics(rows,preds):
                            'false_positive_spells_at_iou_0_5':int(len(pred_lengths)-hits.sum()),
                            'predicted_spells_under_0_4_seconds':int((np.array(pred_lengths)<.4).sum()),
                            'predictions_overlapping_multiple_reference_spells':merges,
-                           'note':'Merge count is descriptive overlap, not a separately validated event metric.'}
+                           'full_prediction_spells_under_0_4_seconds':int(full_short),
+                           'scored_short_fragments_from_longer_predictions':int(censored_short),
+                           'note':'Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions.'}
     return result
 
 def run(training_cache,validation_cache,checkpoint,out):

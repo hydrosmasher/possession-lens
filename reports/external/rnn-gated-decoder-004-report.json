@@ -1,0 +1,1403 @@
+{
+  "protocol": {
+    "study": "gated-decoder-004",
+    "training_performed": false,
+    "validation": [
+      "2269"
+    ],
+    "test_loaded": false,
+    "competition_data_used": false,
+    "status": "reproduction of already-viewed in-memory validation study; not preregistered new evidence",
+    "weights_sha256": "7938947dbfcb7a2549d558071c1d03d40f641989d8da32c726dd0084e694651e",
+    "validation_seed": 100,
+    "dwell_floors_frames": [
+      1,
+      5,
+      10
+    ],
+    "penalties": [
+      20,
+      24,
+      28
+    ],
+    "strengths": [
+      0.75,
+      1.0
+    ],
+    "guards": "misses<=318, false positives<=115, merge overlaps<=66, full-sequence short predictions=0",
+    "selection": "highest eligible mean clean/masked spell F1 above saved gated reference; no promotion"
+  },
+  "reference_validation": {
+    "clean": {
+      "spell_f1_mean": 0.5721311475409838,
+      "macro_f1": 0.5785546994362553,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 199,
+      "n_graded": 91462
+    },
+    "masked": {
+      "spell_f1_mean": 0.5333333333333333,
+      "macro_f1": 0.570699772640974,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 176,
+      "n_graded": 91462
+    },
+    "selection_spell_f1": 0.5527322404371586
+  },
+  "reference_diagnostics": {
+    "clean": {
+      "recall_by_duration": [
+        {
+          "duration_seconds": [
+            0,
+            1
+          ],
+          "reference_spells": 28,
+          "matched_at_iou_0_5": 0,
+          "recall": 0.0
+        },
+        {
+          "duration_seconds": [
+            1,
+            3
+          ],
+          "reference_spells": 53,
+          "matched_at_iou_0_5": 5,
+          "recall": 0.09433962264150944
+        },
+        {
+          "duration_seconds": [
+            3,
+            10
+          ],
+          "reference_spells": 85,
+          "matched_at_iou_0_5": 44,
+          "recall": 0.5176470588235295
+        },
+        {
+          "duration_seconds": [
+            10,
+            null
+          ],
+          "reference_spells": 123,
+          "matched_at_iou_0_5": 88,
+          "recall": 0.7154471544715447
+        }
+      ],
+      "matched_reference_spells_at_iou_0_5": 137,
+      "missed_reference_spells_at_iou_0_5": 152,
+      "false_positive_spells_at_iou_0_5": 62,
+      "predicted_spells_under_0_4_seconds": 5,
+      "predictions_overlapping_multiple_reference_spells": 29,
+      "full_prediction_spells_under_0_4_seconds": 0,
+      "scored_short_fragments_from_longer_predictions": 5,
+      "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+    },
+    "masked": {
+      "recall_by_duration": [
+        {
+          "duration_seconds": [
+            0,
+            1
+          ],
+          "reference_spells": 28,
+          "matched_at_iou_0_5": 1,
+          "recall": 0.03571428571428571
+        },
+        {
+          "duration_seconds": [
+            1,
+            3
+          ],
+          "reference_spells": 53,
+          "matched_at_iou_0_5": 2,
+          "recall": 0.03773584905660377
+        },
+        {
+          "duration_seconds": [
+            3,
+            10
+          ],
+          "reference_spells": 85,
+          "matched_at_iou_0_5": 33,
+          "recall": 0.38823529411764707
+        },
+        {
+          "duration_seconds": [
+            10,
+            null
+          ],
+          "reference_spells": 123,
+          "matched_at_iou_0_5": 87,
+          "recall": 0.7073170731707317
+        }
+      ],
+      "matched_reference_spells_at_iou_0_5": 123,
+      "missed_reference_spells_at_iou_0_5": 166,
+      "false_positive_spells_at_iou_0_5": 53,
+      "predicted_spells_under_0_4_seconds": 3,
+      "predictions_overlapping_multiple_reference_spells": 37,
+      "full_prediction_spells_under_0_4_seconds": 0,
+      "scored_short_fragments_from_longer_predictions": 3,
+      "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+    }
+  },
+  "selected": {
+    "penalty": 20,
+    "boundary_strength": 1.0,
+    "variant": "gru boundary decoder",
+    "clean": {
+      "spell_f1_mean": 0.5762295081967214,
+      "macro_f1": 0.578519183454555,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 199,
+      "n_graded": 91462
+    },
+    "masked": {
+      "spell_f1_mean": 0.5344827586206897,
+      "macro_f1": 0.5709737785839509,
+      "alive_dead_f1": 1.0,
+      "n_gt_spells": 289,
+      "n_pred_spells": 175,
+      "n_graded": 91462
+    },
+    "selection_spell_f1": 0.5553561334087056,
+    "diagnostics": {
+      "clean": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 28,
+            "matched_at_iou_0_5": 0,
+            "recall": 0.0
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 53,
+            "matched_at_iou_0_5": 6,
+            "recall": 0.11320754716981132
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 85,
+            "matched_at_iou_0_5": 44,
+            "recall": 0.5176470588235295
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 123,
+            "matched_at_iou_0_5": 89,
+            "recall": 0.7235772357723578
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 139,
+        "missed_reference_spells_at_iou_0_5": 150,
+        "false_positive_spells_at_iou_0_5": 60,
+        "predicted_spells_under_0_4_seconds": 5,
+        "predictions_overlapping_multiple_reference_spells": 29,
+        "full_prediction_spells_under_0_4_seconds": 0,
+        "scored_short_fragments_from_longer_predictions": 5,
+        "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+      },
+      "masked": {
+        "recall_by_duration": [
+          {
+            "duration_seconds": [
+              0,
+              1
+            ],
+            "reference_spells": 28,
+            "matched_at_iou_0_5": 0,
+            "recall": 0.0
+          },
+          {
+            "duration_seconds": [
+              1,
+              3
+            ],
+            "reference_spells": 53,
+            "matched_at_iou_0_5": 3,
+            "recall": 0.05660377358490566
+          },
+          {
+            "duration_seconds": [
+              3,
+              10
+            ],
+            "reference_spells": 85,
+            "matched_at_iou_0_5": 33,
+            "recall": 0.38823529411764707
+          },
+          {
+            "duration_seconds": [
+              10,
+              null
+            ],
+            "reference_spells": 123,
+            "matched_at_iou_0_5": 87,
+            "recall": 0.7073170731707317
+          }
+        ],
+        "matched_reference_spells_at_iou_0_5": 123,
+        "missed_reference_spells_at_iou_0_5": 166,
+        "false_positive_spells_at_iou_0_5": 52,
+        "predicted_spells_under_0_4_seconds": 2,
+        "predictions_overlapping_multiple_reference_spells": 37,
+        "full_prediction_spells_under_0_4_seconds": 0,
+        "scored_short_fragments_from_longer_predictions": 2,
+        "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+      }
+    },
+    "guards": {
+      "misses": true,
+      "false_positives": true,
+      "merge_overlaps": true,
+      "full_short_predictions": true
+    },
+    "eligible": true
+  },
+  "trials": [
+    {
+      "penalty": 20,
+      "boundary_strength": 0.75,
+      "variant": "gru boundary decoder",
+      "clean": {
+        "spell_f1_mean": 0.569896907216495,
+        "macro_f1": 0.5757579150131774,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 196,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5255411255411255,
+        "macro_f1": 0.5679659826405723,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 173,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5477190163788103,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 5,
+              "recall": 0.09433962264150944
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 43,
+              "recall": 0.5058823529411764
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 89,
+              "recall": 0.7235772357723578
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 137,
+          "missed_reference_spells_at_iou_0_5": 152,
+          "false_positive_spells_at_iou_0_5": 59,
+          "predicted_spells_under_0_4_seconds": 4,
+          "predictions_overlapping_multiple_reference_spells": 29,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 4,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 86,
+              "recall": 0.6991869918699187
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 121,
+          "missed_reference_spells_at_iou_0_5": 168,
+          "false_positive_spells_at_iou_0_5": 52,
+          "predicted_spells_under_0_4_seconds": 1,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 1,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      },
+      "guards": {
+        "misses": false,
+        "false_positives": true,
+        "merge_overlaps": true,
+        "full_short_predictions": true
+      },
+      "eligible": false
+    },
+    {
+      "penalty": 20,
+      "boundary_strength": 1.0,
+      "variant": "gru boundary decoder",
+      "clean": {
+        "spell_f1_mean": 0.5762295081967214,
+        "macro_f1": 0.578519183454555,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 199,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5344827586206897,
+        "macro_f1": 0.5709737785839509,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 175,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5553561334087056,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 6,
+              "recall": 0.11320754716981132
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 44,
+              "recall": 0.5176470588235295
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 89,
+              "recall": 0.7235772357723578
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 139,
+          "missed_reference_spells_at_iou_0_5": 150,
+          "false_positive_spells_at_iou_0_5": 60,
+          "predicted_spells_under_0_4_seconds": 5,
+          "predictions_overlapping_multiple_reference_spells": 29,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 5,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 3,
+              "recall": 0.05660377358490566
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 123,
+          "missed_reference_spells_at_iou_0_5": 166,
+          "false_positive_spells_at_iou_0_5": 52,
+          "predicted_spells_under_0_4_seconds": 2,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 2,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      },
+      "guards": {
+        "misses": true,
+        "false_positives": true,
+        "merge_overlaps": true,
+        "full_short_predictions": true
+      },
+      "eligible": true
+    },
+    {
+      "penalty": 24,
+      "boundary_strength": 0.75,
+      "variant": "gru boundary decoder",
+      "clean": {
+        "spell_f1_mean": 0.5702479338842975,
+        "macro_f1": 0.576758165488981,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 195,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5295896328293737,
+        "macro_f1": 0.5696668806669657,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 174,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5499187833568355,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 5,
+              "recall": 0.09433962264150944
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 43,
+              "recall": 0.5058823529411764
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 89,
+              "recall": 0.7235772357723578
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 137,
+          "missed_reference_spells_at_iou_0_5": 152,
+          "false_positive_spells_at_iou_0_5": 58,
+          "predicted_spells_under_0_4_seconds": 4,
+          "predictions_overlapping_multiple_reference_spells": 30,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 4,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 122,
+          "missed_reference_spells_at_iou_0_5": 167,
+          "false_positive_spells_at_iou_0_5": 52,
+          "predicted_spells_under_0_4_seconds": 2,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 2,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      },
+      "guards": {
+        "misses": false,
+        "false_positives": true,
+        "merge_overlaps": false,
+        "full_short_predictions": true
+      },
+      "eligible": false
+    },
+    {
+      "penalty": 24,
+      "boundary_strength": 1.0,
+      "variant": "gru boundary decoder",
+      "clean": {
+        "spell_f1_mean": 0.5721311475409838,
+        "macro_f1": 0.5785546994362553,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 199,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5333333333333333,
+        "macro_f1": 0.570699772640974,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 176,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5527322404371586,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 5,
+              "recall": 0.09433962264150944
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 44,
+              "recall": 0.5176470588235295
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 88,
+              "recall": 0.7154471544715447
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 137,
+          "missed_reference_spells_at_iou_0_5": 152,
+          "false_positive_spells_at_iou_0_5": 62,
+          "predicted_spells_under_0_4_seconds": 5,
+          "predictions_overlapping_multiple_reference_spells": 29,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 5,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 1,
+              "recall": 0.03571428571428571
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 123,
+          "missed_reference_spells_at_iou_0_5": 166,
+          "false_positive_spells_at_iou_0_5": 53,
+          "predicted_spells_under_0_4_seconds": 3,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 3,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      },
+      "guards": {
+        "misses": true,
+        "false_positives": true,
+        "merge_overlaps": true,
+        "full_short_predictions": true
+      },
+      "eligible": true
+    },
+    {
+      "penalty": 28,
+      "boundary_strength": 0.75,
+      "variant": "gru boundary decoder",
+      "clean": {
+        "spell_f1_mean": 0.5656314699792959,
+        "macro_f1": 0.577924616632605,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 194,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5365010799136068,
+        "macro_f1": 0.5715348306061162,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 174,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5510662749464514,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 4,
+              "recall": 0.07547169811320754
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 43,
+              "recall": 0.5058823529411764
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 88,
+              "recall": 0.7154471544715447
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 135,
+          "missed_reference_spells_at_iou_0_5": 154,
+          "false_positive_spells_at_iou_0_5": 59,
+          "predicted_spells_under_0_4_seconds": 5,
+          "predictions_overlapping_multiple_reference_spells": 31,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 5,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 1,
+              "recall": 0.03571428571428571
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 123,
+          "missed_reference_spells_at_iou_0_5": 166,
+          "false_positive_spells_at_iou_0_5": 51,
+          "predicted_spells_under_0_4_seconds": 3,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 3,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      },
+      "guards": {
+        "misses": false,
+        "false_positives": true,
+        "merge_overlaps": false,
+        "full_short_predictions": true
+      },
+      "eligible": false
+    },
+    {
+      "penalty": 28,
+      "boundary_strength": 1.0,
+      "variant": "gru boundary decoder",
+      "clean": {
+        "spell_f1_mean": 0.5634496919917865,
+        "macro_f1": 0.5780568706561907,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 198,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5287553648068669,
+        "macro_f1": 0.5702612663762484,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 177,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5461025283993267,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 1,
+              "recall": 0.03571428571428571
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 4,
+              "recall": 0.07547169811320754
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 43,
+              "recall": 0.5058823529411764
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 135,
+          "missed_reference_spells_at_iou_0_5": 154,
+          "false_positive_spells_at_iou_0_5": 63,
+          "predicted_spells_under_0_4_seconds": 6,
+          "predictions_overlapping_multiple_reference_spells": 31,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 6,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 1,
+              "recall": 0.03571428571428571
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 123,
+          "missed_reference_spells_at_iou_0_5": 166,
+          "false_positive_spells_at_iou_0_5": 54,
+          "predicted_spells_under_0_4_seconds": 5,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 5,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      },
+      "guards": {
+        "misses": false,
+        "false_positives": false,
+        "merge_overlaps": false,
+        "full_short_predictions": true
+      },
+      "eligible": false
+    }
+  ],
+  "dwell_trials": [
+    {
+      "minimum_frames": 1,
+      "clean": {
+        "spell_f1_mean": 0.5721311475409838,
+        "macro_f1": 0.5785546994362553,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 199,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5333333333333333,
+        "macro_f1": 0.570699772640974,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 176,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5527322404371586,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 5,
+              "recall": 0.09433962264150944
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 44,
+              "recall": 0.5176470588235295
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 88,
+              "recall": 0.7154471544715447
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 137,
+          "missed_reference_spells_at_iou_0_5": 152,
+          "false_positive_spells_at_iou_0_5": 62,
+          "predicted_spells_under_0_4_seconds": 5,
+          "predictions_overlapping_multiple_reference_spells": 29,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 5,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 1,
+              "recall": 0.03571428571428571
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 123,
+          "missed_reference_spells_at_iou_0_5": 166,
+          "false_positive_spells_at_iou_0_5": 53,
+          "predicted_spells_under_0_4_seconds": 3,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 3,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      }
+    },
+    {
+      "minimum_frames": 5,
+      "clean": {
+        "spell_f1_mean": 0.5721311475409838,
+        "macro_f1": 0.5781851798612053,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 199,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5333333333333333,
+        "macro_f1": 0.5703882941750833,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 176,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5527322404371586,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 5,
+              "recall": 0.09433962264150944
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 44,
+              "recall": 0.5176470588235295
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 88,
+              "recall": 0.7154471544715447
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 137,
+          "missed_reference_spells_at_iou_0_5": 152,
+          "false_positive_spells_at_iou_0_5": 62,
+          "predicted_spells_under_0_4_seconds": 5,
+          "predictions_overlapping_multiple_reference_spells": 29,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 5,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 1,
+              "recall": 0.03571428571428571
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 123,
+          "missed_reference_spells_at_iou_0_5": 166,
+          "false_positive_spells_at_iou_0_5": 53,
+          "predicted_spells_under_0_4_seconds": 3,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 3,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      }
+    },
+    {
+      "minimum_frames": 10,
+      "clean": {
+        "spell_f1_mean": 0.5721311475409838,
+        "macro_f1": 0.5781851798612053,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 199,
+        "n_graded": 91462
+      },
+      "masked": {
+        "spell_f1_mean": 0.5333333333333333,
+        "macro_f1": 0.5703882941750833,
+        "alive_dead_f1": 1.0,
+        "n_gt_spells": 289,
+        "n_pred_spells": 176,
+        "n_graded": 91462
+      },
+      "selection_spell_f1": 0.5527322404371586,
+      "diagnostics": {
+        "clean": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 0,
+              "recall": 0.0
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 5,
+              "recall": 0.09433962264150944
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 44,
+              "recall": 0.5176470588235295
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 88,
+              "recall": 0.7154471544715447
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 137,
+          "missed_reference_spells_at_iou_0_5": 152,
+          "false_positive_spells_at_iou_0_5": 62,
+          "predicted_spells_under_0_4_seconds": 5,
+          "predictions_overlapping_multiple_reference_spells": 29,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 5,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        },
+        "masked": {
+          "recall_by_duration": [
+            {
+              "duration_seconds": [
+                0,
+                1
+              ],
+              "reference_spells": 28,
+              "matched_at_iou_0_5": 1,
+              "recall": 0.03571428571428571
+            },
+            {
+              "duration_seconds": [
+                1,
+                3
+              ],
+              "reference_spells": 53,
+              "matched_at_iou_0_5": 2,
+              "recall": 0.03773584905660377
+            },
+            {
+              "duration_seconds": [
+                3,
+                10
+              ],
+              "reference_spells": 85,
+              "matched_at_iou_0_5": 33,
+              "recall": 0.38823529411764707
+            },
+            {
+              "duration_seconds": [
+                10,
+                null
+              ],
+              "reference_spells": 123,
+              "matched_at_iou_0_5": 87,
+              "recall": 0.7073170731707317
+            }
+          ],
+          "matched_reference_spells_at_iou_0_5": 123,
+          "missed_reference_spells_at_iou_0_5": 166,
+          "false_positive_spells_at_iou_0_5": 53,
+          "predicted_spells_under_0_4_seconds": 3,
+          "predictions_overlapping_multiple_reference_spells": 37,
+          "full_prediction_spells_under_0_4_seconds": 0,
+          "scored_short_fragments_from_longer_predictions": 3,
+          "note": "Merge count is descriptive overlap. The legacy predicted_spells_under_0_4_seconds counts reference-clipped scored fragments; use full_prediction_spells_under_0_4_seconds for actual full-sequence short predictions."
+        }
+      }
+    }
+  ],
+  "fresh_test_results": null,
+  "promoted_to_default": false,
+  "checkpoint_sha256": "c28813e451845d7c2816e6a11fcf846120d5ce7dc0198819b57aa95fe15392f6",
+  "weights_unchanged": true,
+  "limitations": [
+    "Repeated validation selection is not independent test evidence.",
+    "Partial provider H/A labels do not establish full-match or challenge accuracy.",
+    "Geometric merges and short-run counts are descriptive diagnostics, not verified events."
+  ]
+}

@@ -20,14 +20,16 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 | --- | --- |
 | Full-match production default | `models/rnn-boundary-001.npz` |
 | Named external match gallery | Frozen context RNN; bundled examples are unchanged |
-| Latest research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |
-| Latest candidate validation | Mean clean/dropout spell F1 **0.5554**, versus **0.5527** before decoder refinement |
+| Saved eligible research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |
+| Saved candidate validation | Mean clean/dropout spell F1 **0.5554**, versus **0.5527** before decoder refinement |
 
 The latest candidate is **validation-only** and has not replaced the default or gallery model. Reused partial provider labels do not establish fresh-match or challenge accuracy. The short-spell audit distinguishes label-gap fragments from actual rapid predicted switches. [Read the decoder study](docs/external/GATED_DECODER_004.md).
 
 Latest fine-tuning study reached **0.5791 validation spell F1**, but failed the false-positive guard. Stronger smoothing increased merges. The saved candidate remains unchanged. [Results and reproduction](docs/external/GATED_RECOVERY_005.md).
 
 Boundary-verifier follow-up peaked at **0.5715 validation spell F1** and failed to preserve the high-recall model’s recovered possessions. The saved model remains unchanged. [Boundary precision study](docs/external/BOUNDARY_PRECISION_007.md).
+
+Match-excluded verifier + selective protection reached **0.5837 validation spell F1**, reducing false positives to108 and misses to289. It still lost2 recovered spells and increased merges, so it was not promoted. [Crossfit study](docs/external/CROSSFIT_PRECISION_008.md) · [Selective follow-up](docs/external/SELECTIVE_PRECISION_009.md).
 
 ## Run the notebook
 

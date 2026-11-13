@@ -1,0 +1,482 @@
+[
+  {
+    "held_match": "2068",
+    "epoch": 1,
+    "training_objective": 0.8366396315395832,
+    "max_gradient_norm": 3.2251343727111816,
+    "fraction_clipped": 1.0,
+    "seconds": 2.4394872919983754
+  },
+  {
+    "held_match": "2068",
+    "epoch": 2,
+    "training_objective": 0.6456420831382275,
+    "max_gradient_norm": 3.117629051208496,
+    "fraction_clipped": 0.9375,
+    "seconds": 2.251372790997266
+  },
+  {
+    "held_match": "2068",
+    "epoch": 3,
+    "training_objective": 0.5735311731696129,
+    "max_gradient_norm": 2.3342390060424805,
+    "fraction_clipped": 0.75,
+    "seconds": 2.222970874998282
+  },
+  {
+    "held_match": "2068",
+    "epoch": 4,
+    "training_objective": 0.5160887148231268,
+    "max_gradient_norm": 3.0677719116210938,
+    "fraction_clipped": 0.875,
+    "seconds": 2.28323520900085
+  },
+  {
+    "held_match": "2068",
+    "epoch": 5,
+    "training_objective": 0.5197181142866611,
+    "max_gradient_norm": 1.6000103950500488,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.2255398749985034
+  },
+  {
+    "held_match": "2068",
+    "epoch": 6,
+    "training_objective": 0.47052560187876225,
+    "max_gradient_norm": 1.528926134109497,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.209453667001071
+  },
+  {
+    "held_match": "2068",
+    "epoch": 7,
+    "training_objective": 0.4947264604270458,
+    "max_gradient_norm": 1.8541251420974731,
+    "fraction_clipped": 0.5625,
+    "seconds": 2.246945124999911
+  },
+  {
+    "held_match": "2068",
+    "epoch": 8,
+    "training_objective": 0.44003348238766193,
+    "max_gradient_norm": 1.4405667781829834,
+    "fraction_clipped": 0.125,
+    "seconds": 2.2695809169999848
+  },
+  {
+    "held_match": "2068",
+    "epoch": 9,
+    "training_objective": 0.4439761843532324,
+    "max_gradient_norm": 1.788161039352417,
+    "fraction_clipped": 0.75,
+    "seconds": 2.2571003750017553
+  },
+  {
+    "held_match": "2068",
+    "epoch": 10,
+    "training_objective": 0.41290248930454254,
+    "max_gradient_norm": 2.3109521865844727,
+    "fraction_clipped": 0.3125,
+    "seconds": 2.2513448750032694
+  },
+  {
+    "held_match": "2068",
+    "epoch": 11,
+    "training_objective": 0.45998951233923435,
+    "max_gradient_norm": 2.5042898654937744,
+    "fraction_clipped": 0.75,
+    "seconds": 2.2392217500018887
+  },
+  {
+    "held_match": "2068",
+    "epoch": 12,
+    "training_objective": 0.44422873109579086,
+    "max_gradient_norm": 2.452479600906372,
+    "fraction_clipped": 0.4375,
+    "seconds": 2.22298679099913
+  },
+  {
+    "held_match": "2440",
+    "epoch": 1,
+    "training_objective": 1.0426383763551712,
+    "max_gradient_norm": 5.057516098022461,
+    "fraction_clipped": 1.0,
+    "seconds": 2.2930573750018084
+  },
+  {
+    "held_match": "2440",
+    "epoch": 2,
+    "training_objective": 0.6820503883063793,
+    "max_gradient_norm": 3.8078882694244385,
+    "fraction_clipped": 0.9375,
+    "seconds": 2.254077208999661
+  },
+  {
+    "held_match": "2440",
+    "epoch": 3,
+    "training_objective": 0.6004331391304731,
+    "max_gradient_norm": 2.6693360805511475,
+    "fraction_clipped": 0.875,
+    "seconds": 2.219198042002972
+  },
+  {
+    "held_match": "2440",
+    "epoch": 4,
+    "training_objective": 0.5721761230379343,
+    "max_gradient_norm": 2.398808002471924,
+    "fraction_clipped": 0.8125,
+    "seconds": 2.2432510830003594
+  },
+  {
+    "held_match": "2440",
+    "epoch": 5,
+    "training_objective": 0.5144478753209114,
+    "max_gradient_norm": 1.7595089673995972,
+    "fraction_clipped": 0.75,
+    "seconds": 2.2166389579979295
+  },
+  {
+    "held_match": "2440",
+    "epoch": 6,
+    "training_objective": 0.5347612537443638,
+    "max_gradient_norm": 1.8224416971206665,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.217274709000776
+  },
+  {
+    "held_match": "2440",
+    "epoch": 7,
+    "training_objective": 0.5192267913371325,
+    "max_gradient_norm": 3.313778877258301,
+    "fraction_clipped": 0.8125,
+    "seconds": 2.2902340840009856
+  },
+  {
+    "held_match": "2440",
+    "epoch": 8,
+    "training_objective": 0.4350691605359316,
+    "max_gradient_norm": 2.4165680408477783,
+    "fraction_clipped": 0.5,
+    "seconds": 2.2126590839980054
+  },
+  {
+    "held_match": "2440",
+    "epoch": 9,
+    "training_objective": 0.45457032322883606,
+    "max_gradient_norm": 1.6827563047409058,
+    "fraction_clipped": 0.5625,
+    "seconds": 2.2061304169983487
+  },
+  {
+    "held_match": "2440",
+    "epoch": 10,
+    "training_objective": 0.4271624721586704,
+    "max_gradient_norm": 1.7352347373962402,
+    "fraction_clipped": 0.3125,
+    "seconds": 2.311369833001663
+  },
+  {
+    "held_match": "2440",
+    "epoch": 11,
+    "training_objective": 0.4458677303045988,
+    "max_gradient_norm": 1.5245625972747803,
+    "fraction_clipped": 0.3125,
+    "seconds": 2.4863798750011483
+  },
+  {
+    "held_match": "2440",
+    "epoch": 12,
+    "training_objective": 0.4598431810736656,
+    "max_gradient_norm": 1.2782737016677856,
+    "fraction_clipped": 0.25,
+    "seconds": 2.705647416998545
+  },
+  {
+    "held_match": "3518",
+    "epoch": 1,
+    "training_objective": 1.0289416946470737,
+    "max_gradient_norm": 5.4188714027404785,
+    "fraction_clipped": 1.0,
+    "seconds": 2.296781082997768
+  },
+  {
+    "held_match": "3518",
+    "epoch": 2,
+    "training_objective": 0.7024978771805763,
+    "max_gradient_norm": 2.0576183795928955,
+    "fraction_clipped": 1.0,
+    "seconds": 2.272736167000403
+  },
+  {
+    "held_match": "3518",
+    "epoch": 3,
+    "training_objective": 0.6135937683284283,
+    "max_gradient_norm": 2.4095330238342285,
+    "fraction_clipped": 0.75,
+    "seconds": 2.216463583001314
+  },
+  {
+    "held_match": "3518",
+    "epoch": 4,
+    "training_objective": 0.5830083657056093,
+    "max_gradient_norm": 2.1003901958465576,
+    "fraction_clipped": 0.75,
+    "seconds": 2.3163707919993612
+  },
+  {
+    "held_match": "3518",
+    "epoch": 5,
+    "training_objective": 0.5491026025265455,
+    "max_gradient_norm": 3.280216932296753,
+    "fraction_clipped": 0.8125,
+    "seconds": 2.237930040999345
+  },
+  {
+    "held_match": "3518",
+    "epoch": 6,
+    "training_objective": 0.5606582257896662,
+    "max_gradient_norm": 2.1562187671661377,
+    "fraction_clipped": 0.75,
+    "seconds": 2.2099031249999825
+  },
+  {
+    "held_match": "3518",
+    "epoch": 7,
+    "training_objective": 0.5221719611436129,
+    "max_gradient_norm": 2.1045289039611816,
+    "fraction_clipped": 0.75,
+    "seconds": 2.204432959002588
+  },
+  {
+    "held_match": "3518",
+    "epoch": 8,
+    "training_objective": 0.5054865479469299,
+    "max_gradient_norm": 2.0557351112365723,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.189961125000991
+  },
+  {
+    "held_match": "3518",
+    "epoch": 9,
+    "training_objective": 0.47921886667609215,
+    "max_gradient_norm": 3.018303871154785,
+    "fraction_clipped": 0.5625,
+    "seconds": 2.214102375000948
+  },
+  {
+    "held_match": "3518",
+    "epoch": 10,
+    "training_objective": 0.48747701570391655,
+    "max_gradient_norm": 2.8153605461120605,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.2226833749991783
+  },
+  {
+    "held_match": "3518",
+    "epoch": 11,
+    "training_objective": 0.4402855671942234,
+    "max_gradient_norm": 1.8188085556030273,
+    "fraction_clipped": 0.5,
+    "seconds": 2.3977605420004693
+  },
+  {
+    "held_match": "3518",
+    "epoch": 12,
+    "training_objective": 0.4210394471883774,
+    "max_gradient_norm": 1.6800769567489624,
+    "fraction_clipped": 0.375,
+    "seconds": 2.2484093329985626
+  },
+  {
+    "held_match": "3749",
+    "epoch": 1,
+    "training_objective": 1.0503423064947128,
+    "max_gradient_norm": 4.990422248840332,
+    "fraction_clipped": 1.0,
+    "seconds": 2.2715757500009204
+  },
+  {
+    "held_match": "3749",
+    "epoch": 2,
+    "training_objective": 0.6910054199397564,
+    "max_gradient_norm": 3.2598090171813965,
+    "fraction_clipped": 1.0,
+    "seconds": 2.262976041998627
+  },
+  {
+    "held_match": "3749",
+    "epoch": 3,
+    "training_objective": 0.560588464140892,
+    "max_gradient_norm": 2.2429757118225098,
+    "fraction_clipped": 0.9375,
+    "seconds": 2.430840541001089
+  },
+  {
+    "held_match": "3749",
+    "epoch": 4,
+    "training_objective": 0.5561843551695347,
+    "max_gradient_norm": 2.1312897205352783,
+    "fraction_clipped": 0.75,
+    "seconds": 2.3051549999981944
+  },
+  {
+    "held_match": "3749",
+    "epoch": 5,
+    "training_objective": 0.5581020452082157,
+    "max_gradient_norm": 1.9777158498764038,
+    "fraction_clipped": 0.875,
+    "seconds": 2.226065833001485
+  },
+  {
+    "held_match": "3749",
+    "epoch": 6,
+    "training_objective": 0.5391790065914392,
+    "max_gradient_norm": 1.9922374486923218,
+    "fraction_clipped": 0.8125,
+    "seconds": 2.1954999169975054
+  },
+  {
+    "held_match": "3749",
+    "epoch": 7,
+    "training_objective": 0.4608693849295378,
+    "max_gradient_norm": 1.5465092658996582,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.2297287920009694
+  },
+  {
+    "held_match": "3749",
+    "epoch": 8,
+    "training_objective": 0.48083505779504776,
+    "max_gradient_norm": 1.4541125297546387,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.2305893749980896
+  },
+  {
+    "held_match": "3749",
+    "epoch": 9,
+    "training_objective": 0.43225339986383915,
+    "max_gradient_norm": 1.893254280090332,
+    "fraction_clipped": 0.4375,
+    "seconds": 2.214209416997619
+  },
+  {
+    "held_match": "3749",
+    "epoch": 10,
+    "training_objective": 0.4371231161057949,
+    "max_gradient_norm": 1.4978904724121094,
+    "fraction_clipped": 0.3125,
+    "seconds": 2.213447958998586
+  },
+  {
+    "held_match": "3749",
+    "epoch": 11,
+    "training_objective": 0.4105937909334898,
+    "max_gradient_norm": 1.706628680229187,
+    "fraction_clipped": 0.3125,
+    "seconds": 2.2097202080003626
+  },
+  {
+    "held_match": "3749",
+    "epoch": 12,
+    "training_objective": 0.39681883063167334,
+    "max_gradient_norm": 1.7051382064819336,
+    "fraction_clipped": 0.5625,
+    "seconds": 2.222891333000007
+  },
+  {
+    "held_match": "4039",
+    "epoch": 1,
+    "training_objective": 0.9666281007230282,
+    "max_gradient_norm": 3.4524333477020264,
+    "fraction_clipped": 0.9375,
+    "seconds": 2.4276755419996334
+  },
+  {
+    "held_match": "4039",
+    "epoch": 2,
+    "training_objective": 0.6769422516226768,
+    "max_gradient_norm": 2.2074310779571533,
+    "fraction_clipped": 0.8125,
+    "seconds": 2.222698458001105
+  },
+  {
+    "held_match": "4039",
+    "epoch": 3,
+    "training_objective": 0.6065725665539503,
+    "max_gradient_norm": 2.7374825477600098,
+    "fraction_clipped": 0.8125,
+    "seconds": 2.211889207999775
+  },
+  {
+    "held_match": "4039",
+    "epoch": 4,
+    "training_objective": 0.5510549563914537,
+    "max_gradient_norm": 1.9186991453170776,
+    "fraction_clipped": 0.625,
+    "seconds": 2.2168425830022898
+  },
+  {
+    "held_match": "4039",
+    "epoch": 5,
+    "training_objective": 0.5511223450303078,
+    "max_gradient_norm": 1.4240976572036743,
+    "fraction_clipped": 0.5,
+    "seconds": 2.2042973329989763
+  },
+  {
+    "held_match": "4039",
+    "epoch": 6,
+    "training_objective": 0.4949610438197851,
+    "max_gradient_norm": 1.7795439958572388,
+    "fraction_clipped": 0.5,
+    "seconds": 2.208245083998918
+  },
+  {
+    "held_match": "4039",
+    "epoch": 7,
+    "training_objective": 0.45376862958073616,
+    "max_gradient_norm": 1.76703679561615,
+    "fraction_clipped": 0.4375,
+    "seconds": 2.2637599159970705
+  },
+  {
+    "held_match": "4039",
+    "epoch": 8,
+    "training_objective": 0.4519609995186329,
+    "max_gradient_norm": 1.8267823457717896,
+    "fraction_clipped": 0.5,
+    "seconds": 2.673910749999777
+  },
+  {
+    "held_match": "4039",
+    "epoch": 9,
+    "training_objective": 0.4733975427225232,
+    "max_gradient_norm": 1.6257030963897705,
+    "fraction_clipped": 0.6875,
+    "seconds": 2.4328082500032906
+  },
+  {
+    "held_match": "4039",
+    "epoch": 10,
+    "training_objective": 0.43938915245234966,
+    "max_gradient_norm": 1.9744603633880615,
+    "fraction_clipped": 0.375,
+    "seconds": 2.4610330420000537
+  },
+  {
+    "held_match": "4039",
+    "epoch": 11,
+    "training_objective": 0.48212176375091076,
+    "max_gradient_norm": 1.5861340761184692,
+    "fraction_clipped": 0.5,
+    "seconds": 2.8495390419993782
+  },
+  {
+    "held_match": "4039",
+    "epoch": 12,
+    "training_objective": 0.43256171979010105,
+    "max_gradient_norm": 1.2153563499450684,
+    "fraction_clipped": 0.25,
+    "seconds": 2.5019654160023492
+  }
+]

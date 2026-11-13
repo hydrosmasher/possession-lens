@@ -1,0 +1,162 @@
+[
+  {
+    "held_match": "4039",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": false,
+    "samples": 11166,
+    "positives": 815
+  },
+  {
+    "held_match": "4039",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": true,
+    "samples": 10313,
+    "positives": 611
+  },
+  {
+    "held_match": "4039",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": false,
+    "samples": 10662,
+    "positives": 773
+  },
+  {
+    "held_match": "4039",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": true,
+    "samples": 9801,
+    "positives": 647
+  },
+  {
+    "held_match": "3749",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": false,
+    "samples": 12067,
+    "positives": 905
+  },
+  {
+    "held_match": "3749",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": true,
+    "samples": 11348,
+    "positives": 725
+  },
+  {
+    "held_match": "3749",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": false,
+    "samples": 11886,
+    "positives": 730
+  },
+  {
+    "held_match": "3749",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": true,
+    "samples": 10931,
+    "positives": 576
+  },
+  {
+    "held_match": "3518",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": false,
+    "samples": 12062,
+    "positives": 818
+  },
+  {
+    "held_match": "3518",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": true,
+    "samples": 10892,
+    "positives": 646
+  },
+  {
+    "held_match": "3518",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": false,
+    "samples": 12062,
+    "positives": 965
+  },
+  {
+    "held_match": "3518",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": true,
+    "samples": 10511,
+    "positives": 701
+  },
+  {
+    "held_match": "2068",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": false,
+    "samples": 11155,
+    "positives": 1096
+  },
+  {
+    "held_match": "2068",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": true,
+    "samples": 10340,
+    "positives": 903
+  },
+  {
+    "held_match": "2068",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": false,
+    "samples": 12416,
+    "positives": 1083
+  },
+  {
+    "held_match": "2068",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": true,
+    "samples": 11377,
+    "positives": 859
+  },
+  {
+    "held_match": "2440",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": false,
+    "samples": 14738,
+    "positives": 1065
+  },
+  {
+    "held_match": "2440",
+    "excluded_from_weights_and_scaling": true,
+    "period": 1,
+    "masked": true,
+    "samples": 13263,
+    "positives": 905
+  },
+  {
+    "held_match": "2440",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": false,
+    "samples": 15433,
+    "positives": 1330
+  },
+  {
+    "held_match": "2440",
+    "excluded_from_weights_and_scaling": true,
+    "period": 2,
+    "masked": true,
+    "samples": 13187,
+    "positives": 1010
+  }
+]

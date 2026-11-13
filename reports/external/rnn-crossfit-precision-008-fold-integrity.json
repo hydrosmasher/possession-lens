@@ -1,0 +1,52 @@
+[
+  {
+    "held_match": "4039",
+    "training_only_scaling_verified": true,
+    "training_matches": [
+      "3749",
+      "3518",
+      "2068",
+      "2440"
+    ]
+  },
+  {
+    "held_match": "3749",
+    "training_only_scaling_verified": true,
+    "training_matches": [
+      "4039",
+      "3518",
+      "2068",
+      "2440"
+    ]
+  },
+  {
+    "held_match": "3518",
+    "training_only_scaling_verified": true,
+    "training_matches": [
+      "4039",
+      "3749",
+      "2068",
+      "2440"
+    ]
+  },
+  {
+    "held_match": "2068",
+    "training_only_scaling_verified": true,
+    "training_matches": [
+      "4039",
+      "3749",
+      "3518",
+      "2440"
+    ]
+  },
+  {
+    "held_match": "2440",
+    "training_only_scaling_verified": true,
+    "training_matches": [
+      "4039",
+      "3749",
+      "3518",
+      "2068"
+    ]
+  }
+]

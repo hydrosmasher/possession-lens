@@ -36,7 +36,7 @@ def research_summary(root):
     from pathlib import Path
     import json
     attempt=None
-    for filename,label in [('rnn-boundary-precision-007-report.json','boundary verifier'),('rnn-gated-recovery-006-report.json','fine-tuning')]:
+    for filename,label in [('rnn-selective-precision-009-report.json','selective verifier'),('rnn-crossfit-precision-008-report.json','match-excluded verifier'),('rnn-boundary-precision-007-report.json','boundary verifier'),('rnn-gated-recovery-006-report.json','fine-tuning')]:
         attempt_path=Path(root)/'reports/external'/filename
         if attempt_path.exists():
             study=json.loads(attempt_path.read_text())

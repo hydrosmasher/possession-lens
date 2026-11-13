@@ -31,3 +31,18 @@ class ResearchSummaryTests(unittest.TestCase):
    (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
    (p/'rnn-boundary-precision-007-report.json').write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':.5715}}))
    r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertEqual(r['latest_attempt']['label'],'boundary verifier');self.assertFalse(r['latest_attempt']['accepted'])
+
+ def test_crossfit_attempt_has_priority_without_changing_saved_model(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);p=root/'reports/external';p.mkdir(parents=True)
+   (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
+   for name,score in [('rnn-boundary-precision-007-report.json',.57),('rnn-crossfit-precision-008-report.json',.58)]:
+    (p/name).write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':score}}))
+   r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertEqual(r['latest_attempt']['label'],'match-excluded verifier');self.assertEqual(r['latest_attempt']['score'],.58)
+
+ def test_selective_attempt_is_labelled_and_never_auto_promoted(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);p=root/'reports/external';p.mkdir(parents=True)
+   (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
+   (p/'rnn-selective-precision-009-report.json').write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':.5837}}))
+   r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertEqual(r['latest_attempt']['label'],'selective verifier');self.assertFalse(r['latest_attempt']['accepted'])

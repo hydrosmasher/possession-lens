@@ -1,0 +1,23 @@
+{
+  "experiment": "selective-precision-009",
+  "status": "Exploratory post008 follow-up; specified after viewing008; not fresh-test evidence",
+  "training_performed": false,
+  "validation": [
+    "2269"
+  ],
+  "test_loaded": false,
+  "competition_data_used": false,
+  "backbone_sha256": "c691a4fac67554bf038435d2f006dba155c4c7ba62b6ede1f17364d420166bd6",
+  "verifier_sha256": "611ae63dd73d974a7cdc22a0675c8a72e7fe63d265604507716c1f982211db6d",
+  "policy": "Preserve original boundary head when either team probability differs across +/-25 frames by >= threshold; otherwise use verifier blend",
+  "mixes": [
+    0.25,
+    0.5
+  ],
+  "thresholds": [
+    0.25,
+    0.5
+  ],
+  "penalty": 28,
+  "selection": "same008 safeguards; spell F1>high-recall, misses<=292,FP<=112,merges<=66,actual short0, lost same recovered spells0"
+}

@@ -1,0 +1,76 @@
+{
+  "experiment": "crossfit-boundary-008",
+  "folds": [
+    {
+      "held": "4039",
+      "train": [
+        "3749",
+        "3518",
+        "2068",
+        "2440"
+      ]
+    },
+    {
+      "held": "3749",
+      "train": [
+        "4039",
+        "3518",
+        "2068",
+        "2440"
+      ]
+    },
+    {
+      "held": "3518",
+      "train": [
+        "4039",
+        "3749",
+        "2068",
+        "2440"
+      ]
+    },
+    {
+      "held": "2068",
+      "train": [
+        "4039",
+        "3749",
+        "3518",
+        "2440"
+      ]
+    },
+    {
+      "held": "2440",
+      "train": [
+        "4039",
+        "3749",
+        "3518",
+        "2068"
+      ]
+    }
+  ],
+  "validation": [
+    "2269"
+  ],
+  "test_loaded": false,
+  "competition_data_used": false,
+  "initialisation": "each fold from scratch; no pretrained weights; fold-only scaling",
+  "fold_architecture": "2-layer bidirectional GRU with boundary head;12 epochs,16 steps,32 windows; AdamW.001,weight decay.0001,clip1,seed108+foldindex",
+  "verifier": "same natural+high-head sampling as007; logistic20 epochs,seed91; only match-excluded predictions",
+  "mixes": [
+    0.25,
+    0.5
+  ],
+  "penalties": [
+    20,
+    28,
+    40
+  ],
+  "reference_sha256": "c28813e451845d7c2816e6a11fcf846120d5ce7dc0198819b57aa95fe15392f6",
+  "backbone_sha256": "c691a4fac67554bf038435d2f006dba155c4c7ba62b6ede1f17364d420166bd6",
+  "selection": "mean spell F1>recovery; misses<=292,FP<=112,merges<=66,actual short=0 and zero loss of same recovered reference spells",
+  "limitations": [
+    "External validation reused; not fresh-test evidence.",
+    "Fold predictions excluded from fold weights and scaling, but all five matches are used to train the verifier.",
+    "Scratch-fold and fine-tuned final-backbone distributions may differ.",
+    "Provider labels are partial automatic supervision; no default promotion."
+  ]
+}

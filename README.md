@@ -27,6 +27,8 @@ The latest candidate is **validation-only** and has not replaced the default or 
 
 Latest fine-tuning study reached **0.5791 validation spell F1**, but failed the false-positive guard. Stronger smoothing increased merges. The saved candidate remains unchanged. [Results and reproduction](docs/external/GATED_RECOVERY_005.md).
 
+Boundary-verifier follow-up peaked at **0.5715 validation spell F1** and failed to preserve the high-recall model’s recovered possessions. The saved model remains unchanged. [Boundary precision study](docs/external/BOUNDARY_PRECISION_007.md).
+
 ## Run the notebook
 
 Use Python3.11 or3.12 for a fresh setup:

@@ -35,11 +35,13 @@ def research_summary(root):
     """Latest eligible validation result; never replaces frozen fresh-test evidence."""
     from pathlib import Path
     import json
-    attempt_path=Path(root)/'reports/external/rnn-gated-recovery-006-report.json'
     attempt=None
-    if attempt_path.exists():
-        study=json.loads(attempt_path.read_text())
-        attempt={'score':study['best_unrestricted']['selection_spell_f1'],'accepted':study.get('selected') is not None}
+    for filename,label in [('rnn-boundary-precision-007-report.json','boundary verifier'),('rnn-gated-recovery-006-report.json','fine-tuning')]:
+        attempt_path=Path(root)/'reports/external'/filename
+        if attempt_path.exists():
+            study=json.loads(attempt_path.read_text())
+            attempt={'score':study['best_unrestricted']['selection_spell_f1'],'accepted':study.get('selected') is not None,'label':label}
+            break
     for filename,label in [('rnn-gated-decoder-004-report.json','Refined GRU boundary decoder'),('rnn-gated-003-report.json','Gated RNN'),('rnn-interaction-context-001-report.json','Interaction RNN')]:
         path=Path(root)/'reports/external'/filename
         if not path.exists():continue

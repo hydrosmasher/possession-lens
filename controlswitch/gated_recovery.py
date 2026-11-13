@@ -88,6 +88,8 @@ def run(raw,checkpoint,out,followup=False):
                 if trial['eligible'] and result['selection_spell_f1']>reference['selection_spell_f1'] and (best is None or result['selection_spell_f1']>best['selection_spell_f1']):
                     best=trial;save_checkpoint(out/'candidate.npz',model,frozen['mean'],frozen['scale'],penalty,1.)
             dump(out/'trials.json',trials);print('Best eligible',None if best is None else best['selection_spell_f1'],flush=True)
+    # Preserve the final fine-tuned weights for external-only follow-up studies.
+    save_checkpoint(out/'final-trained.npz',model,frozen['mean'],frozen['scale'],28,1.)
     verification=None
     if best:
         f=load_checkpoint(out/'candidate.npz');reloaded=score([decode(p,f['penalty'],b,f['boundary_strength']) for p,b in [symmetric(f['model'],s,p,f['mean'],f['scale'],mask) for s,p,c,mask in rows]])

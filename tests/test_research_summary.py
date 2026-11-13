@@ -24,3 +24,10 @@ class ResearchSummaryTests(unittest.TestCase):
    (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
    (p/'rnn-gated-recovery-006-report.json').write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':.5791}}))
    r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertFalse(r['latest_attempt']['accepted']);self.assertEqual(r['latest_attempt']['score'],.5791)
+
+ def test_boundary_precision_attempt_has_priority_without_promoting_rejected_model(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);p=root/'reports/external';p.mkdir(parents=True)
+   (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
+   (p/'rnn-boundary-precision-007-report.json').write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':.5715}}))
+   r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertEqual(r['latest_attempt']['label'],'boundary verifier');self.assertFalse(r['latest_attempt']['accepted'])

@@ -1,0 +1,142 @@
+[
+  {
+    "match": "4039",
+    "period": 1,
+    "masked": false,
+    "samples": 17898,
+    "positives": 1318
+  },
+  {
+    "match": "4039",
+    "period": 1,
+    "masked": true,
+    "samples": 16641,
+    "positives": 1111
+  },
+  {
+    "match": "4039",
+    "period": 2,
+    "masked": false,
+    "samples": 17423,
+    "positives": 1452
+  },
+  {
+    "match": "4039",
+    "period": 2,
+    "masked": true,
+    "samples": 16017,
+    "positives": 1274
+  },
+  {
+    "match": "3749",
+    "period": 1,
+    "masked": false,
+    "samples": 21398,
+    "positives": 1722
+  },
+  {
+    "match": "3749",
+    "period": 1,
+    "masked": true,
+    "samples": 18474,
+    "positives": 1417
+  },
+  {
+    "match": "3749",
+    "period": 2,
+    "masked": false,
+    "samples": 20340,
+    "positives": 1341
+  },
+  {
+    "match": "3749",
+    "period": 2,
+    "masked": true,
+    "samples": 18057,
+    "positives": 1073
+  },
+  {
+    "match": "3518",
+    "period": 1,
+    "masked": false,
+    "samples": 18844,
+    "positives": 1368
+  },
+  {
+    "match": "3518",
+    "period": 1,
+    "masked": true,
+    "samples": 17327,
+    "positives": 1225
+  },
+  {
+    "match": "3518",
+    "period": 2,
+    "masked": false,
+    "samples": 18941,
+    "positives": 1415
+  },
+  {
+    "match": "3518",
+    "period": 2,
+    "masked": true,
+    "samples": 17703,
+    "positives": 1219
+  },
+  {
+    "match": "2068",
+    "period": 1,
+    "masked": false,
+    "samples": 17492,
+    "positives": 1541
+  },
+  {
+    "match": "2068",
+    "period": 1,
+    "masked": true,
+    "samples": 15873,
+    "positives": 1311
+  },
+  {
+    "match": "2068",
+    "period": 2,
+    "masked": false,
+    "samples": 19706,
+    "positives": 1589
+  },
+  {
+    "match": "2068",
+    "period": 2,
+    "masked": true,
+    "samples": 17866,
+    "positives": 1328
+  },
+  {
+    "match": "2440",
+    "period": 1,
+    "masked": false,
+    "samples": 18716,
+    "positives": 1298
+  },
+  {
+    "match": "2440",
+    "period": 1,
+    "masked": true,
+    "samples": 17281,
+    "positives": 1093
+  },
+  {
+    "match": "2440",
+    "period": 2,
+    "masked": false,
+    "samples": 19273,
+    "positives": 1612
+  },
+  {
+    "match": "2440",
+    "period": 2,
+    "masked": true,
+    "samples": 17399,
+    "positives": 1372
+  }
+]

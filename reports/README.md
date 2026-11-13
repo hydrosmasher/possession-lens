@@ -4,6 +4,7 @@ Start with these aggregate external reports. Files describe the named split and 
 
 | Evidence | File | Status |
 | --- | --- | --- |
+| Spell-focused fine-tuning | `external/rnn-gated-recovery-005-report.json` and `external/rnn-gated-recovery-006-report.json` | Existing validation only; best0.5791 rejected by guards; no promotion |
 | Latest decoder refinement | `external/rnn-gated-decoder-004-report.json` | Reused validation only;0.5554 spell F1; weights unchanged |
 | GRU/LSTM architecture comparison | `external/rnn-gated-003-report.json` | Validation only;72 decoder/checkpoint trials |
 | Original context fresh-match comparison | `external/rnn-europe-context-001-report.json` | Historical frozen test; separate match and supervision |

@@ -17,3 +17,10 @@ class ResearchSummaryTests(unittest.TestCase):
    diag={c:{'predicted_spells_under_0_4_seconds':4,'full_prediction_spells_under_0_4_seconds':0} for c in ['clean','masked']}
    report={'reference_validation':{'selection_spell_f1':.5527},'reference_diagnostics':diag,'selected':{'selection_spell_f1':.5554,'diagnostics':diag}}
    (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps(report));r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertEqual(r['short_pulses_candidate'],0);self.assertEqual(r['short_pulses_reference'],0)
+
+ def test_rejected_followup_does_not_replace_saved_candidate(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);p=root/'reports/external';p.mkdir(parents=True)
+   (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
+   (p/'rnn-gated-recovery-006-report.json').write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':.5791}}))
+   r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertFalse(r['latest_attempt']['accepted']);self.assertEqual(r['latest_attempt']['score'],.5791)

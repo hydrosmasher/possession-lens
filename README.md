@@ -25,6 +25,8 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 The latest candidate is **validation-only** and has not replaced the default or gallery model. Reused partial provider labels do not establish fresh-match or challenge accuracy. The short-spell audit distinguishes label-gap fragments from actual rapid predicted switches. [Read the decoder study](docs/external/GATED_DECODER_004.md).
 
+Latest fine-tuning study reached **0.5791 validation spell F1**, but failed the false-positive guard. Stronger smoothing increased merges. The saved candidate remains unchanged. [Results and reproduction](docs/external/GATED_RECOVERY_005.md).
+
 ## Run the notebook
 
 Use Python3.11 or3.12 for a fresh setup:

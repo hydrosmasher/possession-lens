@@ -1,0 +1,46 @@
+[
+  {
+    "variant": "spell_boundary_focus",
+    "epoch": 1,
+    "objective": 0.7066011596471071,
+    "train_probe_ce": 0.2464003711938858,
+    "validation_probe_ce": 0.6693905591964722,
+    "generalisation_gap": 0.42299018800258636,
+    "max_gradient_norm": 2.077712059020996,
+    "fraction_steps_clipped": 0.9375,
+    "seconds": 2.0574295420010458
+  },
+  {
+    "variant": "spell_boundary_focus",
+    "epoch": 2,
+    "objective": 0.7033398598432541,
+    "train_probe_ce": 0.2563517093658447,
+    "validation_probe_ce": 0.6229972243309021,
+    "generalisation_gap": 0.3666455149650574,
+    "max_gradient_norm": 2.6344196796417236,
+    "fraction_steps_clipped": 0.8125,
+    "seconds": 1.9748053750008694
+  },
+  {
+    "variant": "spell_boundary_focus",
+    "epoch": 3,
+    "objective": 0.7497632652521133,
+    "train_probe_ce": 0.2687792479991913,
+    "validation_probe_ce": 0.5740326046943665,
+    "generalisation_gap": 0.30525335669517517,
+    "max_gradient_norm": 2.3964123725891113,
+    "fraction_steps_clipped": 0.8125,
+    "seconds": 1.9816247079979803
+  },
+  {
+    "variant": "spell_boundary_focus",
+    "epoch": 4,
+    "objective": 0.6879892162978649,
+    "train_probe_ce": 0.27410563826560974,
+    "validation_probe_ce": 0.47116518020629883,
+    "generalisation_gap": 0.1970595419406891,
+    "max_gradient_norm": 1.697537899017334,
+    "fraction_steps_clipped": 0.875,
+    "seconds": 2.0785509170018486
+  }
+]

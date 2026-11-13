@@ -1,0 +1,39 @@
+{
+  "experiment": "gated-recovery-005",
+  "train": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "validation": [
+    "2269"
+  ],
+  "test_loaded": false,
+  "competition_data_used": false,
+  "seed": 73,
+  "epochs": 4,
+  "steps_per_epoch": 16,
+  "batch": 16,
+  "lr": 0.0002,
+  "weight_decay": 0.0001,
+  "clip_norm": 1.0,
+  "variants": [
+    "uniform",
+    "spell_boundary_focus"
+  ],
+  "score_epochs": [
+    2,
+    4
+  ],
+  "penalties": [
+    16,
+    20,
+    24
+  ],
+  "boundary_strength": 1.0,
+  "checkpoint_sha256": "c28813e451845d7c2816e6a11fcf846120d5ce7dc0198819b57aa95fe15392f6",
+  "selection": "highest eligible validation mean clean/dropout spell F1 above reference; misses, false positives and merge overlaps no worse; full-sequence short predictions no worse",
+  "limitations": "Repeated existing validation; no fresh test, no automatic promotion. Focused sampling changes training distribution; compare uniform fine-tuning control."
+}

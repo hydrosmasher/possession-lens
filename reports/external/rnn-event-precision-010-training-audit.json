@@ -1,0 +1,182 @@
+[
+  {
+    "match": "4039",
+    "period": 1,
+    "masked": false,
+    "proposals": 15,
+    "positive": 7,
+    "negative": 2,
+    "excluded": 6
+  },
+  {
+    "match": "4039",
+    "period": 1,
+    "masked": true,
+    "proposals": 9,
+    "positive": 5,
+    "negative": 1,
+    "excluded": 3
+  },
+  {
+    "match": "4039",
+    "period": 2,
+    "masked": false,
+    "proposals": 17,
+    "positive": 11,
+    "negative": 1,
+    "excluded": 5
+  },
+  {
+    "match": "4039",
+    "period": 2,
+    "masked": true,
+    "proposals": 16,
+    "positive": 8,
+    "negative": 1,
+    "excluded": 7
+  },
+  {
+    "match": "3749",
+    "period": 1,
+    "masked": false,
+    "proposals": 17,
+    "positive": 9,
+    "negative": 1,
+    "excluded": 7
+  },
+  {
+    "match": "3749",
+    "period": 1,
+    "masked": true,
+    "proposals": 10,
+    "positive": 5,
+    "negative": 1,
+    "excluded": 4
+  },
+  {
+    "match": "3749",
+    "period": 2,
+    "masked": false,
+    "proposals": 6,
+    "positive": 3,
+    "negative": 0,
+    "excluded": 3
+  },
+  {
+    "match": "3749",
+    "period": 2,
+    "masked": true,
+    "proposals": 6,
+    "positive": 2,
+    "negative": 0,
+    "excluded": 4
+  },
+  {
+    "match": "3518",
+    "period": 1,
+    "masked": false,
+    "proposals": 11,
+    "positive": 8,
+    "negative": 1,
+    "excluded": 2
+  },
+  {
+    "match": "3518",
+    "period": 1,
+    "masked": true,
+    "proposals": 6,
+    "positive": 4,
+    "negative": 1,
+    "excluded": 1
+  },
+  {
+    "match": "3518",
+    "period": 2,
+    "masked": false,
+    "proposals": 14,
+    "positive": 7,
+    "negative": 1,
+    "excluded": 6
+  },
+  {
+    "match": "3518",
+    "period": 2,
+    "masked": true,
+    "proposals": 7,
+    "positive": 3,
+    "negative": 1,
+    "excluded": 3
+  },
+  {
+    "match": "2068",
+    "period": 1,
+    "masked": false,
+    "proposals": 21,
+    "positive": 11,
+    "negative": 2,
+    "excluded": 8
+  },
+  {
+    "match": "2068",
+    "period": 1,
+    "masked": true,
+    "proposals": 15,
+    "positive": 8,
+    "negative": 2,
+    "excluded": 5
+  },
+  {
+    "match": "2068",
+    "period": 2,
+    "masked": false,
+    "proposals": 17,
+    "positive": 11,
+    "negative": 1,
+    "excluded": 5
+  },
+  {
+    "match": "2068",
+    "period": 2,
+    "masked": true,
+    "proposals": 16,
+    "positive": 9,
+    "negative": 1,
+    "excluded": 6
+  },
+  {
+    "match": "2440",
+    "period": 1,
+    "masked": false,
+    "proposals": 21,
+    "positive": 11,
+    "negative": 4,
+    "excluded": 6
+  },
+  {
+    "match": "2440",
+    "period": 1,
+    "masked": true,
+    "proposals": 16,
+    "positive": 7,
+    "negative": 3,
+    "excluded": 6
+  },
+  {
+    "match": "2440",
+    "period": 2,
+    "masked": false,
+    "proposals": 17,
+    "positive": 8,
+    "negative": 3,
+    "excluded": 6
+  },
+  {
+    "match": "2440",
+    "period": 2,
+    "masked": true,
+    "proposals": 10,
+    "positive": 5,
+    "negative": 1,
+    "excluded": 4
+  }
+]

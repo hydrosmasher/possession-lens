@@ -46,3 +46,11 @@ class ResearchSummaryTests(unittest.TestCase):
    (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
    (p/'rnn-selective-precision-009-report.json').write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':.5837}}))
    r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertEqual(r['latest_attempt']['label'],'selective verifier');self.assertFalse(r['latest_attempt']['accepted'])
+
+ def test_duration_followup_is_latest_without_promoting_rejected_compact_model(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);p=root/'reports/external';p.mkdir(parents=True)
+   (p/'rnn-gated-decoder-004-report.json').write_text(json.dumps({'reference_validation':{'selection_spell_f1':.55},'selected':{'selection_spell_f1':.5554}}))
+   for name,score in [('rnn-event-precision-011-report.json',.5832),('rnn-event-duration-012-report.json',.5828)]:
+    (p/name).write_text(json.dumps({'selected':None,'best_unrestricted':{'selection_spell_f1':score}}))
+   r=research_summary(root);self.assertEqual(r['candidate'],.5554);self.assertEqual(r['latest_attempt']['label'],'short-spell duration check');self.assertFalse(r['latest_attempt']['accepted'])

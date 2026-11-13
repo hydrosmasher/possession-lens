@@ -1,0 +1,40 @@
+{
+  "experiment": "event-precision-011",
+  "train": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "validation": [
+    "2269"
+  ],
+  "test_loaded": false,
+  "competition_data_used": false,
+  "fold_sha256": {
+    "4039": "cdd2eb24de13500e793c5a4953bcda39b87db45352384888eaf2952cec1cc437",
+    "3749": "13576a5776fd01f42744ac6565d7b8abd1bddd0b71ac7d5a41763117505752e4",
+    "3518": "9e966143a8d80fdb7318a7f71ef3c9e83c66b9284de1c7d644fc4b3d205ef22e",
+    "2068": "5cd78c491cf5244cf8e2d914d065f06024980593e0cde4b699882bc2514109f5",
+    "2440": "f315b280da0c9c0601209ae72db563514af0f919a7f4cdbc80f71653b5f423e2"
+  },
+  "backbone_sha256": "c691a4fac67554bf038435d2f006dba155c4c7ba62b6ede1f17364d420166bd6",
+  "reference_sha256": "c28813e451845d7c2816e6a11fcf846120d5ce7dc0198819b57aa95fe15392f6",
+  "training": "OOF GRU A-B-A proposals, middle <=10s, outer flanks>=0.4s; logistic45 epochs seed110",
+  "target": "Only completely known +/-1s neighbourhoods: middle-team purity>=.8 positive,<=.2 negative, ambiguous excluded",
+  "features": "Role-ordered proximity, ball/player movement and trajectory pooled over spell and flanks; probability/head confidence and duration; no labels at inference",
+  "thresholds": [
+    0.1,
+    0.25
+  ],
+  "max_frames": [
+    125,
+    250
+  ],
+  "edit_policy": "Remove low-validity middle spell, sorted confidence; no new candidates or cascading edits; all other boundaries unchanged",
+  "selection": "mean spell F1>high-recall,misses<=292,FP<=112,merges<=66,actual short0,same recovered spells lost0",
+  "status": "Post010 exploratory compact+ridge follow-up; fixed before011 evaluation; no fresh test",
+  "feature_dimensions": 20,
+  "l2": 0.05
+}

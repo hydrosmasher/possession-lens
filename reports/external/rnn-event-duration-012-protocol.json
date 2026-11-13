@@ -1,0 +1,22 @@
+{
+  "experiment": "event-duration-012",
+  "status": "Post011 exploratory interpolation of duration cap; specified before012 evaluation; reused validation, not independent evidence",
+  "training_performed": false,
+  "validation": [
+    "2269"
+  ],
+  "test_loaded": false,
+  "competition_data_used": false,
+  "backbone_sha256": "c691a4fac67554bf038435d2f006dba155c4c7ba62b6ede1f17364d420166bd6",
+  "verifier_sha256": "3836d780407cf815d18a5c9e14ecc5c5e74fc3415a1bfadb23dc7891017516ad",
+  "thresholds": [
+    0.1
+  ],
+  "max_frames": [
+    150,
+    175,
+    200
+  ],
+  "compact": true,
+  "selection": "mean spell F1>high-recall,misses<=292,FP<=112,merges<=66,actual short0,same recovered spells lost0"
+}

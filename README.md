@@ -25,11 +25,7 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 The latest candidate is **validation-only** and has not replaced the default or gallery model. Reused partial provider labels do not establish fresh-match or challenge accuracy. The short-spell audit distinguishes label-gap fragments from actual rapid predicted switches. [Read the decoder study](docs/external/GATED_DECODER_004.md).
 
-Latest fine-tuning study reached **0.5791 validation spell F1**, but failed the false-positive guard. Stronger smoothing increased merges. The saved candidate remains unchanged. [Results and reproduction](docs/external/GATED_RECOVERY_005.md).
-
-Boundary-verifier follow-up peaked at **0.5715 validation spell F1** and failed to preserve the high-recall model’s recovered possessions. The saved model remains unchanged. [Boundary precision study](docs/external/BOUNDARY_PRECISION_007.md).
-
-Match-excluded verifier + selective protection reached **0.5837 validation spell F1**, reducing false positives to108 and misses to289. It still lost2 recovered spells and increased merges, so it was not promoted. [Crossfit study](docs/external/CROSSFIT_PRECISION_008.md) · [Selective follow-up](docs/external/SELECTIVE_PRECISION_009.md).
+The unrestricted development peak is **0.5837 validation spell F1**, but that trial lost2 recoveries and increased merges. The new compact paired-switch comparison reaches **0.5832**, retains all27 recoveries, keeps merges66 and reduces false positives122→115. It still exceeds the strict112 false-positive guard; the saved model remains unchanged. [Latest studies and limits](docs/external/EVENT_DURATION_012.md).
 
 ## Run the notebook
 

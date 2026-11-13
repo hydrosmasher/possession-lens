@@ -106,8 +106,9 @@ def turnover_targets(y,horizon=25):
 def softmax(z):
     z=z-z.max(axis=1,keepdims=True);e=np.exp(z);return e/e.sum(axis=1,keepdims=True)
 
-def fit_classifier(x,y,classes=3,epochs=45,seed=42):
-    """Small standardised multinomial logistic model, mini-batch Adam, fixed seed."""
+def fit_classifier(x,y,classes=3,epochs=45,seed=42,l2=.0005):
+    """Standardised multinomial logistic model; L2 excludes the intercept."""
+    if not np.isfinite(l2) or l2<0:raise ValueError('Invalid classifier regularisation')
     valid=(y>=0)&(y<classes);x=x[valid];y=y[valid]
     if len(np.unique(y))!=classes:raise ValueError('Training split does not contain all required classes')
     mean=x.mean(axis=0);scale=np.maximum(x.std(axis=0),.05)
@@ -117,7 +118,7 @@ def fit_classifier(x,y,classes=3,epochs=45,seed=42):
         order=rng.permutation(len(x))
         for start in range(0,len(x),1024):
             ix=order[start:start+1024];xb=x[ix];p=softmax(xb@w);p[np.arange(len(ix)),y[ix]]-=1
-            gradient=xb.T@p/len(ix)+.0005*w;gradient[-1]-=.0005*w[-1]
+            gradient=xb.T@p/len(ix)+l2*w;gradient[-1]-=l2*w[-1]
             step+=1;m=.9*m+.1*gradient;v=.999*v+.001*gradient**2
             w-=.01*(m/(1-.9**step))/(np.sqrt(v/(1-.999**step))+1e-8)
     return {'weights':w,'mean':mean,'scale':scale}

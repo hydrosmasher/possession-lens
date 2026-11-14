@@ -1,0 +1,19 @@
+{
+  "version": "provider-compatibility-034",
+  "match": "PSG\u2013Marseille2269, previously reused validation, NOT fresh",
+  "source": "Existing historical MIT SkillCorner release; no download or challenge data used",
+  "models": [
+    "frozen031",
+    "frozen032"
+  ],
+  "purpose": "Different-provider compatibility diagnostic only; no tuning or re-selection from this audit",
+  "supervision": "Partial native team-possession groups; unknown staysX. Resampled tracking/labels are not independent frames. No verified dead-ball reference available. Valid-run censoring changes spell objects; scores cannot be equated to full Sportec H/A/D results.",
+  "conditions": [
+    "clean",
+    "masked",
+    "long_gap",
+    "tracker_noise"
+  ],
+  "training_or_calibration": false,
+  "competition_percentile_known": false
+}

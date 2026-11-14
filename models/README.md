@@ -24,3 +24,5 @@ Attribution and source hashes are recorded in study reports and data notices. Sp
 Candidate030 uses six hashed assets listed in reports/external/ranking-030-config.json. The new archived control-state028, quality-gate029, noise-dead018 and had-boundary020 weights are frozen external-trained components; the context RNN and014 dead expert are reused. No model was fitted on the provided game.
 
 Candidate031 replaces only the030 boundary asset with boundary-aligned031-validation-only.npz, refitted on external WMX emissions. The031 config pins all six assets and full adaptive strength; original030 assets/config are unchanged.
+
+Candidate032 changes only the031 control asset to control-spell032-validation-only.npz. Same296 input features,100trees; four training conditions and train-only spell-duration weights. Six hashes remain pinned by its config.

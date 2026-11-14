@@ -1,0 +1,44 @@
+{
+  "version": "ranked-possession-030",
+  "spec": {
+    "name": "joint_state_quality1_boundary_full",
+    "control": "state",
+    "dead": "quality",
+    "cap": 1.0,
+    "boundary": "balanced",
+    "strength": 1.0
+  },
+  "assets": {
+    "team": {
+      "path": "models/rnn-europe-context-001-experimental.npz",
+      "sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c"
+    },
+    "control": {
+      "path": "models/archive/control-spell032-validation-only.npz",
+      "sha256": "c7820a65b9399481aa8a45f91d16ecb9914078b28e2a0c2f8074c6f9dbfa2fd4"
+    },
+    "dead_old": {
+      "path": "models/archive/deadball-014-validation-only.npz",
+      "sha256": "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12"
+    },
+    "dead_noise": {
+      "path": "models/archive/noise-dead018-validation-only.npz",
+      "sha256": "920d669f7872f607429521c823b738834b331e40d963459905161c2793096a3f"
+    },
+    "quality": {
+      "path": "models/archive/quality-gate029-validation-only.npz",
+      "sha256": "7f1c98c79d25cfe06b3e8f3f1101ac1f3f8e8c018dd2a811eb985c9bd0382c6c"
+    },
+    "boundary": {
+      "path": "models/archive/boundary-aligned031-validation-only.npz",
+      "sha256": "66d0af24520bb3ca47f0097030f6d3d268c66f285d8f1fda3e0187a3c35725d0"
+    }
+  },
+  "selection_metric": "official possession-spell F1 on external development",
+  "training_match_for_forward_components": "J03WMX; context RNN uses its documented five external SkillCorner training matches",
+  "validation_status": "Two extensively reused external matches; frozen different-observation-draw audit. Not fresh-match testing.",
+  "competition_percentile_known": false,
+  "user_goal": "Top5% of competition entries; no guarantee or measured percentile",
+  "candidate": "032",
+  "selection_report": "reports/external/spell-training-032-report.json"
+}

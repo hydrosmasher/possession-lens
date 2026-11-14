@@ -1,0 +1,12 @@
+{
+  "version": "quality-gru-036",
+  "reference": "frozen032",
+  "history": "After035 rejection for noisy-tracking fold regression. Same two extensively reused external first-division matches; no independent test.",
+  "hypothesis": "Use the already external-trained029 observation-quality model to attenuate GRU evidence under degraded tracking.",
+  "frozen": "All032 weights and035 final12iteration GRUs unchanged; no refitting. Gated residual blend is between complete032 conditional live evidence (including original RNN) and035GRU, not035tree-only anchor.",
+  "variants": "GRU weight=.25*(1-quality) or.5*(1-quality); quality gate never receives possession labels or augmentation flags at inference. No fitted threshold.",
+  "selection": "Mean official four-condition spellF1 gain>=.003 over032; per clean/gap fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean, FP reported.",
+  "audit": "Freeze one winner and component hashes before different-draw audit seeds1814/2014/2418; only winner/032 decoded. Audit mean must improve, otherwise retain032 without runner-up selection.",
+  "competition_data_used": false,
+  "competition_percentile_known": false
+}

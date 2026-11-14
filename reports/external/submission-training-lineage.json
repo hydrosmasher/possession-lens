@@ -93,5 +93,12 @@
     "validation": "Opposite match reused development; frozen different-gap audit, not fresh games",
     "selection_report": "reports/external/boundary-031-report.json",
     "challenge_training_or_selection": false
+  },
+  "current_candidate032": {
+    "config": "reports/external/spell-training-032-config.json",
+    "new_training": "100tree296feature control, WMX136592 augmented live exposures, short-spell weighted; seed132; reverseWN1109408exposures",
+    "unchanged": "RNN, dead/quality experts,031boundary",
+    "selection_report": "reports/external/spell-training-032-report.json",
+    "challenge_training_or_selection": false
   }
 }

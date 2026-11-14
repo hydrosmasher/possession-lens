@@ -1,0 +1,11 @@
+{
+  "candidate": "032",
+  "csv_sha256": "f11559b18434dee7c82de966890d4b4b66b7d0b5cec0101361e6a6779b9e9e85",
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "config": "reports/external/spell-training-032-config.json",
+  "challenge_ground_truth_or_video_used": false,
+  "competition_percentile_known": false
+}

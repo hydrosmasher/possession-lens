@@ -1,0 +1,28 @@
+{
+  "version": "nonlinear-boundary-033",
+  "reference": "frozen031",
+  "hypothesis": "Duration audit shows low short-spell recovery. Test nonlinear existing116-feature event interactions and a smaller event-evidence transition floor, with no hard duration minimum.",
+  "variants": [
+    {
+      "name": "linear_soft",
+      "kind": "linear",
+      "floor": 0.05
+    },
+    {
+      "name": "tree_default",
+      "kind": "tree",
+      "floor": 0.25
+    },
+    {
+      "name": "tree_soft",
+      "kind": "tree",
+      "floor": 0.05
+    }
+  ],
+  "training": "Same balanced031 examples/indices from external training match only;100boosting iterations/7leaves/lr.05/minleaf80/L2=20/seed133/no earlystop; no new features, no validation-based earlystop.",
+  "selection": "Mean official spellF1 gain>=.003 over031; each clean/gap fold decline<=.01; noise fold no decline; deadF1 decline<=.005. Highest eligible mean. Report false-positive trade-off.",
+  "audit": "Freeze/hash one winner before new-draw audit; seeds1614/1814/2218, winner/031 only; audit mean must improve, otherwise retain031 without runner-up selection.",
+  "history": "Two heavily reused external first-division Bundesliga matches, not fresh or independent games. No challenge inputs/labels/video/public scores used. Studies032 and033 both compare031 independently.",
+  "competition_data_used": false,
+  "competition_percentile_known": false
+}

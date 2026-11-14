@@ -1,0 +1,24 @@
+{
+  "selected": null,
+  "component_hashes": [
+    {
+      "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+      "control": "c7820a65b9399481aa8a45f91d16ecb9914078b28e2a0c2f8074c6f9dbfa2fd4",
+      "dead_old": "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12",
+      "dead_noise": "920d669f7872f607429521c823b738834b331e40d963459905161c2793096a3f",
+      "quality": "7f1c98c79d25cfe06b3e8f3f1101ac1f3f8e8c018dd2a811eb985c9bd0382c6c",
+      "boundary": "66d0af24520bb3ca47f0097030f6d3d268c66f285d8f1fda3e0187a3c35725d0",
+      "gru": "42153245a18b1dc630285c75d78d43b16039d0197b0156250878a41b9fdc9f33"
+    },
+    {
+      "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+      "control": "c457e957dd09bd8b14543da73d9cae83a44cf2e21bc05d12ebd52f4555acd67e",
+      "dead_old": "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc",
+      "dead_noise": "476a8e2cb00b14269adf6f0037a251a0a15f758385d8a6be7de9bca7915057fa",
+      "quality": "30a9b63ec2616a840d4b2636396b59c3175223226038b8d72201b29a5c8d245d",
+      "boundary": "11051cee7e68cb9a7b80643d04c41eec83b357ebc2d7109a97c55bab3d942b27",
+      "gru": "4cbcfe9cdcc6a3c1c89b43bfc21259c63c4101d2d0c713f436c842344dd6c5ef"
+    }
+  ],
+  "before_new_draw_audit": true
+}

@@ -1,0 +1,15 @@
+{
+  "version": "spell-gru-035",
+  "reference": "frozen032",
+  "source": "Only opposite-match existing first-division Sportec WMX/WN1; no challenge inputs, labels or video. Both games heavily reused; no independent test.",
+  "architecture": "Existing130 continuous geometry/interaction features; learned48projection+LayerNorm+GELU; two32unit bidirectional GRU layers; locked dropout.15,outputLayerNorm, H/A classifier with unusedD logit, auxiliary direct-turnover head.",
+  "training": "From scratch, seed135,12fixed iterations,512sampled windows/iteration,batch32; core256,context64eachside; same finite-context overlap-save inference. AdamWlr.001,weightdecay.0001,maxgradientnorm1, Xavier input/output and orthogonal recurrent gates.",
+  "supervision": "Known-live H/A only; train-half inverse-sqrt spell weights from032; D/X/padding/context excluded from CE. Aux boundary BCE weight.1,positiveweight capped10; entirely known-live +-12frame neighbourhood only.",
+  "augmentation": "Four fixed clean/shortgap/longgap/tracker-noise conditions and exact team swaps. Scaling from training observations only. No previous label input, scheduled sampling inapplicable.",
+  "variants": "GRU conditional live evidence weights .25/.5/1, remaining weight032tree. Frozen032 dead experts and031boundary decoder. One fixed final checkpoint, no epoch selection.",
+  "selection": "Official four-condition mean spellF1 gain>=.003 over032; each clean/gap fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean. Report false-positive trade-off.",
+  "audit": "Freeze one winner plus hashes before new-observation-draw audit seeds1714/1914/2318. Only winner and032 decoded; audit mean must improve or retain032, no runner-up selection.",
+  "competition_data_used": false,
+  "competition_percentile_known": false,
+  "torch": "2.9.1"
+}

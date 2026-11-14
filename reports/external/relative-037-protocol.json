@@ -1,0 +1,15 @@
+{
+  "version": "relative-motion-037",
+  "reference": "frozen032",
+  "hypothesis": "Add label-free ball/player relative-velocity interception, ball-turn/impulse proximity and multiscale movement evidence to frozen032 control features. One predeclared model.",
+  "training": "416features:296old+120relative-motion/context, original100trees/15leaves/lr.08/minleaf40/L2=10/no earlystop,seed132. Four fixed training conditions, known-live every5th frame, exact team swaps. Weight median computed within each training half only; clip raw inverse-sqrt weights[.5,3], then unit live mean.",
+  "variants": [
+    "relative_motion"
+  ],
+  "frozen": "RNN,014/018/029 dead/quality,031 boundary head and full-strength decoder; correction blend.75; no new boundary refit",
+  "history": "Two heavily reused first-division Bundesliga matches, opposite-match development. Not independent tests. No challenge inputs accepted.",
+  "selection": "Gain>=.003 mean official four-condition spellF1; every clean/gap fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean; report FP trade-off. No post-result search.",
+  "audit": "Freeze winner and hashes before different-draw audit, seeds1914/2114/2518. Only winner/032 evaluated; retain032 if audit mean does not improve. No runner-up selection.",
+  "competition_data_used": false,
+  "competition_percentile_known": false
+}

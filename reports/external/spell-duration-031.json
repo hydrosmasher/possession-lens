@@ -1,0 +1,185 @@
+{
+  "candidate": "031",
+  "source": "Reused opposite-match external predictions only",
+  "diagnostic_iou": 0.5,
+  "official_metric": "Official spellF1 averages multiple IoU thresholds; these are duration-stratified recall diagnostics, not that score",
+  "conditions": {
+    "clean": [
+      {
+        "duration_seconds": "0\u20130.4",
+        "reference_spells": 49,
+        "matched_at_iou_05": 2,
+        "recall_at_iou_05": 0.04081632653061224
+      },
+      {
+        "duration_seconds": "0.4\u20131",
+        "reference_spells": 113,
+        "matched_at_iou_05": 19,
+        "recall_at_iou_05": 0.168141592920354
+      },
+      {
+        "duration_seconds": "1\u20132",
+        "reference_spells": 200,
+        "matched_at_iou_05": 79,
+        "recall_at_iou_05": 0.395
+      },
+      {
+        "duration_seconds": "2\u20135",
+        "reference_spells": 297,
+        "matched_at_iou_05": 175,
+        "recall_at_iou_05": 0.5892255892255892
+      },
+      {
+        "duration_seconds": "5\u201310",
+        "reference_spells": 186,
+        "matched_at_iou_05": 140,
+        "recall_at_iou_05": 0.7526881720430108
+      },
+      {
+        "duration_seconds": "10\u201330",
+        "reference_spells": 139,
+        "matched_at_iou_05": 122,
+        "recall_at_iou_05": 0.8776978417266187
+      },
+      {
+        "duration_seconds": "30\u2013inf",
+        "reference_spells": 27,
+        "matched_at_iou_05": 27,
+        "recall_at_iou_05": 1.0
+      }
+    ],
+    "masked": [
+      {
+        "duration_seconds": "0\u20130.4",
+        "reference_spells": 49,
+        "matched_at_iou_05": 0,
+        "recall_at_iou_05": 0.0
+      },
+      {
+        "duration_seconds": "0.4\u20131",
+        "reference_spells": 113,
+        "matched_at_iou_05": 11,
+        "recall_at_iou_05": 0.09734513274336283
+      },
+      {
+        "duration_seconds": "1\u20132",
+        "reference_spells": 200,
+        "matched_at_iou_05": 55,
+        "recall_at_iou_05": 0.275
+      },
+      {
+        "duration_seconds": "2\u20135",
+        "reference_spells": 297,
+        "matched_at_iou_05": 142,
+        "recall_at_iou_05": 0.4781144781144781
+      },
+      {
+        "duration_seconds": "5\u201310",
+        "reference_spells": 186,
+        "matched_at_iou_05": 119,
+        "recall_at_iou_05": 0.6397849462365591
+      },
+      {
+        "duration_seconds": "10\u201330",
+        "reference_spells": 139,
+        "matched_at_iou_05": 118,
+        "recall_at_iou_05": 0.8489208633093526
+      },
+      {
+        "duration_seconds": "30\u2013inf",
+        "reference_spells": 27,
+        "matched_at_iou_05": 24,
+        "recall_at_iou_05": 0.8888888888888888
+      }
+    ],
+    "long_gap": [
+      {
+        "duration_seconds": "0\u20130.4",
+        "reference_spells": 49,
+        "matched_at_iou_05": 0,
+        "recall_at_iou_05": 0.0
+      },
+      {
+        "duration_seconds": "0.4\u20131",
+        "reference_spells": 113,
+        "matched_at_iou_05": 10,
+        "recall_at_iou_05": 0.08849557522123894
+      },
+      {
+        "duration_seconds": "1\u20132",
+        "reference_spells": 200,
+        "matched_at_iou_05": 51,
+        "recall_at_iou_05": 0.255
+      },
+      {
+        "duration_seconds": "2\u20135",
+        "reference_spells": 297,
+        "matched_at_iou_05": 120,
+        "recall_at_iou_05": 0.40404040404040403
+      },
+      {
+        "duration_seconds": "5\u201310",
+        "reference_spells": 186,
+        "matched_at_iou_05": 121,
+        "recall_at_iou_05": 0.6505376344086021
+      },
+      {
+        "duration_seconds": "10\u201330",
+        "reference_spells": 139,
+        "matched_at_iou_05": 110,
+        "recall_at_iou_05": 0.7913669064748201
+      },
+      {
+        "duration_seconds": "30\u2013inf",
+        "reference_spells": 27,
+        "matched_at_iou_05": 22,
+        "recall_at_iou_05": 0.8148148148148148
+      }
+    ],
+    "tracker_noise": [
+      {
+        "duration_seconds": "0\u20130.4",
+        "reference_spells": 49,
+        "matched_at_iou_05": 0,
+        "recall_at_iou_05": 0.0
+      },
+      {
+        "duration_seconds": "0.4\u20131",
+        "reference_spells": 113,
+        "matched_at_iou_05": 5,
+        "recall_at_iou_05": 0.04424778761061947
+      },
+      {
+        "duration_seconds": "1\u20132",
+        "reference_spells": 200,
+        "matched_at_iou_05": 46,
+        "recall_at_iou_05": 0.23
+      },
+      {
+        "duration_seconds": "2\u20135",
+        "reference_spells": 297,
+        "matched_at_iou_05": 110,
+        "recall_at_iou_05": 0.37037037037037035
+      },
+      {
+        "duration_seconds": "5\u201310",
+        "reference_spells": 186,
+        "matched_at_iou_05": 111,
+        "recall_at_iou_05": 0.5967741935483871
+      },
+      {
+        "duration_seconds": "10\u201330",
+        "reference_spells": 139,
+        "matched_at_iou_05": 108,
+        "recall_at_iou_05": 0.7769784172661871
+      },
+      {
+        "duration_seconds": "30\u2013inf",
+        "reference_spells": 27,
+        "matched_at_iou_05": 22,
+        "recall_at_iou_05": 0.8148148148148148
+      }
+    ]
+  },
+  "repeated_physical_possessions_across_conditions": true
+}

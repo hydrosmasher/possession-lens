@@ -77,5 +77,13 @@
     "noise_dead018": 116776
   },
   "counts_are_training_exposures_not_unique_labels": true,
-  "model_settings": "reports/external/deadblend-019-settings.json"
+  "model_settings": "reports/external/deadblend-019-settings.json",
+  "current_candidate030": {
+    "config": "reports/external/ranking-030-config.json",
+    "selection_report": "reports/external/ranking-030-report.json",
+    "training": "RNN: five documented SkillCorner matches; forward028/029/020/014/018 components: J03WMX only",
+    "validation": "J03WN1 repeatedly viewed; reverse direction reused for development",
+    "quality_gate_supervision": "Automatically generated clean/gap/noise categories; no possession supervision for gate",
+    "no_challenge_training_or_selection": true
+  }
 }

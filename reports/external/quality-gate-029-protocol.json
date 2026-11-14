@@ -1,0 +1,36 @@
+{
+  "version": "observation-quality-gate-029",
+  "history": "Adaptive research after accuracy027 on same repeatedly used Bundesliga pair, no independent test",
+  "competition_data_used": false,
+  "gate_supervision": "Automatic external corruption condition, not possession or BallStatus labels; tracker_noise=1,clean/short/long=0",
+  "features": "27 team-invariant quality features: visibility, stored-vs-position-derived speed mismatch, acceleration, finite player velocities, visible counts and same-team duplicate proximity; raw and rolling12/50. No condition flags, identities, time or reference labels as inputs.",
+  "quality_training": "Each opposite training match, both halves and four conditions, every5th frame;50 boosting iterations/7leaves/lr.08/minleaf80/l2=10,seed129,no earlystop",
+  "frozen": "019 H/A probabilities; original014/015 and noise018 dead experts unchanged",
+  "caps": [
+    0.75,
+    1.0
+  ],
+  "gate": "Noise expert weight=.5+(cap-.5)*P(corruption); clean baseline remains50/50. Expert logits mixed before unchanged deadweight.75 and decoder12/3.",
+  "selection": "Highest four-condition spellF1 with no total misses/merges/FP increase; prior fold loss<=.01; noise fold no decline; each deadF1 loss<=.005; clean pooled frame accuracy no decline. Report accuracy;95% is a target, not guaranteed.",
+  "folds": [
+    {
+      "train": "J03WMX",
+      "validation": "J03WN1"
+    },
+    {
+      "train": "J03WN1",
+      "validation": "J03WMX"
+    }
+  ],
+  "source": "Existing first-division Bundesliga Sportec/IDSSE CC BY4.0, no new data downloads",
+  "hashes": {
+    "old_dead": [
+      "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12",
+      "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc"
+    ],
+    "noise_dead": [
+      "920d669f7872f607429521c823b738834b331e40d963459905161c2793096a3f",
+      "476a8e2cb00b14269adf6f0037a251a0a15f758385d8a6be7de9bca7915057fa"
+    ]
+  }
+}

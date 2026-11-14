@@ -19,3 +19,6 @@ Attribution and source hashes are recorded in study reports and data notices. Sp
 `archive/control-017-validation-only.npz`: new binary live H/A correction,75% blend with frozen context RNN, combined with014 dead-state head. Load via `controlswitch.control_correction` and the matching017 settings. Pooled two-match development gains do not establish fresh-match or challenge accuracy.
 
 `archive/deadblend-019-validation-only.npz`: frozen200-tree50/50 log-odds blend of014 and noise-trained018 dead experts. Combine with the unchanged context RNN and017 control correction using `reports/external/deadblend-019-settings.json`. Recommended candidate after external guards/replay; no challenge score or fresh-test claim.
+
+
+Candidate030 uses six hashed assets listed in reports/external/ranking-030-config.json. The new archived control-state028, quality-gate029, noise-dead018 and had-boundary020 weights are frozen external-trained components; the context RNN and014 dead expert are reused. No model was fitted on the provided game.

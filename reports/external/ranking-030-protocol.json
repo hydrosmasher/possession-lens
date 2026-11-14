@@ -1,0 +1,31 @@
+{
+  "experiment": "ranking-first-030",
+  "user_goal": "Top5% of actual competition entries; no leaderboard distribution is available so no percentile claim is supported",
+  "primary_selection": "Official possession-spell F1, mean over four fixed external conditions",
+  "history": "Adaptive development on two extensively reused Bundesliga matches.028/029 configured before rank-goal clarification. This030 policy is written before inspecting their outcome reports.",
+  "reference": "019",
+  "candidate_families": [
+    "020 balanced_half",
+    "020 balanced_full",
+    "020 recovery_half",
+    "028 state",
+    "028 half_blend",
+    "029 cap0.75",
+    "029 cap1.0",
+    "joint state+cap1+fixed",
+    "joint half_blend+cap0.75+fixed",
+    "joint state+cap1+balanced_half"
+  ],
+  "tradeoff": "False-positive counts are reported, not a hard veto by themselves, because official spellF1 already scores matched/missed/spurious possession objects. This explicitly supersedes the earlier no-FP-increase deployment policy for rank-first selection.",
+  "eligibility": "Mean spellF1>019; every prior condition/fold spellF1 loss<=.01; tracker-noise fold no decline; every per-state deadF1 decline<=.005. Tie within1e-6: higher macroF1, then fewer false positives.",
+  "freeze_policy": "Select and hash one complete pipeline on old observation draws before any new-draw evaluation; no changes or alternative re-selection after that audit.",
+  "new_draw_seeds": {
+    "masked": 1314,
+    "long_gap": 1514,
+    "tracker_noise": 1918
+  },
+  "audit_policy": "Evaluate019 and frozen selected candidate only. Diagnostic new missingness realisations on the same games, not a new-match test. If meanF1 does not improve, report failure and retain019 as predefined fallback; do not select a runner-up using audit results.",
+  "competition_data_used_for_training_or_selection": false,
+  "public_sample_score_used_for_selection": false,
+  "percentile_guaranteed": false
+}

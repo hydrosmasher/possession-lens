@@ -1,0 +1,15 @@
+{
+  "csv_sha256": "da4bb49ef582071904cb00d0a04c010eea50d2ae7124a24c601499f83e7b807c",
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "environments": [
+    "Python3.12 clean pinned inference dependencies",
+    "Python3.12 research dependencies"
+  ],
+  "inputs": "provided tactical XML/TXT only; no video or reference possession labels",
+  "competition_accuracy_measured": false,
+  "competition_percentile_known": false,
+  "config": "reports/external/ranking-030-config.json"
+}

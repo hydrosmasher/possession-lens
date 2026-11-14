@@ -2,19 +2,21 @@
 
 Local H/A/D possession segmentation for **More Than a Hack**, with an offline match dashboard. Built by Hrishikesh, Basel, Omar, Michail and Paul. Registered team: **Visca el Barça, visca Catalunya**.
 
-## Reproduce the frozen submission candidate019
+## Reproduce frozen submission candidate030
 
-Use Python3.12, obtain the licensed tactical match assets separately, then run:
+Use Python 3.12 and obtain the licensed provided match files separately:
 
 ```sh
+python3.12 -m venv .venv
+source .venv/bin/activate
 python -m pip install -r requirements-inference-lock.txt
-python -m controlswitch.submission --data-root /path/to/provided-data --out local/submission-019 --settings reports/external/deadblend-019-settings.json --dead-model models/archive/deadblend-019-validation-only.npz --control-model models/archive/control-017-validation-only.npz --filename "Visca el Barça, visca Catalunya.csv"
-python evaluation/official/evaluation/validate_submission.py "local/submission-019/Visca el Barça, visca Catalunya.csv"
+python -m controlswitch.ranked_pipeline --data-root /path/to/provided-data --out local/submission-030 --config reports/external/ranking-030-config.json --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py "local/submission-030/Visca el Barça, visca Catalunya.csv"
 ```
 
-The new candidate retains017 team control and combines old/noise-trained dead experts. In reused external tracking-noise validation, spellF1 improves0.2867→0.3382; clean/ball-gap pooled scores remain close or slightly improve. This is not challenge accuracy. Two source copies and independent dependency installations reproduce the identical CSV; earlier candidates remain preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [018/019 study](docs/external/TRACKER_019.md).
+Candidate030 combines the existing context RNN with interaction-memory control, observation-quality-weighted dead-ball experts and a boundary-aware decoder. Mean external possession-spell F1 improves **0.4626 → 0.5048** versus019. A frozen check with different simulated observation gaps improves **0.4588 → 0.4900**. These are development results on two extensively reused external Bundesliga matches, not independent-match or challenge accuracy. Competition rank is unknown; top5% is a goal, not a claim.
 
-The latest exact-runtime update cuts **about12–13%** from local inference probes while preserving the full019 CSV checksum. Boundary, larger-pool and abstention studies020–026 are recorded separately; no substantial candidate passed all recovery/false-switch checks.019 remains recommended. [Boundary trade-offs](docs/external/BOUNDARY_020_023.md) · [Data/runtime/uncertainty studies](docs/external/DEVELOPMENT_024_026.md).
+Two source copies and different dependency environments reproduce the identical valid199,319-row CSV. NumPy/pandas suffice for inference; no GPU, training library or network is required. Earlier candidates and studies remain preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [030 evidence and limitations](docs/external/RANKING_030.md).
 
 ## Open the demo
 
@@ -32,7 +34,7 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 | Use | Checkpoint / result |
 | --- | --- |
-| Frozen Phase1 candidate019 | `reports/external/deadblend-019-settings.json` with three pinned assets |
+| Frozen Phase1 candidate030 | `reports/external/ranking-030-config.json` with six hashed assets |
 | Legacy full-match default | `models/rnn-boundary-001.npz` |
 | Named external match gallery | Frozen context RNN; bundled examples are unchanged |
 | Saved eligible research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |

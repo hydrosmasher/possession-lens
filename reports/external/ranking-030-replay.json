@@ -1,0 +1,46 @@
+{
+  "all_saved_forward_predictions_exact": true,
+  "reference_labels_absent_from_inference": true,
+  "checks": [
+    {
+      "half": 1,
+      "condition": "clean",
+      "exact": true
+    },
+    {
+      "half": 1,
+      "condition": "masked",
+      "exact": true
+    },
+    {
+      "half": 1,
+      "condition": "long_gap",
+      "exact": true
+    },
+    {
+      "half": 1,
+      "condition": "tracker_noise",
+      "exact": true
+    },
+    {
+      "half": 2,
+      "condition": "clean",
+      "exact": true
+    },
+    {
+      "half": 2,
+      "condition": "masked",
+      "exact": true
+    },
+    {
+      "half": 2,
+      "condition": "long_gap",
+      "exact": true
+    },
+    {
+      "half": 2,
+      "condition": "tracker_noise",
+      "exact": true
+    }
+  ]
+}

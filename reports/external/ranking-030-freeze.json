@@ -1,0 +1,126 @@
+{
+  "selected": {
+    "spec": {
+      "name": "joint_state_quality1_boundary",
+      "control": "state",
+      "dead": "quality",
+      "cap": 1.0,
+      "boundary": "balanced",
+      "strength": 0.5
+    },
+    "scores": {
+      "clean": {
+        "spell_f1_mean": 0.605328596802842,
+        "macro_f1": 0.9244496153269303,
+        "alive_dead_f1": 0.9993170820542172,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 678,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 484,
+          "false_positive": 151,
+          "merges": 124,
+          "short_under_0_4s": 1,
+          "newly_recovered": 58,
+          "lost_existing": 15
+        },
+        "dead_f1": 0.9992151058485828,
+        "frame_accuracy": 0.9393450377006761
+      },
+      "masked": {
+        "spell_f1_mean": 0.5058394160583941,
+        "macro_f1": 0.8938930271669668,
+        "alive_dead_f1": 0.9832458960907091,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 633,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 584,
+          "false_positive": 206,
+          "merges": 136,
+          "short_under_0_4s": 4,
+          "newly_recovered": 54,
+          "lost_existing": 16
+        },
+        "dead_f1": 0.9807758376028799,
+        "frame_accuracy": 0.9113442864694916
+      },
+      "long_gap": {
+        "spell_f1_mean": 0.4841722255912674,
+        "macro_f1": 0.873327468323665,
+        "alive_dead_f1": 0.9685414618584757,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 638,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 598,
+          "false_positive": 225,
+          "merges": 131,
+          "short_under_0_4s": 1,
+          "newly_recovered": 42,
+          "lost_existing": 23
+        },
+        "dead_f1": 0.9639211821188839,
+        "frame_accuracy": 0.8916940263209149
+      },
+      "tracker_noise": {
+        "spell_f1_mean": 0.4237623762376238,
+        "macro_f1": 0.8482779905125256,
+        "alive_dead_f1": 0.950959349593496,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 706,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 641,
+          "false_positive": 336,
+          "merges": 131,
+          "short_under_0_4s": 1,
+          "newly_recovered": 79,
+          "lost_existing": 28
+        },
+        "dead_f1": 0.9436379673787917,
+        "frame_accuracy": 0.8675607245207423
+      },
+      "mean_spell_f1": 0.5047756536725319,
+      "totals": {
+        "missed": 2307,
+        "false_positive": 918,
+        "merges": 522,
+        "short_under_0_4s": 7,
+        "newly_recovered": 233,
+        "lost_existing": 82
+      }
+    },
+    "guards": {
+      "spell_f1": true,
+      "prior_conditions": true,
+      "tracker_noise": true,
+      "dead_f1": true
+    },
+    "eligible": true
+  },
+  "asset_hashes": [
+    {
+      "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+      "control": "582e22cc3f46f88b9030aa8a2706c2b8a209299e8df265b8bdf5b488f951336e",
+      "dead_old": "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12",
+      "dead_noise": "920d669f7872f607429521c823b738834b331e40d963459905161c2793096a3f",
+      "quality": "7f1c98c79d25cfe06b3e8f3f1101ac1f3f8e8c018dd2a811eb985c9bd0382c6c",
+      "boundary": "f1b783e80855f3fdb08a6f84941394d31e4ccaf18bd2850dd353966a503f72b1"
+    },
+    {
+      "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+      "control": "1c8357b324007d031859b056e57627a88f09eb1620ec39e3aac53e971731fa9f",
+      "dead_old": "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc",
+      "dead_noise": "476a8e2cb00b14269adf6f0037a251a0a15f758385d8a6be7de9bca7915057fa",
+      "quality": "30a9b63ec2616a840d4b2636396b59c3175223226038b8d72201b29a5c8d245d",
+      "boundary": "d915c4be3811323ab02748cbc53b4637227dc43dbc596ad6f557aa17b9d56ffb"
+    }
+  ],
+  "selection_complete_before_new_draw_audit": true,
+  "new_draw_seeds": {
+    "masked": 1314,
+    "long_gap": 1514,
+    "tracker_noise": 1918
+  }
+}

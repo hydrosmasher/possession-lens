@@ -1,0 +1,42 @@
+{
+  "version": "control-interaction-memory-028",
+  "history": "Adaptive development after027 audit; same two extensively reused Bundesliga matches, not independent testing",
+  "competition_data_used": false,
+  "sources": "Existing first-division IDSSE/Sportec,CC BY4.0; provider BallStatus/Possession for supervision only",
+  "folds": [
+    {
+      "train": "J03WMX",
+      "validation": "J03WN1"
+    },
+    {
+      "train": "J03WN1",
+      "validation": "J03WMX"
+    }
+  ],
+  "change": "Add pooled proximity/ball-trajectory/player-motion interactions and fixed soft-control temporal supports to017 correction features",
+  "features": "244 old features +40 interaction/context +12 past/future soft-association averages =296; no identities or labels in inputs",
+  "memory_support_frames": [
+    12,
+    50,
+    200
+  ],
+  "training": "Original017 clean/short/long input augmentation and team swaps; known live labels every5th frame;100 boosting iterations/15leaves/lr.08/minleaf40/L2=10/no earlystop; same seed117 as017",
+  "fixed": "RNN,019 dead estimator,correction mix.75,teamcost12,stopcost3,deadweight.75",
+  "variants": [
+    "state",
+    "half_blend"
+  ],
+  "half_blend": "50/50 old/new control-expert log-odds blend; old tree indices stay within first244 columns; represented as200 numeric trees over296 features",
+  "selection": "Highest four-condition spellF1 passing no total misses/merges/FP increase; prior clean/ball-gap fold F1 decline<=.01; each tracker_noise fold no decline; deadF1 decline<=.005 each condition/fold; pooled clean frame accuracy no decline.95% is reported as a target, never fabricated.",
+  "hashes": {
+    "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+    "old_control": [
+      "3cb6ee64ba7e35a3fe3217ff17890fe59cfeb728d4b8084f2a7be8e5b6d6e596",
+      "f9a249fae329166ada85b45219179b8fc31c3095387278b5f686ed633d49bbc9"
+    ],
+    "dead": [
+      "5487868a7f50a1f1d300d3d636523039f85c22cd68f8ab1b3f656f599ca399c7",
+      "25e93143d57cfbd842140164e1efe15af5700356694c75a7788869579da5ad4b"
+    ]
+  }
+}

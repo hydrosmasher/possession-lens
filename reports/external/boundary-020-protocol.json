@@ -1,0 +1,58 @@
+{
+  "version": "had-boundary-020",
+  "history": "Two extensively reused Bundesliga matches; all020 follows019 development; no independent test.",
+  "folds": [
+    {
+      "train": "J03WMX",
+      "validation": "J03WN1"
+    },
+    {
+      "train": "J03WN1",
+      "validation": "J03WMX"
+    }
+  ],
+  "competition_data_used": false,
+  "sources": "Existing first-division IDSSE/Sportec CC BY4.0; provider BallStatus/Possession supervision only",
+  "emissions": "Frozen019 in each opposite-match training fold; RNN, H/A correction and dead experts unchanged",
+  "conditions": [
+    "clean",
+    "masked",
+    "long_gap",
+    "tracker_noise"
+  ],
+  "training_conditions": "same as018/019; unchanged masks and tracker-noise seeds",
+  "head": "L2 multinomial logistic2-class,25epochs,seed120,l2=.001; train-match-only standardisation and fit",
+  "sampling": "every5th valid live-neighbourhood frame; randomly downsample negatives to positives per half/condition; event scores not naturally calibrated probabilities",
+  "target": "Direct known H/A turnover within+-12frames; only entirely known-live neighbourhoods valid; D changes excluded",
+  "features": "team-invariant existing geometry/interaction/boundary features plus pooled absolute H/A probability changes at+-12/25/50frames; no labels or timestamps",
+  "variants": [
+    {
+      "name": "balanced_half",
+      "strength": 0.5,
+      "mode": "balanced"
+    },
+    {
+      "name": "balanced_full",
+      "strength": 1.0,
+      "mode": "balanced"
+    },
+    {
+      "name": "recovery_half",
+      "strength": 0.5,
+      "mode": "recovery"
+    }
+  ],
+  "decoder": "Only H/A transition cost adapts; stop/restart cost3 fixed; no hard duration floor",
+  "selection": "Best four-condition meanF1 passing no aggregate misses/merges/FP increase; each clean/ball-gap fold no F1 loss>.01; each tracker-noise fold no loss; deadF1 loss<=.005 each fold/condition. No post-result retuning.",
+  "hashes": {
+    "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+    "control": [
+      "3cb6ee64ba7e35a3fe3217ff17890fe59cfeb728d4b8084f2a7be8e5b6d6e596",
+      "f9a249fae329166ada85b45219179b8fc31c3095387278b5f686ed633d49bbc9"
+    ],
+    "dead": [
+      "5487868a7f50a1f1d300d3d636523039f85c22cd68f8ab1b3f656f599ca399c7",
+      "25e93143d57cfbd842140164e1efe15af5700356694c75a7788869579da5ad4b"
+    ]
+  }
+}

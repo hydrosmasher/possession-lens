@@ -1,0 +1,34 @@
+{
+  "version": "multisource-control-024",
+  "history": "Adaptive research after020\u2013023 on reused two-match Bundesliga validation; not fresh or independent testing",
+  "competition_data_used": false,
+  "added_training_matches": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "source": "Existing SkillCorner historical MIT release revision1ed50b775f93075c2a6d00d0d795f13b7b89709e; no2269 validation or viewed SkillCorner test matches added. Sportec first-division Bundesliga CC BY4.0.",
+  "added_sampling": "Up to1500 evenly spaced known25Hz H/A frames per half; clean/short/long observations, both team orders. Unknown excluded, never D. No new downloads.",
+  "sportec_training": "Original017 natural live every5th frame, both halves, clean/short/long and team swap; opposite match stays validation",
+  "estimator": "Same100 boosting iterations,15leaves,learning rate.08,minleaf40,l2=10,no earlystop; seed124",
+  "frozen": "Context RNN,019 dead estimator and decoder unchanged; correction mix.75, teamcost12,stopcost3,deadweight.75",
+  "variants": [
+    "expanded",
+    "half_blend"
+  ],
+  "half_blend": "50/50 frozen017/new-control log-odds blend, then exact team-order averaging; exported200-tree numeric NPZ",
+  "selection": "Highest four-condition meanF1 with no total misses/merges/FP increase; each fold clean/ball-gap loss<=.01, each tracker-noise fold no loss, every deadF1 loss<=.005; no post-result sweep",
+  "hashes": {
+    "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+    "reference_control": [
+      "3cb6ee64ba7e35a3fe3217ff17890fe59cfeb728d4b8084f2a7be8e5b6d6e596",
+      "f9a249fae329166ada85b45219179b8fc31c3095387278b5f686ed633d49bbc9"
+    ],
+    "dead": [
+      "5487868a7f50a1f1d300d3d636523039f85c22cd68f8ab1b3f656f599ca399c7",
+      "25e93143d57cfbd842140164e1efe15af5700356694c75a7788869579da5ad4b"
+    ]
+  }
+}

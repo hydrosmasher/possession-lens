@@ -25,9 +25,18 @@ def blend_control(rnn,correction,mix):
     out=(1-mix)*a+mix*b
     return np.column_stack([out,np.zeros(len(out))])
 
+def swap_control_columns(x):
+    """Exact team permutation of244 features, avoiding repeated geometry work."""
+    x=np.asarray(x)
+    if x.ndim!=2 or x.shape[1]!=244:raise ValueError('Expected244 control features')
+    team_order=np.r_[np.arange(6),np.arange(18,30),np.arange(6,18)]
+    columns=np.r_[*(team_order+30*i for i in range(8)),np.arange(240,244)]
+    return x[:,columns]
+
 def corrected_probabilities(estimator,sequence,pitch,mask=None):
-    a=tree_model.predict(estimator,control_features(sequence,pitch,mask))
-    b=tree_model.predict(estimator,control_features(sequence,pitch,mask,True))
+    x=control_features(sequence,pitch,mask)
+    a=tree_model.predict(estimator,x)
+    b=tree_model.predict(estimator,swap_control_columns(x))
     return (a+b[:,[1,0,2]])*.5
 
 def load_candidate(settings,team_model,dead_model,control_model):
@@ -37,7 +46,11 @@ def load_candidate(settings,team_model,dead_model,control_model):
     return {'settings':settings,'team':load_frozen(team_model),'dead':tree_model.load(dead_model),'correction':tree_model.load(control_model)}
 
 def infer_candidate(candidate,sequence,pitch,mask=None):
-    _,team=infer_frozen(candidate['team'],sequence,pitch,mask)
+    if candidate['team'].get('context') and not candidate['team'].get('interaction_context'):
+        from .europe_context import observation_probabilities as context_emissions
+        team=context_emissions(candidate['team']['model'],sequence,pitch,mask,context=True)
+    else:
+        _,team=infer_frozen(candidate['team'],sequence,pitch,mask)
     correction=corrected_probabilities(candidate['correction'],sequence,pitch,mask)
     dead=tree_model.predict(candidate['dead'],observation_features(sequence,pitch,mask))[:,1]
     config=candidate['settings'];p=fuse(blend_control(team,correction,config['mix']),dead,config['dead_weight'])

@@ -1,0 +1,20 @@
+{
+  "experiment": "exact-inference-optimisation-025",
+  "reference_commit": "9a479e7ef8b825fc9c7f37404ceca5273e0e393f",
+  "candidate": "019, unchanged model weights and settings",
+  "full_csv_sha256": "019e78085b8807b43b6afcc172599509a89fc27eb2ccbd9c5144c9cb1014d961",
+  "full_csv_byte_identical": true,
+  "rows": 199319,
+  "official_format_valid": true,
+  "video_used": false,
+  "public_or_private_ground_truth_used": false,
+  "selection_on_challenge": false,
+  "runtime_changes": [
+    "Permute cached244-column feature matrix for team reversal",
+    "Skip unused intermediate context-RNN decoder, retaining the same emissions and final019 decoder"
+  ],
+  "limitations": [
+    "Same machine and pinned inference environment; timing is a local probe, not a universal speed guarantee.",
+    "No claim of improved model accuracy."
+  ]
+}

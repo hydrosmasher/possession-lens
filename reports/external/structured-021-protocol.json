@@ -1,0 +1,16 @@
+{
+  "version": "structured-had-021",
+  "history": "Follow-up after020 variants failed false-positive guard; same extensively reused external Bundesliga labels, not independent testing",
+  "competition_data_used": false,
+  "input_protocol_sha256": "95c0ba98b31dc243b1b4827528fd9f051079019ed1a32d0f2275c70da332d847",
+  "frozen_emissions": "019;020 event heads unchanged; no new fitting",
+  "variants": [
+    "supported_boundaries",
+    "hierarchical",
+    "hierarchical_supported"
+  ],
+  "supported_boundaries": "multiply event score by max opposing-team support between+-12 and+-25frame means, radius6; no hard threshold or frame-specific correction",
+  "hierarchical": "Binary live/dead Viterbi cost3 based on summed live probability, then H/A Viterbi12 independently within live runs; no forced minimum duration; H/A uncertainty cannot change binary play likelihood",
+  "hierarchical_supported": "same hierarchy, with supported020 score adapting H/A costs at strength.5",
+  "selection": "Best four-condition mean spellF1 with no total misses/merges/FP increase; each clean/ball-gap fold loss<=.01; each tracker_noise fold no loss; each deadF1 loss<=.005. No post-result tuning."
+}

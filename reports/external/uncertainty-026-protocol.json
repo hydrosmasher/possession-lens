@@ -1,0 +1,15 @@
+{
+  "version": "uncertainty-had-026",
+  "history": "Follow-up after020\u2013024 on same two extensively reused matches; no independent test",
+  "competition_data_used": false,
+  "input_protocol_sha256": "95c0ba98b31dc243b1b4827528fd9f051079019ed1a32d0f2275c70da332d847",
+  "frozen": "020 balanced_half decoder on unchanged019 emissions; head and weights fixed",
+  "thresholds": [
+    0.1,
+    0.2
+  ],
+  "abstention_rule": "X only for missing ball, predicted H/A and conditional H/A probability margin below threshold. D decisions retained. No abstention from real ball observations.",
+  "missingness": "Exact original short/long mask seeds214/414 and tracker-noise first RNG mask818+i; source Sportec ball fully observed before simulation",
+  "metric_policy": "Official spellF1 fills X within each reference run; diagnostics use exactly that fill; frame macroF1 uses raw X and charges misses. No interpolation of reference labels.",
+  "selection": "Higher four-condition meanF1; no total misses/merges/FP increase; prior condition fold loss<=.01; noise fold no loss; deadF1 decline<=.005; macroF1 loss<=.02 and abstention fraction<=.05 for every fold/condition. No post-result threshold sweep."
+}

@@ -1,0 +1,19 @@
+{
+  "experiment": "boundary-stability-023",
+  "history": "Unchanged reused matches, new random observation draws only; not fresh-match testing",
+  "competition_data_used": false,
+  "frozen_methods": [
+    "019 reference",
+    "021 supported boundaries",
+    "020 balanced_full higher-recall alternative"
+  ],
+  "selection": "Diagnostic only; no fitting, decoder changes or candidate re-selection from these results",
+  "new_seeds": {
+    "masked": 1214,
+    "long_gap": 1414,
+    "tracker_noise": 1818
+  },
+  "clean": "Same unmodified observations as previous studies",
+  "team_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "event_protocol_sha256": "95c0ba98b31dc243b1b4827528fd9f051079019ed1a32d0f2275c70da332d847"
+}

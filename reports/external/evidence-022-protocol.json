@@ -1,0 +1,13 @@
+{
+  "version": "boundary-evidence-022",
+  "history": "Follow-up after020/021 on same extensively reused Bundesliga validation. No independent test.",
+  "competition_data_used": false,
+  "input_protocol_sha256": "95c0ba98b31dc243b1b4827528fd9f051079019ed1a32d0f2275c70da332d847",
+  "frozen": "019 emissions;020 balanced event heads; .5 adaptive strength; stopcost3; no fitting",
+  "variants": [
+    "minimum",
+    "geometric"
+  ],
+  "evidence": "minimum(q,direction_support) or sqrt(q*direction_support); direction support fixed021 definition. Event scores are not calibrated probabilities.",
+  "selection": "Best mean four-condition spellF1 passing no aggregate misses/merges/FP increase; clean/ball-gap each fold no decline>.01; tracker_noise each fold no decline; deadF1 each fold/condition no decline>.005. Then frozen new-draw stability audit, not retuning."
+}

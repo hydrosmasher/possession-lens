@@ -1,0 +1,72 @@
+[
+  {
+    "match": "4039",
+    "half": 1,
+    "known_25hz_frames": 46007,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "4039",
+    "half": 2,
+    "known_25hz_frames": 45068,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "3749",
+    "half": 1,
+    "known_25hz_frames": 52544,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "3749",
+    "half": 2,
+    "known_25hz_frames": 51015,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "3518",
+    "half": 1,
+    "known_25hz_frames": 49119,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "3518",
+    "half": 2,
+    "known_25hz_frames": 46689,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "2068",
+    "half": 1,
+    "known_25hz_frames": 41077,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "2068",
+    "half": 2,
+    "known_25hz_frames": 47133,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "2440",
+    "half": 1,
+    "known_25hz_frames": 45179,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  },
+  {
+    "match": "2440",
+    "half": 2,
+    "known_25hz_frames": 45731,
+    "sampled_unique_frames": 1500,
+    "augmented_examples": 9000
+  }
+]

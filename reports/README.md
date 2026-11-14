@@ -24,3 +24,5 @@ Reverse dead-ball robustness and CSV reproduction: `external/deadball-015-*.json
 Missing-ball development: `external/gap-016-*.json` records the rejected repair/head variants; `external/control-017-*.json` records the hybrid correction, missed/merged spell diagnostics, masked-spell audit, frozen settings and exact saved-model replay. Both match directions reuse previously viewed labels.
 
 Tracker robustness and submission freeze: `external/tracker-018-*.json`, `external/deadblend-019-*.json`, `external/submission-training-lineage.json`, and `external/release-audit-2026-11-14.json`.019 passes preregistered external guards;018 replacements were rejected. Reproduction proof uses a separate newly installed inference environment, same hardware.
+
+020–026: external boundary/head, structured-decoder, evidence-combination, new-noise-draw, expanded-data and abstention studies are preserved in the corresponding JSON reports. `inference-025-*` records bitwise-equivalent runtime improvement and full frozen019 CSV checksum. No replacement accuracy claim; models and private upload files stay unchanged.

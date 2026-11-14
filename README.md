@@ -14,6 +14,8 @@ python evaluation/official/evaluation/validate_submission.py "local/submission-0
 
 The new candidate retains017 team control and combines old/noise-trained dead experts. In reused external tracking-noise validation, spellF1 improves0.2867→0.3382; clean/ball-gap pooled scores remain close or slightly improve. This is not challenge accuracy. Two source copies and independent dependency installations reproduce the identical CSV; earlier candidates remain preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [018/019 study](docs/external/TRACKER_019.md).
 
+The latest exact-runtime update cuts **about12–13%** from local inference probes while preserving the full019 CSV checksum. Boundary, larger-pool and abstention studies020–026 are recorded separately; no substantial candidate passed all recovery/false-switch checks.019 remains recommended. [Boundary trade-offs](docs/external/BOUNDARY_020_023.md) · [Data/runtime/uncertainty studies](docs/external/DEVELOPMENT_024_026.md).
+
 ## Open the demo
 
 **Open [dashboard.html](dashboard.html)** in your browser, or double-click **Open Possession Lens.command** on macOS. No installation, sign-in or server is needed for the bundled demo. Your files stay on your device.

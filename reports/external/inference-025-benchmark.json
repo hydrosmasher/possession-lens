@@ -1,0 +1,74 @@
+{
+  "experiment": "exact-inference-optimisation-025",
+  "method": "Permute244 cached control columns instead of recomputing team-swap geometry; directly obtain context-RNN emissions instead of running its unused intermediate decoder. Final019 decoder remains unchanged.",
+  "rows": [
+    {
+      "condition": "clean",
+      "frames": 5000,
+      "probabilities_exact": true,
+      "decoded_labels_exact": true,
+      "old_median_seconds": 0.2830747500001962,
+      "new_median_seconds": 0.24714324999968085,
+      "speed_ratio": 1.1453873411495632,
+      "samples": {
+        "old": [
+          0.2916470419995676,
+          0.2830747500001962,
+          0.2785877910000636
+        ],
+        "new": [
+          0.2622910000000047,
+          0.24714324999968085,
+          0.24527808299990284
+        ]
+      }
+    },
+    {
+      "condition": "long_gap",
+      "frames": 5000,
+      "probabilities_exact": true,
+      "decoded_labels_exact": true,
+      "old_median_seconds": 0.2983719590001783,
+      "new_median_seconds": 0.2627622079999128,
+      "speed_ratio": 1.135520824213341,
+      "samples": {
+        "old": [
+          0.2983719590001783,
+          0.29849941700013005,
+          0.297670083000412
+        ],
+        "new": [
+          0.26268729100047494,
+          0.2627622079999128,
+          0.26449029100058397
+        ]
+      }
+    },
+    {
+      "condition": "tracker_noise",
+      "frames": 5000,
+      "probabilities_exact": true,
+      "decoded_labels_exact": true,
+      "old_median_seconds": 0.3042072910002389,
+      "new_median_seconds": 0.26634529199964163,
+      "speed_ratio": 1.1421538136316982,
+      "samples": {
+        "old": [
+          0.3082106660003774,
+          0.3042072910002389,
+          0.30376662500020757
+        ],
+        "new": [
+          0.2674931249994188,
+          0.2644427920004091,
+          0.26634529199964163
+        ]
+      }
+    }
+  ],
+  "all_probabilities_bitwise_equal": true,
+  "limitations": [
+    "Local5000-frame probes, three repeats, same environment/CPU; not a guarantee for other hardware, match lengths or load.",
+    "This changes runtime, not model quality."
+  ]
+}

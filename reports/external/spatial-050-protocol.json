@@ -1,0 +1,25 @@
+{
+  "version": "field-reflection-050",
+  "reference": "frozen043",
+  "hypothesis": "H/A/D labels are unchanged by coherent field reflections. Average frozen-model emissions/event evidence across spatial views to reduce coordinate-specific bias.",
+  "families": {
+    "mirror_x": [
+      "original",
+      "x"
+    ],
+    "mirror_y": [
+      "original",
+      "y"
+    ],
+    "four_views": [
+      "original",
+      "x",
+      "y",
+      "xy"
+    ]
+  },
+  "parameters": "No fitting or weight changes. Reflections transform all ball/player xy consistently; speeds, team membership, timing and masks stay unchanged. No label is an input. Original missingness is retained.",
+  "selection": "Mean official four-condition spellF1 gain>=.003 over043; per clean/gap fold decline<=.01,noise fold no decline,deadF1 decline<=.005. Highest eligible mean, report FP trade-off.",
+  "audit": "Freeze one view family before new draws seeds3314/3514/3918. Only selected family and043 decoded; audit mean must improve or retain043, no runner-up selection.",
+  "history": "Two heavily reused external first-division games; reflected observations are not new or independent matches. No challenge inputs/labels/video/public score used. No percentile claim."
+}

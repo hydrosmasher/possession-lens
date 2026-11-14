@@ -1,0 +1,12 @@
+{
+  "candidate": "043",
+  "csv_sha256": "d45119e01fac3f86f90ddb3e2a9351b1e06ed5bc28cc35d8d30b9d80b9580062",
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "inference": "CPU,1Torchthread,deterministicalgorithms,Torch2.9.1",
+  "config": "reports/external/motion-gru-043-config.json",
+  "challenge_ground_truth_or_video_used": false,
+  "competition_percentile_known": false
+}

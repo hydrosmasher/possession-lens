@@ -1,0 +1,12 @@
+{
+  "selected": null,
+  "model_hashes": [
+    {
+      "latent300": "7b9ea1eb0e343995c9487a7050898179a9bb51392d1895447b8e095119ab2d9a"
+    },
+    {
+      "latent300": "4ccacf352be50f6085c123726575710265b7358c4a362ecf5e59b6eba1a7121e"
+    }
+  ],
+  "before_new_draw_audit": true
+}

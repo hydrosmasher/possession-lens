@@ -1,0 +1,17 @@
+{
+  "version": "recurrent-possession-043",
+  "candidate": "052",
+  "base_config": {
+    "path": "reports/external/joint-040-config.json",
+    "sha256": "f0cbea648b726e4716439cb52efa9a0a171b9b16d0d72e31f6dc9c999c1c70d4"
+  },
+  "gru": {
+    "path": "models/archive/gru-transfer052-validation-only.npz",
+    "sha256": "337dde95125e65e4c14d670107aaf8c9c2f397a9f5d13db0058bd69819133452"
+  },
+  "gru_mix": 0.5,
+  "selection_report": "reports/external/transfer-052-report.json",
+  "training": "Starts043 WMX-only GRU;16 additional fixed iterations x512 windows,known-live anchored sampling,team swaps and coherent x/y reflections,AdamWlr.0001/weightdecay.001,clip1,seed152. No weak-game windows in selected spatial_more branch. Retained040 lineage unchanged.",
+  "validation": "Extensively reused opposite-match development plus frozen new-observation-draw audit; no independent-match test.",
+  "competition_percentile_known": false
+}

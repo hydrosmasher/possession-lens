@@ -30,3 +30,7 @@ Candidate032 changes only the031 control asset to control-spell032-validation-on
 Candidate037 changes the control asset to control-relative037-validation-only.npz (416features,100trees), retaining all other032 assets and settings. Older configs remain unchanged.
 
 Candidate040 uses control-joint040-validation-only.npz (508features,200trees); other032 components stay unchanged. Frozen configs for037/038 are also retained. Current inference remains NumPy-only. Expanded experimental GRU layouts preserve the original130-feature architecture and are not040 components.
+
+Candidate043 adds gru-motion043-validation-only.npz to frozen040;50percent conditional-live GRU fusion. CPU PyTorch2.9.1 inference is pinned separately.040 remains the NumPy-only fallback. No045–047 models are submission components.
+
+Final checkpoint052: see docs/external/TRANSFER_052.md and reports/external/transfer-052-report.json.043 remains preserved.

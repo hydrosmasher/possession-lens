@@ -24,7 +24,7 @@ def run(raw,out):
     scores={k:evaluate_accuracy(rows,p) for k,p in preds.items()}
     for k,p in preds.items():
         for c in CONDITIONS:
-            ix=[i for i,x in enumerate(rows) if x['condition']==c];n=sum(int((rows[i]['y']<2).sum()) for i in ix);correct=sum(int(((rows[i]['y']==p[i])&(rows[i]['y']<2)).sum()) for i in ix);false_dead=sum(int(((p[i]==2)&(rows[i]['y']<2)).sum()) for i in ix);scores[k][c]['frame_accuracy']=correct/max(n,1);scores[k][c]['known_live_frames']=n;scores[k][c]['false_dead_on_known_live_frames']=false_dead;scores[k][c]['dead_f1']=None
+            ix=[i for i,x in enumerate(rows) if x['condition']==c];n=sum(int((rows[i]['y']<2).sum()) for i in ix);correct=sum(int(((rows[i]['y']==p[i])&(rows[i]['y']<2)).sum()) for i in ix);false_dead=sum(int(((p[i]==2)&(rows[i]['y']<2)).sum()) for i in ix);scores[k][c]['frame_accuracy']=correct/max(n,1);scores[k][c]['known_team_label_frames']=n;scores[k][c]['dead_predictions_on_known_team_frames']=false_dead;scores[k][c]['dead_f1']=None
     report={'protocol':protocol,'scores':scores,'match_metadata':meta,'independent_test':False,'deployment_decision_from_this_report':False};(out/'report.json').write_text(json.dumps(report,indent=2,default=str,allow_nan=False)+'\n');print('PARTIAL-PROVIDER031',scores['031']['mean_spell_f1'],flush=True);print('PARTIAL-PROVIDER032',scores['032']['mean_spell_f1'],flush=True);return report
 
 def main():

@@ -1,0 +1,17 @@
+{
+  "version": "recurrent-possession-043",
+  "candidate": "043",
+  "base_config": {
+    "path": "reports/external/joint-040-config.json",
+    "sha256": "f0cbea648b726e4716439cb52efa9a0a171b9b16d0d72e31f6dc9c999c1c70d4"
+  },
+  "gru": {
+    "path": "models/archive/gru-motion043-validation-only.npz",
+    "sha256": "9b50de1f1c531be35198e148248008a54d897fb2900d2fdf2d09713ef723fa51"
+  },
+  "gru_mix": 0.5,
+  "selection_report": "reports/external/motion-gru-043-report.json",
+  "training": "GRU fromscratch WMX only,24fixed iterations,508features,2bidirectional64unit layers,64projection,dropout.25,AdamWlr.0005/weightdecay.001,clip1,seed143; base040 retains documented external lineage.",
+  "validation": "Extensively reused opposite-match development plus frozen new-observation-draw audit; no independent-match test.",
+  "competition_percentile_known": false
+}

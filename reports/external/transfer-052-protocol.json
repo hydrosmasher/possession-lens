@@ -1,0 +1,33 @@
+{
+  "version": "disk-backed-transfer-052",
+  "reference": "frozen043",
+  "hypothesis": "Add existing first-division SkillCorner team labels to the current GRU without treating weak ownership as live/dead truth; compare spatial reflections and matched strong-only continuation.",
+  "branches": [
+    {
+      "name": "strong_more",
+      "weak_fraction": 0.0,
+      "spatial": false
+    },
+    {
+      "name": "spatial_more",
+      "weak_fraction": 0.0,
+      "spatial": true
+    },
+    {
+      "name": "weak_transfer",
+      "weak_fraction": 0.25,
+      "spatial": false
+    },
+    {
+      "name": "spatial_transfer",
+      "weak_fraction": 0.25,
+      "spatial": true
+    }
+  ],
+  "training": "Each branch starts from corresponding043weights/scaler.16fixed iterations x512windows,batch32,AdamWlr.0001/weightdecay.001,clip1,seed152. Fixed508layout/64unit2layerbidirectional architecture. Rawfloat32 corpus read by memory-mapped window; normalisation/padding identical to043. No whole-corpus RAM load.",
+  "sampling": "Strong pool contains only the fold training match. Weak pool contains only4039/3749/3518/2068/2440. Draw known-frame-anchored cores with random within-core offset. Team swap in all branches; spatial branches add coherent x/y reflections, verified against raw geometry. Same draws within matched branches.",
+  "labels": "Strong H/A spell-weighted CE and narrow boundaryBCE.1. Weak H/A known-frame weight.5, unknown-1; weak boundary loss disabled. No weak dead labels. Normaliser remains043training-only. Window source probabilities are distinct from independent label counts.",
+  "selection": "Only50percent newGRU+50percent040live fusion. Official four-condition mean spellF1 gain>=.003 over043; clean/gap per-fold decline<=.01,noise fold no decline,deadF1 decline<=.005. Highest eligible mean; FP reported.",
+  "audit": "Freeze/hash one winner before different observation draws seeds3514/3714/4118. Winner/043 only. Audit mean must improve or retain043, no runner-up selection.",
+  "history": "All seven corpus matches previously viewed; strong validation games extensively reused. Weak2269/2841/3442/2417 excluded from fitting. No independent-test,0.7orpercentile claim. No challenge observations/video/labels/public score used."
+}

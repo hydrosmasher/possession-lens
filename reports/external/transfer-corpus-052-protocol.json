@@ -1,0 +1,32 @@
+{
+  "version": "joint508-transfer-corpus-v1",
+  "weak_matches": [
+    "4039",
+    "3749",
+    "3518",
+    "2068",
+    "2440"
+  ],
+  "strong_matches": [
+    "J03WMX",
+    "J03WN1"
+  ],
+  "sources": "Historical MIT SkillCorner first-division data and CC BY4.0 Sportec/IDSSE first-division data; existing local files only",
+  "features": "508joint features, rawfloat32 memory-mapped arrays; no team/spatial swap duplication. Labels stored separately.",
+  "weak_supervision": "Known H/A only, unknown stays-1; known-frame weight.5; no weak dead labels or boundary targets.",
+  "strong_supervision": "Known live H/A only with032spell weights; narrow+-2event target and fully known-live+-12valid neighbourhood. Dead/unknown excluded from neural control loss.",
+  "conditions": [
+    "clean",
+    "masked",
+    "long_gap",
+    "tracker_noise"
+  ],
+  "seeds": "Existing fixed training-condition seeds; no validation conditions/features included.",
+  "competition_data_used": false,
+  "excluded_weak_validation_or_test_ids": [
+    "2269",
+    "2841",
+    "3442",
+    "2417"
+  ]
+}

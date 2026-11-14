@@ -1,0 +1,42 @@
+{
+  "version": "frozen-fusion-045",
+  "reference": "frozen04350percentGRU",
+  "created_before_inspecting042outcome": "042 selected metrics have not yet been inspected;043 winner already frozen. Run only if043 audit passes.",
+  "hypothesis": "A richer recurrent model may regularise stronger tree controls, and the older fixed RNN contribution may no longer be optimal.",
+  "candidate_families": [
+    {
+      "name": "boost15_400",
+      "source": "boost-042/leaves15_400",
+      "feature": "joint",
+      "old_tree_mix": 0.75
+    },
+    {
+      "name": "boost31_200",
+      "source": "boost-042/leaves31_200",
+      "feature": "joint",
+      "old_tree_mix": 0.75
+    },
+    {
+      "name": "boost31_400",
+      "source": "boost-042/leaves31_400",
+      "feature": "joint",
+      "old_tree_mix": 0.75
+    },
+    {
+      "name": "no_legacy_rnn",
+      "source": "joint-040/joint200",
+      "feature": "joint",
+      "old_tree_mix": 1.0
+    },
+    {
+      "name": "latent_control",
+      "source": "latent-044/latent300",
+      "feature": "latent",
+      "old_tree_mix": 0.75
+    }
+  ],
+  "fixed": "043GRU conditional live weight.5, all expert weights frozen; original dead/quality and031boundary decoder unchanged. No refitting or candidate parameter search.",
+  "selection": "Highest mean four-condition official spellF1 with gain>=.003 over043; clean/gap per-fold decline<=.01, each noise fold no decline, deadF1 decline<=.005. Report all FP trade-offs.",
+  "audit": "Freeze/hash one winner before new-draw audit; seeds2814/3014/3418. Only selected and043 decoded; audit mean must improve or retain043, no runner-up selection.",
+  "history": "Two extensively reused Bundesliga development matches, not independent testing. No challenge observations/labels/video/public score used. No competition percentile claimed."
+}

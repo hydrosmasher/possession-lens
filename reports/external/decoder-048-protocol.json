@@ -1,0 +1,13 @@
+{
+  "version": "decoder-calibration-048",
+  "reference": "frozen043",
+  "hypothesis": "Penalty12 was selected on earlier emissions. Test6/9 on the richer fixed neural ensemble to recover short possessions; stop/restart3 and full-strength031event head stay fixed.",
+  "penalties": [
+    6.0,
+    9.0
+  ],
+  "fitting": "None; no feature,model or emission-weight changes. External-only parameter comparison.",
+  "selection": "Mean four-condition official spellF1 gain>=.003 over043; per clean/gap fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean; report FP trade-offs.",
+  "audit": "Freeze one winner before new observation draws seeds3114/3314/3718; only winner/043 decoded. Audit mean must improve or retain043, no runner-up selection.",
+  "history": "Two heavily reused external first-division Bundesliga matches. Not independent testing; no challenge inputs/video/labels/public score used. No competition-percentile claim."
+}

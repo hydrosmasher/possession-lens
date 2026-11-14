@@ -1,0 +1,12 @@
+{
+  "candidate": "052",
+  "csv_sha256": "9c1eef2240eef12b72d2f79ce4f5fbb4bd29678cba2975a5d80cf87a683dd459",
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "inference": "CPU,1Torchthread,deterministicalgorithms,Torch2.9.1",
+  "config": "reports/external/transfer-052-config.json",
+  "challenge_ground_truth_or_video_used": false,
+  "competition_percentile_known": false
+}

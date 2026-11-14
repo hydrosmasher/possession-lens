@@ -47,6 +47,8 @@ class GatedPossession(nn.Module):
             else:
                 nn.init.zeros_(p)
                 if self.config['cell']=='lstm' and 'bias_ih' in name:p.data[self.config['hidden']:2*self.config['hidden']]=1
+    def representation(self,x):
+        h,_=self.recurrent(self.embedding(x));return self.dropout(self.norm(h))
     def forward(self,x):
         h,_=self.recurrent(self.embedding(x));h=self.dropout(self.norm(h))
         return self.classifier(h),None if self.boundary_head is None else self.boundary_head(h).squeeze(-1)
@@ -72,10 +74,10 @@ def make_window(x,y,start,boundary=None,valid_boundary=None):
     return xx,yy,target,weight
 
 def predict(model,x,mean,scale,batch=32):
-    model.eval();probs=[];events=[];x=normalise(x,mean,scale)
+    model.eval();probs=[];events=[];x=normalise(x,mean,scale);unknown=np.full(len(x),-1,np.int64)
     with torch.inference_mode():
         for a in range(0,len(x),CORE*batch):
-            starts=list(range(a,min(len(x),a+CORE*batch),CORE));windows=[make_window(x,np.full(len(x),-1),s)[0] for s in starts]
+            starts=list(range(a,min(len(x),a+CORE*batch),CORE));windows=[make_window(x,unknown,s)[0] for s in starts]
             logits,head=model(torch.from_numpy(np.stack(windows)));p=logits.softmax(-1).cpu().numpy();e=None if head is None else head.sigmoid().cpu().numpy()
             for i,start in enumerate(starts):
                 size=min(CORE,len(x)-start);probs.append(p[i,CONTEXT:CONTEXT+size]);events.append(np.full(size,.5,np.float32) if e is None else e[i,CONTEXT:CONTEXT+size])

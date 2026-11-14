@@ -1,0 +1,14 @@
+{
+  "version": "focal-continuation-046",
+  "reference": "frozen04350percentGRU",
+  "hypothesis": "Focus extra recurrent training on hard labelled frames, with matched ordinary-CE continuation as the control.",
+  "initialisation": "Each branch starts from the same corresponding043final checkpoint/scaler, never validation weights. Both use seed146 for identical windows/dropout draws.",
+  "training": "8fixed iterations x512windows,batch32,core256/context64,AdamWlr.0001/weightdecay.001,clip1. Same508features,spell weights,four augmented conditions/team swaps. CE or focalgamma2; same auxiliary boundary BCE.1 and narrow+-2target/known-live+-12valid neighbourhood.",
+  "variants": [
+    "extra_ce",
+    "focal2"
+  ],
+  "selection": "Only50percentGRU+50percent040live fusion. Mean official four-condition spellF1 gain>=.003 over043; clean/gap fold decline<=.01,noise fold no decline,deadF1 decline<=.005. Highest eligible mean; FP reported.",
+  "audit": "Freeze/hash one winner before new draws seeds3014/3214/3618. Winner/043 only. Audit mean must improve or retain043 without runner-up selection.",
+  "history": "Two heavily reused first-division Bundesliga matches, not independent tests. No challenge data/video/labels/public score used. No percentile claim."
+}

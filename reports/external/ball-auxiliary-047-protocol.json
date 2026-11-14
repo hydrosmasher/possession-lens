@@ -1,0 +1,16 @@
+{
+  "version": "ball-auxiliary-047",
+  "reference": "frozen043",
+  "source": "Only opposite-match existing first-division Sportec WMX/WN1; no challenge inputs, labels or video. Both games heavily reused; no independent test.",
+  "auxiliary_ball": "External original tracked ball xy / pitch dimensions, only known-live synthetically missing core frames. Separate128to2 linear+tanh*.6 head, weight5 MSE. Targets never enter inputs. Auxiliary head is discarded at inference; only learned GRU representation is retained.",
+  "architecture": "508joint motion/shape/control features; learned64projection+LayerNorm+GELU; two64unit bidirectional GRU layers; locked dropout.25,outputLayerNorm, H/A classifier with unusedD logit, auxiliary direct-turnover head.",
+  "training": "From scratch, same143base seed; auxiliary head uses isolated147seed;24fixed iterations,512sampled windows/iteration,batch32; core256,context64eachside; same finite-context overlap-save inference. AdamWlr.0005,weightdecay.001,maxgradientnorm1, Xavier input/output and orthogonal recurrent gates.",
+  "supervision": "Known-live H/A only; train-half inverse-sqrt spell weights from032; D/X/padding/context excluded from CE. Aux boundary BCE weight.1,positiveweight capped10; entirely known-live +-12frame valid neighbourhood, +-2frame auxiliary event target.",
+  "augmentation": "Four fixed clean/shortgap/longgap/tracker-noise conditions and exact team swaps. Scaling from training observations only. No previous label input, scheduled sampling inapplicable.",
+  "variants": "GRU conditional live evidence weights .25/.5/1, remaining weight040conditional live evidence. Frozen040 dead experts and031boundary decoder. One fixed final checkpoint, no epoch selection.",
+  "selection": "Official four-condition mean spellF1 gain>=.003 over043; each clean/gap fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean. Report false-positive trade-off.",
+  "audit": "Freeze one winner plus hashes before new-observation-draw audit seeds2914/3114/3518. Only winner and043 decoded; audit mean must improve or retain043, no runner-up selection.",
+  "competition_data_used": false,
+  "competition_percentile_known": false,
+  "torch": "2.9.1"
+}

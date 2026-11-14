@@ -35,8 +35,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.7341190877085566,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 14114
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 14114
       },
       "masked": {
         "spell_f1_mean": 0.3243076923076923,
@@ -53,8 +53,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.7052109072620323,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 16374
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 16374
       },
       "long_gap": {
         "spell_f1_mean": 0.30255639097744363,
@@ -71,8 +71,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.6915440292143186,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 17312
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 17312
       },
       "tracker_noise": {
         "spell_f1_mean": 0.24856711915535445,
@@ -89,8 +89,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.6519756838905775,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 20435
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 20435
       },
       "mean_spell_f1": 0.3087522199163066,
       "totals": {
@@ -116,8 +116,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.7274824517285867,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 14198
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 14198
       },
       "masked": {
         "spell_f1_mean": 0.31739130434782603,
@@ -134,8 +134,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.69930681594542,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 16495
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 16495
       },
       "long_gap": {
         "spell_f1_mean": 0.29717868338557996,
@@ -152,8 +152,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.6850276617611686,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 17332
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 17332
       },
       "tracker_noise": {
         "spell_f1_mean": 0.27962382445141065,
@@ -170,8 +170,8 @@
         },
         "dead_f1": null,
         "frame_accuracy": 0.6639150685530603,
-        "known_live_frames": 91462,
-        "false_dead_on_known_live_frames": 20384
+        "known_team_label_frames": 91462,
+        "dead_predictions_on_known_team_frames": 20384
       },
       "mean_spell_f1": 0.3094131147003395,
       "totals": {
@@ -209,5 +209,6 @@
     }
   ],
   "independent_test": false,
-  "deployment_decision_from_this_report": false
+  "deployment_decision_from_this_report": false,
+  "verified_live_dead_reference_available": false
 }

@@ -2,13 +2,17 @@
 
 **Registered team:** Visca el Barça, visca Catalunya
 
-**Authors:** Hrishikesh Karmalkar, Basel, Omar, Michail and Paul. **Candidate:**040. **Code:** https://github.com/hydrosmasher/possession-lens (public-release review pending).
+**Authors:** Hrishikesh Karmalkar, Basel, Omar, Michail and Paul. **Candidate:**052. **Code:** https://github.com/hydrosmasher/possession-lens (public-release review pending).
 
 ## Approach
 
 We estimate home control(H), away control(A), and dead ball(D) for every tactical-video frame. The method separates who controls live play from whether play is live, then jointly decodes the three states. It runs locally without a GPU, hosted model or network request.
 
-Team evidence combines the frozen24-unit context RNN (120 geometry/context features) with an external-trained200-tree H/A classifier. Its508 features combine control/memory geometry, relative ball/player velocity, interception/acceleration proxies and ball-independent team shape, movement and field occupancy. Team attack direction is inferred automatically from half-wide extreme-player team votes; ambiguous votes become0. Stationary heading changes are masked. These are geometric proxies, not confirmed touches. We average both team permutations, then blend75% classifier and25% RNN live probabilities. Interaction features do not establish verified touches.
+Team control combines the retained040 model with a new recurrent model.040 mixes a24-unit context RNN (trained on five external SkillCorner games) with a200-tree classifier using508 identity-free relative/collective motion and geometry features. Attack direction is calculated automatically per half from extreme-player team votes; ambiguous votes become0. Stationary heading changes are masked. These are contact proxies, not verified touches.
+
+The new GRU uses the same508 features, a64-dimensional learned projection, two bidirectional64-unit recurrent layers, projection/output LayerNorm and locked dropout0.25. It trains from scratch for24 fixed iterations ×512 sampled windows, AdamWlr0.0005/weightdecay0.001, gradient norm clipping1, Xavier input/output and orthogonal recurrent gates.256-frame loss cores have64 context frames each side, matching overlap-save inference. Spell-weighted H/A CE excludes dead/unknown/context/padding labels; an auxiliary narrow turnover BCE (+-2frames) has weight0.1. All normalisation fits training observations only; labels are never model inputs.
+
+The selected live-control mixture is50%newGRU+50%040 (overall50%GRU,37.5%tree,12.5%oldRNN). We average team permutations and normalise only H/A neural probabilities; the GRU's unusedD logit is excluded. Dead-ball experts remain separate.
 
 Live/dead evidence combines frozen clean/ball-gap014 and tracking-noise018 experts. A50-tree observation-quality gate learns27 team-invariant kinematic/visibility/duplicate-track features from automatic external corruption categories, not possession labels. It sets the noise-expert weight between0.5 and1.0 in log-odds space. Dead odds are scaled0.75 before fusion. A balanced116-feature boundary head refitted on the frozen030 emissions adapts H/A switch cost12 at strength1.0; stop/restart cost3 remains fixed. Offline decoding resets each half. All settings were selected externally; no new basic RNN, LSTM or GRU is claimed.
 
@@ -36,24 +40,19 @@ Total:187,825 labelled native frames across five first-division matches; native 
 
 New H/A and dead-state components use the two existing first-division Bundesliga IDSSE/Sportec games J03WMX and J03WN1. Sportec/DFL supplies BallStatus and BallPossession; our parser mechanically maps dead status toD and live ownership toH/A. Data licence:CC BY4.0, Bassek et al.(2025), DOI10.1038/s41597-025-04505-y. The submitted forward weights train on WMX, both halves; WN1 is reused validation. Reverse-direction experiments train WN1 and validate WMX for development robustness. Both had been viewed previously; no independent-test claim is made.
 
-WMX contains145,967 known25Hz frames:85,369 live and60,598 dead. The040 H/A classifier trains on136,592 augmented live examples with four observation conditions and team swapping; bounded inverse-square-root spell-duration weights give short possessions greater influence (train-half duration median, raw clip[0.5,3], then unit live mean); old014 dead model on58,388 augmented examples; noise018 dead model on116,776 examples. These are sampled/repeated training exposures, not unique new labels. Control boosting settings:200 iterations,15leaves, learning rate0.08, minimum40samples/leaf,L2=10,no early stopping.018 noise is fixed synthetic ball gaps/jitter, player gaps/jitter and two duplicate tracks; training and validation seeds differ.029 trains the quality gate on116,776 automatically augmented exposures (50iterations,7leaves,minimum80samples/leaf).040 retains032 sample weights, augmentation and seed132, expanding the feature set and training200 iterations;031 refits the boundary head on14,896 balanced sampled WMX exposures (7,448positive/7,448negative),25logistic epochs,seed131,L2=0.001, using train-only standardisation. All remaining030 components stay frozen; nothing fits on the challenge.
+WMX contains145,967 known25Hz frames:85,369live and60,598dead. The040 control classifier uses136,592 repeated augmented live examples,200trees/15leaves/learning rate0.08/minimum40samples per leaf/L2=10/seed132/no early stopping. Raw inverse-square-root training-spell weights are clipped[0.5,3], then normalised to unit live mean; final normalised weights can exceed3. Four observation conditions and team swapping are used.
 
-Complete label counts, source hashes, model hashes and split history are in reports/external/submission-training-lineage.json and014–019 reports. Earlier second-division models remain historical comparators; they are not components of030. Sources: [SkillCorner](https://github.com/SkillCorner/opendata), [IDSSE/Sportec publication](https://doi.org/10.1038/s41597-025-04505-y).
+The retained014 clean/gap dead expert uses58,388 sampled exposures;018 noise dead expert116,776. Each has100trees trained onWMX.029's50-tree quality gate uses116,776 exposures labelled by automatically generated corruption category, not possession.031's frozen linear boundary head uses14,896 balanced sampled exposures fromWMX. Exact recipes, source/model hashes and historical split decisions are retained in the numbered reports and submission-training-lineage.json.
+
+Synthetic conditions add short/long ball gaps, ball/player jitter, player dropouts and two duplicate tracks, with separate training/evaluation seeds. They do not establish performance under all real tracking failures. Only first-division external data supplies final components; older lower-division comparators are preserved separately. Sources: [SkillCorner historical release](https://github.com/SkillCorner/opendata), [IDSSE/Sportec publication](https://doi.org/10.1038/s41597-025-04505-y).
 
 ## External evidence and limitations
 
-| Reused external condition |037 spell F1 |040 spell F1 |
-|---|---:|---:|
-| clean | 0.6748 | 0.6802 |
-| masked | 0.5542 | 0.5858 |
-| long_gap | 0.5296 | 0.5680 |
-| tracker_noise | 0.4767 | 0.5084 |
+Candidate052 is the final checkpoint for14 November2026. It continues043 for16 fixed iterations ×512 windows (8192 additional sampled windows;40 iterations/20480windows including043), using known-live anchored sampling, coherent x/y field reflections and team swaps. Learning rate0.0001, AdamWweightdecay0.001, clipping1,seed152; architecture,scaler,dead/quality experts and50%GRU mixture stay unchanged. Forward selected weights useWMX only; reverse usesWN1. Two branches adding the five existing SkillCorner games were compared, but the winning spatial_more branch used no weak-game windows. Extra data did not automatically produce the best result.
 
-Mean spellF1 improves0.558833→0.585574. Repeated-condition misses1996→1870 and geometric merges451→431, while false positives rise997→1007.278 spell instances are newly recovered and152 previously matched instances are lost. Short predicted pulses rise18→21. Counts repeat physical possessions across conditions. The100-tree joint ablation scores0.583619. Training/variants and condition/dead-state regression checks were fixed before outcomes.
+Four-condition development mean0430.609188→0520.615370. Clean0.712949, short gaps0.621924, long gaps0.592691, tracking noise0.533918. Repeated-condition misses1777→1746, false positives925→915, merges425→422; counts repeat physical possessions across conditions. Frozen different-draw audit0430.602665→0520.609770 passed. The same two matches are heavily reused; this is not independent-match or competition performance. Mean0.7 and top5%rank remain unachieved/unverified.
 
-After freezing, different observation draws improve0.553212→0.588338 versus037 on the same games. Both games are heavily reused; this is not independent-match testing.040 improves every original condition/fold versus038 as a further development comparison. Synthetic errors differ from real occlusions and provider tracking/labels are correlated. Separate reused PSG–Marseille partial-provider diagnostics score about0.31 with false-dead predictions on known-team frames; censored weak labels differ from full Sportec H/A/D truth, but expose transfer risk.
-
-Offline context uses future observations. No challenge video, possession truth or public score was used for training, tuning or selection.0.7 four-condition spellF1 and top5% rank remain goals. Rejected039/041 and pending042–044 do not alter040. Earlier work remains reproducible.
+Earlier043 improved0400.585574→0.609188. Separate older031/032 partial-provider checks score about0.31 and expose transfer risk;052 has no independent-provider claim. Offline bidirectional context uses future observations. All licensed source and retained040 training counts above remain applicable.
 
 ## Exact reproduction
 
@@ -62,9 +61,9 @@ Use Python3.12. Obtain licensed match assets separately, keeping them out of the
 ```sh
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-inference-lock.txt
-python -m controlswitch.ranked_pipeline --data-root /path/to/provided-data --out local/submission-040 --config reports/external/joint-040-config.json --filename "Visca el Barça, visca Catalunya.csv"
-python evaluation/official/evaluation/validate_submission.py "local/submission-040/Visca el Barça, visca Catalunya.csv"
+python -m pip install -r requirements-gru-inference-lock.txt
+python -m controlswitch.recurrent_pipeline --data-root /path/to/provided-data --out local/submission-052 --config reports/external/transfer-052-config.json --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py "local/submission-052/Visca el Barça, visca Catalunya.csv"
 ```
 
-Expected CSV SHA256: `8109c7508182c907ede73ac19868d220b36b41c9cb5b369258308345af40298b`. Two separate source copies and dependency environments reproduced it on the same machine; all16 saved boundary-head/decoder predictions across both directions replay exactly. Six model hashes are enforced by the config. Training libraries are unnecessary at inference; no pickle/network is used. CSV has199,319 ordered frame,label rows. The prepared CSV and document use the registered team name exactly. The code repository must be public at submission, with licensed assets excluded; public-release review remains pending. Previous work is retained for reproducibility.
+Expected CSV SHA256: `9c1eef2240eef12b72d2f79ce4f5fbb4bd29678cba2975a5d80cf87a683dd459`. Two separate source copies and dependency environments reproduced it on the same machine; all16 saved boundary-head/decoder predictions across both directions replay exactly. Seven model hashes plus the nested040config hash are enforced. CPU inference uses pinned PyTorch2.9.1 with1thread/deterministic algorithms; no GPU, pickle or network request is used. CSV has199,319 ordered frame,label rows. The prepared CSV and document use the registered team name exactly. The code repository must be public at submission, with licensed assets excluded; public-release review remains pending. Previous work is retained for reproducibility.

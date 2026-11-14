@@ -1,0 +1,2 @@
+-r requirements-gru-inference-lock.txt
+ipykernel==6.30.1

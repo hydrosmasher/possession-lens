@@ -2,21 +2,25 @@
 
 Local H/A/D possession segmentation for **More Than a Hack**, with an offline match dashboard. Built by Hrishikesh, Basel, Omar, Michail and Paul. Registered team: **Visca el Barça, visca Catalunya**.
 
-## Reproduce frozen submission candidate040
+## Reproduce frozen submission candidate052
 
 Use Python 3.12 and obtain the licensed provided match files separately:
 
 ```sh
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-inference-lock.txt
-python -m controlswitch.ranked_pipeline --data-root /path/to/provided-data --out local/submission-040 --config reports/external/joint-040-config.json --filename "Visca el Barça, visca Catalunya.csv"
-python evaluation/official/evaluation/validate_submission.py "local/submission-040/Visca el Barça, visca Catalunya.csv"
+python -m pip install -r requirements-gru-inference-lock.txt
+python -m controlswitch.recurrent_pipeline --data-root /path/to/provided-data --out local/submission-052 --config reports/external/transfer-052-config.json --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py "local/submission-052/Visca el Barça, visca Catalunya.csv"
 ```
 
-Candidate040 combines relative ball/player motion, collective team shape and movement in a508-feature,200-tree control model alongside the existing context RNN and quality-gated dead-ball pipeline. External mean possession-spell F1 improves **0.5588 → 0.5856** versus037. After freezing, different simulated gaps improve **0.5532 → 0.5883**. The clean score is0.6802; the0.7 goal still refers to the four-condition mean.
+Candidate052 is the final checkpoint for14 November2026. It continues043 for16 fixed iterations ×512 windows (8192 additional sampled windows;40 iterations/20480windows including043), using known-live anchored sampling, coherent x/y field reflections and team swaps. Learning rate0.0001, AdamWweightdecay0.001, clipping1,seed152; architecture,scaler,dead/quality experts and50%GRU mixture stay unchanged. Forward selected weights useWMX only; reverse usesWN1. Two branches adding the five existing SkillCorner games were compared, but the winning spatial_more branch used no weak-game windows. Extra data did not automatically produce the best result.
 
-These are development results on two heavily reused Bundesliga matches, not independent tests or challenge accuracy. Separate partial-provider checks are much weaker and expose transfer risk. Competition rank is unknown. Two source/dependency environments reproduce the identical199,319-row CSV. Inference needs NumPy/pandas, without a GPU, PyTorch or network. Earlier releases and rejected trials are preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [040 evidence and continuing studies](docs/external/JOINT_040_044.md).
+Four-condition development mean0430.609188→0520.615370. Clean0.712949, short gaps0.621924, long gaps0.592691, tracking noise0.533918. Repeated-condition misses1777→1746, false positives925→915, merges425→422; counts repeat physical possessions across conditions. Frozen different-draw audit0430.602665→0520.609770 passed. The same two matches are heavily reused; this is not independent-match or competition performance. Mean0.7 and top5%rank remain unachieved/unverified.
+
+Two source/dependency environments reproduce the identical199,319-row CSV. Use Python3.12 with the pinned CPU inference dependencies above; no GPU or hosted service is needed. The notebook opens with the current summary and chart. On this Mac, select **Possession Lens (Python3.12,GRU)**. To register a kernel elsewhere: install requirements-gru-notebook.txt, then run `python -m ipykernel install --user --name possession-lens-gru-312 --display-name "Possession Lens (Python 3.12, GRU)"`.
+
+Both Bundesliga games are heavily reused development data; different-gap checks are not fresh-match tests. Separate partial-provider checks are weaker and expose transfer risk. Competition rank is unknown.040 remains a NumPy-only fallback through its unchanged config and requirements-inference-lock.txt. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [043 evidence and continuing studies](docs/external/RECURRENT_043_047.md).
 
 ## Open the demo
 
@@ -34,11 +38,13 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 | Use | Checkpoint / result |
 | --- | --- |
-| Frozen Phase1 candidate040 | `reports/external/joint-040-config.json` with six hashed assets |
+| Frozen Phase1 candidate052 | `reports/external/transfer-052-config.json`, nested040config + seven hashed assets |
 | Legacy full-match default | `models/rnn-boundary-001.npz` |
 | Named external match gallery | Frozen context RNN; bundled examples are unchanged |
 | Saved eligible research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |
 | Saved candidate validation | Mean clean/dropout spell F1 **0.5554**, versus **0.5527** before decoder refinement |
+
+## Preserved earlier research
 
 The saved gated candidate is **validation-only** and has not replaced the default or gallery model. Reused partial provider labels do not establish fresh-match or challenge accuracy. The short-spell audit distinguishes label-gap fragments from actual rapid predicted switches. [Read the decoder study](docs/external/GATED_DECODER_004.md).
 

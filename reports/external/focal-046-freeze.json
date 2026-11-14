@@ -1,0 +1,14 @@
+{
+  "selected": null,
+  "checkpoint_hashes": [
+    {
+      "extra_ce": "c095ee23471822bde32770038f66b7035cbac795d454eec18f525f66ea2950cc",
+      "focal2": "db81dbd3b375fb9893dbfb4c432bb2cfddf5b9f04c35b8929946b958af385ea7"
+    },
+    {
+      "extra_ce": "a819bcb28a48b35b87c12f03ec1deef7af4039d4ef4270d80996b0a80ee576a5",
+      "focal2": "02b75ae5fcdbc0f3f34e16142cd3009e28bbcbff6ab00e80d27c469dd3d8a081"
+    }
+  ],
+  "before_new_draw_audit": true
+}

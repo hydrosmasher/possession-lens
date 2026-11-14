@@ -100,5 +100,19 @@
     "unchanged": "RNN, dead/quality experts,031boundary",
     "selection_report": "reports/external/spell-training-032-report.json",
     "challenge_training_or_selection": false
+  },
+  "current_candidate037": {
+    "config": "reports/external/relative-037-config.json",
+    "new_training": "416feature100tree control, same032 exposure counts/weights/seed132; only label-free relative motion features added",
+    "unchanged": "RNN, dead/quality experts,031boundary",
+    "selection_report": "reports/external/relative-037-report.json",
+    "challenge_training_or_selection": false
+  },
+  "current_candidate040": {
+    "config": "reports/external/joint-040-config.json",
+    "training": "WMX136592 repeated augmented live examples,508features,200trees,15leaves,lr.08,minleaf40,L2=10,seed132,noearlystop,032spellweights; reverseWN1109408examples",
+    "unchanged": "RNN, dead/quality experts,031boundary",
+    "selection_report": "reports/external/joint-040-report.json",
+    "challenge_training_or_selection": false
   }
 }

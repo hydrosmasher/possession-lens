@@ -1,8 +1,7 @@
-# External reports
+# External development evidence
 
+Current frozen submission: **040**, configured by joint-040-config.json. Its protocol, comparison, pre-audit freeze, native replay and CSV reproduction reports are retained. progress-040.png compares the same original external draws across versions.
 
-Ranking030 is the current frozen submission candidate. Its protocol, full selection report, pre-audit freeze, exact replay and cross-environment reproduction evidence are retained.027–029 reports document constituent studies and their original decision policy. See docs/external/RANKING_030.md.
+019–038 are preserved earlier candidate studies.033,035,036,039 and041 did not pass their complete promotion criteria; rejected results remain visible.034 is a separate partial-provider diagnostic and is not pooled with the main full-label benchmark.042–044 are pending and do not alter040.
 
-Candidate031 supersedes030 after its predefined boundary comparison and frozen different-gap audit. See boundary-031 protocol/report/freeze/replay/reproduction and docs/external/BOUNDARY_031.md.030 remains a preserved prior release.
-
-032 is current: spell-training-032 protocol/report/freeze/config/reproduction.033 nonlinear boundary variants are rejected.035 also failed robustness guards and is not a submission component.
+Both main Bundesliga games have been heavily reused. Different simulated-gap draws are robustness checks on those same games, not fresh-match tests. No competition rank or provided-match accuracy is established. No challenge labels, video or public score enter training or model selection.

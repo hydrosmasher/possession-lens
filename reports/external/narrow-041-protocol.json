@@ -1,0 +1,34 @@
+{
+  "version": "narrow-boundary-041",
+  "reference": "frozen040",
+  "hypothesis": "The previous +-12frame positive event window can blur short-possession boundary timing. Test +-2 and+-5frame targets on the same116 invariant features and frozen040 emissions.",
+  "training": "Each radius: all valid positive frames, balanced random negative subset from every5th valid frame; only entirely known-live +-12 neighbourhoods. Logistic25epochs/seed141/L2.001,train-only standardisation. Same four fixed external training conditions. No new input features or epoch search.",
+  "variants": [
+    {
+      "name": "r2_floor0.25",
+      "radius": 2,
+      "floor": 0.25
+    },
+    {
+      "name": "r2_floor0.05",
+      "radius": 2,
+      "floor": 0.05
+    },
+    {
+      "name": "r5_floor0.25",
+      "radius": 5,
+      "floor": 0.25
+    },
+    {
+      "name": "r5_floor0.05",
+      "radius": 5,
+      "floor": 0.05
+    }
+  ],
+  "decoder": "Full-strength balanced switch adaptation; H/A cost12,stop3 fixed. Event floor.25(default) or.05. No hard possession duration floor.",
+  "selection": "Mean official four-condition spellF1 gain>=.003 over040; clean/gap fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean, report FP trade-off.",
+  "audit": "Freeze one winner and hashes before different-draw audit seeds2314/2514/2918. Only winner/040 decoded; audit mean must improve or retain040, no runner-up selection.",
+  "history": "Two heavily reused external first-division Bundesliga matches, not independent tests. In-fold emission backbones saw the same training match; validation is opposite match. No challenge inputs, video, possession labels or public score used.",
+  "competition_data_used": false,
+  "competition_percentile_known": false
+}

@@ -1,0 +1,14 @@
+{
+  "version": "multisource-dead-039",
+  "reference": "frozen037",
+  "hypothesis": "034 reveals cross-provider false-dead predictions. Add partial known-team examples from the existing five SkillCorner training matches as weak live negatives, never unknown-to-dead conversion.",
+  "sources": "First-division Sportec/IDSSE WMX/WN1 CC BY4.0 strong BallStatus; historical MIT SkillCorner4039/3749/3518/2068/2440 partial possession groups. PSG2269 excluded. No new or fresh match claim.",
+  "weak_label_caveat": "A team-possession group is not verified live/dead truth. Treat known-team frames as weak negatives with aggregate25% training weight; Sportec remains75%. No SkillCorner positive dead labels invented.",
+  "training": "Existing240 team-invariant observation features. Four fixed conditions. Sportec every5th known frame; SkillCorner every25th known-team frame.100trees/15leaves/lr.08/minleaf40/L2=10/seed139/no earlystop. Weight normalisation preserves total example weight and source75/25mass.",
+  "variants": "Frozen037 dead odds blended with new head scaled at.75: logodds mixture .25 or.5. Control/RNN/boundary unchanged.",
+  "selection": "Official mean four-condition spellF1 gain>=.003 over037; clean/gap per-fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean; report FP trade-off.",
+  "audit": "Freeze one winner and hashes before new-draw audit seeds2114/2314/2718. Only winner/037 decoded. Audit mean must improve, otherwise retain037 without runner-up selection.",
+  "history": "Adaptive after viewed034; all validation games heavily reused. No independent-test or competition-percentile claim. No challenge inputs/labels/video/public score used.",
+  "competition_data_used": false,
+  "competition_percentile_known": false
+}

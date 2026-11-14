@@ -1,0 +1,11 @@
+{
+  "candidate": "040",
+  "csv_sha256": "8109c7508182c907ede73ac19868d220b36b41c9cb5b369258308345af40298b",
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "config": "reports/external/joint-040-config.json",
+  "challenge_ground_truth_or_video_used": false,
+  "competition_percentile_known": false
+}

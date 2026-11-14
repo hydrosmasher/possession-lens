@@ -1,0 +1,11 @@
+{
+  "candidate": "037",
+  "csv_sha256": "29c5b621eb3998f8454a506c1b29ba462e5d7423a9be2149b6770b36caf421a8",
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "config": "reports/external/relative-037-config.json",
+  "challenge_ground_truth_or_video_used": false,
+  "competition_percentile_known": false
+}

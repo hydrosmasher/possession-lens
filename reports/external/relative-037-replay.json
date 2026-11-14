@@ -1,0 +1,102 @@
+{
+  "all_exact": true,
+  "checks": [
+    {
+      "fold": 0,
+      "half": 1,
+      "condition": "clean",
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "half": 1,
+      "condition": "masked",
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "half": 1,
+      "condition": "long_gap",
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "half": 1,
+      "condition": "tracker_noise",
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "half": 2,
+      "condition": "clean",
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "half": 2,
+      "condition": "masked",
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "half": 2,
+      "condition": "long_gap",
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "half": 2,
+      "condition": "tracker_noise",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 1,
+      "condition": "clean",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 1,
+      "condition": "masked",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 1,
+      "condition": "long_gap",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 1,
+      "condition": "tracker_noise",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 2,
+      "condition": "clean",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 2,
+      "condition": "masked",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 2,
+      "condition": "long_gap",
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "half": 2,
+      "condition": "tracker_noise",
+      "exact": true
+    }
+  ],
+  "reference_labels_absent_from_inference_inputs": true
+}

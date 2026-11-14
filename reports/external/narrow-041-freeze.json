@@ -1,0 +1,14 @@
+{
+  "selected": null,
+  "head_hashes": [
+    {
+      "2": "c3d65c57fcd573222d167d28e5e3533048214d1826484ff679866dafece1d94a",
+      "5": "c01bfafc562d638d160acc2b77bd8ee8dc5b903eb7cd4524a099663946852764"
+    },
+    {
+      "2": "d3026f4466267da80c8f2bee2d7592fb03e06de95a8e9e7c5c617eeb3e52aba4",
+      "5": "06da2b5a24f8791d6cf62785a72be91fcc95689fb8e94d481b5caa7aa59e4ba0"
+    }
+  ],
+  "before_new_draw_audit": true
+}

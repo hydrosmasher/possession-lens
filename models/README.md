@@ -26,3 +26,7 @@ Candidate030 uses six hashed assets listed in reports/external/ranking-030-confi
 Candidate031 replaces only the030 boundary asset with boundary-aligned031-validation-only.npz, refitted on external WMX emissions. The031 config pins all six assets and full adaptive strength; original030 assets/config are unchanged.
 
 Candidate032 changes only the031 control asset to control-spell032-validation-only.npz. Same296 input features,100trees; four training conditions and train-only spell-duration weights. Six hashes remain pinned by its config.
+
+Candidate037 changes the control asset to control-relative037-validation-only.npz (416features,100trees), retaining all other032 assets and settings. Older configs remain unchanged.
+
+Candidate040 uses control-joint040-validation-only.npz (508features,200trees); other032 components stay unchanged. Frozen configs for037/038 are also retained. Current inference remains NumPy-only. Expanded experimental GRU layouts preserve the original130-feature architecture and are not040 components.

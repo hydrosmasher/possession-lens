@@ -1,0 +1,35 @@
+{
+  "version": "boost-capacity-042",
+  "reference": "frozen040",
+  "hypothesis": "Keep040 feature definitions, labels, spell weights and augmentation fixed. Test three predeclared higher-capacity/regularised boosting recipes; no new feature search.",
+  "training": "508joint features; fixed HYPER recipes, no earlystop,seed142. Four fixed training conditions, known-live every5th frame, exact team swaps. Weight median computed within each training half only; clip raw inverse-sqrt weights[.5,3], then unit live mean.",
+  "variants": {
+    "leaves15_400": {
+      "max_iter": 400,
+      "max_leaf_nodes": 15,
+      "learning_rate": 0.05,
+      "min_samples_leaf": 40,
+      "l2_regularization": 10
+    },
+    "leaves31_200": {
+      "max_iter": 200,
+      "max_leaf_nodes": 31,
+      "learning_rate": 0.05,
+      "min_samples_leaf": 80,
+      "l2_regularization": 20
+    },
+    "leaves31_400": {
+      "max_iter": 400,
+      "max_leaf_nodes": 31,
+      "learning_rate": 0.04,
+      "min_samples_leaf": 80,
+      "l2_regularization": 20
+    }
+  },
+  "frozen": "RNN,014/018/029 dead/quality,031 boundary head and full-strength decoder; correction blend.75; no new boundary refit",
+  "history": "Two heavily reused first-division Bundesliga matches, opposite-match development. Not independent tests. No challenge inputs accepted.",
+  "selection": "Gain>=.003 mean official four-condition spellF1; every clean/gap fold decline<=.01, noise fold no decline, deadF1 decline<=.005. Highest eligible mean; report FP trade-off. No post-result search.",
+  "audit": "Freeze winner and hashes before different-draw audit, seeds2414/2614/3018. Only winner/040 evaluated; retain040 if audit mean does not improve. No runner-up selection.",
+  "competition_data_used": false,
+  "competition_percentile_known": false
+}

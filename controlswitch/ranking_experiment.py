@@ -2,7 +2,11 @@
 from pathlib import Path
 import argparse,json
 import numpy as np
-from .ranked_pipeline import SPECS,REFERENCE,make_bundle,infer,VERSION
+from .ranked_pipeline import SPECS as ENGINE_SPECS,REFERENCE,make_bundle,infer,VERSION
+
+# Preserve the original030 experiment family as runtime support expands.
+_ORIGINAL_NAMES={'boundary_half','boundary_full','boundary_recovery','state','state_half','quality075','quality1','joint_state_quality1','joint_half_quality075','joint_state_quality1_boundary'}
+SPECS=[s for s in ENGINE_SPECS if s['name'] in _ORIGINAL_NAMES]
 from .control_state import evaluate_accuracy
 from .tracker_robustness import CONDITIONS,condition,noisy_tracking
 from .external import period_arrays

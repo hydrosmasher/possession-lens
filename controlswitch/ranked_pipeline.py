@@ -8,6 +8,9 @@ from .europe_context import observation_probabilities as rnn_probabilities
 from .control_correction import control_features,swap_control_columns,blend_control
 from .control_state import state_features,swap_state_columns
 from .quality_gate import quality_features,gated_dead
+from .relative_state import relative_features,swap_relative
+from .collective_state import collective_state,swap_collective
+from .joint_state import joint_features,swap_joint
 from .deadball import observation_features,fuse
 from .boundary_had import boundary_observations,adaptive_decode
 from .model import probabilities,decode
@@ -30,6 +33,9 @@ SPECS=[
  {'name':'joint_half_quality075','control':'state_half','dead':'quality','cap':.75},
  {'name':'joint_state_quality1_boundary','control':'state','dead':'quality','cap':1.,'boundary':'balanced','strength':.5},
  {'name':'joint_state_quality1_boundary_full','control':'state','dead':'quality','cap':1.,'boundary':'balanced','strength':1.},
+ {'name':'joint_relative_quality1_boundary_full','control':'relative','dead':'quality','cap':1.,'boundary':'balanced','strength':1.},
+ {'name':'joint_collective_quality1_boundary_full','control':'collective','dead':'quality','cap':1.,'boundary':'balanced','strength':1.},
+ {'name':'joint_motion_quality1_boundary_full','control':'joint','dead':'quality','cap':1.,'boundary':'balanced','strength':1.},
 ]
 REFERENCE={'name':'reference019','control':'old','dead':'blend'}
 
@@ -48,6 +54,9 @@ def make_bundle(spec,paths):
 def infer(bundle,s,pitch,mask=None):
     spec=bundle['spec'];models=bundle['models'];team=rnn_probabilities(models['team']['model'],s,pitch,mask,context=True)
     if spec['control']=='old':x=control_features(s,pitch,mask);swapped=swap_control_columns(x)
+    elif spec['control']=='relative':x=relative_features(s,pitch,mask);swapped=swap_relative(x)
+    elif spec['control']=='collective':x=collective_state(s,pitch,mask);swapped=swap_collective(x)
+    elif spec['control']=='joint':x=joint_features(s,pitch,mask);swapped=swap_joint(x)
     else:x=state_features(s,pitch,mask);swapped=swap_state_columns(x)
     a=tree_model.predict(models['control'],x);b=tree_model.predict(models['control'],swapped);h=blend_control(team,(a+b[:,[1,0,2]])*.5,.75)
     obs=observation_features(s,pitch,mask)

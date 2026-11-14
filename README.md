@@ -2,7 +2,7 @@
 
 Local H/A/D possession segmentation for **More Than a Hack**, with an offline match dashboard. Built by Hrishikesh, Basel, Omar, Michail and Paul. Registered team: **Visca el Barça, visca Catalunya**.
 
-## Reproduce frozen submission candidate032
+## Reproduce frozen submission candidate040
 
 Use Python 3.12 and obtain the licensed provided match files separately:
 
@@ -10,13 +10,13 @@ Use Python 3.12 and obtain the licensed provided match files separately:
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-inference-lock.txt
-python -m controlswitch.ranked_pipeline --data-root /path/to/provided-data --out local/submission-032 --config reports/external/spell-training-032-config.json --filename "Visca el Barça, visca Catalunya.csv"
-python evaluation/official/evaluation/validate_submission.py "local/submission-032/Visca el Barça, visca Catalunya.csv"
+python -m controlswitch.ranked_pipeline --data-root /path/to/provided-data --out local/submission-040 --config reports/external/joint-040-config.json --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py "local/submission-040/Visca el Barça, visca Catalunya.csv"
 ```
 
-Candidate032 keeps the existing context RNN, quality-gated dead-ball models and031 boundary decoder. Its control classifier trains with noisy observations and gives short external training possessions more weight. Mean external possession-spell F1 improves **0.5222 → 0.5362**. After freezing, different simulated gaps improve **0.5133 → 0.5326**. These are development results on two extensively reused Bundesliga matches, not independent-match or challenge accuracy. Competition rank is unknown; top5% remains a goal.
+Candidate040 combines relative ball/player motion, collective team shape and movement in a508-feature,200-tree control model alongside the existing context RNN and quality-gated dead-ball pipeline. External mean possession-spell F1 improves **0.5588 → 0.5856** versus037. After freezing, different simulated gaps improve **0.5532 → 0.5883**. The clean score is0.6802; the0.7 goal still refers to the four-condition mean.
 
-032 has fewer misses, merges and false-positive spells overall. Two source/dependency environments reproduce the same valid199,319-row CSV. Inference needs NumPy/pandas, without a GPU, PyTorch or network. The nonlinear033 boundary variants were rejected; the GRU035 variants also failed robustness guards. Previous releases remain reproducible. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [032–035 studies](docs/external/SPELL_TRAINING_032_035.md).
+These are development results on two heavily reused Bundesliga matches, not independent tests or challenge accuracy. Separate partial-provider checks are much weaker and expose transfer risk. Competition rank is unknown. Two source/dependency environments reproduce the identical199,319-row CSV. Inference needs NumPy/pandas, without a GPU, PyTorch or network. Earlier releases and rejected trials are preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [040 evidence and continuing studies](docs/external/JOINT_040_044.md).
 
 ## Open the demo
 
@@ -34,7 +34,7 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 | Use | Checkpoint / result |
 | --- | --- |
-| Frozen Phase1 candidate032 | `reports/external/spell-training-032-config.json` with six hashed assets |
+| Frozen Phase1 candidate040 | `reports/external/joint-040-config.json` with six hashed assets |
 | Legacy full-match default | `models/rnn-boundary-001.npz` |
 | Named external match gallery | Frozen context RNN; bundled examples are unchanged |
 | Saved eligible research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |

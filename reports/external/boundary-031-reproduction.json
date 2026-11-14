@@ -1,0 +1,12 @@
+{
+  "csv_sha256": "16337d3195f573963347fd75689e827f4349f87b4a2614cc297a3c8f9e5eb79f",
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "candidate": "031",
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "environment_note": "Separate Python3.12 research and clean pinned inference dependencies",
+  "config": "reports/external/boundary-031-config.json",
+  "challenge_ground_truth_or_video_used": false,
+  "competition_percentile_known": false
+}

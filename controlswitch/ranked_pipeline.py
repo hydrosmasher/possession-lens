@@ -29,6 +29,7 @@ SPECS=[
  {'name':'joint_state_quality1','control':'state','dead':'quality','cap':1.},
  {'name':'joint_half_quality075','control':'state_half','dead':'quality','cap':.75},
  {'name':'joint_state_quality1_boundary','control':'state','dead':'quality','cap':1.,'boundary':'balanced','strength':.5},
+ {'name':'joint_state_quality1_boundary_full','control':'state','dead':'quality','cap':1.,'boundary':'balanced','strength':1.},
 ]
 REFERENCE={'name':'reference019','control':'old','dead':'blend'}
 
@@ -83,7 +84,7 @@ def export(data_root,out,config,filename='possession.csv'):
     out.mkdir(parents=True);csv=out/filename;write_submission(str(csv),labels)
     stats={**team_statistics(labels,FPS),'teams':dict(zip(('H','A'),names)),'status':'Model estimates, not verified match statistics'}
     (out/'team-statistics.json').write_text(json.dumps(stats,indent=2)+'\n');(out/'timeline.json').write_text(json.dumps(intervals(labels))+'\n')
-    manifest={'pipeline':VERSION,'spec':bundle['spec'],'config_sha256':digest(config),'assets':bundle['config']['assets'],'input_assets':{k:{'sha256':digest(files[k]),'bytes':files[k].stat().st_size} for k in ('metadata','tracking')},'unused_assets':[k for k in files if k not in ('metadata','tracking')],'csv_filename':filename,'csv_sha256':digest(csv),'n_frames':N_FRAMES,'half_blocks':BLOCKS,'official_format_valid':True,'fitting_performed':False,'video_used':False,'ground_truth_used':False,'versions':{'python':platform.python_version(),'numpy':np.__version__,'pandas':pd.__version__}}
+    manifest={'pipeline':VERSION,'candidate':bundle['config'].get('candidate','030'),'spec':bundle['spec'],'config_sha256':digest(config),'assets':bundle['config']['assets'],'input_assets':{k:{'sha256':digest(files[k]),'bytes':files[k].stat().st_size} for k in ('metadata','tracking')},'unused_assets':[k for k in files if k not in ('metadata','tracking')],'csv_filename':filename,'csv_sha256':digest(csv),'n_frames':N_FRAMES,'half_blocks':BLOCKS,'official_format_valid':True,'fitting_performed':False,'video_used':False,'ground_truth_used':False,'versions':{'python':platform.python_version(),'numpy':np.__version__,'pandas':pd.__version__}}
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n');return manifest
 
 def main():

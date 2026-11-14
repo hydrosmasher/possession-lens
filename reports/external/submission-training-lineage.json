@@ -85,5 +85,13 @@
     "validation": "J03WN1 repeatedly viewed; reverse direction reused for development",
     "quality_gate_supervision": "Automatically generated clean/gap/noise categories; no possession supervision for gate",
     "no_challenge_training_or_selection": true
+  },
+  "current_candidate031": {
+    "config": "reports/external/boundary-031-config.json",
+    "new_training": "Boundary head only; forwardWMX7,448positive+7,448negative sampled augmented exposures;25epochs,seed131,L2.001",
+    "remaining_components": "All030 assets unchanged",
+    "validation": "Opposite match reused development; frozen different-gap audit, not fresh games",
+    "selection_report": "reports/external/boundary-031-report.json",
+    "challenge_training_or_selection": false
   }
 }

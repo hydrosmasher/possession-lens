@@ -2,7 +2,7 @@
 
 Local H/A/D possession segmentation for **More Than a Hack**, with an offline match dashboard. Built by Hrishikesh, Basel, Omar, Michail and Paul. Registered team: **Visca el Barça, visca Catalunya**.
 
-## Reproduce frozen submission candidate030
+## Reproduce frozen submission candidate031
 
 Use Python 3.12 and obtain the licensed provided match files separately:
 
@@ -10,13 +10,13 @@ Use Python 3.12 and obtain the licensed provided match files separately:
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-inference-lock.txt
-python -m controlswitch.ranked_pipeline --data-root /path/to/provided-data --out local/submission-030 --config reports/external/ranking-030-config.json --filename "Visca el Barça, visca Catalunya.csv"
-python evaluation/official/evaluation/validate_submission.py "local/submission-030/Visca el Barça, visca Catalunya.csv"
+python -m controlswitch.ranked_pipeline --data-root /path/to/provided-data --out local/submission-031 --config reports/external/boundary-031-config.json --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py "local/submission-031/Visca el Barça, visca Catalunya.csv"
 ```
 
-Candidate030 combines the existing context RNN with interaction-memory control, observation-quality-weighted dead-ball experts and a boundary-aware decoder. Mean external possession-spell F1 improves **0.4626 → 0.5048** versus019. A frozen check with different simulated observation gaps improves **0.4588 → 0.4900**. These are development results on two extensively reused external Bundesliga matches, not independent-match or challenge accuracy. Competition rank is unknown; top5% is a goal, not a claim.
+Candidate031 retains the context RNN, interaction-memory control and quality-gated dead-ball experts, then aligns the boundary head to their evidence and strengthens adaptive decoding. External mean possession-spell F1 improves **0.5048 → 0.5222** versus030. After freezing, different simulated observation gaps give **0.5069 → 0.5191**. These are development results on two extensively reused external Bundesliga matches, not independent-match or challenge accuracy. Competition rank is unknown; top5% is a goal, not a claim.
 
-Two source copies and different dependency environments reproduce the identical valid199,319-row CSV. NumPy/pandas suffice for inference; no GPU, training library or network is required. Earlier candidates and studies remain preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [030 evidence and limitations](docs/external/RANKING_030.md).
+031 recovers more possessions and reduces merges, with more false-positive spells than030. Most of the gain comes from stronger adaptation: the old head at full strength scores0.5213; the refitted head scores0.5222. Full condition/fold trade-offs are retained. Two source/dependency environments reproduce the identical valid199,319-row CSV. Inference requires only NumPy/pandas, without a GPU or network.030 and all earlier work remain preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [031 results](docs/external/BOUNDARY_031.md) · [030 evidence](docs/external/RANKING_030.md).
 
 ## Open the demo
 
@@ -34,7 +34,7 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 | Use | Checkpoint / result |
 | --- | --- |
-| Frozen Phase1 candidate030 | `reports/external/ranking-030-config.json` with six hashed assets |
+| Frozen Phase1 candidate031 | `reports/external/boundary-031-config.json` with six hashed assets |
 | Legacy full-match default | `models/rnn-boundary-001.npz` |
 | Named external match gallery | Frozen context RNN; bundled examples are unchanged |
 | Saved eligible research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |

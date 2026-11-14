@@ -1,0 +1,34 @@
+{
+  "version": "boundary-alignment-031",
+  "reference": "frozen030",
+  "history": "Two extensively reused top-five-league Bundesliga matches; adaptive development, not independent testing. No challenge inputs accepted.",
+  "hypothesis": "020 turnover head saw019 emissions; refit same116 features on030 emissions to reduce feature-distribution mismatch. Contrast fixed stronger old head.",
+  "variants": [
+    {
+      "name": "old_full",
+      "head": "old",
+      "strength": 1.0
+    },
+    {
+      "name": "aligned_half",
+      "head": "aligned",
+      "strength": 0.5
+    },
+    {
+      "name": "aligned_full",
+      "head": "aligned",
+      "strength": 1.0
+    }
+  ],
+  "training": "Same020 target +-12frame direct H/A turnover, fully known-live neighbourhoods; balanced positives/negatives every5th frame per half/condition; logistic25epochs/seed131/L2.001. Train-only normalisation; no new feature or target search.",
+  "selection": "Highest four-condition official spellF1, gain>=.003 over030; each clean/gap fold loss<=.01, each noise fold no decline, each deadF1 loss<=.005. FP reported, no absolute veto. No post-result search.",
+  "freeze": "Select and hash before new-draw audit; only winner and030 audited. Audit must improve meanF1; otherwise retain030 without runner-up selection.",
+  "audit_seeds": {
+    "masked": 1414,
+    "long_gap": 1614,
+    "tracker_noise": 2018
+  },
+  "new_match_test": false,
+  "competition_data_used": false,
+  "limitations": "Training emission backbones have seen the same training match; head validation is opposite match, both repeatedly reused. Balanced scores are event evidence, not calibrated probabilities."
+}

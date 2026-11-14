@@ -1,0 +1,38 @@
+{
+  "repository": "https://github.com/metrica-sports/more-than-a-hack-2027",
+  "commit": "f8f2629ff1e0985f81d7e59d8413678514ee1530",
+  "files": {
+    "LICENSE": {
+      "sha256": "b1f93728571a232a0e158abdd869891f2efd51894134fb20678292c2468ff3ec",
+      "bytes": 1603
+    },
+    "games.py": {
+      "sha256": "3b2122794e9e0476e2b3a871d14880e5fa47c4feaeacf99caef054c2309076ce",
+      "bytes": 10301
+    },
+    "evaluation/run_evaluation.py": {
+      "sha256": "1c61564fe52499ba4af3006fb5eb4147b825e92bf516651add80de49d267b19f",
+      "bytes": 29419
+    },
+    "evaluation/possession_metrics.py": {
+      "sha256": "341bad48904b489d6e875397b27687f5d6a4d22a397f3dc8af3a00d48f16874d",
+      "bytes": 33370
+    },
+    "evaluation/validate_submission.py": {
+      "sha256": "07ac29499acbd337e1dc1de1832d63f6e1fa1d981e22f6ad08212529e2bbee14",
+      "bytes": 4192
+    },
+    "evaluation/gt/BAR-ATH_possession_gt_public.csv": {
+      "sha256": "e596a9af9626c623bb94be6fd350e12ee9a75c76a696cfadca3bc01735e92487",
+      "bytes": 1682773
+    },
+    "evaluation/gt/BAR-ATH_possession_gt_public_meta.json": {
+      "sha256": "cd8784f7c33127d9a87808a8baab16c5fa64c7eeeb4824c4036726ce73258c5a",
+      "bytes": 1056
+    },
+    "evaluation/results/baseline_smooth50.csv": {
+      "sha256": "6d4e04b80b9016cc16ada99697bf219d3a74b58750dd6d5ec5a4cd5fc32ab4b9",
+      "bytes": 1682773
+    }
+  }
+}

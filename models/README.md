@@ -13,3 +13,9 @@ Load through `controlswitch.rnn_runtime.load_frozen` and `infer_frozen`. Gated c
 Recent gated/decoder results use repeatedly reused, partially labelled external validation data. They are not fresh-test results and are not automatically promoted. Keep the gallery and production roles distinct. All earlier checkpoint filenames are retained to preserve historical reproduction commands. Earlier model notes are in `docs/RESEARCH_HISTORY.md` and the corresponding `docs/external/` study.
 
 Attribution and source hashes are recorded in study reports and data notices. Sportec/IDSSE-derived models cite Bassek et al. (2025), DOI10.1038/s41597-025-04505-y, CC BY4.0. Historical SkillCorner data use its pinned MIT notice. Do not publish competition inputs or local predictions with the checkpoints.
+
+`archive/deadball-014-validation-only.npz`: binary live/dead tree estimator for the factorised H/A/D study; needs the frozen context team backbone and `reports/external/deadball-014-settings.json`. Reused validation only, no production promotion.
+
+`archive/control-017-validation-only.npz`: new binary live H/A correction,75% blend with frozen context RNN, combined with014 dead-state head. Load via `controlswitch.control_correction` and the matching017 settings. Pooled two-match development gains do not establish fresh-match or challenge accuracy.
+
+`archive/deadblend-019-validation-only.npz`: frozen200-tree50/50 log-odds blend of014 and noise-trained018 dead experts. Combine with the unchanged context RNN and017 control correction using `reports/external/deadblend-019-settings.json`. Recommended candidate after external guards/replay; no challenge score or fresh-test claim.

@@ -1,0 +1,11 @@
+{
+  "same_csv_sha256": "cc5b4d6fb19cefa3b16a2f563a7a5b0dfa4dfdb3d3c18cd41959a3b272f50d91",
+  "identical_across_separate_source_copy": true,
+  "separate_python_processes": true,
+  "rows": 199319,
+  "official_format_valid_both": true,
+  "competition_ground_truth_used": false,
+  "video_used": false,
+  "model_selection_on_challenge": false,
+  "environment": "Same pinned installed NumPy/pandas environment; not independent hardware/OS validation."
+}

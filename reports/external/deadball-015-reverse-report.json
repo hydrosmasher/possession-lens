@@ -1,0 +1,262 @@
+{
+  "protocol": {
+    "version": "factorised-deadball-014",
+    "seed": 114,
+    "training_match": "J03WN1",
+    "validation_match": "J03WMX",
+    "league": "Bundesliga (DFL competition 000001)",
+    "labels": "provider BallStatus: 0 dead, 1 live; live ownership BallPossession 1/2; unknown excluded",
+    "label_source": "Bassek et al. 2025 IDSSE/Sportec, CC BY 4.0, doi:10.1038/s41597-025-04505-y",
+    "history": "Both matches previously viewed; roles explicitly repurposed. No independent test.",
+    "training_sample_stride": 5,
+    "augmentation": "clean and independently masked, each half; masks seed 114+i; no identity features",
+    "validation_masks": "40% target contiguous ball gaps, seeds 214+i, tracking only",
+    "grid": {
+      "penalty": [
+        12
+      ],
+      "stop_penalty": [
+        3
+      ],
+      "dead_weight": [
+        0.75
+      ]
+    },
+    "selection": "Frozen settings from experiment014; no selection on reversed match",
+    "dead_estimator": {
+      "max_iter": 100,
+      "learning_rate": 0.08,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 40,
+      "l2_regularization": 10,
+      "early_stopping": false
+    },
+    "competition_data_used": false,
+    "team_checkpoint_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+    "production_checkpoint_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+    "fixed_settings": {
+      "penalty": 12,
+      "stop_penalty": 3,
+      "dead_weight": 0.75
+    }
+  },
+  "label_audit": [
+    {
+      "match_id": "J03WN1",
+      "half": 1,
+      "cache_sha256": "b7d55640b2d3b74c0a44dbd36c965b911313ec1a5a8a09b45f0f4e31787d5316",
+      "source_xml_sha256": "56ef948961a18e150dba0b7b16869d0008ff66f3050a0c355d31fa5b8ec2fcec",
+      "counts": {
+        "H": 22983,
+        "A": 15765,
+        "D": 30540,
+        "X": 0
+      },
+      "ball_observed_fraction": 1.0
+    },
+    {
+      "match_id": "J03WN1",
+      "half": 2,
+      "cache_sha256": "b7d55640b2d3b74c0a44dbd36c965b911313ec1a5a8a09b45f0f4e31787d5316",
+      "source_xml_sha256": "56ef948961a18e150dba0b7b16869d0008ff66f3050a0c355d31fa5b8ec2fcec",
+      "counts": {
+        "H": 13438,
+        "A": 16191,
+        "D": 42644,
+        "X": 0
+      },
+      "ball_observed_fraction": 1.0
+    },
+    {
+      "match_id": "J03WMX",
+      "half": 1,
+      "cache_sha256": "595bf39f316fbed8cd0957701e36186ecd34c41e66001171234571ac1400f9c4",
+      "source_xml_sha256": "d3dd92e509421a6466acb0a083c009035f1751bc5fd9ef42ffa8f20d01cf7d49",
+      "counts": {
+        "H": 19424,
+        "A": 27801,
+        "D": 23483,
+        "X": 0
+      },
+      "ball_observed_fraction": 1.0
+    },
+    {
+      "match_id": "J03WMX",
+      "half": 2,
+      "cache_sha256": "595bf39f316fbed8cd0957701e36186ecd34c41e66001171234571ac1400f9c4",
+      "source_xml_sha256": "d3dd92e509421a6466acb0a083c009035f1751bc5fd9ef42ffa8f20d01cf7d49",
+      "counts": {
+        "H": 19687,
+        "A": 18457,
+        "D": 37115,
+        "X": 0
+      },
+      "ball_observed_fraction": 1.0
+    }
+  ],
+  "training_samples": 56626,
+  "training_classes": [
+    27344,
+    29282
+  ],
+  "models": {
+    "baseline_smooth50": {
+      "clean": {
+        "spell_f1_mean": 0.30723306544202067,
+        "macro_f1": 0.41504376435898765,
+        "alive_dead_f1": 0.7380520109278279,
+        "n_gt_spells": 511,
+        "n_pred_spells": 360,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.5728534914994612,
+          "A": 0.6722778015775017,
+          "D": 0.0
+        },
+        "dead_precision": 0.0,
+        "dead_recall": 0.0
+      },
+      "masked": {
+        "spell_f1_mean": 0.22993799822852085,
+        "macro_f1": 0.4174902224712249,
+        "alive_dead_f1": 0.722043161747333,
+        "n_gt_spells": 511,
+        "n_pred_spells": 618,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.539263200087454,
+          "A": 0.6353549198145739,
+          "D": 0.07785254751164683
+        },
+        "dead_precision": 0.3750890694028787,
+        "dead_recall": 0.04343377669230008
+      },
+      "selection_spell_f1": 0.2685855318352708
+    },
+    "production_rnn": {
+      "clean": {
+        "spell_f1_mean": 0.4327608982826948,
+        "macro_f1": 0.9005991229699478,
+        "alive_dead_f1": 0.9933224095706257,
+        "n_gt_spells": 511,
+        "n_pred_spells": 246,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.8424291203655624,
+          "A": 0.8687137356685507,
+          "D": 0.9906545128757305
+        },
+        "dead_precision": 0.9868664537787604,
+        "dead_recall": 0.994471764744711
+      },
+      "masked": {
+        "spell_f1_mean": 0.37421052631578944,
+        "macro_f1": 0.8524510540736155,
+        "alive_dead_f1": 0.9537140321207106,
+        "n_gt_spells": 511,
+        "n_pred_spells": 249,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.7873329613984751,
+          "A": 0.8316714773025453,
+          "D": 0.9383487235198262
+        },
+        "dead_precision": 0.9093512927697786,
+        "dead_recall": 0.9692564111026767
+      },
+      "selection_spell_f1": 0.4034857122992421
+    },
+    "context_rnn": {
+      "clean": {
+        "spell_f1_mean": 0.25593220338983047,
+        "macro_f1": 0.4238428662626901,
+        "alive_dead_f1": 0.7380520109278279,
+        "n_gt_spells": 511,
+        "n_pred_spells": 197,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.5822679167554514,
+          "A": 0.6892606820326189,
+          "D": 0.0
+        },
+        "dead_precision": 0.0,
+        "dead_recall": 0.0
+      },
+      "masked": {
+        "spell_f1_mean": 0.19643916913946588,
+        "macro_f1": 0.41152509716237873,
+        "alive_dead_f1": 0.7380520109278279,
+        "n_gt_spells": 511,
+        "n_pred_spells": 163,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.5654463390170511,
+          "A": 0.6691289524700849,
+          "D": 0.0
+        },
+        "dead_precision": 0.0,
+        "dead_recall": 0.0
+      },
+      "selection_spell_f1": 0.2261856862646482
+    },
+    "factorised_selected": {
+      "penalty": 12,
+      "stop_penalty": 3,
+      "dead_weight": 0.75,
+      "clean": {
+        "spell_f1_mean": 0.5079518072289158,
+        "macro_f1": 0.9120341383754202,
+        "alive_dead_f1": 0.9984693608261933,
+        "n_gt_spells": 511,
+        "n_pred_spells": 319,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.8567100407846183,
+          "A": 0.8815419909521666,
+          "D": 0.997850383389476
+        },
+        "dead_precision": 0.99603742251599,
+        "dead_recall": 0.9996699561041619
+      },
+      "masked": {
+        "spell_f1_mean": 0.4394506866416979,
+        "macro_f1": 0.885137048379204,
+        "alive_dead_f1": 0.9847905624091187,
+        "n_gt_spells": 511,
+        "n_pred_spells": 290,
+        "n_graded": 145967,
+        "per_class_f1": {
+          "H": 0.8229458646033817,
+          "A": 0.8538358297095614,
+          "D": 0.9786294508246692
+        },
+        "dead_precision": 0.9771321400368518,
+        "dead_recall": 0.9801313574705436
+      },
+      "selection_spell_f1": 0.4737012469353068
+    }
+  },
+  "selected": {
+    "penalty": 12,
+    "stop_penalty": 3,
+    "dead_weight": 0.75
+  },
+  "export_matches_native": true,
+  "model_sha256": "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc",
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "sklearn": "1.7.2"
+  },
+  "fresh_test_results": null,
+  "promoted_to_default": false,
+  "limitations": [
+    "Single training and reused validation match; selection bias and club overlap remain.",
+    "Provider states are not independent human annotations; tracking quality differs from challenge.",
+    "Legacy production comparator has second-division training ancestry; new dead estimator is first-division only.",
+    "Context backbone is frozen separately trained SkillCorner model; no competition fitting.",
+    "Ball masking is simulated and does not reproduce all tracker errors.",
+    "No smart tags used; no suitable matched external tags audited.",
+    "Offline context and Viterbi use future tracking."
+  ]
+}

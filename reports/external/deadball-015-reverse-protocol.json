@@ -1,0 +1,41 @@
+{
+  "version": "factorised-deadball-014",
+  "seed": 114,
+  "training_match": "J03WN1",
+  "validation_match": "J03WMX",
+  "league": "Bundesliga (DFL competition 000001)",
+  "labels": "provider BallStatus: 0 dead, 1 live; live ownership BallPossession 1/2; unknown excluded",
+  "label_source": "Bassek et al. 2025 IDSSE/Sportec, CC BY 4.0, doi:10.1038/s41597-025-04505-y",
+  "history": "Both matches previously viewed; roles explicitly repurposed. No independent test.",
+  "training_sample_stride": 5,
+  "augmentation": "clean and independently masked, each half; masks seed 114+i; no identity features",
+  "validation_masks": "40% target contiguous ball gaps, seeds 214+i, tracking only",
+  "grid": {
+    "penalty": [
+      12
+    ],
+    "stop_penalty": [
+      3
+    ],
+    "dead_weight": [
+      0.75
+    ]
+  },
+  "selection": "Frozen settings from experiment014; no selection on reversed match",
+  "dead_estimator": {
+    "max_iter": 100,
+    "learning_rate": 0.08,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 40,
+    "l2_regularization": 10,
+    "early_stopping": false
+  },
+  "competition_data_used": false,
+  "team_checkpoint_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "production_checkpoint_sha256": "b72084585136dab640cc674643a899725c68a6da6df06e076ee08b46b8c1c332",
+  "fixed_settings": {
+    "penalty": 12,
+    "stop_penalty": 3,
+    "dead_weight": 0.75
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "candidate": "dead-expert-blend-019",
+  "csv_sha256": "019e78085b8807b43b6afcc172599509a89fc27eb2ccbd9c5144c9cb1014d961",
+  "rows": 199319,
+  "official_format_valid": true,
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "independent_hardware_or_os": false,
+  "clean_python": "3.12.14",
+  "clean_packages": [
+    "numpy==2.3.5",
+    "pandas==2.2.3",
+    "python-dateutil==4.0.0",
+    "pytz==2026.6",
+    "tzdata==2026.6"
+  ],
+  "provided_ground_truth_used": false,
+  "video_used": false,
+  "model_selection_on_challenge": false,
+  "settings_sha256": "681d76e30276e5d80b2de5c5ff0bde44efc2c2e554c580dcc2f79d12fddce65b",
+  "limitations": [
+    "Same physical machine and CPU architecture; not a cross-platform proof.",
+    "No private match accuracy or public-window score measured."
+  ],
+  "registered_team": "Visca el Barça, visca Catalunya",
+  "submission_filename": "Visca el Barça, visca Catalunya.csv"
+}

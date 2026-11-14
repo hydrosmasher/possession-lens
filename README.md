@@ -1,6 +1,18 @@
 # Possession Lens
 
-An offline match explorer for **More Than a Hack**, built by Hrishikesh, Basel, Omar, Michail and Paul. Explore team control, named-player involvement and verified match events in one Barcelona-inspired dashboard.
+Local H/A/D possession segmentation for **More Than a Hack**, with an offline match dashboard. Built by Hrishikesh, Basel, Omar, Michail and Paul. Registered team: **Visca el Barça, visca Catalunya**.
+
+## Reproduce the frozen submission candidate019
+
+Use Python3.12, obtain the licensed tactical match assets separately, then run:
+
+```sh
+python -m pip install -r requirements-inference-lock.txt
+python -m controlswitch.submission --data-root /path/to/provided-data --out local/submission-019 --settings reports/external/deadblend-019-settings.json --dead-model models/archive/deadblend-019-validation-only.npz --control-model models/archive/control-017-validation-only.npz --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py "local/submission-019/Visca el Barça, visca Catalunya.csv"
+```
+
+The new candidate retains017 team control and combines old/noise-trained dead experts. In reused external tracking-noise validation, spellF1 improves0.2867→0.3382; clean/ball-gap pooled scores remain close or slightly improve. This is not challenge accuracy. Two source copies and independent dependency installations reproduce the identical CSV; earlier candidates remain preserved. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [018/019 study](docs/external/TRACKER_019.md).
 
 ## Open the demo
 
@@ -18,14 +30,25 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 | Use | Checkpoint / result |
 | --- | --- |
-| Full-match production default | `models/rnn-boundary-001.npz` |
+| Frozen Phase1 candidate019 | `reports/external/deadblend-019-settings.json` with three pinned assets |
+| Legacy full-match default | `models/rnn-boundary-001.npz` |
 | Named external match gallery | Frozen context RNN; bundled examples are unchanged |
 | Saved eligible research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |
 | Saved candidate validation | Mean clean/dropout spell F1 **0.5554**, versus **0.5527** before decoder refinement |
 
-The latest candidate is **validation-only** and has not replaced the default or gallery model. Reused partial provider labels do not establish fresh-match or challenge accuracy. The short-spell audit distinguishes label-gap fragments from actual rapid predicted switches. [Read the decoder study](docs/external/GATED_DECODER_004.md).
+The saved gated candidate is **validation-only** and has not replaced the default or gallery model. Reused partial provider labels do not establish fresh-match or challenge accuracy. The short-spell audit distinguishes label-gap fragments from actual rapid predicted switches. [Read the decoder study](docs/external/GATED_DECODER_004.md).
 
 The unrestricted development peak is **0.5837 validation spell F1**, but that trial lost2 recoveries and increased merges. The new compact paired-switch comparison reaches **0.5832**, retains all27 recoveries, keeps merges66 and reduces false positives122→115. It still exceeds the strict112 false-positive guard; the saved model remains unchanged. [Latest studies and limits](docs/external/EVENT_DURATION_012.md).
+
+The complete H/A/D development candidate now scores **0.4471 mean spell F1** versus **0.2525 baseline** and **0.3537 production RNN**, on one reused Bundesliga validation match across clean and simulated ball gaps. Dead-state F1 is0.9977/0.9813. This is not a fresh test or challenge score; production remains frozen. [Dead-ball study](docs/external/DEADBALL_014.md).
+
+The frozen decoder also improves the reverse Bundesliga check: **0.4737 mean spell F1**, versus0.4035 production and0.2686 baseline. A new `python -m controlswitch.submission` command generates the complete challenge candidate; two separate source copies produced identical CSV hashes and passed format validation. No challenge accuracy was measured. [Reverse check and CSV reproduction](docs/external/DEADBALL_015.md).
+
+The new hybrid control correction improves pooled full H/A/D development spell F1 **0.4455→0.5024** across clean, short-gap and long-gap tracking in both reused Bundesliga directions. Misses1939→1772, geometric merges424→408 and false positives716→569; some existing matches are lost and reverse-fold merges rise slightly. It remains a separate validation candidate. [Missing-ball studies016/017](docs/external/CONTROL_017.md).
+
+## Official evaluation notebook
+
+Open [evaluation/01_Official_Evaluation.ipynb](evaluation/01_Official_Evaluation.ipynb). Save a frozen possession CSV beside it: a single CSV is selected automatically, or enter its name in `CSV_FILENAME`. It runs the organisers’ unchanged public evaluator offline; results stay in ignored local folders. The five-minute reference is for pipeline checks, never model tuning.
 
 ## Run the notebook
 

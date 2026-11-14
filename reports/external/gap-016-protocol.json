@@ -1,0 +1,63 @@
+{
+  "version": "gap-aware-had-016",
+  "folds": [
+    {
+      "train": "J03WMX",
+      "validation": "J03WN1"
+    },
+    {
+      "train": "J03WN1",
+      "validation": "J03WMX"
+    }
+  ],
+  "history": "Both matches reused development; not independent testing or unbiased cross-validation",
+  "league": "Bundesliga first division",
+  "source": "IDSSE/Sportec Bassek et al2025, CC BY4.0; original XML/cache hashes in014/015 audits",
+  "train_conditions": [
+    "clean",
+    "20-100-frame random ball gaps to40%",
+    "50-300-frame random ball gaps to40%"
+  ],
+  "train_seed_short": 114,
+  "train_seed_long": 314,
+  "validation_seed_short": 214,
+  "validation_seed_long": 414,
+  "training_stride": 5,
+  "estimator": {
+    "max_iter": 100,
+    "learning_rate": 0.08,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 40,
+    "l2_regularization": 10,
+    "early_stopping": false
+  },
+  "decoder_frozen": {
+    "penalty": 12,
+    "stop_penalty": 3,
+    "dead_weight": 0.75
+  },
+  "variants": [
+    {
+      "name": "gap_head",
+      "team_repair_frames": 0
+    },
+    {
+      "name": "gap_head_repair25",
+      "team_repair_frames": 25
+    },
+    {
+      "name": "gap_head_repair50",
+      "team_repair_frames": 50
+    }
+  ],
+  "repair": "Only bracketed gaps<=limit within half, anchor-implied ball speed<=50m/s. No extrapolation; original visibility retained in dead features. No reference labels used in repairs.",
+  "features": "original240 + repaired240 invariant geometry/context, plus observed/filled masks and capped previous/next observation ages;484 total",
+  "selection": "Highest mean three-condition spellF1 across both folds among guarded variants. Mean gain; clean each fold no >0.01 regression; aggregate misses, false positives and merges no increase; ball-gap deadF1 each fold no >0.005 regression. No retuning after outcome.",
+  "team_checkpoint_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "reference_dead_sha256": [
+    "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12",
+    "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc"
+  ],
+  "competition_data_used": false,
+  "fresh_test_results": null
+}

@@ -1,0 +1,81 @@
+{
+  "skillcorner_revision": "1ed50b775f93075c2a6d00d0d795f13b7b89709e",
+  "skillcorner_license": "MIT, provider automatic partial home/away labels; unknown excluded, no supervised dead labels",
+  "skillcorner": [
+    {
+      "match_id": "4039",
+      "home": "Manchester City",
+      "away": "Liverpool Football Club",
+      "date": "2020-07-02T19:15:00Z",
+      "role": "training",
+      "native_hz": 10,
+      "native_frames": 58421,
+      "labelled_native_frames": 36429
+    },
+    {
+      "match_id": "3749",
+      "home": "Borussia Dortmund",
+      "away": "FC Bayern Munchen",
+      "date": "2020-05-26T16:30:00Z",
+      "role": "training",
+      "native_hz": 10,
+      "native_frames": 56754,
+      "labelled_native_frames": 41422
+    },
+    {
+      "match_id": "3518",
+      "home": "Juventus",
+      "away": "Inter Milan",
+      "date": "2020-03-08T19:45:00Z",
+      "role": "training",
+      "native_hz": 10,
+      "native_frames": 56460,
+      "labelled_native_frames": 38324
+    },
+    {
+      "match_id": "2068",
+      "home": "Inter Milan",
+      "away": "Juventus",
+      "date": "2019-10-06T18:45:00Z",
+      "role": "training",
+      "native_hz": 10,
+      "native_frames": 59048,
+      "labelled_native_frames": 35284
+    },
+    {
+      "match_id": "2440",
+      "home": "Liverpool Football Club",
+      "away": "Manchester City",
+      "date": "2019-11-10T16:30:00Z",
+      "role": "training",
+      "native_hz": 10,
+      "native_frames": 57570,
+      "labelled_native_frames": 36366
+    },
+    {
+      "match_id": "2269",
+      "home": "Paris Saint-Germain",
+      "away": "Olympique de Marseille",
+      "date": "2019-10-27T20:00:00Z",
+      "role": "validation",
+      "native_hz": 10,
+      "native_frames": 54135,
+      "labelled_native_frames": 36588
+    }
+  ],
+  "total_skillcorner_training_native_frames": 288253,
+  "total_skillcorner_training_labelled_native_frames": 187825,
+  "sportec_source": "Bassek et al2025, IDSSE/Sportec, doi10.1038/s41597-025-04505-y, CC BY4.0",
+  "sportec_training_for_current017": "J03WMX, both halves, provider BallStatus and BallPossession",
+  "sportec_validation_for_current017": "J03WN1, both halves; repeatedly viewed, reverse experiments swap roles",
+  "lineage_scope": "Frozen candidate019: context RNN +017 live-control correction +50/50 old014/noise018 dead-expert blend; historical models excluded from its inference path",
+  "current_candidate": "019",
+  "sportec_training_for_current019": "J03WMX, both halves; all fitted forward components use this match",
+  "augmented_training_examples": {
+    "control017": 102444,
+    "old_dead014": 58388,
+    "noise_dead018": 116776
+  },
+  "counts_are_training_exposures_not_unique_labels": true,
+  "model_settings": "reports/external/deadblend-019-settings.json"
+}

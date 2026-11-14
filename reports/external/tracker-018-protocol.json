@@ -1,0 +1,66 @@
+{
+  "version": "tracker-robustness-018",
+  "folds": [
+    {
+      "train": "J03WMX",
+      "validation": "J03WN1"
+    },
+    {
+      "train": "J03WN1",
+      "validation": "J03WMX"
+    }
+  ],
+  "history": "Both previously viewed; exploratory reused validation after017. No independent test.",
+  "competition_data_used": false,
+  "sources": "Existing first-division Bundesliga IDSSE/Sportec, CC BY4.0, Bassek et al2025; provider BallStatus/BallPossession labels separate from observations",
+  "conditions": [
+    "clean",
+    "masked",
+    "long_gap",
+    "tracker_noise"
+  ],
+  "noise": {
+    "ball_gap_target": 0.4,
+    "ball_gap_draw_frames": [
+      50,
+      300
+    ],
+    "ball_jitter_std_m": 0.25,
+    "ball_speed_jitter_std_mps": 0.5,
+    "player_gap_target_per_slot": 0.1,
+    "player_gap_draw_frames": [
+      25,
+      100
+    ],
+    "player_jitter_std_m": 0.35,
+    "player_speed_jitter_std_mps": 0.3,
+    "duplicates": 2,
+    "duplicate_jitter_std_m": 0.1,
+    "train_seed": 618,
+    "validation_seed": 818
+  },
+  "noise_selection": "Fixed before any018 fit/evaluation, independent of challenge and labels; no estimation from provided game. Overlapping masks can form longer gaps.",
+  "other_conditions": "Same short/long masks and train/validation seeds as017",
+  "training": "one fixed estimator each for H/A and alive/dead, train clean/short/long/tracker_noise, live-only H/A with team swaps; same100 boosting iterations/15leaves/lr.08/minleaf40/l2=10/no earlystop; seed118; stride5",
+  "variants": [
+    "new_control",
+    "new_dead",
+    "both"
+  ],
+  "frozen_decoder": {
+    "mix": 0.75,
+    "penalty": 12,
+    "stop_penalty": 3,
+    "dead_weight": 0.75
+  },
+  "selection": "Best four-condition mean spellF1 among variants with no aggregate increase in misses/merges/FP; each fold original clean/masked/long F1 no >.01 decline; each fold tracker_noise F1 no decline; each fold deadF1 no >.005 decline in every condition. No post-result sweep.",
+  "reference_control_sha256": [
+    "3cb6ee64ba7e35a3fe3217ff17890fe59cfeb728d4b8084f2a7be8e5b6d6e596",
+    "f9a249fae329166ada85b45219179b8fc31c3095387278b5f686ed633d49bbc9"
+  ],
+  "reference_dead_sha256": [
+    "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12",
+    "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc"
+  ],
+  "team_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c"
+}

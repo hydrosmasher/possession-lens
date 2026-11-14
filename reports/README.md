@@ -16,3 +16,11 @@ Start with these aggregate external reports. Files describe the named split and 
 Adjacent `protocol`, `learning`, `validation-trials`, `freeze` and `checkpoint-verification` files preserve decisions and reproducibility. `external/rnn-gated-003-learning.png` visualises fitting curves. Original experiment JSON is retained rather than rewritten after later audits.
 
 The decoder-004 diagnostics distinguish full-prediction short runs from reference-label-gap fragments. Geometric merge counts and player proximity involvement remain descriptive proxies. No supplied-match outputs or raw match files belong here. Older standalone HTML research pages stay in `archive/`; the user-facing experience is the root dashboard.
+
+Full H/A/D validation: `external/deadball-014-*.json`; protocol, label audit, eight trials, scores and frozen settings. See `docs/external/DEADBALL_014.md`.
+
+Reverse dead-ball robustness and CSV reproduction: `external/deadball-015-*.json`; the decoder is frozen from014, both external matches were previously viewed, and candidate CSV replay is byte-identical in the same dependency environment.
+
+Missing-ball development: `external/gap-016-*.json` records the rejected repair/head variants; `external/control-017-*.json` records the hybrid correction, missed/merged spell diagnostics, masked-spell audit, frozen settings and exact saved-model replay. Both match directions reuse previously viewed labels.
+
+Tracker robustness and submission freeze: `external/tracker-018-*.json`, `external/deadblend-019-*.json`, `external/submission-training-lineage.json`, and `external/release-audit-2026-11-14.json`.019 passes preregistered external guards;018 replacements were rejected. Reproduction proof uses a separate newly installed inference environment, same hardware.

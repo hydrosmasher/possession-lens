@@ -1,0 +1,59 @@
+{
+  "version": "hybrid-control-had-017",
+  "folds": [
+    {
+      "train": "J03WMX",
+      "validation": "J03WN1"
+    },
+    {
+      "train": "J03WN1",
+      "validation": "J03WMX"
+    }
+  ],
+  "history": "Both matches reused extensively; follow-up after viewing016. This is exploratory development, not an independent test.",
+  "competition_data_used": false,
+  "league": "Bundesliga first division",
+  "source": "IDSSE/Sportec CC BY4.0, Bassek et al2025; labels provider BallStatus/BallPossession; no labels in features",
+  "seed": 117,
+  "train_conditions": [
+    "clean",
+    "masked",
+    "long_gap"
+  ],
+  "train_seeds": {
+    "masked": 114,
+    "long_gap": 314
+  },
+  "validation_seeds": {
+    "masked": 214,
+    "long_gap": 414
+  },
+  "training_stride": 5,
+  "augmentation": "swap H/A features and target; clean, short-gap and long-gap tracking; fit only live provider labels",
+  "estimator": {
+    "max_iter": 100,
+    "learning_rate": 0.08,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 40,
+    "l2_regularization": 10,
+    "early_stopping": false
+  },
+  "features": "original120+bracketed50-frame-repaired120+4 observation reliability features,244 columns; identity-free",
+  "mixes": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "dead_estimator": "unchanged014/015 for each opposite training fold",
+  "decoder": {
+    "penalty": 12,
+    "stop_penalty": 3,
+    "dead_weight": 0.75
+  },
+  "selection": "best pooled clean/short/long meanF1 subject to no aggregate increase in misses/merges/FP, clean fold F1 no >.01 regression; no new decoder tuning",
+  "team_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "dead_sha256": [
+    "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12",
+    "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc"
+  ]
+}

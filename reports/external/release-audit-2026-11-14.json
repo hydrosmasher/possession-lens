@@ -1,0 +1,31 @@
+{
+  "scope": "Tracked and nonignored working files, historical filenames and selected text blobs in all local git refs; does not inspect ignored private data",
+  "source_files": 338,
+  "historical_text_blobs_scanned": 418,
+  "restricted_asset_paths": [],
+  "credential_pattern_match_files": [],
+  "historical_credential_pattern_match_files": [],
+  "notebooks": [
+    {
+      "path": "evaluation/01_Official_Evaluation.ipynb",
+      "cells_with_outputs": 4
+    },
+    {
+      "path": "notebooks/01_Possession_Lens.ipynb",
+      "cells_with_outputs": 0
+    }
+  ],
+  "visibility_changed": false,
+  "limitations": [
+    "Pattern scan cannot prove absence of all credentials or private content.",
+    "Dataset licences and permitted external-derived summaries require separate provenance review.",
+    "Public repository visibility and final team filename remain release steps."
+  ],
+  "repository_visibility_checked": "private",
+  "notebook_outputs_action": "Existing evaluation outputs backed up before clearing; local score logs and input CSV retained",
+  "scope_note": "Working-tree final manifest and prior history scan completed; no credentials/restricted paths detected by these checks, not an exhaustive privacy proof.",
+  "final_source_files_reviewed": 356,
+  "final_supported_secret_pattern_matches": 0,
+  "final_notebook_outputs_cleared": true,
+  "private_candidates_excluded_from_git": true
+}

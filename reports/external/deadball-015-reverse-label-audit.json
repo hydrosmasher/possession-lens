@@ -1,0 +1,54 @@
+[
+  {
+    "match_id": "J03WN1",
+    "half": 1,
+    "cache_sha256": "b7d55640b2d3b74c0a44dbd36c965b911313ec1a5a8a09b45f0f4e31787d5316",
+    "source_xml_sha256": "56ef948961a18e150dba0b7b16869d0008ff66f3050a0c355d31fa5b8ec2fcec",
+    "counts": {
+      "H": 22983,
+      "A": 15765,
+      "D": 30540,
+      "X": 0
+    },
+    "ball_observed_fraction": 1.0
+  },
+  {
+    "match_id": "J03WN1",
+    "half": 2,
+    "cache_sha256": "b7d55640b2d3b74c0a44dbd36c965b911313ec1a5a8a09b45f0f4e31787d5316",
+    "source_xml_sha256": "56ef948961a18e150dba0b7b16869d0008ff66f3050a0c355d31fa5b8ec2fcec",
+    "counts": {
+      "H": 13438,
+      "A": 16191,
+      "D": 42644,
+      "X": 0
+    },
+    "ball_observed_fraction": 1.0
+  },
+  {
+    "match_id": "J03WMX",
+    "half": 1,
+    "cache_sha256": "595bf39f316fbed8cd0957701e36186ecd34c41e66001171234571ac1400f9c4",
+    "source_xml_sha256": "d3dd92e509421a6466acb0a083c009035f1751bc5fd9ef42ffa8f20d01cf7d49",
+    "counts": {
+      "H": 19424,
+      "A": 27801,
+      "D": 23483,
+      "X": 0
+    },
+    "ball_observed_fraction": 1.0
+  },
+  {
+    "match_id": "J03WMX",
+    "half": 2,
+    "cache_sha256": "595bf39f316fbed8cd0957701e36186ecd34c41e66001171234571ac1400f9c4",
+    "source_xml_sha256": "d3dd92e509421a6466acb0a083c009035f1751bc5fd9ef42ffa8f20d01cf7d49",
+    "counts": {
+      "H": 19687,
+      "A": 18457,
+      "D": 37115,
+      "X": 0
+    },
+    "ball_observed_fraction": 1.0
+  }
+]

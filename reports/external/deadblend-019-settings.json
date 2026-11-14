@@ -1,0 +1,15 @@
+{
+  "version": "hybrid-control-had-017",
+  "team_sha256": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+  "dead_sha256": "5487868a7f50a1f1d300d3d636523039f85c22cd68f8ab1b3f656f599ca399c7",
+  "control_sha256": "3cb6ee64ba7e35a3fe3217ff17890fe59cfeb728d4b8084f2a7be8e5b6d6e596",
+  "mix": 0.75,
+  "penalty": 12,
+  "stop_penalty": 3,
+  "dead_weight": 0.75,
+  "team_checkpoint": "models/rnn-europe-context-001-experimental.npz",
+  "dead_checkpoint": "models/archive/deadblend-019-validation-only.npz",
+  "control_checkpoint": "models/archive/control-017-validation-only.npz",
+  "experiment": "dead-expert-blend-019",
+  "dead_expert_mix": 0.5
+}

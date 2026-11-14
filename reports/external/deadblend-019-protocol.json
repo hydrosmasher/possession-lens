@@ -1,0 +1,36 @@
+{
+  "version": "dead-expert-blend-019",
+  "history": "Follow-up after viewing018. Same two extensively reused Bundesliga matches, no independent testing.",
+  "competition_data_used": false,
+  "sources": "Existing first-division Bundesliga IDSSE/Sportec CC BY4.0; frozen017 H/A correction,014/015 old dead experts and018 noise-trained dead experts",
+  "conditions": [
+    "clean",
+    "masked",
+    "long_gap",
+    "tracker_noise"
+  ],
+  "noise": "Exactly018 generator, validation seed818+i; previous short/long seeds214/414+i",
+  "mixes": [
+    0.25,
+    0.5
+  ],
+  "fusion": "Convex average of frozen old/new dead-expert log odds; represented exactly as one200-tree numeric NPZ. Team control and decoder unchanged.",
+  "selection": "Highest four-condition mean spellF1 with no total missed/merged/FP increase; each fold original3 conditions no F1 decline>.01; tracker_noise each fold no F1 decline; every deadF1 decline<=.005. No post-result sweep.",
+  "frozen_decoder": {
+    "mix": 0.75,
+    "penalty": 12,
+    "stop_penalty": 3,
+    "dead_weight": 0.75
+  },
+  "reference_hashes": {
+    "team": "f01fd2ee7f0547ada0c2c19e502cce432f4f336b896e2c1da6537c6bea2f304c",
+    "old_dead": [
+      "25f9ee074571caf587d933bb5f37dfd5e1ff2db17710ba5fae4481d4b45e7f12",
+      "5dbdc33ad3af3fe40455ec12ed93f64a10f19f3a9e51bf10b7f9842efd0456dc"
+    ],
+    "noise_dead": [
+      "920d669f7872f607429521c823b738834b331e40d963459905161c2793096a3f",
+      "476a8e2cb00b14269adf6f0037a251a0a15f758385d8a6be7de9bca7915057fa"
+    ]
+  }
+}

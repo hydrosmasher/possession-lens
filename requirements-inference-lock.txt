@@ -1,0 +1,6 @@
+# Clean Python3.12 inference environment verified for candidate019.
+numpy==2.3.5
+pandas==2.2.3
+python-dateutil==4.0.0
+pytz==2026.6
+tzdata==2026.6

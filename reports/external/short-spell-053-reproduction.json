@@ -1,0 +1,11 @@
+{
+  "candidate": "053",
+  "config": "reports/external/short-spell-053-config.json",
+  "csv_sha256": "2f5a445d2c3c10b3126b5bda3a5b9b11050d9a87410f19b7cbc5aaa88b928eeb",
+  "rows": 199319,
+  "official_format_validator_passed": true,
+  "identical_across_isolated_dependencies_and_source_copy": true,
+  "same_physical_machine": true,
+  "challenge_ground_truth_or_video_used": false,
+  "competition_percentile_known": false
+}

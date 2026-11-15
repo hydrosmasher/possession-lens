@@ -1,0 +1,21 @@
+{
+  "version": "short-spell-rnn-053",
+  "reference": "frozen052",
+  "hypothesis": "Short spells dominate missed possessions. Compare matched uniform continuation against short-spell attention through training-only sampling and loss weights.",
+  "branches": [
+    {
+      "name": "uniform_more",
+      "focused": false
+    },
+    {
+      "name": "short_focus",
+      "focused": true
+    }
+  ],
+  "training": "Each branch starts corresponding052spatial_more weights/scaler.12fixed iterations x512windows,batch32,AdamWlr.0001/weightdecay.001,clip1,seed153. Same508features,2bidirectional64unit layers,projection64,dropout.25. No architecture/scaler search.",
+  "sampling": "Strong corpus only: forwardWMX/reverseWN1,all four fixed training corruptions. Uniform_more samples known-live anchors as052. Short_focus chooses half its anchors uniformly over training spells <=75frames (3s), then uniformly within that spell; other half normal known-live anchors. Short_focus doubles existing spellCEweights only on <=3s known-live spells. Same spatial reflections/team swaps and boundaryBCE.1 in both. Labels used only for training sampling/targets, never observations or inference.",
+  "sources": "Existing licensed first-division Sportec/IDSSE CC BY4.0 games only. No weak-game windows, no new matches, no provided data/video/labels/public scores.",
+  "selection": "Only50percent newGRU+50percent040live. Mean four-condition official spellF1 gain>=.003 over052; per-fold clean/gap decline<=.01,noise no decline,deadF1 decline<=.005. Highest eligible mean; all false-positive/merge/recovery tradeoffs reported.",
+  "audit": "Freeze/hash one winner before different-draw seeds4514/4714/5118. Only winner/052 audited. Mean must improve, no runner-up retuning.",
+  "history": "Same two heavily reused external games, not fresh-test or competition results.0.85-0.90mean remains a target, not a promised outcome."
+}

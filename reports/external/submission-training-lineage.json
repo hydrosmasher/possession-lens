@@ -128,5 +128,12 @@
     "training": "Candidate052 is the final checkpoint for14 November2026. It continues043 for16 fixed iterations ×512 windows (8192 additional sampled windows;40 iterations/20480windows including043), using known-live anchored sampling, coherent x/y field reflections and team swaps. Learning rate0.0001, AdamWweightdecay0.001, clipping1,seed152; architecture,scaler,dead/quality experts and50%GRU mixture stay unchanged. Forward selected weights useWMX only; reverse usesWN1. Two branches adding the five existing SkillCorner games were compared, but the winning spatial_more branch used no weak-game windows. Extra data did not automatically produce the best result.\n\nFour-condition development mean0430.609188→0520.615370. Clean0.712949, short gaps0.621924, long gaps0.592691, tracking noise0.533918. Repeated-condition misses1777→1746, false positives925→915, merges425→422; counts repeat physical possessions across conditions. Frozen different-draw audit0430.602665→0520.609770 passed. The same two matches are heavily reused; this is not independent-match or competition performance. Mean0.7 and top5%rank remain unachieved/unverified.\n",
     "report": "reports/external/transfer-052-report.json",
     "challenge_training_or_selection": false
+  },
+  "selected_current_candidate": "053",
+  "current_candidate053": {
+    "config": "reports/external/short-spell-053-config.json",
+    "training": "The selected GRU continues 052 for 12 fixed iterations × 512 windows (6,144 additional sampled windows; 52 iterations and 26,624 sampled windows including its043/052 history). Half of its training anchors are drawn uniformly from known-live spells of at most 3 seconds, then uniformly within that spell. Those frames receive twice their previous spell-weighted CE weight. AdamW learning rate 0.0001, weight decay 0.001, gradient clipping 1, seed 153, dropout 0.25, spatial reflections and team swaps remain fixed. The unchanged two-layer bidirectional 64-unit GRU still uses 508 features, projection 64, LayerNorm and the narrow auxiliary boundary objective. Forward weights fit WMX only; reverse development fits WN1. Labels affect training sampling/loss only and never enter inference.",
+    "study": "short-spell-053",
+    "challenge_training_or_selection": false
   }
 }

@@ -2,25 +2,29 @@
 
 Local H/A/D possession segmentation for **More Than a Hack**, with an offline match dashboard. Built by Hrishikesh, Basel, Omar, Michail and Paul. Registered team: **Visca el Barça, visca Catalunya**.
 
-## Reproduce frozen submission candidate052
+## Reproduce frozen submission candidate 053
 
-Use Python 3.12 and obtain the licensed provided match files separately:
+Use Python 3.12 and obtain the licensed match files separately:
 
 ```sh
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-gru-inference-lock.txt
-python -m controlswitch.recurrent_pipeline --data-root /path/to/provided-data --out local/submission-052 --config reports/external/transfer-052-config.json --filename "Visca el Barça, visca Catalunya.csv"
-python evaluation/official/evaluation/validate_submission.py "local/submission-052/Visca el Barça, visca Catalunya.csv"
+python -m controlswitch.recurrent_pipeline --data-root /path/to/provided-data --out local/submission-053 --config reports/external/short-spell-053-config.json --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py "local/submission-053/Visca el Barça, visca Catalunya.csv"
 ```
 
-Candidate052 is the final checkpoint for14 November2026. It continues043 for16 fixed iterations ×512 windows (8192 additional sampled windows;40 iterations/20480windows including043), using known-live anchored sampling, coherent x/y field reflections and team swaps. Learning rate0.0001, AdamWweightdecay0.001, clipping1,seed152; architecture,scaler,dead/quality experts and50%GRU mixture stay unchanged. Forward selected weights useWMX only; reverse usesWN1. Two branches adding the five existing SkillCorner games were compared, but the winning spatial_more branch used no weak-game windows. Extra data did not automatically produce the best result.
+Starting benchmark: candidate 052 **0.615370**. Final checkpoint: **053, overall external development possession-spell F 1 0.628641**. The target is 0.85–0.90; it remains unmet, and competition rank is unknown.
 
-Four-condition development mean0430.609188→0520.615370. Clean0.712949, short gaps0.621924, long gaps0.592691, tracking noise0.533918. Repeated-condition misses1777→1746, false positives925→915, merges425→422; counts repeat physical possessions across conditions. Frozen different-draw audit0430.602665→0520.609770 passed. The same two matches are heavily reused; this is not independent-match or competition performance. Mean0.7 and top5%rank remain unachieved/unverified.
+The selected GRU continues 052 for 12 fixed iterations × 512 windows (6,144 additional sampled windows; 52 iterations and 26,624 sampled windows including its 043/052 history). Half of its training anchors are drawn uniformly from known-live spells of at most 3 seconds, then uniformly within that spell. Those frames receive twice their previous spell-weighted CE weight. AdamW learning rate 0.0001, weight decay 0.001, gradient clipping 1, seed 153, dropout 0.25, spatial reflections and team swaps remain fixed. The unchanged two-layer bidirectional 64-unit GRU still uses 508 features, projection 64, LayerNorm and the narrow auxiliary boundary objective. Forward weights fit WMX only; reverse development fits WN 1. Labels affect training sampling/loss only and never enter inference.
 
-Two source/dependency environments reproduce the identical199,319-row CSV. Use Python3.12 with the pinned CPU inference dependencies above; no GPU or hosted service is needed. The notebook opens with the current summary and chart. On this Mac, select **Possession Lens (Python3.12,GRU)**. To register a kernel elsewhere: install requirements-gru-notebook.txt, then run `python -m ipykernel install --user --name possession-lens-gru-312 --display-name "Possession Lens (Python 3.12, GRU)"`.
+The two Bundesliga matches are heavily reused external development data. Four conditions pool opposite-match predictions: clean 0.727686, short ball gaps 0.636442, long gaps 0.610947, tracking noise 0.539490. These use the organisers' official spell metric, not the challenge ground truth. No challenge video, labels or public score is used for fitting, selection or comparison.
 
-Both Bundesliga games are heavily reused development data; different-gap checks are not fresh-match tests. Separate partial-provider checks are weaker and expose transfer risk. Competition rank is unknown.040 remains a NumPy-only fallback through its unchanged config and requirements-inference-lock.txt. [Technical document](docs/submission/Visca%20el%20Bar%C3%A7a%2C%20visca%20Catalunya.md) · [043 evidence and continuing studies](docs/external/RECURRENT_043_047.md).
+After the fixed winner was selected, different simulated-error draws scored 0.606253 → 0.622752. These are the same matches, not an independent-match test.
+
+Across repeated conditions, misses 1746 → 1603, false positives 915 → 1101, and geometric merges 422 → 369. These counts repeat physical possessions across conditions. False detections and missed possessions are both reported; a higher F 1 does not imply every error category improved.
+
+The current-first notebook runs with the **Possession Lens (Python 3.12, GRU)** kernel. Optional training/inference stay disabled by default. For a new notebook environment, run `python -m pip install -r requirements-gru-notebook.txt`, then `python -m ipykernel install --user --name possession-lens-gru-312 --display-name "Possession Lens (Python 3.12, GRU)"`. Select that kernel when opening the notebook. CPU inference needs no GPU or hosted service. Full CSV reproduction, frozen asset hashes and external replays are saved in reports/external/. The gallery retains its separate frozen model; current submission evidence does not imply gallery examples were recomputed. [Session evidence](docs/submission/DAY_2026_11_15.md).
 
 ## Open the demo
 
@@ -38,23 +42,23 @@ Possession and player control are **model estimates**. Passes, shots, goals and 
 
 | Use | Checkpoint / result |
 | --- | --- |
-| Frozen Phase1 candidate052 | `reports/external/transfer-052-config.json`, nested040config + seven hashed assets |
+| Frozen Phase 1 candidate 053 | `reports/external/short-spell-053-config.json`, pinned recurrent/base assets |
 | Legacy full-match default | `models/rnn-boundary-001.npz` |
 | Named external match gallery | Frozen context RNN; bundled examples are unchanged |
 | Saved eligible research candidate | `models/archive/rnn-gated-decoder-004-validation-only.npz` |
-| Saved candidate validation | Mean clean/dropout spell F1 **0.5554**, versus **0.5527** before decoder refinement |
+| Saved candidate validation | Mean clean/dropout spell F 1 **0.5554**, versus **0.5527** before decoder refinement |
 
 ## Preserved earlier research
 
 The saved gated candidate is **validation-only** and has not replaced the default or gallery model. Reused partial provider labels do not establish fresh-match or challenge accuracy. The short-spell audit distinguishes label-gap fragments from actual rapid predicted switches. [Read the decoder study](docs/external/GATED_DECODER_004.md).
 
-The unrestricted development peak is **0.5837 validation spell F1**, but that trial lost2 recoveries and increased merges. The new compact paired-switch comparison reaches **0.5832**, retains all27 recoveries, keeps merges66 and reduces false positives122→115. It still exceeds the strict112 false-positive guard; the saved model remains unchanged. [Latest studies and limits](docs/external/EVENT_DURATION_012.md).
+The unrestricted development peak is **0.5837 validation spell F 1**, but that trial lost 2 recoveries and increased merges. The new compact paired-switch comparison reaches **0.5832**, retains all 27 recoveries, keeps merges 66 and reduces false positives 122→115. It still exceeds the strict 112 false-positive guard; the saved model remains unchanged. [Latest studies and limits](docs/external/EVENT_DURATION_012.md).
 
-The complete H/A/D development candidate now scores **0.4471 mean spell F1** versus **0.2525 baseline** and **0.3537 production RNN**, on one reused Bundesliga validation match across clean and simulated ball gaps. Dead-state F1 is0.9977/0.9813. This is not a fresh test or challenge score; production remains frozen. [Dead-ball study](docs/external/DEADBALL_014.md).
+The complete H/A/D development candidate now scores **0.4471 mean spell F 1** versus **0.2525 baseline** and **0.3537 production RNN**, on one reused Bundesliga validation match across clean and simulated ball gaps. Dead-state F 1 is 0.9977/0.9813. This is not a fresh test or challenge score; production remains frozen. [Dead-ball study](docs/external/DEADBALL_014.md).
 
-The frozen decoder also improves the reverse Bundesliga check: **0.4737 mean spell F1**, versus0.4035 production and0.2686 baseline. A new `python -m controlswitch.submission` command generates the complete challenge candidate; two separate source copies produced identical CSV hashes and passed format validation. No challenge accuracy was measured. [Reverse check and CSV reproduction](docs/external/DEADBALL_015.md).
+The frozen decoder also improves the reverse Bundesliga check: **0.4737 mean spell F 1**, versus 0.4035 production and 0.2686 baseline. A new `python -m controlswitch.submission` command generates the complete challenge candidate; two separate source copies produced identical CSV hashes and passed format validation. No challenge accuracy was measured. [Reverse check and CSV reproduction](docs/external/DEADBALL_015.md).
 
-The new hybrid control correction improves pooled full H/A/D development spell F1 **0.4455→0.5024** across clean, short-gap and long-gap tracking in both reused Bundesliga directions. Misses1939→1772, geometric merges424→408 and false positives716→569; some existing matches are lost and reverse-fold merges rise slightly. It remains a separate validation candidate. [Missing-ball studies016/017](docs/external/CONTROL_017.md).
+The new hybrid control correction improves pooled full H/A/D development spell F 1 **0.4455→0.5024** across clean, short-gap and long-gap tracking in both reused Bundesliga directions. Misses 1939→1772, geometric merges 424→408 and false positives 716→569; some existing matches are lost and reverse-fold merges rise slightly. It remains a separate validation candidate. [Missing-ball studies 016/017](docs/external/CONTROL_017.md).
 
 ## Official evaluation notebook
 
@@ -62,7 +66,7 @@ Open [evaluation/01_Official_Evaluation.ipynb](evaluation/01_Official_Evaluation
 
 ## Run the notebook
 
-Use Python3.11 or3.12 for a fresh setup:
+Use Python 3.11 or 3.12 for a fresh setup:
 
 ```sh
 python3 -m venv .venv
@@ -102,3 +106,7 @@ node tests/test_gallery_ui.cjs
 PyTorch-specific tests skip if the optional dependency is absent. Commit source, cleared notebooks, permitted model weights, licence notices and aggregate external reports. Provided-match data, video, ground truth and local predictions must remain private. Training and tuning use licensed external data only; predictions are never checked against the provided video. [Competition boundary](docs/RULES_BOUNDARY.md).
 
 Blaugrana-inspired and independently built; no claim of official FC Barcelona affiliation.
+
+## Separate provider check: a regression to investigate
+
+On the previously reused PSG–Marseille Ligue 1 example, mean partial-label spell F 1 declines **0.300976 → 0.278404** for 052→053. This is a different-provider diagnostic, not a fresh test. Its censored team-possession groups have no verified live/dead labels, so these values cannot be equated to the complete H/A/D benchmark. It was frozen after selection and was not used to refit, tune or reselect the model. The regression exposes transfer risk:053 is a stronger candidate on the current Bundesliga benchmark, not a demonstrated universal improvement.052 remains preserved as a fallback. See reports/external/provider-056-report.json.

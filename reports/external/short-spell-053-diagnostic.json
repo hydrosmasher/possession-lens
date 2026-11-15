@@ -1,0 +1,135 @@
+{
+  "reference_candidate": "052",
+  "diagnostic_iou": 0.5,
+  "matches": [
+    "J03WMX",
+    "J03WN1"
+  ],
+  "native_hz": 25,
+  "conditions_repeat_same_physical_spells": true,
+  "independent_test": false,
+  "competition_data_used": false,
+  "duration_buckets": {
+    "clean": {
+      "<1s": {
+        "total": 162,
+        "matched": 40,
+        "wrong_team": 77,
+        "split_merge": 34,
+        "timing": 11
+      },
+      "1-3s": {
+        "total": 330,
+        "matched": 188,
+        "wrong_team": 73,
+        "split_merge": 42,
+        "timing": 27
+      },
+      "3-10s": {
+        "total": 353,
+        "matched": 288,
+        "wrong_team": 22,
+        "split_merge": 22,
+        "timing": 21
+      },
+      "10s+": {
+        "total": 166,
+        "matched": 156,
+        "wrong_team": 0,
+        "split_merge": 4,
+        "timing": 6
+      }
+    },
+    "masked": {
+      "<1s": {
+        "total": 162,
+        "matched": 22,
+        "wrong_team": 94,
+        "split_merge": 37,
+        "timing": 9
+      },
+      "1-3s": {
+        "total": 330,
+        "matched": 133,
+        "wrong_team": 112,
+        "split_merge": 47,
+        "timing": 38
+      },
+      "3-10s": {
+        "total": 353,
+        "matched": 263,
+        "wrong_team": 37,
+        "split_merge": 24,
+        "timing": 29
+      },
+      "10s+": {
+        "total": 166,
+        "matched": 148,
+        "wrong_team": 0,
+        "split_merge": 4,
+        "timing": 14
+      }
+    },
+    "long_gap": {
+      "<1s": {
+        "total": 162,
+        "matched": 17,
+        "wrong_team": 103,
+        "split_merge": 33,
+        "timing": 9
+      },
+      "1-3s": {
+        "total": 330,
+        "matched": 136,
+        "wrong_team": 111,
+        "split_merge": 54,
+        "timing": 29
+      },
+      "3-10s": {
+        "total": 353,
+        "matched": 256,
+        "wrong_team": 43,
+        "split_merge": 30,
+        "timing": 24
+      },
+      "10s+": {
+        "total": 166,
+        "matched": 141,
+        "wrong_team": 2,
+        "split_merge": 7,
+        "timing": 16
+      }
+    },
+    "tracker_noise": {
+      "<1s": {
+        "total": 162,
+        "matched": 11,
+        "wrong_team": 116,
+        "split_merge": 31,
+        "timing": 4
+      },
+      "1-3s": {
+        "total": 330,
+        "matched": 115,
+        "wrong_team": 125,
+        "split_merge": 50,
+        "timing": 40
+      },
+      "3-10s": {
+        "total": 353,
+        "matched": 246,
+        "wrong_team": 48,
+        "split_merge": 29,
+        "timing": 30
+      },
+      "10s+": {
+        "total": 166,
+        "matched": 138,
+        "wrong_team": 3,
+        "split_merge": 4,
+        "timing": 21
+      }
+    }
+  },
+  "interpretation": "Descriptive development diagnostic only. Matched is official one-to-one same-team spell matching at temporal IoU0.5, not the headline mean over0.3..0.7. Miss categories are heuristic descriptions, not verified causal attribution."
+}

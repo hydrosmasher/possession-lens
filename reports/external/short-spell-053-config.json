@@ -1,0 +1,19 @@
+{
+  "version": "recurrent-possession-043",
+  "candidate": "053",
+  "base_config": {
+    "path": "reports/external/joint-040-config.json",
+    "sha256": "f0cbea648b726e4716439cb52efa9a0a171b9b16d0d72e31f6dc9c999c1c70d4"
+  },
+  "gru": {
+    "path": "models/archive/gru-short053-validation-only.npz",
+    "sha256": "e9ed67b2808438bb8357bdb92dd15aa9a7b6aafa4f80d0769770a682b27f3435"
+  },
+  "gru_mix": 0.5,
+  "selection_report": "reports/external/short-spell-053-report.json",
+  "training": "Each branch starts corresponding052spatial_more weights/scaler.12fixed iterations x512windows,batch32,AdamWlr.0001/weightdecay.001,clip1,seed153. Same508features,2bidirectional64unit layers,projection64,dropout.25. No architecture/scaler search.",
+  "validation": "Two heavily reused opposite-match external development folds and a frozen different-draw audit; not independent-match testing.",
+  "competition_percentile_known": false,
+  "training_variant": "short_focus",
+  "training_sampling_and_loss": "Strong corpus only: forwardWMX/reverseWN1,all four fixed training corruptions. Uniform_more samples known-live anchors as052. Short_focus chooses half its anchors uniformly over training spells <=75frames (3s), then uniformly within that spell; other half normal known-live anchors. Short_focus doubles existing spellCEweights only on <=3s known-live spells. Same spatial reflections/team swaps and boundaryBCE.1 in both. Labels used only for training sampling/targets, never observations or inference."
+}

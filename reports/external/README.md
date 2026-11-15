@@ -1,3 +1,5 @@
+Current15 November checkpoint: **053**, configured by `reports/external/short-spell-053-config.json`. See docs/submission/DAY_2026_11_15.md. Earlier entries are preserved history.
+
 # External development evidence
 
 Current frozen submission: **052**, configured by transfer-052-config.json. Its protocol, comparison, pre-audit freeze, native replay and CSV reproduction reports are retained. progress-052.png compares the same original external draws across versions.

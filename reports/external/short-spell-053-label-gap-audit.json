@@ -1,0 +1,26 @@
+{
+  "independent_test": false,
+  "separate_from_input_ball_missingness": true,
+  "halves": {
+    "0-0": {
+      "reference_spells_at_most3s": 102,
+      "touch_unknown_label_boundary": 0,
+      "unknown_frames": 0
+    },
+    "0-1": {
+      "reference_spells_at_most3s": 139,
+      "touch_unknown_label_boundary": 0,
+      "unknown_frames": 0
+    },
+    "1-0": {
+      "reference_spells_at_most3s": 123,
+      "touch_unknown_label_boundary": 0,
+      "unknown_frames": 0
+    },
+    "1-1": {
+      "reference_spells_at_most3s": 133,
+      "touch_unknown_label_boundary": 0,
+      "unknown_frames": 0
+    }
+  }
+}

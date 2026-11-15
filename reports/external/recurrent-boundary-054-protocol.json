@@ -1,0 +1,20 @@
+{
+  "version": "recurrent-boundary-054",
+  "reference": "frozen052",
+  "hypothesis": "The retained031 turnover head was fitted on older030emissions. Refit to052emissions; compare the same116features with120features including the already-trained GRU boundary signal.",
+  "variants": [
+    {
+      "name": "aligned116",
+      "features": 116
+    },
+    {
+      "name": "event120",
+      "features": 120
+    }
+  ],
+  "training": "Same broad direct H/A-turnover target +-12frames; valid only fully known-live neighbourhoods. Every5th valid frame, positives retained and negatives balanced within training half/condition.25epochs logistic2class,seed154,L2.001;training-only scaling. Four original external training corruptions. No recurrent weight changes.",
+  "features": "Aligned116 uses existing invariant features on052emissions. Event120 adds symmetric frozenGRUevent score, centred means radius12/25 and absolute+-12change. No label/timestamp/identity inputs. Balanced head evidence is not a calibrated event probability.",
+  "selection": "Fixed full-strength adaptive decoder,cost12,stop3. Highest four-condition mean gain>=.003 over052; per-fold clean/gap decline<=.01,noise no decline,deadF1 decline<=.005. No post-result tuning.",
+  "freeze": "One winner/hash frozen before audit5414/5614/6018. Only052/winner audited; mean must improve or retain052, no runner-up reselection.",
+  "history": "Two heavily reused existing first-division Bundesliga games, not independent tests. ForwardfitWMX/validateWN1,reversefitWN1/validateWMX. Recurrent/emission backbones saw training match. No challenge data/video/labels/public score used; no competition-rank claim."
+}

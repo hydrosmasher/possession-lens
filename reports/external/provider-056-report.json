@@ -1,0 +1,133 @@
+{
+  "protocol": {
+    "version": "partial-provider-recurrent-056",
+    "match": "PSG\u2013Marseille2269,Ligue1,existing historical MIT SkillCorner files",
+    "history": "Previously reused validation match; NOT fresh or independent. No new download.",
+    "models": {
+      "052": "df6238add0a83ec8a56c8be815ada891e12d2e6f3cbe6b1681fd9ad5e1b4988a",
+      "053": "ad670f579925be2f87a4cae6f672181b33d2de2b2bdcf313e8f16d7dd90d85dc"
+    },
+    "purpose": "Frozen different-provider compatibility only; NO fitting,tuning,re-selection or promotion from this report.",
+    "supervision": "Partial team-possession groups; unknown remainsX. No verified live/dead reference. Censored valid runs change spell objects. Partial spellF1 and team-label agreement cannot be equated to full Sportec H/A/D benchmark or challenge accuracy. D predictions on known-team frames are counted without calling them verified false-dead errors.",
+    "conditions": [
+      "clean",
+      "masked",
+      "long_gap",
+      "tracker_noise"
+    ],
+    "competition_data_used": false
+  },
+  "scores": {
+    "052": {
+      "mean_partial_spell_f1": 0.3009759207872812,
+      "conditions": {
+        "clean": {
+          "partial_spell_f1": 0.33635116598079556,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.7242242680020118,
+          "selective_team_label_agreement": 0.857052285636653,
+          "live_decision_coverage": 0.8450176029389255,
+          "dead_predictions_on_known_team_frames": 14175,
+          "verified_dead_f1": null
+        },
+        "masked": {
+          "partial_spell_f1": 0.31297071129707116,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.6942774048238612,
+          "selective_team_label_agreement": 0.8459335242789582,
+          "live_decision_coverage": 0.8207233605213093,
+          "dead_predictions_on_known_team_frames": 16397,
+          "verified_dead_f1": null
+        },
+        "long_gap": {
+          "partial_spell_f1": 0.2819310344827587,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.6807198618005292,
+          "selective_team_label_agreement": 0.8393889959958476,
+          "live_decision_coverage": 0.8109706763464608,
+          "dead_predictions_on_known_team_frames": 17289,
+          "verified_dead_f1": null
+        },
+        "tracker_noise": {
+          "partial_spell_f1": 0.27265077138849936,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.6591917954997704,
+          "selective_team_label_agreement": 0.846831282656329,
+          "live_decision_coverage": 0.7784216395880257,
+          "dead_predictions_on_known_team_frames": 20266,
+          "verified_dead_f1": null
+        }
+      }
+    },
+    "053": {
+      "mean_partial_spell_f1": 0.2784044624137716,
+      "conditions": {
+        "clean": {
+          "partial_spell_f1": 0.30726114649681524,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.7147230543832411,
+          "selective_team_label_agreement": 0.8471457266895613,
+          "live_decision_coverage": 0.8436837156414686,
+          "dead_predictions_on_known_team_frames": 14297,
+          "verified_dead_f1": null
+        },
+        "masked": {
+          "partial_spell_f1": 0.277319587628866,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.683781242483217,
+          "selective_team_label_agreement": 0.8345565667618565,
+          "live_decision_coverage": 0.8193348057116617,
+          "dead_predictions_on_known_team_frames": 16524,
+          "verified_dead_f1": null
+        },
+        "long_gap": {
+          "partial_spell_f1": 0.2694626474442988,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.6724869344645864,
+          "selective_team_label_agreement": 0.8312206065192713,
+          "live_decision_coverage": 0.8090354464149045,
+          "dead_predictions_on_known_team_frames": 17466,
+          "verified_dead_f1": null
+        },
+        "tracker_noise": {
+          "partial_spell_f1": 0.2595744680851063,
+          "known_team_label_frames": 91462,
+          "known_team_label_agreement": 0.6497780499005051,
+          "selective_team_label_agreement": 0.8374196821102469,
+          "live_decision_coverage": 0.7759288010321226,
+          "dead_predictions_on_known_team_frames": 20494,
+          "verified_dead_f1": null
+        }
+      }
+    }
+  },
+  "match_metadata": [
+    {
+      "period": 1,
+      "native_frames": 27035,
+      "labelled_native_frames": 18217,
+      "label_coverage": 0.6738302200850749,
+      "valid_runs": 34,
+      "median_valid_run_seconds": 42.4,
+      "direct_labelled_team_changes": 122,
+      "identified_observations": 244543,
+      "anonymous_observations": 12317,
+      "ball_observed_fraction": 0.5185130386535972
+    },
+    {
+      "period": 2,
+      "native_frames": 27100,
+      "labelled_native_frames": 18371,
+      "label_coverage": 0.6778966789667896,
+      "valid_runs": 31,
+      "median_valid_run_seconds": 38.1,
+      "direct_labelled_team_changes": 102,
+      "identified_observations": 252045,
+      "anonymous_observations": 7743,
+      "ball_observed_fraction": 0.515239852398524
+    }
+  ],
+  "independent_test": false,
+  "deployment_decision_from_this_report": false,
+  "competition_percentile_known": false
+}

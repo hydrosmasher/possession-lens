@@ -1,0 +1,18 @@
+{
+  "version": "partial-provider-recurrent-056",
+  "match": "PSG\u2013Marseille2269,Ligue1,existing historical MIT SkillCorner files",
+  "history": "Previously reused validation match; NOT fresh or independent. No new download.",
+  "models": {
+    "052": "df6238add0a83ec8a56c8be815ada891e12d2e6f3cbe6b1681fd9ad5e1b4988a",
+    "053": "ad670f579925be2f87a4cae6f672181b33d2de2b2bdcf313e8f16d7dd90d85dc"
+  },
+  "purpose": "Frozen different-provider compatibility only; NO fitting,tuning,re-selection or promotion from this report.",
+  "supervision": "Partial team-possession groups; unknown remainsX. No verified live/dead reference. Censored valid runs change spell objects. Partial spellF1 and team-label agreement cannot be equated to full Sportec H/A/D benchmark or challenge accuracy. D predictions on known-team frames are counted without calling them verified false-dead errors.",
+  "conditions": [
+    "clean",
+    "masked",
+    "long_gap",
+    "tracker_noise"
+  ],
+  "competition_data_used": false
+}

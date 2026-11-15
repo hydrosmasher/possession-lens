@@ -1,3 +1,5 @@
+Current15 November checkpoint: **053**, configured by `reports/external/short-spell-053-config.json`. See docs/submission/DAY_2026_11_15.md. Earlier entries are preserved history.
+
 # Checkpoint index
 
 | Role | File | Interpretation |

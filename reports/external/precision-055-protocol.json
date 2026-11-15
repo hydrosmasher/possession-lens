@@ -1,0 +1,20 @@
+{
+  "version": "precision-decode-055",
+  "status": "conditional, not yet run",
+  "condition": "Only if the original053/054release decision selects audited053, at least18minutes remain in this session, and all original053emissions have been natively replayed/cached. Otherwise do not run.",
+  "hypothesis": "Original053development improves spellF1 but increases false positives. Test stronger evidence accumulation without retraining or changing emissions; compare team-switch costs15and18 against12.",
+  "variants": [
+    {
+      "name": "penalty15",
+      "penalty": 15.0
+    },
+    {
+      "name": "penalty18",
+      "penalty": 18.0
+    }
+  ],
+  "fixed": "Exact053GRU/control/dead/quality/boundary evidence,balanced full-strength adaptation,stop/restart3,all other settings unchanged. No hard duration floor. No new label/input signal.",
+  "selection": "Mean original four-condition spellF1 gain>=.003 vs053; original per-fold clean/gap decline<=.01,noise no decline,deadF1 decline<=.005; aggregate false-positive spells must not increase. Highest eligible mean. Miss/merge/recovery tradeoffs reported.",
+  "freeze": "One winner fixed before different-draw audit6514/6714/7118. Winner/053only. Audit mean must improve and FPmustnotincrease,else retain053 with no runner-up retuning.",
+  "history": "Same heavily reused two first-division Bundesliga games; no independent test or challenge score. Existing053validation outcomes motivate this protocol before seeing053audit or054outcomes. No supplied match data/video/labels/public scores used."
+}

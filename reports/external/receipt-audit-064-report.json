@@ -1,0 +1,152 @@
+{
+  "protocol": {
+    "purpose": "Frozen receipt-component robustness and provider transfer; no refitting or threshold changes; no deployment decision.",
+    "seeds": {
+      "masked": 10516,
+      "long_gap": 10716,
+      "tracker_noise": 11120
+    },
+    "frozen_report_sha256": "d32d3abf0ae615c6236fefc74b15eb47d1842107a903255d9afe2f2fabe1fb77",
+    "same_provider": "Opposite-game model per original fold; new error draws on same reused Bundesliga games, not fresh matches.",
+    "cross_provider": "Existing historical SkillCorner2440; not used for receipt064 fitting/calibration, but previously used elsewhere in project. Average two frozen Bundesliga models, average their frozen thresholds. Exact visible provider owner ID matched against nearest same-team track slot; ignore other same-team candidate if not exact owner; opposite-team near candidates negative. This is provider ball-carrier association proxy, not verified receipts or full H/A/D.",
+    "sampling": "Every5frames=5Hz at25Hz; valid trajectory window and candidate distance<=2.5m. No ID recovery or manual labels.",
+    "criteria": "New-draw component gate: decoy acceptance <=.9distance-only and owning retention >=distance-only-.02 pooled and per fold. Report transfer descriptively; no threshold reselection from it.",
+    "challenge_data_used": false
+  },
+  "new_draw_folds": [
+    {
+      "distance_only": {
+        "points": 31167,
+        "owning_team_candidates": 21870,
+        "opponent_decoy_candidates": 9297,
+        "owning_candidate_retention": 0.9491540923639689,
+        "opponent_decoy_acceptance": 0.8529633215015596,
+        "roc_auc": 0.7191648396690645,
+        "average_precision": 0.8474295482485413,
+        "brier": 0.18488999749809534
+      },
+      "motion_receipt": {
+        "points": 31167,
+        "owning_team_candidates": 21870,
+        "opponent_decoy_candidates": 9297,
+        "owning_candidate_retention": 0.9361682670324646,
+        "opponent_decoy_acceptance": 0.6249327740131225,
+        "roc_auc": 0.818854199664882,
+        "average_precision": 0.9066000843069517,
+        "brier": 0.15450367792193062
+      }
+    },
+    {
+      "distance_only": {
+        "points": 37340,
+        "owning_team_candidates": 27824,
+        "opponent_decoy_candidates": 9516,
+        "owning_candidate_retention": 0.9512650948821162,
+        "opponent_decoy_acceptance": 0.8260823875577974,
+        "roc_auc": 0.7567469143703013,
+        "average_precision": 0.8891985801647363,
+        "brier": 0.16167697183958302
+      },
+      "motion_receipt": {
+        "points": 37340,
+        "owning_team_candidates": 27824,
+        "opponent_decoy_candidates": 9516,
+        "owning_candidate_retention": 0.9471319723979299,
+        "opponent_decoy_acceptance": 0.5210172341319882,
+        "roc_auc": 0.8691250054990464,
+        "average_precision": 0.9394718375846367,
+        "brier": 0.12120101778502687
+      }
+    }
+  ],
+  "new_draw_pooled": {
+    "distance_only": {
+      "points": 68507,
+      "owning_team_candidates": 49694,
+      "opponent_decoy_candidates": 18813,
+      "owning_candidate_retention": 0.9503360566668008,
+      "opponent_decoy_acceptance": 0.8393663955775261
+    },
+    "motion_receipt": {
+      "points": 68507,
+      "owning_team_candidates": 49694,
+      "opponent_decoy_candidates": 18813,
+      "owning_candidate_retention": 0.9423069183402423,
+      "opponent_decoy_acceptance": 0.5723701695635997
+    }
+  },
+  "new_draw_component_gate_passed": true,
+  "cross_provider": {
+    "distance_only": {
+      "points": 5398,
+      "owning_team_candidates": 5048,
+      "opponent_decoy_candidates": 350,
+      "owning_candidate_retention": 0.9797939778129953,
+      "opponent_decoy_acceptance": 0.82,
+      "roc_auc": 0.8903121462531131,
+      "average_precision": 0.9910933227931922,
+      "brier": 0.09590472221703483
+    },
+    "motion_receipt": {
+      "points": 5398,
+      "owning_team_candidates": 5048,
+      "opponent_decoy_candidates": 350,
+      "owning_candidate_retention": 0.936014263074485,
+      "opponent_decoy_acceptance": 0.18,
+      "roc_auc": 0.9551092370387142,
+      "average_precision": 0.9967133331461137,
+      "brier": 0.08302203050201692
+    }
+  },
+  "cross_provider_coverage": [
+    {
+      "half": 1,
+      "sampled_frames": 14067,
+      "exact_visible_owner_frames": 2607,
+      "eligible_candidate_points": 2474,
+      "positive_owner_candidates": 2320,
+      "negative_opponent_candidates": 154
+    },
+    {
+      "half": 2,
+      "sampled_frames": 14719,
+      "exact_visible_owner_frames": 3010,
+      "eligible_candidate_points": 2924,
+      "positive_owner_candidates": 2728,
+      "negative_opponent_candidates": 196
+    }
+  ],
+  "provider_loader_audit": [
+    {
+      "period": 1,
+      "native_frames": 28133,
+      "labelled_native_frames": 18072,
+      "label_coverage": 0.6423772793516511,
+      "valid_runs": 40,
+      "median_valid_run_seconds": 33.3,
+      "direct_labelled_team_changes": 91,
+      "identified_observations": 210445,
+      "anonymous_observations": 9758,
+      "ball_observed_fraction": 0.5714996623182739,
+      "owner_labelled_native_frames": 5229,
+      "owner_policy": "Exact provider ID, current-frame player+ball observed, group/team consistent; unknown excluded"
+    },
+    {
+      "period": 2,
+      "native_frames": 29437,
+      "labelled_native_frames": 18294,
+      "label_coverage": 0.6214627849305296,
+      "valid_runs": 42,
+      "median_valid_run_seconds": 35.8,
+      "direct_labelled_team_changes": 106,
+      "identified_observations": 231387,
+      "anonymous_observations": 4724,
+      "ball_observed_fraction": 0.5681964874137989,
+      "owner_labelled_native_frames": 6042,
+      "owner_policy": "Exact provider ID, current-frame player+ball observed, group/team consistent; unknown excluded"
+    }
+  ],
+  "independent_project_test": false,
+  "verified_receipts": false,
+  "promoted_to_default": false
+}

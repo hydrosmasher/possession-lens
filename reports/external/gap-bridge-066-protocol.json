@@ -1,0 +1,19 @@
+{
+  "version": "gap-bridge-066",
+  "root_issue": "Missing-ball team decisions; no change to seen-ball frames or D mask.",
+  "features": "188:90perteam=26collective-shape/motion+25framepastmean+25framefuturemean+6previousseenanchor+6nextseenanchor;8sharedgapage/length/phase/visibilityflags. Only observations,not labels or reconstructed ball locations.",
+  "eligibility": "Only bracketed missing-ball runs<=300frames (12s). Open-ended/longer gaps and all observed frames unchanged. Existing D predictions immutable.",
+  "training": "Opposite-match WMX/WN1 folds; four independent training corruption conditions. Every5th eligible known-live frame,exactteam swaps,existing bounded inverse-sqrt spell weights. HGB160fixediterations/15leaves/minleaf80/lr.05/L2=20/seed166/noearlystop. No validation-fitted scaler or thresholds.",
+  "comparison": [
+    "prior_bridge",
+    "learned_bridge"
+  ],
+  "decoder": "Inside eligible predicted-live runs only;2stateViterbi penalty12,locked live flank labels,reset atD. prior_bridgeusesexistingconditionalHA only;learned_bridge50/50prior+specialist. No new global decoder or fake ball coordinates.",
+  "selection": "Learned only:mean spellF1 gain>=.002,misses/FP no increase,matched subsecondGT no decrease,each noise fold no decline,othergapfold decline<=.01,eligible live frame accuracy>=reference andmatched prior_bridge. Observed frames,Dmask exact. No promotion before frozen new-draw audit.",
+  "audit": "Only frozen learned winner,seeds10517/10717/11121. Same invariant locks,mean improvement andmisses/FP no increase. Not fresh matches. No runner-up or tuning from audit.",
+  "history": "Two heavily reused Bundesliga first-division games; development only. No challenge/video/labels/publicscore used; no downloads.",
+  "source_sha256": {
+    "gap_bridge.py": "518113baf1514d4830b53b1d84afa09bb43642258db46068441fa8ff736698e0",
+    "gap_bridge_experiment.py": "2affb0f8e24c8a02bcd933b48fbb334b91e216a34a4bc75ef4098e9f1bf46d65"
+  }
+}

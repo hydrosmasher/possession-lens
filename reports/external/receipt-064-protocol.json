@@ -1,0 +1,48 @@
+{
+  "version": "receipt-064",
+  "question": "Does approach/departure trajectory separate owning-team close-ball candidates from nearby opponents better than distance alone?",
+  "label_limit": "Provider full H/A/D reference; label=near candidate team matches current live possession. This is ownership compatibility, NOT verified receipt/touch ground truth. False-labelled proxy examples may include genuine opponent touches without team-possession change.",
+  "features": [
+    "distance",
+    "distance_before12",
+    "distance_before6",
+    "distance_before3",
+    "distance_after3",
+    "distance_after6",
+    "distance_after12",
+    "relative_speed_before",
+    "relative_speed_after",
+    "ball_speed_before",
+    "ball_speed_after",
+    "speed_drop",
+    "trajectory_turn",
+    "future_close_fraction"
+  ],
+  "observations": "Nearest current player per team; same track slot +/-12frames (0.48s at25Hz), all intervening ball observations required, no interpolation/extrapolation, reject implausible >60m/s ball or >15m/s player trajectory. No IDs/names/labels in features. Offline only.",
+  "folds": [
+    {
+      "fit_calibrate": "J03WMX",
+      "evaluate": "J03WN1"
+    },
+    {
+      "fit_calibrate": "J03WN1",
+      "evaluate": "J03WMX"
+    }
+  ],
+  "split": "First70% of each training half for fitting, last30% for calibration,25frame embargo each side ofcut. Same temporal split across allfour tracking conditions. Every5thframe,visible valid nearest candidate within2.5m,known-live target only.",
+  "fit": "Matched distance-only and all14feature HGB;120fixediterations,max15leaves,minleaf100,learningrate.05,L2=20,seed164,early_stopping=False. No sweeps,validation-based tuning or checkpoint selection.",
+  "threshold": "Each model fifth percentile of positive calibration probabilities (method lower), targeting95% own-team close-candidate retention on external calibration only. Not calibrated event probability.",
+  "component_acceptance": "Pooled opponent-decoy acceptance at least10% relatively lower than distance-only while own-candidate retention no more than2percentagepoints lower; per-fold retention no more than2points lower. Diagnostic only,not deployment.",
+  "bounded_filter": "Inspect existing <=25frame H/A pulse only if flanked by same opposing team; all trajectory windows throughout pulse plusoneframe flank available forbothteams. Suppress only if no pulse-team score reaches calibratedthreshold and bothflanks support otherteam. No new switch, unchanged D mask, unavailable frames immutable. Short strong receipts preserved; no duration floor.",
+  "pipeline_acceptance": "Misses nonincrease; subsecond GT matches nondecrease; FP decrease; mean spellF1 noninferior within.002; each noise fold no decline;clean/masked/long_gap fold decline<=.01. No model promotion until frozen different-draw audit passes.",
+  "audit_seeds": {
+    "masked": 10516,
+    "long_gap": 10716,
+    "tracker_noise": 11120
+  },
+  "history": "Two heavily reused Bundesliga first-division games; development only. No challenge inputs,video,groundtruth,publicscore or new downloads.",
+  "source_sha256": {
+    "receipt_evidence.py": "e4785592dfaf4f8b0d3dcfee6f8310401ade5675b6bf94aa92ad3bf9743a1afb",
+    "receipt_experiment.py": "651a05dd48f850fe89841c7e202b54faae9bb0dc3d52ada638ee27a2689223e1"
+  }
+}

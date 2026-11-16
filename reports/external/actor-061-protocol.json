@@ -1,0 +1,17 @@
+{
+  "version": "provider-actor-scorer-061",
+  "corpus_manifest_sha256": "a1a970971313773461707adf1f3c032f0555c79f2256611459d26ba4aa3ceb1e",
+  "training_ids": [
+    "4039",
+    "3749",
+    "3518",
+    "2068"
+  ],
+  "component_validation_ids": [
+    "2440"
+  ],
+  "training": "Shared20->32->32nodeMLP +sharedattention logits,global32actor softmax.10fixed epochs overall exact train points,batch512,AdamWlr.001/weightdecay.001,gradientclip1,seed161beforeinitialisation. Randomteam/x/yreflections perpoint; no RNN,projection or strong-match labels trained here. No early stopping/checkpoint selection.",
+  "validation": "2440 actor labels excluded from fitting; previously used elsewhere in project,notfresh whole-pipeline holdout. Report actor/team accuracy,ambiguity subset andBrier vsnearest/distance baseline. No verified dead-ball reference.",
+  "component_gate": "Fixedfinal weights considered for ledger experiment if actor_top1 improves by>=.01 withteam_top1 no worse thannearest-.005 ORteam_top1 improves>=.005 withactor no worse thannearest-.005; ORteamBrier improves>=.01 vsdistance-prior withactor/team top1 no worse thannearest-.005; ambiguous-team decline<=.01 if>=100points. This is NOT end-to-end possession acceptance.",
+  "history": "Provider-supplied weak owner identifiers, not human-verified touches. No guessed IDs/names or challenge data/video/ground truth/publicscore used."
+}

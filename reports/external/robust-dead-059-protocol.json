@@ -1,0 +1,27 @@
+{
+  "version": "collective-contact-dead-059",
+  "reference": "short-spell-053/short_focus",
+  "hypothesis": "Static older live/dead experts miss short stop/restart boundaries during poor observations. Add ball-independent collective dynamics and per-player association/quality features; isolate extra features against matched old-feature training.",
+  "variants": [
+    {
+      "name": "matched240_half",
+      "features": 240,
+      "mix": 0.5
+    },
+    {
+      "name": "robust487_half",
+      "features": 487,
+      "mix": 0.5
+    },
+    {
+      "name": "robust487_full",
+      "features": 487,
+      "mix": 1.0
+    }
+  ],
+  "training": "Each head200HistGradientBoostingtrees,31leaves,lr.05,minleaf80,L2=20,seed159,no earlystop. Known H/A/D frames sampled every10frames perhalf/fourfixed training conditions/four coherent x/y views. Dtarget=(externalBallStatusdead); no weak labels. Matched240 uses old240features;robust487adds64invariant contact,156invariant collective/context and27quality features. No labels/timestamps/identities in features.",
+  "fusion": "H/Aconditional probabilities/GRU fixed. New dead-tree probability gets0.75logit scaling. Blend its log odds at.5or1 with the reference final dead odds; then recompute old031boundary evidence and decode H/A12,stop3. Matchedheadonlyhalfblend as capacity/augmentation control.",
+  "selection": "Mean original four-condition spellF1 gain>=.003 vsreference,perfoldclean/gap decline<=.01,noise no decline,deadF1 decline<=.005 andaggregateFPnoincrease. Highest eligible mean. No post-result search.",
+  "audit": "Freeze one head/mix winner before observation seeds9514/9714/10118. Only winner/reference audited. Mean must improve andFPmustnotincrease orretainreference,no runner-up tuning.",
+  "history": "Existing two heavily reused first-division Bundesliga matches; no independent test. ForwardWMX/reverseWN1 train,opposite-match development. No provided-match inputs/video/labels/public score used. No newdownloads. All previous work retained."
+}

@@ -1,0 +1,41 @@
+{
+  "purpose": "Research-only external receipt-compatibility comparison. Not part of submission/default runtime. No verified touch/receipt labels.",
+  "models": [
+    {
+      "file": "receipt064-fold0-distance_only.npz",
+      "sha256": "9817e749520a0c0be29ac0a36706a8559189c66bb4f58356cbd46aae5e8c6a65",
+      "branch": "distance_only",
+      "fold": 0,
+      "train_match": "J03WMX",
+      "calibration_threshold": 0.4442808820647591,
+      "default": false
+    },
+    {
+      "file": "receipt064-fold0-motion_receipt.npz",
+      "sha256": "701641895f7ab0c2360499eaa58ade9690bf35020533ea27753c3cc313886da3",
+      "branch": "motion_receipt",
+      "fold": 0,
+      "train_match": "J03WMX",
+      "calibration_threshold": 0.3577521545147466,
+      "default": false
+    },
+    {
+      "file": "receipt064-fold1-distance_only.npz",
+      "sha256": "cac00a6923fa8b25454e8c3cc250c45aa5616666f59a28180627a6a8027723db",
+      "branch": "distance_only",
+      "fold": 1,
+      "train_match": "J03WN1",
+      "calibration_threshold": 0.45539382016991004,
+      "default": false
+    },
+    {
+      "file": "receipt064-fold1-motion_receipt.npz",
+      "sha256": "ec12447f134c600b01efae8d50c5ef9bd70501d9620736a4529d2a56c0f675d6",
+      "branch": "motion_receipt",
+      "fold": 1,
+      "train_match": "J03WN1",
+      "calibration_threshold": 0.43605104014008467,
+      "default": false
+    }
+  ]
+}

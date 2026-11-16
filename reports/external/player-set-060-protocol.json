@@ -1,0 +1,100 @@
+{
+  "version": "player-set-gru-060",
+  "reference": {
+    "source": "short-spell-053",
+    "name": "short_focus",
+    "scores": {
+      "clean": {
+        "spell_f1_mean": 0.7276859504132231,
+        "macro_f1": 0.9460058888180626,
+        "alive_dead_f1": 0.9993593850096093,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 925,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 293,
+          "false_positive": 207,
+          "merges": 77,
+          "short_under_0_4s": 5,
+          "newly_recovered": 56,
+          "lost_existing": 10
+        },
+        "dead_f1": 0.9992636587562935,
+        "frame_accuracy": 0.9565781419548705
+      },
+      "masked": {
+        "spell_f1_mean": 0.6364415862808145,
+        "macro_f1": 0.9161705845893732,
+        "alive_dead_f1": 0.9833692889891091,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 855,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 403,
+          "false_positive": 247,
+          "merges": 97,
+          "short_under_0_4s": 10,
+          "newly_recovered": 51,
+          "lost_existing": 9
+        },
+        "dead_f1": 0.9809100857944295,
+        "frame_accuracy": 0.9291199465791158
+      },
+      "long_gap": {
+        "spell_f1_mean": 0.6109473684210526,
+        "macro_f1": 0.8976841848872423,
+        "alive_dead_f1": 0.9686388724556465,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 889,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 418,
+          "false_positive": 296,
+          "merges": 93,
+          "short_under_0_4s": 5,
+          "newly_recovered": 55,
+          "lost_existing": 12
+        },
+        "dead_f1": 0.963921111086181,
+        "frame_accuracy": 0.910913024122868
+      },
+      "tracker_noise": {
+        "spell_f1_mean": 0.5394904458598726,
+        "macro_f1": 0.8733633836400346,
+        "alive_dead_f1": 0.9514797743064015,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 873,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 489,
+          "false_positive": 351,
+          "merges": 102,
+          "short_under_0_4s": 4,
+          "newly_recovered": 30,
+          "lost_existing": 18
+        },
+        "dead_f1": 0.9440990999419921,
+        "frame_accuracy": 0.887517041818536
+      },
+      "mean_spell_f1": 0.6286413377437408,
+      "totals": {
+        "missed": 1603,
+        "false_positive": 1101,
+        "merges": 369,
+        "short_under_0_4s": 24,
+        "newly_recovered": 192,
+        "lost_existing": 49
+      }
+    },
+    "mean_spell_f1": 0.6286413377437408,
+    "control_source": "short-spell-053",
+    "control_name": "short_focus"
+  },
+  "hypothesis": "Fixed teamwise summaries lose which raw player/ball motion cues belong together. A shared small player encoder learns association before the existing GRU; compare matched ordinary continuation.",
+  "architecture": "Old508feature64projection/2bidirectional64unitGRU retained. Each team has16nearest valid nodes (padded/masked);20physical relative-motion/contact-history/centroid-relative features plus validity. Shared20->32->32MLP+learned masked attention,32pooled perteam ->64projection added to old embedding. New projection starts0; old weights copied exactly. No names/identities/labels/timestamps. Fixed physical scaling,translation-invariant node features. Inference averages team swaps.",
+  "training": "16fixed iterations x512windows,batch32,AdamWlr.0001/weightdecay.001,clip1,seed160. Same053half-short anchors/2xshortCEweights and auxiliary boundaryBCE.1. Same four corruption conditions,team swaps/coherent pitch reflections. Locked0.1per-node training dropout and0.25new-embedding dropout; old dropout.25 retained. No new scalers or early stopping.",
+  "sampling": "Only fold-trainingWMX orWN1; opposite match validation, both extensively reused. Node feature caches are separate float32 memory-mapped arrays and not source artifacts. No weak-game inputs or new downloads.",
+  "selection": "Fixed50percent newGRU+50percent040conditional live; current verified dead expert/031head/decoder unchanged. Original mean spellF1 gain>=.003,per-fold clean/gap decline<=.01,noise no decline,deadF1 decline<=.005,aggregateFPnonincrease. Highest eligible mean.",
+  "audit": "Freeze/hash one winner before observation seeds10514/10714/11118. Winner/reference only. Mean improves+FPnonincrease orretainreference without runner-up tuning.",
+  "history": "Development on two heavily reused first-division Bundesliga matches, not independent tests. No challenge inputs/video/labels/publicscore used. Target0.70is not a promise."
+}

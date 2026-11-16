@@ -1,0 +1,1 @@
+Stopped pilot before a usable calibrated filter: all first-half fitting proposals in fold0 were negative recovery examples (8examples,0positive). No binary scorer can be fit. Preserved protocol/logs/arrays; no model promotion or challenge outputs. Broader genuine/false short-candidate training pool is tested separately as073.

@@ -1,0 +1,22 @@
+{
+  "version": "proposal-filter-research-073",
+  "approved": false,
+  "reason": "Failed exact recovered-spell retention and baseline FP/noise checks; not part of the submission.",
+  "models": [
+    {
+      "file": "proposalfilter073-fold0.npz",
+      "sha256": "96ee2e84235acda3e791b0abc0fce7c3ebd3277435dcbe688bd5399a9e8c8272",
+      "threshold": 0.2675620913505554,
+      "fitting_match": "J03WMX",
+      "approved": false
+    },
+    {
+      "file": "proposalfilter073-fold1.npz",
+      "sha256": "a926b1bd9abdbbaa7e72edae76780dee9e3087091a72749c9cf6040923178c45",
+      "threshold": 0.14508043229579926,
+      "fitting_match": "J03WN1",
+      "approved": false
+    }
+  ],
+  "execution_note": "Resumed after JSON scalar export/caching fix, with fitting/calibration parameters unchanged. No opposite-match evaluation preceded the per-fold freezes."
+}

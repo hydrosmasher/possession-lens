@@ -1,0 +1,104 @@
+{
+  "selected": null,
+  "reference": {
+    "source": "short-spell-053",
+    "name": "short_focus",
+    "scores": {
+      "clean": {
+        "spell_f1_mean": 0.7276859504132231,
+        "macro_f1": 0.9460058888180626,
+        "alive_dead_f1": 0.9993593850096093,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 925,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 293,
+          "false_positive": 207,
+          "merges": 77,
+          "short_under_0_4s": 5,
+          "newly_recovered": 56,
+          "lost_existing": 10
+        },
+        "dead_f1": 0.9992636587562935,
+        "frame_accuracy": 0.9565781419548705
+      },
+      "masked": {
+        "spell_f1_mean": 0.6364415862808145,
+        "macro_f1": 0.9161705845893732,
+        "alive_dead_f1": 0.9833692889891091,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 855,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 403,
+          "false_positive": 247,
+          "merges": 97,
+          "short_under_0_4s": 10,
+          "newly_recovered": 51,
+          "lost_existing": 9
+        },
+        "dead_f1": 0.9809100857944295,
+        "frame_accuracy": 0.9291199465791158
+      },
+      "long_gap": {
+        "spell_f1_mean": 0.6109473684210526,
+        "macro_f1": 0.8976841848872423,
+        "alive_dead_f1": 0.9686388724556465,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 889,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 418,
+          "false_positive": 296,
+          "merges": 93,
+          "short_under_0_4s": 5,
+          "newly_recovered": 55,
+          "lost_existing": 12
+        },
+        "dead_f1": 0.963921111086181,
+        "frame_accuracy": 0.910913024122868
+      },
+      "tracker_noise": {
+        "spell_f1_mean": 0.5394904458598726,
+        "macro_f1": 0.8733633836400346,
+        "alive_dead_f1": 0.9514797743064015,
+        "n_gt_spells": 1011,
+        "n_pred_spells": 873,
+        "n_graded": 287528,
+        "diagnostics": {
+          "missed": 489,
+          "false_positive": 351,
+          "merges": 102,
+          "short_under_0_4s": 4,
+          "newly_recovered": 30,
+          "lost_existing": 18
+        },
+        "dead_f1": 0.9440990999419921,
+        "frame_accuracy": 0.887517041818536
+      },
+      "mean_spell_f1": 0.6286413377437408,
+      "totals": {
+        "missed": 1603,
+        "false_positive": 1101,
+        "merges": 369,
+        "short_under_0_4s": 24,
+        "newly_recovered": 192,
+        "lost_existing": 49
+      }
+    },
+    "mean_spell_f1": 0.6286413377437408,
+    "control_source": "short-spell-053",
+    "control_name": "short_focus"
+  },
+  "checkpoint_hashes": [
+    {
+      "matched_ce": "357a4913781e07a3daa745ed76b4a0ecd745de178662c41dbc31aaa37c6851d4",
+      "player_set": "7e8cb1b1487a223070a226c50e2f26d36296563171dd81537b9241e0374a78d6"
+    },
+    {
+      "matched_ce": "2a68af2581c5ae5d1d358d0664614fa1e8550fd2eb8cb4723dc437e56b13c97f",
+      "player_set": "145d56ea3608761c0d84e04b1b93a234ff94c3b5af54ecbcdfcafcb76660cc42"
+    }
+  ],
+  "before_new_draw_audit": true
+}

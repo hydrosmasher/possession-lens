@@ -1,0 +1,17 @@
+{
+  "purpose": "Research-only local temporal expert. All069\u2013071variants fail acceptance; not part of the deployed RNN pipeline.",
+  "models": [
+    {
+      "file": "local069-fold0.npz",
+      "sha256": "90100f2b7330e56ce916d6125e81abae6ff87e90b833e7b312374eed9f22b055",
+      "train_match": "J03WMX",
+      "default": false
+    },
+    {
+      "file": "local069-fold1.npz",
+      "sha256": "a4a3501b2ddce0a05b939caf042b568ccc0b184e886367fcae95b407f0bc5072",
+      "train_match": "J03WN1",
+      "default": false
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "protocol": {
+    "version": "provider-actor-scorer-061",
+    "corpus_manifest_sha256": "a1a970971313773461707adf1f3c032f0555c79f2256611459d26ba4aa3ceb1e",
+    "training_ids": [
+      "4039",
+      "3749",
+      "3518",
+      "2068"
+    ],
+    "component_validation_ids": [
+      "2440"
+    ],
+    "training": "Shared20->32->32nodeMLP +sharedattention logits,global32actor softmax.10fixed epochs overall exact train points,batch512,AdamWlr.001/weightdecay.001,gradientclip1,seed161beforeinitialisation. Randomteam/x/yreflections perpoint; no RNN,projection or strong-match labels trained here. No early stopping/checkpoint selection.",
+    "validation": "2440 actor labels excluded from fitting; previously used elsewhere in project,notfresh whole-pipeline holdout. Report actor/team accuracy,ambiguity subset andBrier vsnearest/distance baseline. No verified dead-ball reference.",
+    "component_gate": "Fixedfinal weights considered for ledger experiment if actor_top1 improves by>=.01 withteam_top1 no worse thannearest-.005 ORteam_top1 improves>=.005 withactor no worse thannearest-.005; ORteamBrier improves>=.01 vsdistance-prior withactor/team top1 no worse thannearest-.005; ambiguous-team decline<=.01 if>=100points. This is NOT end-to-end possession acceptance.",
+    "history": "Provider-supplied weak owner identifiers, not human-verified touches. No guessed IDs/names or challenge data/video/ground truth/publicscore used."
+  },
+  "trace": [
+    {
+      "epoch": 1,
+      "mean_actor_ce": 2.1313927883797503
+    },
+    {
+      "epoch": 2,
+      "mean_actor_ce": 0.3856733542014944
+    },
+    {
+      "epoch": 3,
+      "mean_actor_ce": 0.05309589036760178
+    },
+    {
+      "epoch": 4,
+      "mean_actor_ce": 0.04575416612181258
+    },
+    {
+      "epoch": 5,
+      "mean_actor_ce": 0.04239519538873054
+    },
+    {
+      "epoch": 6,
+      "mean_actor_ce": 0.0409645445724117
+    },
+    {
+      "epoch": 7,
+      "mean_actor_ce": 0.03886981799881509
+    },
+    {
+      "epoch": 8,
+      "mean_actor_ce": 0.03776025780020876
+    },
+    {
+      "epoch": 9,
+      "mean_actor_ce": 0.036836083601922434
+    },
+    {
+      "epoch": 10,
+      "mean_actor_ce": 0.03594626732012059
+    }
+  ],
+  "metrics": {
+    "train": {
+      "points": 23870,
+      "actor_top1": 0.9895266024298283,
+      "team_top1": 0.9944281524926686,
+      "nearest_actor_top1": 0.9845412651864265,
+      "nearest_team_top1": 0.9888981985756179,
+      "team_brier": 0.0094714453196669,
+      "distance_prior_team_brier": 0.07739183499719804,
+      "ambiguous_both_teams_within2m_points": 511,
+      "ambiguous_team_top1": 0.9647749510763209,
+      "ambiguous_nearest_team_top1": 0.8962818003913894
+    },
+    "component_validation": {
+      "points": 5617,
+      "actor_top1": 0.989318141356596,
+      "team_top1": 0.9928787609043974,
+      "nearest_actor_top1": 0.9820188712836033,
+      "nearest_team_top1": 0.9854014598540146,
+      "team_brier": 0.010711419707736322,
+      "distance_prior_team_brier": 0.08129246833052844,
+      "ambiguous_both_teams_within2m_points": 174,
+      "ambiguous_team_top1": 0.9482758620689655,
+      "ambiguous_nearest_team_top1": 0.8563218390804598
+    }
+  },
+  "component_gate_passed": true,
+  "encoder_sha256": "d1f36123da6ec63a6b21f28bb622e1abfd9860581494047fce6f289150d44dae",
+  "end_to_end_possession_validated": false,
+  "independent_project_test": false,
+  "promoted_to_default": false
+}

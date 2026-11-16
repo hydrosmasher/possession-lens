@@ -1,0 +1,18 @@
+{
+  "version": "ownership-ledger-063",
+  "preserve_unsupported": true,
+  "single_change_063": "When both ownership supports are zero, preserve frozen H/A/D labels exactly; reset ledger at these intervals. All other parameters and acceptance checks unchanged.",
+  "priority": "Fix ownership and handovers before optimising aggregate score.",
+  "reference": "Frozen053; unchanged D mask and independent live-run resets.",
+  "actor_sha256": "d1f36123da6ec63a6b21f28bb622e1abfd9860581494047fce6f289150d44dae",
+  "actor_scope": "Four existing SkillCorner games trained;2440 actor-only holdout, all previously used elsewhere. Weak provider ball-carrier labels; not verified touches.",
+  "variants": [
+    "geometry_ledger",
+    "actor_ledger"
+  ],
+  "fixed": "HC/Hflight/AC/Aflight; emissions qTeam*receipt or qTeam*(1-maxReceipt); same-team transition .25, unsupported opposite flight24, opposite receipt2+22*(1-r). No minimum duration. Receipt=sqrt(actorWeight*physicalSupport); missing ball forces0. See ownership_ledger.py. No parameters fitted on strong benchmark.",
+  "acceptance": "FP reduction>=10%,misses nonincrease,subsecond matched GT nondecrease,mean F1>=reference-.002,each noise fold nondecline,clean/gap per-fold loss<=.01,D mask exact. Highest eligible mean frozen before separate noise audit; no promotion from this first check.",
+  "audit": "Only frozen winner; new noise seeds10515/10715/11119. FP reduction>=5%,misses/short-matches nonworse,mean F1>=reference-.002. These are new observation draws on reused matches, not fresh games.",
+  "challenge_data_used": false,
+  "source_sha256": "1294a21abf94054dc6c294fa8b9ff745cb41bfd118dc71b760b5d65d3201ff9f"
+}

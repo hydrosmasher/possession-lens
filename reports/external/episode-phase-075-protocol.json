@@ -1,0 +1,20 @@
+{
+  "version": "episode-phase-075",
+  "source": "CCBY4.0 IDSSE/Sportec Bundesliga WMX/WN1, existing tracking plus pinned external provider events. No challenge assets used in experiment.",
+  "purpose": "Test whether extra independent-type episode evidence can veto false070recoveries; provider possession-phase annotations are stronger than automatic Metrica tags, possibly share reference-annotation ancestry. This is an optimistic external signal pilot, not validated automatic-tag transfer.",
+  "rule": "Onlyexisting070receipt-supportedshortepisodes;vetoonlyifALLepisodeframeshaveunopposedopposite-team phaseevidence. Unknown,conflicting,partiallycoveredepisodesunchanged. No newH/Aepisodes,Dlabels,missing-ballchangesorparametersfitted.",
+  "proxy": "First/last Play,ShotAtGoal,BallClaiming perproviderBallPossessionPhase/team +/-1s. TrackingN/T clock only; no tracking BallStatus/Possession or reference labels construct cue.",
+  "conditions": [
+    "native_event_proxy",
+    "corrupted_event_proxy"
+  ],
+  "corruption": "Fixed30percentphase dropout,10percentteamflip,+/-2sjitter,seed175+fold*2+half. Samecorruptedcuesacrosstrackingconditions;not a measured model of Metrica errors.",
+  "guards": "Reportmean spellF1,misses,FP,<=3smatches andsame070recoveryretention. Desiredzero lost070recoveries,FP<=053and<070,mean>=053+.002,eachnoisefoldnondecline. EvenpassingdoesnotapproveMetrica-tagdeployment.",
+  "freeze": "Rule/noisefixedbefore external scoring;noparametersearch or challenge-score selection.",
+  "history": "Twoheavilyreusedexternalgames,notfreshindependenttest. Eventproxy/reference mayhavecommonannotationorigin. No challengevideo/outputcomparison/training/tuning.",
+  "source_sha256": {
+    "external_phase_proxy.py": "cff0eae1ea1516124c1b621632675f52bf73f898aba2daf5bc4b29075a64dd28",
+    "episode_phase_gate.py": "c1a3aed4a356f28dba1bab3fdc24616ae438cbf4eb84569d650efae84cdccef7",
+    "episode_phase_experiment.py": "f1becbb70ab759c1ca6a56598a0f8aa36a66fa15bc59801199a4af2a3630884e"
+  }
+}

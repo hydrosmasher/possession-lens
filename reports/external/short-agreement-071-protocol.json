@@ -1,0 +1,19 @@
+{
+  "version": "short-agreement-071",
+  "motivation": "069recovers75shortmatchesbutFP129higher. Isolateboundednewshortspells rather thanreplacingglobalpredictions.",
+  "inputs": "Frozen069local_expert labels;frozen064motion_receipt per-foldweights/thresholds,eachtrainedonlycorrespondingfittingmatch. No new fitting or threshold sweep.",
+  "additional_rule": "Onlysupportvariantalso requiresmean053conditionalcandidateprobability>.5 andatleastonereceipt-supportedframewithoutopponentclose/validreceiptalsoabovethreshold. No addednumericthresholdsearch. Allother070rules/guardsremainunchanged.",
+  "rule": "New1..75frameH/Aspell withoppositeproposalflanks;entirecandidateplusoneframeflanksinsideONEopposite053spell;ballseenallthoseframes. Receipt-supportedvariantrequiresatleastonecandidateframewithvalidtrajectory,nearestcandidate<=2.5m,and064score>=itsfrozen95percentretentioncalibrationthreshold. Missingballframes,D,andoutsidecandidateframesunchanged. No minimumdurationfloor.",
+  "variants": [
+    "bounded_proposals",
+    "receipt_supported"
+  ],
+  "selection": "Onlyreceipt_supported:mean gain>=.002,short<=3smatchesstrictincrease,misses/FPnonincrease,eachnoise foldnondecline,clean/masked/longgapfolddecline<=.01. Reportpairedunfilteredcontrol;freezebeforeaudit.",
+  "audit": "Onlywinner,samegamesnewseeds10518/10718/11122,recompute053/069/064fromobservations;meanandshortmatchesimprove,misses/FPnonincrease,Dmask/missingframesexact;no retuning.",
+  "history": "Adaptivefollow-upafter069ontworepeatedBundesligagames,notindependenttest. Receiptlabelsareownershipproxies,notverifiedtouches. Nochallengeinputs/video/labels/newdownloads.",
+  "sources": {
+    "local_report_sha256": "aef1f7fc3055f7cd7aa855ea83d32b44d6cdff11deb5c4289c51de65ac2d8f42",
+    "receipt_report_sha256": "d32d3abf0ae615c6236fefc74b15eb47d1842107a903255d9afe2f2fabe1fb77",
+    "rule_sha256": "8c01f7d495dd35c2f91d950a47ab1fa7ceb1d7ba084e161e0d95d125cd619a0c"
+  }
+}

@@ -27,7 +27,7 @@ class LockedDropout(nn.Module):
 class GatedPossession(nn.Module):
     def __init__(self,cell='gru',layers=1,bidirectional=False,hidden=32,projection=48,dropout=.15,boundary=False,input_features=130):
         super().__init__()
-        if cell not in ('gru','lstm') or layers not in (1,2) or hidden not in (32,64) or projection not in (48,64) or input_features not in (130,416,504,508) or not 0<=dropout<1:raise ValueError('Unsupported gated architecture')
+        if cell not in ('gru','lstm') or layers not in (1,2) or hidden not in (32,64) or projection not in (48,64) or input_features not in (130,416,504,508,572) or not 0<=dropout<1:raise ValueError('Unsupported gated architecture')
         self.config=dict(cell=cell,layers=layers,bidirectional=bool(bidirectional),hidden=hidden,projection=projection,dropout=dropout,boundary=bool(boundary),input_features=input_features)
         self.embedding=nn.Sequential(nn.Linear(input_features,projection),nn.LayerNorm(projection),nn.GELU(),LockedDropout(dropout))
         cls=nn.GRU if cell=='gru' else nn.LSTM
@@ -95,6 +95,9 @@ def gated_observations(model,sequence,pitch,mask=None,swap=False):
     if width==508:
         from .joint_state import joint_features,swap_joint
         x=joint_features(sequence,pitch,mask);return swap_joint(x) if swap else x
+    if width==572:
+        from .contact_state import contact_state,swap_contact
+        x=contact_state(sequence,pitch,mask);return swap_contact(x) if swap else x
     raise ValueError('Unsupported gated feature layout')
 
 def symmetric(model,sequence,pitch,mean,scale,mask=None):

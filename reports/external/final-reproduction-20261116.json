@@ -1,0 +1,19 @@
+{
+  "candidate": "053",
+  "csv_sha256": "2f5a445d2c3c10b3126b5bda3a5b9b11050d9a87410f19b7cbc5aaa88b928eeb",
+  "exact_match_to_frozen_csv": true,
+  "official_format_check_passed": true,
+  "rows": 199319,
+  "fitting_performed": false,
+  "video_used": false,
+  "ground_truth_used": false,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "torch": "2.9.1"
+  },
+  "observation_quality_artifact_created": true,
+  "source_state": "Working source, model hashes unchanged; commit recorded after final sync.",
+  "challenge_accuracy_measured": false
+}

@@ -1,0 +1,42 @@
+{
+  "scope": "External frame-level diagnostic of rejected062. Reference labels used only for failure analysis, not runtime inputs. Repeated corruption draws on two reused games; counts are not unique-match totals.",
+  "groups": {
+    "all_reference_live/missing_ball": {
+      "frames": 181890,
+      "max_support_mean": 0.0,
+      "correct_team_support_mean": 0.0,
+      "wrong_team_support_mean": 0.0
+    },
+    "all_reference_live/visible_ball": {
+      "frames": 433094,
+      "max_support_mean": 0.6236092168357216,
+      "correct_team_support_mean": 0.5573011464366714,
+      "wrong_team_support_mean": 0.13851346381537552
+    },
+    "new_wrong_team/missing_ball": {
+      "frames": 3321,
+      "max_support_mean": 0.0,
+      "correct_team_support_mean": 0.0,
+      "wrong_team_support_mean": 0.0
+    },
+    "new_wrong_team/visible_ball": {
+      "frames": 7341,
+      "max_support_mean": 0.634480661242295,
+      "correct_team_support_mean": 0.19666287477132394,
+      "wrong_team_support_mean": 0.5810279404495088
+    },
+    "new_recovered_team/missing_ball": {
+      "frames": 3026,
+      "max_support_mean": 0.0,
+      "correct_team_support_mean": 0.0,
+      "wrong_team_support_mean": 0.0
+    },
+    "new_recovered_team/visible_ball": {
+      "frames": 5495,
+      "max_support_mean": 0.5507346378010549,
+      "correct_team_support_mean": 0.48827036891447834,
+      "wrong_team_support_mean": 0.2183262423236767
+    }
+  },
+  "promoted": false
+}

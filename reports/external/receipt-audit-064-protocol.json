@@ -1,0 +1,14 @@
+{
+  "purpose": "Frozen receipt-component robustness and provider transfer; no refitting or threshold changes; no deployment decision.",
+  "seeds": {
+    "masked": 10516,
+    "long_gap": 10716,
+    "tracker_noise": 11120
+  },
+  "frozen_report_sha256": "d32d3abf0ae615c6236fefc74b15eb47d1842107a903255d9afe2f2fabe1fb77",
+  "same_provider": "Opposite-game model per original fold; new error draws on same reused Bundesliga games, not fresh matches.",
+  "cross_provider": "Existing historical SkillCorner2440; not used for receipt064 fitting/calibration, but previously used elsewhere in project. Average two frozen Bundesliga models, average their frozen thresholds. Exact visible provider owner ID matched against nearest same-team track slot; ignore other same-team candidate if not exact owner; opposite-team near candidates negative. This is provider ball-carrier association proxy, not verified receipts or full H/A/D.",
+  "sampling": "Every5frames=5Hz at25Hz; valid trajectory window and candidate distance<=2.5m. No ID recovery or manual labels.",
+  "criteria": "New-draw component gate: decoy acceptance <=.9distance-only and owning retention >=distance-only-.02 pooled and per fold. Report transfer descriptively; no threshold reselection from it.",
+  "challenge_data_used": false
+}

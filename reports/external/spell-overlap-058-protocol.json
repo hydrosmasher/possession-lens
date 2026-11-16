@@ -1,0 +1,15 @@
+{
+  "version": "local-spell-overlap-058",
+  "reference": "short-spell-053/short_focus",
+  "hypothesis": "Frame CE does not directly penalise possession-boundary overhang or fragmentation. Add a differentiable local spell-IoU surrogate, with a matched continuation control.",
+  "initialisation": "Use the best verified057winner if it passed its frozen audit; otherwise053. If preceding candidate alreadyreaches0.70,do not start. Preserve architecture/features/scaler exactly. Each branch starts the corresponding external training-fold checkpoint.",
+  "branches": [
+    "matched_ce",
+    "spell_iou"
+  ],
+  "training": "16fixed iterations x512windows,batch32,AdamWlr.0001,weightdecay.001,clip1,seed158; same053half-short anchor sampling/2xshortCEweights,spatial/teamaugmentation and narrow boundaryBCE.1. Only spell_iou adds0.25*local_soft_IoU_loss. No early stopping or parameter search.",
+  "surrogate": "Conditional H/A probabilities only. Equally average complete known-live GTspells inside loss core with opposite-team known-live neighbours. Intersection is correct-class soft mass inside spell; union is GTlength plus correct-class mass outside spell up to neighbouring-spell midpoints. Context,padding,D/unknown and edge-truncated spells excluded. This is a surrogate, not exact differentiable official greedy matching. Labels only training targets,never inputs.",
+  "selection": "Same50percentGRU+50percent040live,dead/quality/boundary unchanged. Original four-condition mean gain>=.003 vsreference; clean/gap fold decline<=.01,noise no decline,deadF1 decline<=.005,aggregateFPnoincrease. Highest eligible mean.",
+  "audit": "Freeze one winner/hashes before new draws8514/8714/9118. Only winner/reference audited. Audit mean must improve andFPmustnotincrease;otherwise retainreference,no runner-up retuning.",
+  "history": "Existing two heavily reused first-division Bundesliga matches. ForwardWMX/reverseWN1 fitting,opposite-match development; not independent testing. No challenge data/video/labels/public scores or newdownloads."
+}

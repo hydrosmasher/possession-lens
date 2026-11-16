@@ -25,7 +25,7 @@ def interpolate(a,positions):
     exact=np.isclose(positions,lo);out[exact]=a[lo[exact]]
     return out.astype(np.float32)
 
-def load_match(root,mid,recover_provider_ids=False,id_gap_frames=10):
+def load_match(root,mid,recover_provider_ids=False,id_gap_frames=10,include_owner=False):
     p=Path(root)/mid;m=json.loads((p/'match_data.json').read_text());frames=json.loads((p/'structured_data.json').read_text())
     players=[x for x in m['players'] if x.get('trackable_object') is not None]
     ids={x['trackable_object']:i for i,x in enumerate(players)}
@@ -40,7 +40,7 @@ def load_match(root,mid,recover_provider_ids=False,id_gap_frames=10):
         first=ff[0]['frame'];last=ff[-1]['frame'];n=last-first+1
         if n>150000 or any(b['frame']<=a['frame'] for a,b in zip(ff,ff[1:])):raise ValueError('Invalid frame timeline')
         xy=np.full((n,len(team),2),np.nan,np.float32);ball=np.full((n,2),np.nan,np.float32);y=np.full(n,3,np.int8)
-        slots={};previous=set();anonymous=0;identified=0;ball_id=m['ball']['trackable_object']
+        slots={};previous=set();anonymous=0;identified=0;ball_id=m['ball']['trackable_object'];owner_native=np.full(n,-1,np.int32) if include_owner else None
         for f in ff:
             j=f['frame']-first;y[j]={'home team':0,'away team':1}.get((f.get('possession') or {}).get('group'),3)
             current=set()
@@ -59,10 +59,14 @@ def load_match(root,mid,recover_provider_ids=False,id_gap_frames=10):
                         # Leave a missing observation on assignment to break false slot velocity.
                         continue
                     xy[j,slots[key]]=pos
+            if include_owner:
+                owner_id=(f.get('possession') or {}).get('trackable_object');slot=ids.get(owner_id)
+                if slot is not None and y[j]<2 and team[slot]==y[j] and np.isfinite(xy[j,slot]).all() and np.isfinite(ball[j]).all() and sum(obj.get('trackable_object')==owner_id for obj in f['data'])==1:owner_native[j]=slot
             previous=current
         # Native 10 Hz -> common 25 Hz for compatibility with frozen baseline/RNN.
         positions=np.arange(int(np.floor((n-1)*2.5))+1)/2.5
         seq={'xy':interpolate(xy,positions),'ball':interpolate(ball,positions),'teams':team,'y':y[np.floor(positions+1e-9).astype(int)],'period':np.array(period)}
+        if include_owner:seq['owner']=owner_native[np.floor(positions+1e-9).astype(int)]
         for source,target in [('xy','speed'),('ball','ball_speed')]:
             a=seq[source];v=np.full(a.shape[:-1],np.nan,np.float32);v[1:]=np.linalg.norm(a[1:]-a[:-1],axis=-1)*25;seq[target]=v
         # Discard impossible velocities rather than injecting spikes into either comparator.
@@ -70,6 +74,7 @@ def load_match(root,mid,recover_provider_ids=False,id_gap_frames=10):
         parts.append((seq,np.array([m['pitch_length'],m['pitch_width']],np.float32)))
         valid=y<2;starts=np.flatnonzero(valid & ~np.r_[False,valid[:-1]]);ends=np.flatnonzero(valid & ~np.r_[valid[1:],False])+1
         audit.append({'period':period,'native_frames':n,'labelled_native_frames':int(valid.sum()),'label_coverage':float(valid.mean()),'valid_runs':len(starts),'median_valid_run_seconds':float(np.median(ends-starts)/10),'direct_labelled_team_changes':int(np.sum((y[1:]<2)&(y[:-1]<2)&(y[1:]!=y[:-1]))),'identified_observations':identified,'anonymous_observations':anonymous,'ball_observed_fraction':float(np.isfinite(ball).all(1).mean())})
+        if include_owner:audit[-1]['owner_labelled_native_frames']=int((owner_native>=0).sum());audit[-1]['owner_policy']='Exact provider ID, current-frame player+ball observed, group/team consistent; unknown excluded'
     return parts,audit
 
 

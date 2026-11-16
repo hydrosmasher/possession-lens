@@ -1,0 +1,36 @@
+{
+  "version": "candidate-calibration-073",
+  "aim": "Reduce070falsepositives while retaining every same GT spell recovered by070, not just recovery count.",
+  "fitting_split": "For each opposite-match fold, first half of fitting match fits proposal scorer; second half calibrates cutoff. Each includesfour fixed training-corruption conditions. No opposite evaluation-match labels enter fit, scaler, threshold, or calibration selection.",
+  "generator_limit": "Frozen053/064/069generators previously fitted BOTH halves of fitting match. Calibration excludes scorer fitting only, not generator fitting: in-sample generation can be optimistic. Opposite-game evaluation is heavily reused development, not independent testing.",
+  "features": [
+    "length",
+    "local_mean",
+    "local_min",
+    "local_max",
+    "local_contrast",
+    "receipt_peak",
+    "receipt_margin_peak",
+    "receipt_support_fraction",
+    "motion_after_speed",
+    "motion_speed_drop",
+    "motion_future_close"
+  ],
+  "features_policy": "17 identity-free relative-to-proposed-team probability/receipt/motion/duration/context summaries. No reference labels/timestamps in features.",
+  "broader_training_pool": "Include ALL receipt-supported local-expert shortspells,notjustnovelrepairs;candidate label=matchesexternalGTatIoU.5;unknownreferencewindowsexcluded. Use11local/receipt/motionfeatures;excludebaselineprobabilities/oldspell-contextshortcut. This supplies genuineexampleswherefittedbaselinealreadycorrect.",
+  "classifier": "Regularised binary logistic model60fixedepochs,L2=.05,seed172+fold,training-only scaler. Fitlabels=completecandidateIoU.5match;externalonly. If<20examples or<5perclass,no filtering.",
+  "positive_candidate_constraint": "CutoffnohigherthanminimumscoreamongALLgenuinecalibrationcandidates,so100percentproxypositivecandidate retention;no positivecalibrationcandidate=>no filtering. Also apply070same-recovered-spell constraint whenactualrepairproposalspresent.",
+  "calibration": "Enumerate only calibration proposal score cutoffs; zero lost individual070-recovered GTspells required; calibrationFP no worse than070; select fewestFP thenhighestcutoff. Freeze per-fold model hash+threshold BEFORE opposite-match evaluation. No runner-up thresholds after evaluation.",
+  "acceptance": "Exactzero loss of070-recoveredindividualspells;FP strictly below070 and<=053;totalmisses<=053;meanF1>=053+.002;shortmatches>053;eachnoisefoldnondecline;clean/gapfolddecline<=.01. AllD/missingframes unchanged. Promotion also requires frozennewdrawaudit.",
+  "audit_seeds": {
+    "masked": 10519,
+    "long_gap": 10719,
+    "tracker_noise": 11123
+  },
+  "history": "ExistingtwoBundesliga matches;no challengeinputs/video/labels/publicscore,newdownloadsorverifiedreceiptclaims. Adaptiveafter069\u2013071; notindependenttest.",
+  "source_sha256": {
+    "proposal_calibration.py": "695136b394e9d9a1f44962c56ccf5dd9de6c56b03d97a5108d3ae93579e77952",
+    "candidate_calibration.py": "6bbf4f8613f18033d05ffcad2d896cf800240f35d489894108b497806e7425aa",
+    "candidate_calibration_experiment.py": "1ef8cace66e3d5172c756d4ed1c72a84ab6f5a7b28dc6f75a7875f2b0d1a5518"
+  }
+}

@@ -42,6 +42,8 @@ def export(data_root,out,config,filename='possession.csv'):
     s,pitch,names,files=read_observations(data_root);labels=predict_halves(bundle,s,pitch,inference=infer);reason=pm.validate_submission(pd.DataFrame({'frame':np.arange(N_FRAMES),'label':labels}),N_FRAMES)
     if reason:raise ValueError(reason)
     out.mkdir(parents=True);csv=out/filename;write_submission(str(csv),labels);stats={**team_statistics(labels,FPS),'teams':dict(zip(('H','A'),names)),'status':'Model estimates, not verified match statistics'};(out/'team-statistics.json').write_text(json.dumps(stats,indent=2)+'\n');(out/'timeline.json').write_text(json.dumps(intervals(labels))+'\n')
+    from .observation_quality import quality_report
+    (out/'observation-quality.json').write_text(json.dumps(quality_report(s,BLOCKS,FPS),indent=2)+'\n')
     manifest={'pipeline':VERSION,'candidate':bundle['config'].get('candidate','043'),'config_sha256':digest(config),'base_config':bundle['config']['base_config'],'assets':{**bundle['base']['config']['assets'],'gru':bundle['config']['gru']},'gru_mix':bundle['mix'],'input_assets':{k:{'sha256':digest(files[k]),'bytes':files[k].stat().st_size} for k in ('metadata','tracking')},'unused_assets':[k for k in files if k not in ('metadata','tracking')],'csv_filename':filename,'csv_sha256':digest(csv),'n_frames':N_FRAMES,'half_blocks':BLOCKS,'official_format_valid':True,'fitting_performed':False,'video_used':False,'ground_truth_used':False,'inference_device':'cpu','torch_threads':1,'deterministic_algorithms':True,'versions':{'python':platform.python_version(),'numpy':np.__version__,'pandas':pd.__version__,'torch':torch.__version__}}
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n');return manifest
 

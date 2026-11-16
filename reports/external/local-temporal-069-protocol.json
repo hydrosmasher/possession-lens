@@ -1,0 +1,29 @@
+{
+  "version": "local-temporal-069",
+  "diagnosis": "068findsonly142of1201missedshortspells recovered byremovingH/Asmoothing;weak/fragmentedtimeevidence dominates. Do not lowerglobalpenalty.",
+  "architecture": "508->64linear/LayerNorm/GELU;3residual64channel5tapconvolutions,dilations1/4/16,LayerNorm/GELU/lockeddropout.2;2classhead. Finite42frame(1.68s) learned radius on top offixed observation features. Offline futurecontext,notliveforecasting.",
+  "fitting": "Fromscratch,20fixediterationsx512windows,batch32;AdamWlr.0003/weightdecay.001/gradientclip1/seed169+fold. Samecorresponding053training-only508scaler. Fittingmatchstrongcorpusonly,all4trainingcorruptions,halfshortanchors<=3s,2xshortCEweights,coherentteam/pitchreflections. No boundaryloss or earlystopping. Existinglabels aretargets/sampling only.",
+  "folds": [
+    {
+      "fit": "J03WMX",
+      "evaluate": "J03WN1"
+    },
+    {
+      "fit": "J03WN1",
+      "evaluate": "J03WMX"
+    }
+  ],
+  "variants": [
+    "neutral_blend",
+    "local_expert"
+  ],
+  "frozen": "053emissions/031boundaryevent/Dmask remainreference. NewconditionalHA=.75reference+.25expert;neutralcomparison uses.5/.5expert. Locked-Ddecoderusesexistingper-frameadaptivecost12andcachedboundaryevents;referenceexactreplayasserted. No globalcostchange,nominimumduration,newDbridgesorchangedhalfboundaries.",
+  "selection": "Onlylocal_expert:mean spellF1 gain>=.002;matchedshort<=3sspellsstrictincrease;totalmisses/FPnonincrease;eachnoise foldnondecline;eachclean/masked/longgapfolddecline<=.01;meanmustexceedneutralcontrol. Dmaskexact. Freezeweights beforeaudit.",
+  "audit": "Selectedwinneronlyvs053,samegamesnewdrawseeds10518/10718/11122;mustimprovemean+shortmatches,misses/FPnonincrease,Dmaskexact. No tuning/runnerupsafteraudit. These are notnewmatches.",
+  "corpus_manifest_sha256": "a63788ae095a99454b4e11f8597b3010a8a143073fe794a5edf192b35d4a8d56",
+  "source_sha256": {
+    "local_temporal.py": "71d1fc24623ca30f759b9bf0da5b369e7441316dab41b95f4d36b23b35424cc2",
+    "local_temporal_experiment.py": "fc866889ac0e4fa927a08f3bf6a6e7d29e79f1afc53c2b541e4fa1c4edef1e11"
+  },
+  "history": "Twoheavilyreusedfirst-divisionBundesligagames;developmentonly. Nochallengeinputs/video/labels/publicscore,newdownloadsorverifiedreceiptclaims."
+}

@@ -1,0 +1,14 @@
+{
+  "selected": null,
+  "checkpoint_hashes": [
+    {
+      "matched508": "3c6ea39b284a2fab64e38e471ebb69c4a9cb05037c82954301f6c80d7953f8e8",
+      "contact572": "ff0effbce89876326cc9d275b22743023cbdda0cf457abbfdd91c476c8d7cc5d"
+    },
+    {
+      "matched508": "379cbe669df0a8f4274059a1e78fe040ebaf1fd0baf03cff7ff51a435c6e7da8",
+      "contact572": "0a3ffe665afa71bed7ec93c1f05fe481355aea57774f5ed8a0383dfa2b391858"
+    }
+  ],
+  "before_new_draw_audit": true
+}

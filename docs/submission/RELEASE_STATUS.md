@@ -1,11 +1,19 @@
-# Submission release status —15 November 2026
+# Submission release status —16 November2026
 
-Starting benchmark: candidate 052 **0.615370**. Final checkpoint: **053, overall external development possession-spell F 1 0.628641**. The target is 0.85–0.90; it remains unmet, and competition rank is unknown.
+**Frozen method:053.** Later recovery/calibration and event-phase pilots failed retention/false-switch checks and do not replace it. External development mean spell F1 remains0.628641 on two heavily reused Bundesliga matches; no challenge accuracy or competition rank is established.
 
-The selected GRU continues 052 for 12 fixed iterations × 512 windows (6,144 additional sampled windows; 52 iterations and 26,624 sampled windows including its 043/052 history). Half of its training anchors are drawn uniformly from known-live spells of at most 3 seconds, then uniformly within that spell. Those frames receive twice their previous spell-weighted CE weight. AdamW learning rate 0.0001, weight decay 0.001, gradient clipping 1, seed 153, dropout 0.25, spatial reflections and team swaps remain fixed. The unchanged two-layer bidirectional 64-unit GRU still uses 508 features, projection 64, LayerNorm and the narrow auxiliary boundary objective. Forward weights fit WMX only; reverse development fits WN 1. Labels affect training sampling/loss only and never enter inference.
+## Verified locally
 
-The two Bundesliga matches are heavily reused external development data. Four conditions pool opposite-match predictions: clean 0.727686, short ball gaps 0.636442, long gaps 0.610947, tracking noise 0.539490. These use the organisers' official spell metric, not the challenge ground truth. No challenge video, labels or public score is used for fitting, selection or comparison.
+- The latest source regenerated the frozen199,319-row CSV exactly in the pinned Python3.12 environment.
+- CSV SHA-256: `2f5a445d2c3c10b3126b5bda3a5b9b11050d9a87410f19b7cbc5aaa88b928eeb`.
+- Official format validation passed without reading challenge ground truth.
+-261 tests and the13-cell judge notebook pass; complete research history is archived separately.
+- JupyterLab4.4.10 was installed successfully; pip reports no broken requirements.
+- All pinned inference packages were available from public PyPI when checked.
+- CI now installs CPU PyTorch before the pinned inference dependencies. Remote CI must be checked after pushing.
 
-After the fixed winner was selected, different simulated-error draws scored 0.606253 → 0.622752. These are the same matches, not an independent-match test.
+## Remaining before form submission
 
-Prepared CSV: `Visca el Barça, visca Catalunya.csv`, SHA 256`2f5a445d2c3c10b3126b5bda3a5b9b11050d9a87410f19b7cbc5aaa88b928eeb`. Notebook uses registered Python 3.12 GRU kernel. Old models/bundles and evaluation/Submission.csv are preserved. Match inputs, feature caches, private outputs and licensed assets remain excluded from GitHub and source ZIP. Repository is private; public release and form submission are pending. No provided-game accuracy or competition percentile is established.
+The repository must be public and the exact reviewed source revision must be pushed. The development repository is private; no visibility change or form submission has occurred. Use the team-named CSV and matching technical document from the submission bundle, and confirm the source archive/checksums after the final commit. Official deadline:17 November2026.
+
+See [today's evidence](DAY_2026_11_16.md), [technical document](<Visca el Barça, visca Catalunya.md>) and [reproduction guide](../REPRODUCIBILITY.md).

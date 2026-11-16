@@ -1,0 +1,15 @@
+{
+  "version": "contact-persistence-057",
+  "reference": "frozen053",
+  "hypothesis": "Teamwise independent maxima lose per-player ball association. Add64 scalar per-player contact/persistence features pooled without identities; contrast matched continuation of old508features.",
+  "branches": [
+    "matched508",
+    "contact572"
+  ],
+  "training": "Both start corresponding053short_focus weights. Contact572 copies all old parameters and zero-initialises64 new embedding columns; extra mean/scale fitted to training-only observations plus team swaps.16fixed iterations x512windows,batch32,AdamWlr.0001,weightdecay.001,clip1,seed157. Same two64unit bidirectional GRU layers,projection64,dropout.25. No validation early stopping.",
+  "sampling": "Same053half-short<=3s anchors and2xexistingCEweights onshortspells, spatial reflection/team swaps, four original training conditions. Auxiliary narrow boundaryBCE.1 unchanged. ForwardWMXonly/reverseWN1only. No weak-game windows.",
+  "features": "508old plus32perteam: top1/top2/top3means of8 per-player proximity,coupling,interception,trajectory-change,persistence,alignment scores;6 same-player weighted past/future memories,acceleration and visibility. Scalars invariant to pitch reflection; no labels,identities,timestamps. Current ball missing =>extra contact evidence0. Velocities use+-2frames,turn evidence+-4frames; fixed plausible-speed masks match existing feature recipe.",
+  "selection": "Same50percent newGRU+50percent040conditional live,dead/quality/031boundary unchanged. Mean four-condition spellF1 gain>=.003 vs053; per-fold clean/gap decline<=.01,noise no decline,deadF1 decline<=.005; aggregate false positives must not increase. Highest eligible original mean.",
+  "audit": "Freeze/hash one winner before new observation draws7514/7714/8118. Only winner/053audited;mean must improve andFPmustnotincrease,else retain053 without runner-up retuning.",
+  "history": "Two heavily reused external first-division Bundesliga games, not independent matches. No challenge inputs/video/labels/public scores used. Goal.70 not guaranteed. No new downloads."
+}

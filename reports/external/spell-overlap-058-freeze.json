@@ -1,0 +1,16 @@
+{
+  "selected": null,
+  "initial_source": "short-spell-053",
+  "initial_name": "short_focus",
+  "checkpoint_hashes": [
+    {
+      "matched_ce": "edcd96b56d230622919218d5dc67a652766efb1c7eefb306d116e05eedea697a",
+      "spell_iou": "33c6731b82a68e0a41d230b2c45f718f973bd9ffa2d551d7274fdec9587308b2"
+    },
+    {
+      "matched_ce": "a3188d76460612038a10e1552f6c36d110265c383ee13f00bdb5758c5672ef44",
+      "spell_iou": "4412a5fd30d2195056f7aa5553af0d0ab4c2b067a80a65b21be01ff295634330"
+    }
+  ],
+  "before_new_draw_audit": true
+}

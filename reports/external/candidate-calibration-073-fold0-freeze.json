@@ -1,0 +1,78 @@
+{
+  "train_match": "J03WMX",
+  "fit_half": 1,
+  "calibration_half": 2,
+  "fit_examples": 192,
+  "fit_positive_recovery_examples": 111,
+  "calibration_examples": 5,
+  "threshold": 0.2675620913505554,
+  "no_filter_fallback": false,
+  "calibration": {
+    "status": "Exact recovery-retention constrained external calibration",
+    "selected": {
+      "threshold": 1.000001,
+      "lost_recovered": 0,
+      "false_positive_spells": 204,
+      "kept_proposals": 0,
+      "eligible": true
+    },
+    "prototype_fp": 216,
+    "trials": [
+      {
+        "threshold": 0.0,
+        "lost_recovered": 0,
+        "false_positive_spells": 216,
+        "kept_proposals": 5,
+        "eligible": true
+      },
+      {
+        "threshold": 0.3552595376968384,
+        "lost_recovered": 0,
+        "false_positive_spells": 216,
+        "kept_proposals": 5,
+        "eligible": true
+      },
+      {
+        "threshold": 0.41243380308151245,
+        "lost_recovered": 0,
+        "false_positive_spells": 214,
+        "kept_proposals": 4,
+        "eligible": true
+      },
+      {
+        "threshold": 0.41469529271125793,
+        "lost_recovered": 0,
+        "false_positive_spells": 211,
+        "kept_proposals": 3,
+        "eligible": true
+      },
+      {
+        "threshold": 0.45861831307411194,
+        "lost_recovered": 0,
+        "false_positive_spells": 208,
+        "kept_proposals": 2,
+        "eligible": true
+      },
+      {
+        "threshold": 0.4677196145057678,
+        "lost_recovered": 0,
+        "false_positive_spells": 206,
+        "kept_proposals": 1,
+        "eligible": true
+      },
+      {
+        "threshold": 1.000001,
+        "lost_recovered": 0,
+        "false_positive_spells": 204,
+        "kept_proposals": 0,
+        "eligible": true
+      }
+    ],
+    "pool_positive_count": 83,
+    "pool_candidate_count": 132,
+    "positive_candidate_cutoff": 0.2675620913505554,
+    "final_cutoff": 0.2675620913505554
+  },
+  "model_sha256": "1345d06eabe9e439fc999c6dc6b4fc7ca6a1555406c53915c4f74f068c9d04bf",
+  "before_opposite_match_evaluation": true
+}

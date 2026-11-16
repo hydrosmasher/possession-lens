@@ -1,0 +1,17 @@
+{
+  "purpose": "Rejected missing-ball research specialist; not used by the submission pipeline.",
+  "models": [
+    {
+      "file": "gapbridge066-fold0.npz",
+      "sha256": "832047bf8b653e0f8078c709428aa9c6260387841cb017115c3a650d19cf07da",
+      "train_match": "J03WMX",
+      "default": false
+    },
+    {
+      "file": "gapbridge066-fold1.npz",
+      "sha256": "308481288d3fae8d22784d5a75b63fb0fe0c14ee997eb529666e3219283ddc52",
+      "train_match": "J03WN1",
+      "default": false
+    }
+  ]
+}

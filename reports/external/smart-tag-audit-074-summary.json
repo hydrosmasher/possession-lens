@@ -1,0 +1,9 @@
+{
+  "purpose": "Parser/schema/range verification only; no prediction/video/reference comparison.",
+  "private_input_audit_completed": true,
+  "raw_intervals_exported": false,
+  "training_performed": false,
+  "automatic_tags_used_in_submission": false,
+  "external_phase_transfer_validated": false,
+  "source_documentation": "https://github.com/metrica-sports/more-than-a-hack-2027/blob/main/DATA.md"
+}

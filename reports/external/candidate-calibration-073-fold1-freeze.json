@@ -1,0 +1,169 @@
+{
+  "train_match": "J03WN1",
+  "fit_half": 1,
+  "calibration_half": 2,
+  "fit_examples": 176,
+  "fit_positive_recovery_examples": 132,
+  "calibration_examples": 18,
+  "threshold": 0.14508043229579926,
+  "no_filter_fallback": false,
+  "calibration": {
+    "status": "Exact recovery-retention constrained external calibration",
+    "selected": {
+      "threshold": 0.23900087177753448,
+      "lost_recovered": 0,
+      "false_positive_spells": 223,
+      "kept_proposals": 17,
+      "eligible": true
+    },
+    "prototype_fp": 225,
+    "trials": [
+      {
+        "threshold": 0.0,
+        "lost_recovered": 0,
+        "false_positive_spells": 225,
+        "kept_proposals": 18,
+        "eligible": true
+      },
+      {
+        "threshold": 0.08978155255317688,
+        "lost_recovered": 0,
+        "false_positive_spells": 225,
+        "kept_proposals": 18,
+        "eligible": true
+      },
+      {
+        "threshold": 0.23900087177753448,
+        "lost_recovered": 0,
+        "false_positive_spells": 223,
+        "kept_proposals": 17,
+        "eligible": true
+      },
+      {
+        "threshold": 0.3203001320362091,
+        "lost_recovered": 2,
+        "false_positive_spells": 223,
+        "kept_proposals": 16,
+        "eligible": false
+      },
+      {
+        "threshold": 0.3205120861530304,
+        "lost_recovered": 4,
+        "false_positive_spells": 223,
+        "kept_proposals": 15,
+        "eligible": false
+      },
+      {
+        "threshold": 0.36771947145462036,
+        "lost_recovered": 6,
+        "false_positive_spells": 223,
+        "kept_proposals": 14,
+        "eligible": false
+      },
+      {
+        "threshold": 0.37882891297340393,
+        "lost_recovered": 6,
+        "false_positive_spells": 221,
+        "kept_proposals": 13,
+        "eligible": false
+      },
+      {
+        "threshold": 0.3815684914588928,
+        "lost_recovered": 9,
+        "false_positive_spells": 222,
+        "kept_proposals": 12,
+        "eligible": false
+      },
+      {
+        "threshold": 0.3836289942264557,
+        "lost_recovered": 9,
+        "false_positive_spells": 220,
+        "kept_proposals": 11,
+        "eligible": false
+      },
+      {
+        "threshold": 0.4079906940460205,
+        "lost_recovered": 9,
+        "false_positive_spells": 218,
+        "kept_proposals": 10,
+        "eligible": false
+      },
+      {
+        "threshold": 0.42137467861175537,
+        "lost_recovered": 11,
+        "false_positive_spells": 218,
+        "kept_proposals": 9,
+        "eligible": false
+      },
+      {
+        "threshold": 0.4518836438655853,
+        "lost_recovered": 13,
+        "false_positive_spells": 218,
+        "kept_proposals": 8,
+        "eligible": false
+      },
+      {
+        "threshold": 0.4547300636768341,
+        "lost_recovered": 14,
+        "false_positive_spells": 217,
+        "kept_proposals": 7,
+        "eligible": false
+      },
+      {
+        "threshold": 0.45495402812957764,
+        "lost_recovered": 17,
+        "false_positive_spells": 218,
+        "kept_proposals": 6,
+        "eligible": false
+      },
+      {
+        "threshold": 0.5090815424919128,
+        "lost_recovered": 20,
+        "false_positive_spells": 219,
+        "kept_proposals": 5,
+        "eligible": false
+      },
+      {
+        "threshold": 0.5318679213523865,
+        "lost_recovered": 20,
+        "false_positive_spells": 217,
+        "kept_proposals": 4,
+        "eligible": false
+      },
+      {
+        "threshold": 0.5990120768547058,
+        "lost_recovered": 20,
+        "false_positive_spells": 215,
+        "kept_proposals": 3,
+        "eligible": false
+      },
+      {
+        "threshold": 0.6003879904747009,
+        "lost_recovered": 22,
+        "false_positive_spells": 215,
+        "kept_proposals": 2,
+        "eligible": false
+      },
+      {
+        "threshold": 0.613839328289032,
+        "lost_recovered": 24,
+        "false_positive_spells": 215,
+        "kept_proposals": 1,
+        "eligible": false
+      },
+      {
+        "threshold": 1.0000009536743164,
+        "lost_recovered": 24,
+        "false_positive_spells": 213,
+        "kept_proposals": 0,
+        "eligible": false
+      }
+    ],
+    "pool_positive_count": 99,
+    "pool_candidate_count": 142,
+    "positive_candidate_cutoff": 0.14508043229579926,
+    "final_cutoff": 0.14508043229579926
+  },
+  "model_sha256": "bf21f73e43b296224462cbb40a3c7a74d12fda8859230484efb7ac0e8c47c425",
+  "before_opposite_match_evaluation": true
+}

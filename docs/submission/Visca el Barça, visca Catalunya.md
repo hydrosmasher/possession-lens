@@ -1,75 +1,84 @@
-# Possession Lens: team control through missing and noisy tracking
+# Possession Lens: possession through missing and noisy tracking
 
 **Team:** Visca el Barça, visca Catalunya
+**Authors:** Hrishikesh Karmalkar, Basel, Michail and Omar
+**Submitted candidate:** 053
+**Code:** https://github.com/hydrosmasher/possession-lens
+**Updated:** 16 November 2026
 
-**Authors:** Hrishikesh Karmalkar, Basel, Omar, Michail and Paul
+## Approach
 
-**Candidate:** 053 · **Code:** https://github.com/hydrosmasher/possession-lens
+We estimate team possession for every tactical-video frame using the supplied automatic tracking. The submitted candidate is frozen model 053. It separates live-team control from live/dead play, then decodes a coherent H/A/D sequence. Its 508 identity-free features combine ball-player proximity, relative movement, ball-trajectory changes and collective team shape. These are control proxies, not verified touches.
 
-## Method
+## Inputs and frame alignment
 
-We label each frame as home possession (H), away possession (A), dead ball (D), or outside the published halves (X). Automatic tactical tracking XML supplies team membership; TXT supplies player/ball positions and speeds. Coordinates become centred pitch metres. Frame IDs 1–199319 become CSV frames 0–199318. Halves are processed separately; X is written outside them. No provided video, manual player mapping, homography or Smart Tagging is used by this frozen candidate.
+Metadata XML supplies team membership; tracking TXT supplies player/ball positions and speeds. Coordinates are converted to centred pitch metres. Tracking IDs 1-199319 map to CSV frames 0-199318. Halves are processed separately: frames 11185-90651 and 110808-190197 inclusive. X is written outside those blocks. The frozen model does not use the provided video, homography, Smart Tagging or manual player mappings.
 
-The model separates **who controls live play** from **whether play is live**, then jointly decodes H/A/D. Its 508 identity-free features combine ball/player proximity, relative movement, ball-trajectory changes and collective team shape/motion. These are control/contact proxies, not verified touches. Ball-independent shape features retain evidence during ball gaps. Gaps of at most 50 frames may be interpolated only between visible endpoints with implied speed≤50 m/s; original visibility remains a feature. There is no extrapolation or interpolation across halves, and missing ball observations are not labelled dead automatically.
+## Model and temporal context
 
-Conditional H/A evidence combines 50% new GRU,37.5% frozen 040 tree and 12.5% retained context RNN. The GRU uses a learned 64-dimensional projection, LayerNorm/GELU, two bidirectional 64-unit GRU layers, output LayerNorm and locked dropout 0.25. Inference uses 256-frame cores with 64 context frames on each side, matching training. Unused neural D logits are excluded from conditional H/A normalisation. Bidirectional context is offline; this is not a live turnover forecast.
+Conditional H/A evidence combines 50% two-layer bidirectional GRU, 37.5% joint-motion tree model and 12.5% retained context RNN. The GRU has a 64-dimensional projection, 64 units per direction, LayerNorm/GELU and locked dropout 0.25. Training and inference use 256-frame cores with 64 context frames per side. This is offline estimation, not a live turnover forecast.
 
-Live/dead evidence combines frozen clean/gap 014 and noise 018 experts. The 029 quality gate uses 27 team-invariant visibility/kinematic features to vary the noise-expert weight between 0.5 and 1.0 in log-odds space; dead odds are scaled 0.75. A balanced boundary verifier adapts the H/A switch-cost base **12** at full strength; stop/restart cost remains 3. No hard possession-duration floor is imposed. Balanced event evidence is not a calibrated touch probability.
+## Possession rules
 
-## External training only
+A close opponent or momentary challenge does not automatically change possession: trajectory, relative movement and temporal evidence also contribute. Pass flight can remain with the same team. There is no hard minimum spell length. A learned boundary verifier adapts H/A switch cost from base 12; stop/restart cost is 3. Clean/gap and noisy-tracking experts estimate live/dead play, with an observation-quality gate. Dead-ball is a model estimate, not a manually entered restart timeline.
 
-The GRU continues candidate 052 for 12 fixed iterations of 512 windows. Half its training anchors are sampled uniformly from known-live spells lasting at most three seconds, then uniformly within the spell; these frames receive twice their previous spell-weighted cross-entropy weight. The matched ordinary-continuation control scored 0.624470; focused training scored 0.628641. This gives 52 iterations and 26,624 sampled windows across the 043/052/053 training history, not independent new labels.
+## Missing observations
 
-The GRU uses AdamW, learning rate 0.0001 for continuation, weight decay 0.001, gradient norm clipping 1 and seed 153. Original 043 training used 24 fixed iterations at learning rate 0.0005 and seed 143;052 added 16 at 0.0001 and seed 152. Xavier input/output and orthogonal recurrent-gate initialisation, spatial reflections, team swaps and fixed tracking corruptions are documented in the numbered protocols. Known-live spell-weighted CE excludes D/unknown/padding/context; auxiliary narrow turnover BCE has weight 0.1 and positive weight capped 10. Scaling fits training observations only. Labels never enter inference.
+Missing ball is not automatically dead ball. Team-shape features retain evidence when ball coordinates are absent. Gaps of at most 50 frames may be interpolated only between visible endpoints with implied speed at most 50 m/s; original visibility remains a feature. There is no extrapolation or interpolation across halves. Tracking slots are not verified player identities.
 
-Submitted forward weights fit **J03WMX** only. Reverse development fits **J03WN1** and validates WMX; forward validates WN1. Both are first-division Bundesliga IDSSE/Sportec matches, heavily reused for development. Provider BallStatus/BallPossession map mechanically to H/A/D; we created no manual possession annotations. WMX contains 145,967 known 25 Hz frames:85,369 live and 60,598 dead. Licence: CC BY 4.0, [Bassek et al.2025](https://doi.org/10.1038/s41597-025-04505-y).
+## Label sources and amount
 
-The retained context RNN uses five existing first-division [SkillCorner](https://github.com/SkillCorner/opendata) games:4039,3749,3518,2068,2440;187,825 labelled native 10 Hz frames, resampled to 25 Hz without filling unknown labels. Its historical MIT release is pinned at revision1ed50b775f93075c2a6d00d0d795f13b7b89709e. These are partial H/A labels, not supervised dead-ball truth. The old context RNN is 24 units, selected iteration 7, dropout 0.15, L2=0.0001 and clipping 5.
+The final forward model fits J03WMX from the first-division Bundesliga IDSSE/Sportec release, authorised by DFL under CC BY 4.0. Provider BallStatus/BallPossession labels map mechanically to H/A/D: 145,967 known 25 Hz frames, comprising 85,369 live and 60,598 dead. Reverse development fits J03WN1 and evaluates WMX; forward evaluates WN1. Provider annotations are used as supplied, without team-created manual relabelling. Source: Bassek et al. (2025), doi:10.1038/s41597-025-04505-y.
 
-Retained 040 uses 200 trees and 136,592 repeated augmented live examples. The 014/018 dead experts use 100 trees each and 58,388/116,776 sampled exposures respectively. The 029 quality gate uses 50 trees and 116,776 exposures labelled by automatic corruption category, not possession. The 031 boundary head uses 14,896 balanced exposures. Repeated windows/conditions do not create independent labels. Exact recipes, source roles and asset hashes are retained in `reports/external/submission-training-lineage.json` and the numbered protocols/configs.
+## Retained historical supervision
+
+The retained context RNN fits five historical SkillCorner first-division games: 4039, 3749, 3518, 2068 and 2440. The historical MIT release is pinned at revision 1ed50b775f93075c2a6d00d0d795f13b7b89709e. Provider possession metadata supplies 187,825 known native 10 Hz H/A frames, resampled to 25 Hz without filling unknown labels; there is no verified dead-ball truth. Four other previously seen historical games are diagnostic only. These partial labels are not equivalent to full H/A/D references.
+
+## Training recipe and lineage
+
+053 continues 052 for 12 fixed iterations of 512 windows; half the anchors target known-live spells up to 3 seconds and those frames receive doubled spell weights. AdamW uses learning rate 0.0001, weight decay 0.001, clipping 1 and seed 153. Training-only scaling, spatial reflections, team swaps and synthetic tracking errors are used. CE excludes dead/unknown/padding/context; auxiliary narrow turnover BCE has weight 0.1. The GRU history totals 52 iterations and 26,624 sampled windows, not independent new labels.
+
+## Other fitted components
+
+The retained joint tree uses 136,592 repeated augmented live examples; clean/gap and noise dead experts use 58,388 and 116,776 exposures. The quality gate uses 116,776 automatically generated corruption-category exposures, not possession truth. The boundary head uses 14,896 balanced exposures. Exact component recipes, source roles and hashes are in reports/external/submission-training-lineage.json. Repeated frames and corruption variants do not increase the number of independent matches.
 
 ## Evidence and limitations
 
-| Reused external condition | Candidate 053 spell F1 |
-|---|---:|
-| clean | 0.7277 |
-| masked | 0.6364 |
-| long_gap | 0.6109 |
-| tracker_noise | 0.5395 |
+Mean official possession-spell F1 over two heavily reused Bundesliga games and four conditions is 0.628641, versus 0.615370 for 052. Different synthetic-error draws after freezing score 0.622752 versus 0.606253. These are development results, not fresh-match accuracy or competition scores. Official spell F1 averages one-to-one matching across IoU thresholds 0.3-0.7.
 
-Overall mean improves **0.615370 → 0.628641** against candidate 052 on the same original four-condition benchmark. Different simulated-error draws after freezing score **0.606253 → 0.622752**. This is not a fresh-match test or a competition score. The headline metric averages official one-to-one spell F1 across temporal IoU thresholds 0.3–0.7.
+## Research after freezing
 
-Across repeated conditions the final model has 1603 misses,1101 false-positive spells and 369 geometric merges;052 had 1746, 915 and 422. Counts repeat physical possessions. Focused 053 training recovers more short possessions but increases false positives; every category is reported. Refit-boundary 054 alternatives failed their gain/noise requirements and are not silently substituted. Separate older partial-provider diagnostics were weaker and expose transfer risk. Competition rank and full-match challenge accuracy are unknown.
+Later receipt, fragmentation and GRU refinements remain research only. The latest fine-tuning replays the same five historical games and adds eight error views of the two Bundesliga matches; no new match was acquired. Best research mean reaches 0.632989 but loses six previously matched short possessions and regresses on a noisy fold. Protecting those short spells increases false positives. Neither replaces 053.
 
-No challenge possession truth, video or public score is used for training, tuning or selection. No provided data is uploaded to AI services. Challenge slots are not player identities; named-player and verified-event website examples are separate external demonstrations with a frozen gallery model.
+## Known failure modes
 
+Missing/noisy tracking, short-possession boundaries and fragmented longer control remain difficult. 053 has 1,603 misses and 1,101 false-positive spells across repeated conditions; these counts repeat physical possessions. A separate previously seen partial-label PSG-Marseille diagnostic regresses from 0.300976 to 0.278404 for 052 to 053, exposing transfer risk. Those censored labels lack live/dead truth and cannot be equated to full H/A/D evaluation. Competition rank is unknown.
 
-## Later experiments and asset audit
+## Compliance
 
-Short-recovery prototypes recovered additional external spells but increased false-positive spells. The strongest bounded prototype reached0.631917 on reused development data; an external-only proposal calibration retained only38 of46 recovered instances. Both failed release checks. They do not replace053.
+No provided-game possession labels, video or public score are used to train, tune or select the submitted algorithm. No provided data is uploaded to AI services. Inputs are obtained separately by judges; private tracking, videos, feature caches and challenge prediction files are excluded from the public repository.
 
-Automatic Smart Tagging was checked locally for schema/time-range consistency without comparing predictions against the supplied video or possession labels. These are broad, sometimes conflicting phase/set-piece windows, not exact possession episodes. A separate two-match external provider-event phase pilot used timestamps aligned through tracking N/T and tested a fixed whole-episode veto, including dropped/jittered/wrong-team cues. It lost genuine recoveries. Provider phases are not equivalent to Metrica automatic tags and can share annotation ancestry with the external reference; this pilot does not establish transfer. The submitted algorithm continues to use tactical tracking only. Source and reports preserve rejected work.
+## Reproduction
 
-New exports add observation-availability flags for missing ball, long gaps, sparse player tracking and implausible ball steps. These flags are not confidence probabilities or verified events and never alter the CSV labels. On16 November2026, the current source regenerated the frozen CSV byte-for-byte in the pinned environment.
-
-## Local reproduction
-
-Use Python 3.12 and obtain licensed match assets separately:
+Use Python 3.12. CPU inference is pinned to PyTorch 2.9.1 with one thread and deterministic algorithms; no GPU or hosted service is needed. Config files pin all model assets by SHA-256. Obtain licensed organiser files separately.
 
 ```sh
+git clone https://github.com/hydrosmasher/possession-lens.git
+cd possession-lens
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-gru-inference-lock.txt
-python -m controlswitch.recurrent_pipeline --data-root /path/to/provided-data --out local/submission-053 --config reports/external/short-spell-053-config.json --filename "Visca el Barça, visca Catalunya.csv"
-python evaluation/official/evaluation/validate_submission.py "local/submission-053/Visca el Barça, visca Catalunya.csv"
+python -m controlswitch.recurrent_pipeline \
+  --data-root /path/to/provided-data \
+  --out local/submission-053 \
+  --config reports/external/short-spell-053-config.json \
+  --filename "Visca el Barça, visca Catalunya.csv"
+python evaluation/official/evaluation/validate_submission.py \
+  "local/submission-053/Visca el Barça, visca Catalunya.csv"
 ```
 
-Expected 199,319-row CSV SHA-256: `2f5a445d2c3c10b3126b5bda3a5b9b11050d9a87410f19b7cbc5aaa88b928eeb`. The config pins all model assets and the nested 040 config by SHA-256. CPU inference uses PyTorch 2.9.1, one thread and deterministic algorithms, without a GPU or hosted service. Two isolated source/dependency environments reproduced the CSV identically on the same machine; cross-platform bitwise identity is not claimed. The notebook opens with current evidence and keeps optional training/inference disabled.
+Expected CSV: 199,319 data rows; SHA-256 `2f5a445d2c3c10b3126b5bda3a5b9b11050d9a87410f19b7cbc5aaa88b928eeb`.
 
-The repository remains private pending reviewed public release before submission. Match inputs, feature caches and private outputs are excluded. Earlier models, reports and submission bundles are preserved.
+The frozen file was reproduced byte-for-byte in two isolated source/dependency environments on the same machine. Cross-platform bitwise identity is not claimed. The compact notebook keeps optional inference and research training disabled.
 
-## Separate provider check: a regression to investigate
-
-On the previously reused PSG–Marseille Ligue 1 example, mean partial-label spell F1 declines **0.300976 → 0.278404** for 052→053. This is a different-provider diagnostic, not a fresh test. Its censored team-possession groups have no verified live/dead labels, so these values cannot be equated to the complete H/A/D benchmark. It was frozen after selection and was not used to refit, tune or reselect the model. The regression exposes transfer risk:053 is a stronger candidate on the current Bundesliga benchmark, not a demonstrated universal improvement.052 remains preserved as a fallback. See reports/external/provider-056-report.json.
-
-The stronger switch-cost checks 055 scored 0.629150(cost 15) and 0.628001(cost 18); neither passed the predeclared improvement requirements. No winner audit was run. The released candidate 053 keeps switch-cost base 12.
+References: https://doi.org/10.1038/s41597-025-04505-y ; https://github.com/SkillCorner/opendata ; https://github.com/metrica-sports/more-than-a-hack-2027

@@ -2,8 +2,7 @@
 
 - Hrishikesh Karmalkar
 - Basel
-- Omar
 - Michail
-- Paul
+- Omar
 
-Names are recorded as supplied. Full names, GitHub handles and author order can be updated by the team. Attribution for the organiser's vendored code is preserved separately in `vendor/mtah/LICENSE` and the README.
+Final team list confirmed on16 November2026. Attribution for the organiser's vendored code is preserved separately in `vendor/mtah/LICENSE` and the README.

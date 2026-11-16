@@ -1,0 +1,32 @@
+{
+  "version": "continuity-refinement-083",
+  "aim": "Fine-tune053GRUtoavoidwhole-possessionfragmentation,notonlyrejectreceipts. ComparematchedordinaryCEwithsame-GT-spelladjacentKL.",
+  "data": "Existing CC BY4.0 IDSSE/Sportec Bundesliga WMX/WN1 plus five historical MIT SkillCorner first-division training matches4039/3749/3518/2068/2440. No newly acquired match or challenge inputs/video/labels/publicscore.",
+  "folds": [
+    {
+      "fit_strong": "J03WMX",
+      "evaluate": "J03WN1"
+    },
+    {
+      "fit_strong": "J03WN1",
+      "evaluate": "J03WMX"
+    }
+  ],
+  "data_expansion": "Original4trackingconditionsplus2newindependentnoiseviews perstronghalf,seeds18618+halfand28618+half. Originalclean/short/long/noisecorpusreused. Newnoiseviewsareaugmentationofexistingmatches,NOTfreshmatches. Replayfivepreviouslylicensedtrainingmatchesonly;nochangeinweaklabels.",
+  "sampling": "80percentstrong/20percenthistoricalweakwindows;uniformentrieswithinsourcepool;halfanchorsuniformshort<=75frameknownspells,halfknown-live;shortCEweightsdoubledas053;weakunknownexcludedandweaklabelsremainpartial. Spatialreflections/teamswapsas053.",
+  "training": "Bothbranchesstartsamecorresponding053weights/scaler;2layerbidirectionalGRU64/projection64/dropout.25/508features.12fixediterationsx512windows,batch32,AdamWlr.0001/weightdecay.001,clip1,seed183+fold. ExistingCE+auxboundaryBCE.1inboth. No scalerfit,architecturesearch,earlystop,checkpointselectionor evaluationtuning.",
+  "loss": "Onlyreplay_continuityadds.1weightedmeanadjacent symmetricKL withinSAMEknownliveGTlabel;labelchanges/unknown/D/paddingexcluded. No durationfloor, no inferenceGTinput.",
+  "inference": "Newconditional=.5control040+.5newGRU viaexactresidualh053+.5*(newGRU-oldGRU),normalised/clippedonlyfornumericalstability. Freeze053Dmaskandcached031boundarycosts. ConstrainmissingH/Aframes to053labelsand081survivingnovelreceiptspans to their predictedteam;flanksunconstrainedsofragmentscanreattach. Predictionsonlyanchors,neverGT. Sameanchor-no-trainingcontrol reported separately.",
+  "selection": "Highestpassingtrainedbranchonly:mean>=053+.002and>=sameanchorsno-trainingcontrol;FP<081and<=053;misses<=053;shortmatches>053;zero070recoveredindividualspellloss,zeroANY070shortmatchloss,noadditional053matchedlossvs070. Eachnoisefoldnondeclinevs053;clean/masked/longgapfoldloss<=.01. D/missinglabelsandreceiptanchors exact. Passingwinnerfrozenbeforeaudit.",
+  "audit": "Winneronly,sameexternalmatchesnewerrordraws18518/18718/19122;recompute053/081/083fromobservations,mean/FP/retention/noiseguardspassbeforepromotion. These wouldnotbenewmatches.",
+  "limits": "Twoheavilyreusedfull-HADdevelopmentmatches;fivehistoricalpartial-HAgamesnotindependentfullHADtest. Sevenexistingmatchesintotal,butonlyoneBundesligastrongmatchperfoldplusfiveweakgamesforfit. No new-matchgeneralisationclaim.",
+  "source_sha256": {
+    "continuity_refinement.py": "e460df105ade2547c0fede1cefc5ac76d1bb3b4cb46be023209a12b82c76b62c",
+    "continuity_refinement_experiment.py": "e387d450d9e2e3901ffe2f15e6427b587eb71307eec0908e95e2235bcbbd1e63"
+  },
+  "corpus_sha256": "a63788ae095a99454b4e11f8597b3010a8a143073fe794a5edf192b35d4a8d56",
+  "initial_checkpoints": [
+    "e9ed67b2808438bb8357bdb92dd15aa9a7b6aafa4f80d0769770a682b27f3435",
+    "8a415e4627d95cd565d1854a6210a2f623c3af96a2f4ec71b204a8672b7885a1"
+  ]
+}

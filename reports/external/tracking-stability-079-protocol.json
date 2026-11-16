@@ -1,0 +1,24 @@
+{
+  "version": "tracking-stability-079",
+  "hypothesis": "Tracker duplicate slots and jitter can manufacture short local-evidence spikes. Test whether a novel recovery has any receipt-supported local-majority evidence after observation cleanup.",
+  "source": "Existing IDSSE/Sportec first-division Bundesliga WMX/WN1, CC BY4.0. Opposite-match frozen069teacher; no new fitting, downloads, challenge inputs/video/labels/publicscore.",
+  "starting_candidate": "077matched14, score.632060/FP1135; source events are its surviving070novel recovery proposals. Compare053and070too.",
+  "duplicate_rule": "Same-team persistent trajectories: >=250co-visibleframes,co-visible/unionvisibility>=.95,separation95thpercentile<=.5m. Prefermostvisiblethensmoothesttrack. No jersey/name mapping or reference labels. Whole-half offline rule, not a synthetic-condition flag.",
+  "variants": [
+    "dedup_consensus",
+    "dedup_median_consensus"
+  ],
+  "jitter_rule": "Three-frame median of ball/player coordinates and stored speeds onlywhereallthreevaluesfinite; neverinterpolate/fillgaps or use maskedballpoints. Apply onlywhen persistent duplicatesfound;otherwiseexact077candidate.",
+  "gate": "Keepnewcandidateunless raw069conditionalcandidatepeak>.5onsomeold064receipt-supportedframeANDcleaned069candidateprobability<.5onALLsameold-supportframes. No duplicates/no support/ties=>keep. D/missingball/outsideproposalframesexact. No minimumduration,new switch,thresholdsweepor evaluationlabelinfeatures.",
+  "selection": "Highestmean amongpredeclaredvariantswithmean>=053+.002,FP<077and<=053,misses<=053,shortmatches>053;zero lost070recoveredindividualspells,zero070matchedshortspellloss,noadditional053lossvs070. Eachnoisefoldnondeclinevs053;clean/masked/longgapfoldloss<=.01. Passingwinnerrequiresfrozendifferent-error-drawauditbeforepromotion.",
+  "history": "Adaptiveafter077/078;twoheavilyreusedexternalgames/errors,notfreshindependenttest. Targetedfailureknownfromaggregate noisyWMXscore; no rule thresholds selected on evaluation labels.",
+  "source_sha256": {
+    "tracking_stability.py": "92db1c1ccd635866895b49ba9563e3f43cc8467cba62b839b5917ecea301c04e",
+    "tracking_stability_experiment.py": "fea34cbe99fe4032c341875a04aad29cab326bad7ef70dc10daae64dd67fe566"
+  },
+  "teacher_sha256": [
+    "90100f2b7330e56ce916d6125e81abae6ff87e90b833e7b312374eed9f22b055",
+    "a4a3501b2ddce0a05b939caf042b568ccc0b184e886367fcae95b407f0bc5072"
+  ],
+  "starting_report_sha256": "5981ef250dc0dfa43c037abaa86a6a7c3d830a3e39e2e5b28d2307fbf82b83fa"
+}

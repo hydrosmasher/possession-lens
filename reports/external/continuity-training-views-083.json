@@ -1,0 +1,141 @@
+{
+  "extra_views": [
+    {
+      "original": {
+        "match_id": "J03WMX",
+        "source": "strong",
+        "half": 1,
+        "condition": "clean",
+        "features": "J03WMX-h0-clean-features.npy",
+        "labels": "J03WMX-h0-labels.npz",
+        "rows": 70708,
+        "columns": 508,
+        "known_frames": 47225
+      },
+      "path": "J03WMX-h0-noise18618.npy",
+      "seed": 18618,
+      "rows": 70708,
+      "sha256": "a747582f0542a391622cfc2648a08820af8a29ba9ac34b7e7b3831098e371edb"
+    },
+    {
+      "original": {
+        "match_id": "J03WMX",
+        "source": "strong",
+        "half": 1,
+        "condition": "clean",
+        "features": "J03WMX-h0-clean-features.npy",
+        "labels": "J03WMX-h0-labels.npz",
+        "rows": 70708,
+        "columns": 508,
+        "known_frames": 47225
+      },
+      "path": "J03WMX-h0-noise28618.npy",
+      "seed": 28618,
+      "rows": 70708,
+      "sha256": "482cb767d750c20c7971e4411e0e689fa2d86359bdd4bc15399e1d9dd321a153"
+    },
+    {
+      "original": {
+        "match_id": "J03WMX",
+        "source": "strong",
+        "half": 2,
+        "condition": "clean",
+        "features": "J03WMX-h1-clean-features.npy",
+        "labels": "J03WMX-h1-labels.npz",
+        "rows": 75259,
+        "columns": 508,
+        "known_frames": 38144
+      },
+      "path": "J03WMX-h1-noise18619.npy",
+      "seed": 18619,
+      "rows": 75259,
+      "sha256": "09bc69fd760fa9f0fb3fc44ac2e1f4c8bcd634cab0235d37d941f79c4db99079"
+    },
+    {
+      "original": {
+        "match_id": "J03WMX",
+        "source": "strong",
+        "half": 2,
+        "condition": "clean",
+        "features": "J03WMX-h1-clean-features.npy",
+        "labels": "J03WMX-h1-labels.npz",
+        "rows": 75259,
+        "columns": 508,
+        "known_frames": 38144
+      },
+      "path": "J03WMX-h1-noise28619.npy",
+      "seed": 28619,
+      "rows": 75259,
+      "sha256": "056e3a50839eee456bd0f31cfbb4c02ddc363a893de170c95e9efe7c8ca47620"
+    },
+    {
+      "original": {
+        "match_id": "J03WN1",
+        "source": "strong",
+        "half": 1,
+        "condition": "clean",
+        "features": "J03WN1-h0-clean-features.npy",
+        "labels": "J03WN1-h0-labels.npz",
+        "rows": 69288,
+        "columns": 508,
+        "known_frames": 38748
+      },
+      "path": "J03WN1-h0-noise18618.npy",
+      "seed": 18618,
+      "rows": 69288,
+      "sha256": "24980834e30c475667dc9a8816f4108891f8891755b075f53a9b34e62f3d9844"
+    },
+    {
+      "original": {
+        "match_id": "J03WN1",
+        "source": "strong",
+        "half": 1,
+        "condition": "clean",
+        "features": "J03WN1-h0-clean-features.npy",
+        "labels": "J03WN1-h0-labels.npz",
+        "rows": 69288,
+        "columns": 508,
+        "known_frames": 38748
+      },
+      "path": "J03WN1-h0-noise28618.npy",
+      "seed": 28618,
+      "rows": 69288,
+      "sha256": "322e6c20c8285836bb7b4c3750db875333af33ccb03054d19fbe21fa6f9824e3"
+    },
+    {
+      "original": {
+        "match_id": "J03WN1",
+        "source": "strong",
+        "half": 2,
+        "condition": "clean",
+        "features": "J03WN1-h1-clean-features.npy",
+        "labels": "J03WN1-h1-labels.npz",
+        "rows": 72273,
+        "columns": 508,
+        "known_frames": 29629
+      },
+      "path": "J03WN1-h1-noise18619.npy",
+      "seed": 18619,
+      "rows": 72273,
+      "sha256": "42d78cdefaffe68a1a698314e66288a424dd3f0ba610817852c3891d3a50d9ed"
+    },
+    {
+      "original": {
+        "match_id": "J03WN1",
+        "source": "strong",
+        "half": 2,
+        "condition": "clean",
+        "features": "J03WN1-h1-clean-features.npy",
+        "labels": "J03WN1-h1-labels.npz",
+        "rows": 72273,
+        "columns": 508,
+        "known_frames": 29629
+      },
+      "path": "J03WN1-h1-noise28619.npy",
+      "seed": 28619,
+      "rows": 72273,
+      "sha256": "33dcc97fd9ae2b9587d01df295472927c3f5c2b7a560fb36c4724baaff19a36c"
+    }
+  ],
+  "new_matches": 0
+}

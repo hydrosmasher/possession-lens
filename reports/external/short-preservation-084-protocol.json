@@ -1,0 +1,23 @@
+{
+  "version": "short-preservation-084",
+  "motivation": "083recoversall46newspellsbutloses6othermatchedshortspells. Protectexistingpredictedshortspansandflanksduringlong-contextrefinement,withoutreferenceinput.",
+  "data": "Existing CC BY4.0 IDSSE/Sportec Bundesliga WMX/WN1 plus five historical MIT SkillCorner first-division training matches4039/3749/3518/2068/2440. No newly acquired match or challenge inputs/video/labels/publicscore.",
+  "training": "Noadditionaltraining;frozen083replay_ce/replay_continuitycheckpoints. No newmatch or augmentationdownload.",
+  "anchors": "081predictionsonly:protecteverypredictedHAspell<=150framesPLUSoneframeflankateachend;Dalreadylocked.150=2*75fromIoU>=.5necessarypredictedlengthboundfor<=75framereferencesinfullyscoredruns. Notchosenfromheldouteventlengths. Alsofreeze053missinglabelsand081newreceiptspans.",
+  "inference": "Same083arithmeticGRUresidual,frozen053Dmask/cached031costs,constrainedViterbi. Newshort-protectionanchorsonlychangevs083. Bothtrainedbranchesandmatchedsame-anchor-no-trainingcontrolreported.",
+  "selection": "Highestpassingtrainedbranchonly:mean>=053+.002and>=sameanchorsno-trainingcontrol;FP<081and<=053;misses<=053;shortmatches>053;zero070recoveredindividualspellloss,zeroANY070shortmatchloss,noadditional053matchedlossvs070. Eachnoisefoldnondeclinevs053;clean/masked/longgapfoldloss<=.01. D/missinglabelsandreceiptanchors exact. Passingwinnerfrozenbeforeaudit.",
+  "audit": "Winneronly,sameexternalmatchesnewerrordraws18518/18718/19122;recompute053/081/083fromobservations,mean/FP/retention/noiseguardspassbeforepromotion. These wouldnotbenewmatches.",
+  "limits": "Adaptivefollow-upafter083ontwoheavilyreusedfull-HADgames. Longunscoredreferenceboundariescaninvalidateglobal-lengthargument;exactretentionalwayschecked. Protectionalsofreezesfalsepredictedshortspellsandmaylimitprecisiongains. No independenttestclaim.",
+  "source_sha256": {
+    "short_preservation.py": "58bb2281e43401f035cb81138c8c16b375b981befa676d801813b705cb20e01a",
+    "short_preservation_experiment.py": "e96be9e9402e4bea719e11fbfb7ebc0e6fc74577928e543650f5c67bf64d4fa4",
+    "continuity_refinement.py": "e460df105ade2547c0fede1cefc5ac76d1bb3b4cb46be023209a12b82c76b62c"
+  },
+  "trained_model_sha256": {
+    "0-replay_ce": "a9b132aef205626a0b8931129efa26155a3d79c9fb96d9470a0957cafe38efa7",
+    "0-replay_continuity": "16add0e084659350db0531e8276df12f92edad430818862d9b128c432e88e1c0",
+    "1-replay_ce": "027859e61af18aab94b7e99de2fa7b6165581f0776a25b3346309c8fab24b5ca",
+    "1-replay_continuity": "36ae1bbc76b75056aa77e40b2444d449411c87d3de811cdbd82230bcb2361b4d"
+  },
+  "input_report_sha256": "58370825fb39c0e3b8e8964a14076da7ca782b803e14ac0cf18ef92a633e1465"
+}

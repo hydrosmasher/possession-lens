@@ -44,4 +44,4 @@ The latest episode pilot uses provider-event phase windows, not matched Metrica 
 
 ## Sharing and submission
 
-The registered team is **Visca el Barça, visca Catalunya**. Submit the team-named CSV, a public repository URL and the team-named short technical document. The repository must not contain licensed challenge assets or reconstructive tracking exports. The repo remains private until reviewed public release; pushing source privately does not satisfy the organisers' public-URL requirement. Official deadline:17 November2026.
+The registered team is **Visca el Barça, visca Catalunya**. Submit the team-named CSV, a public repository URL and the team-named short technical document. The repository must not contain licensed challenge assets or reconstructive tracking exports. Use https://github.com/hydrosmasher/possession-lens and verify it opens without signing in before sending the form. Official deadline:17 November2026 at23:59CET, as stated on the submission form.

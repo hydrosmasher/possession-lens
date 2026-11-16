@@ -1,0 +1,23 @@
+{
+  "version": "pass-transit-076",
+  "hypothesis": "Rayo combinations and Valladolid through-ball descriptions motivate protecting pass continuity against brief opponent proximity; reports do not establish measured tracking patterns.",
+  "context_sources": [
+    "https://www.fcbarcelona.com/en/news/4086449/valencia-1-2-barca-flick-starts-with-win-as-lewy-scores-a-brace",
+    "https://www.fcbarcelona.com/en/football/first-team/news/4098302",
+    "https://www.fcbarcelona.com/en/football/first-team/news/4102104/fc-barcelona-7-0-real-valladolid-supersonic/featured"
+  ],
+  "data": "Existing IDSSE/Sportec Bundesliga WMX/WN1, CC BY4.0; no new match downloads. No challenge inputs, video, labels, or challenge scores accessed.",
+  "limits": "Two repeatedly used external development matches, not fresh testing. Official Barca reports are qualitative context only, not training labels. No match videos watched or downloaded.",
+  "variants": [
+    "current_transit_veto",
+    "recovery_transit_veto"
+  ],
+  "rule": "Fixed before scoring: isolated H/A pulse<=75frames, opposite flanks, different surrounding-team slots within2.5m before/after in25frame windows; all ball frames visible; no D crossing; flight>=12frames; speed>=4m/s; max linear residual<=.75m; max6frame velocity residual<=max(2m/s,.25*speed); closest opponent same-slot relative velocity>=4m/s. Abstain otherwise. No learned coefficients/threshold sweep/team identity prior.",
+  "controls": "Frozen053; receipt-supported070. Existing fitting-match-only weights reused, no new fitting. Only veto existing pulses, never create switches.",
+  "selection": "Mean spellF1 gain>=.002 vs053; FP strictly reduce vs respective input; misses<=053; short matches>=053; no lost070recovered spells for recovery variant; each tracker-noise fold nondecline; clean/masked/long-gap per-fold decline<=.01. D and missing-ball frames exact. Winner requires frozen different-error-draw audit before promotion.",
+  "source_sha256": {
+    "pass_transit.py": "2d753f4c990cec1267ec0ad2e0470b165d769d65d7e0d80111733861860fbcdb",
+    "pass_transit_experiment.py": "bbc42ae530df6667ba47ed18b57a72cded370a01f11a16b3b4a20b28e4993d11"
+  },
+  "input_report_sha256": "9956669f69b16638a02cbbbb6d30ae2b3d6c7348f5cb7b2fdcccf14a173861b4"
+}

@@ -1,0 +1,37 @@
+{
+  "version": "noisy-fragment-079-attribution",
+  "source": "Licensed IDSSE/Sportec Bundesliga references only, CC BY4.0; no challenge labels/video",
+  "cases": [
+    {
+      "match_id": "J03WMX",
+      "half": 1,
+      "condition": "tracker_noise",
+      "candidate_team": 0,
+      "candidate_start": 551,
+      "candidate_end": 570,
+      "reference_start": 415,
+      "reference_end": 587,
+      "correct_team_frames": 19,
+      "candidate_frames": 19,
+      "reference_frames": 172,
+      "same_team_iou": 0.11046511627906977,
+      "interpretation": "Correct-team fragment of a longer possession; receipt confidence alone cannot identify the spell error."
+    },
+    {
+      "match_id": "J03WN1",
+      "half": 2,
+      "condition": "tracker_noise",
+      "candidate_team": 0,
+      "candidate_start": 70912,
+      "candidate_end": 70927,
+      "reference_start": 70909,
+      "reference_end": 70929,
+      "correct_team_frames": 15,
+      "candidate_frames": 15,
+      "reference_frames": 20,
+      "same_team_iou": 0.75,
+      "interpretation": "A genuine short recovered possession; needs to survive precision filters."
+    }
+  ],
+  "limitation": "Post-hoc diagnosis on repeatedly used external development matches, not new independent evidence."
+}

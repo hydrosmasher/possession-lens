@@ -1,0 +1,18 @@
+{
+  "version": "visible-bridge-082",
+  "motivation": "081gapguard removesonefalsefragmentbutremainingnoisebridgeisvisible. Testboundedjoiningofrecoveryfragmentsusingfixedmodel/pathobjectiveinsteadofrejectingtruecontrol.",
+  "data": "Existing IDSSE/Sportec first-division Bundesliga WMX/WN1, CC BY4.0. Opposite-match frozen069teacher; no new fitting, downloads, challenge inputs/video/labels/publicscore.",
+  "starting_candidate": "081gap_fragment. Survivingnovel077recoveriesonly; exactstartingreplayasserted. NoGT-derivedeventselection.",
+  "observation_policy": "Only1..75frameFULLYVISIBLEbridgesbetweenanexisting053same-teamspellandnovelrecovery;allbridgecurrentlabelsopposite. NoDcrossings,missingframeedits,ornewboundaries.",
+  "rule": "Equalblendconditional053andfrozen069localprobabilities. Joinobjective=sumbridge(logPcandidate-logPopponent)+removedswitchcostsatbridgeends;cost=12*clip(2-2*frozen031boundaryevent,.25,2),sameadaptiveformulaas069. ChoosehighestPOSITIVEsideobjective,atmostonejoinperproposal;nojoinifbothnegative. No fit,weightsweep,orGTinfeatures. Exactall070short/recoveryretentionmandatory;changesoutsideexplicitbridgesforbidden.",
+  "branches": {
+    "visible_bridge": 0
+  },
+  "selection": "Highestmean amongpredeclaredvariantswithmean>=053+.002,FP<077and<=053,misses<=053,shortmatches>053;zero lost070recoveredindividualspells,zero070matchedshortspellloss,noadditional053lossvs070. Eachnoisefoldnondeclinevs053;clean/masked/longgapfoldloss<=.01. Passingwinnerrequiresfrozendifferent-error-drawauditbeforepromotion.",
+  "history": "Adaptiveafter079/080/081andexternalerrorattributionontwoheavilyreusedBundesligagames/draws,notindependenttest. No fitting,thresholdsweep,challengeassets/video/labels/publicscore. Fixedbefore082scoring.",
+  "source_sha256": {
+    "visible_bridge.py": "cbe9725c9873492193c78f684b2d83ce373fb19a897e6b5513fd2832159ea76d",
+    "visible_bridge_experiment.py": "aa888de027b7d3d4ec77ef454bf632a6352e67f94a4adaaf50425d3053a24680"
+  },
+  "input_report_sha256": "c957ec28ad93a8a2964e52a93880b0abe17d38377a083edbaf64bdb7c09e5a87"
+}

@@ -1,0 +1,58 @@
+{
+  "versions": [
+    "receipt-context-077",
+    "receipt-weighted-078"
+  ],
+  "promoted_to_default": false,
+  "source": "External IDSSE/Sportec Bundesliga, CC BY4.0; no challenge training",
+  "models": [
+    {
+      "path": "models/archive/receipt-context-077-fold0-matched14.npz",
+      "sha256": "fcc1e75ec715e55e6339c0dab03fd6b91aa4f81d03a019def1bf4c917850728c",
+      "fold": 0,
+      "branch": "matched14",
+      "fit_match": "J03WMX",
+      "opposite_evaluation_match": "J03WN1"
+    },
+    {
+      "path": "models/archive/receipt-context-077-fold0-context34.npz",
+      "sha256": "52a972c98cbf6f864eba6a39fe778debbf04150d3ad8629a230c0a3aeb006d5d",
+      "fold": 0,
+      "branch": "context34",
+      "fit_match": "J03WMX",
+      "opposite_evaluation_match": "J03WN1"
+    },
+    {
+      "path": "models/archive/receipt-weighted-078-fold0-weighted34.npz",
+      "sha256": "4492381a90ab88e24fbc9e18ea96787d814fc7e86bc5bfabc019e5978f4fa87d",
+      "fold": 0,
+      "branch": "weighted34",
+      "fit_match": "J03WMX",
+      "opposite_evaluation_match": "J03WN1"
+    },
+    {
+      "path": "models/archive/receipt-context-077-fold1-matched14.npz",
+      "sha256": "4ef4d374809250ce19bd96ccd441fe04048403f060c2784ba2512bd3c13a67b2",
+      "fold": 1,
+      "branch": "matched14",
+      "fit_match": "J03WN1",
+      "opposite_evaluation_match": "J03WMX"
+    },
+    {
+      "path": "models/archive/receipt-context-077-fold1-context34.npz",
+      "sha256": "83faf8318a71182b6d8838a48096899112c02362c5fbce33592ecd8477a70a28",
+      "fold": 1,
+      "branch": "context34",
+      "fit_match": "J03WN1",
+      "opposite_evaluation_match": "J03WMX"
+    },
+    {
+      "path": "models/archive/receipt-weighted-078-fold1-weighted34.npz",
+      "sha256": "55223ff414e44c6fa06dbd72eada32e231e9f7d1ae402fc3591610ac5d7d280f",
+      "fold": 1,
+      "branch": "weighted34",
+      "fit_match": "J03WN1",
+      "opposite_evaluation_match": "J03WMX"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "reviewed_on": "2026-11-16",
+  "scope": "Anonymous access only; European top-five first divisions; continuous tracking and usable possession supervision required for full pipeline testing",
+  "new_qualifying_matches_acquired": 0,
+  "sources": [
+    {
+      "name": "IDSSE/Sportec primary release and PySport mirror",
+      "urls": [
+        "https://www.nature.com/articles/s41597-025-04505-y",
+        "https://huggingface.co/datasets/pysport/idsse-data/blob/main/README.md"
+      ],
+      "finding": "Release has two first-division and five second-division matches; mirror is not a new independent first-division source. Existing WMX/WN1 retained; second division excluded.",
+      "license": "CC BY4.0",
+      "used_in_083": "Existing full-reference first-division data only"
+    },
+    {
+      "name": "Historical SkillCorner first-division data",
+      "urls": [
+        "https://github.com/SkillCorner/opendata/tree/1ed50b775f93075c2a6d00d0d795f13b7b89709e"
+      ],
+      "finding": "Replay the five already-audited historical training games4039/3749/3518/2068/2440. Four other previously-seen games are not added to this fitting pool. Partial H/A supervision, not full H/A/D ground truth.",
+      "license": "Historical MIT revision, existing source audit preserved",
+      "used_in_083": "20percent sampled training windows from existing five-game fitting pool"
+    },
+    {
+      "name": "IMPECT open data",
+      "urls": [
+        "https://github.com/ImpectAPI/open-data/blob/main/README.md"
+      ],
+      "finding": "Bundesliga2023/24 event data, KPIs and lineups; not continuous all-player/ball tracking with frame possession labels.",
+      "license": "Provider-specific LICENSE.pdf terms; not accepted or used in this experiment",
+      "used_in_083": false
+    },
+    {
+      "name": "SoccerTrack v2",
+      "urls": [
+        "https://atomscott.github.io/SoccerTrack-v2/",
+        "https://github.com/AtomScott/SoccerTrack-v2/blob/main/LICENSE-DATA"
+      ],
+      "finding": "Official project describes ten university-level amateur matches, outside the requested top-five-league scope.",
+      "license": "Separate dataset licence; not used",
+      "used_in_083": false
+    },
+    {
+      "name": "SoccerNet GSR2024 public subset",
+      "urls": [
+        "https://huggingface.co/datasets/SoccerNet/SN-GSR-2024",
+        "https://openaccess.thecvf.com/content/CVPR2024W/CVsports/papers/Somers_SoccerNet_Game_State_Reconstruction_End-to-End_Athlete_Tracking_and_Identification_on_CVPRW_2024_paper.pdf"
+      ],
+      "finding": "Public athlete game-state clips are available, but the primary benchmark paper excludes the ball from pitch reconstruction/ignores ball detections. Continuous ball tracking plus possession reference was not verified. Cannot supply the complete inputs/targets required here.",
+      "license": "Dataset card reports GPL3.0; not used",
+      "used_in_083": false
+    },
+    {
+      "name": "SoccerNet newer catalogue and ball-action tasks",
+      "urls": [
+        "https://github.com/SoccerNet/SoccerNet",
+        "https://www.soccer-net.org/data"
+      ],
+      "finding": "Ball-action task repositories listed as NDA-gated are excluded by anonymous-only scope. GSR2027catalogue lead could not be verified as an accessible suitable dataset; no data acquired or counted.",
+      "license": "Not accepted; no gated downloads attempted",
+      "used_in_083": false
+    }
+  ],
+  "augmentation": {
+    "matches": "The same two licensed Bundesliga matches",
+    "additional_views": 8,
+    "noise_seeds": [
+      18618,
+      18619,
+      28618,
+      28619
+    ],
+    "meaning": "Two additional random error draws per half per match. Additional observation variants, not new matches or independent tests."
+  },
+  "limitation": "Search is not proof that no other data exists. No new anonymous, licensed top-five continuous tracking plus full possession-reference match was verified for this run. No downloads requiring sign-in/acceptance were attempted."
+}

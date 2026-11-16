@@ -1,0 +1,75 @@
+{
+  "version": "continuity-gru-083-research",
+  "promoted_to_default": false,
+  "licences": "Historical MIT SkillCorner and CC BY4.0 IDSSE/Sportec; existing source attribution retained",
+  "models": [
+    {
+      "path": "models/archive/gru-continuity083-fold0-replay_ce.npz",
+      "sha256": "a9b132aef205626a0b8931129efa26155a3d79c9fb96d9470a0957cafe38efa7",
+      "fit_strong_match": "J03WMX",
+      "evaluate_strong_match": "J03WN1",
+      "weak_training_ids": [
+        "4039",
+        "3749",
+        "3518",
+        "2068",
+        "2440"
+      ],
+      "branch": "replay_ce",
+      "iterations": 12,
+      "sampling": "80%strong/20%weak",
+      "default": false
+    },
+    {
+      "path": "models/archive/gru-continuity083-fold0-replay_continuity.npz",
+      "sha256": "16add0e084659350db0531e8276df12f92edad430818862d9b128c432e88e1c0",
+      "fit_strong_match": "J03WMX",
+      "evaluate_strong_match": "J03WN1",
+      "weak_training_ids": [
+        "4039",
+        "3749",
+        "3518",
+        "2068",
+        "2440"
+      ],
+      "branch": "replay_continuity",
+      "iterations": 12,
+      "sampling": "80%strong/20%weak",
+      "default": false
+    },
+    {
+      "path": "models/archive/gru-continuity083-fold1-replay_ce.npz",
+      "sha256": "027859e61af18aab94b7e99de2fa7b6165581f0776a25b3346309c8fab24b5ca",
+      "fit_strong_match": "J03WN1",
+      "evaluate_strong_match": "J03WMX",
+      "weak_training_ids": [
+        "4039",
+        "3749",
+        "3518",
+        "2068",
+        "2440"
+      ],
+      "branch": "replay_ce",
+      "iterations": 12,
+      "sampling": "80%strong/20%weak",
+      "default": false
+    },
+    {
+      "path": "models/archive/gru-continuity083-fold1-replay_continuity.npz",
+      "sha256": "36ae1bbc76b75056aa77e40b2444d449411c87d3de811cdbd82230bcb2361b4d",
+      "fit_strong_match": "J03WN1",
+      "evaluate_strong_match": "J03WMX",
+      "weak_training_ids": [
+        "4039",
+        "3749",
+        "3518",
+        "2068",
+        "2440"
+      ],
+      "branch": "replay_continuity",
+      "iterations": 12,
+      "sampling": "80%strong/20%weak",
+      "default": false
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": "gap-fragment-081",
+  "motivation": "External diagnosis shows remaining noisyWMXpulse19correct-ownerframesinside172frameGTspell,notafalse receipt. Test unsupported-gap fragment veto instead of requiringevenstrongerreceiptconfidence. Avoidaddingaseparatepulsewithoutchangingmissinglabels.",
+  "data": "Existing IDSSE/Sportec first-division Bundesliga WMX/WN1, CC BY4.0. Opposite-match frozen069teacher; no new fitting, downloads, challenge inputs/video/labels/publicscore.",
+  "starting_candidate": "077matched14, exactlyreplayedfrom079casecache. 079proposalstart/end/team only; noGT-derivedeventselection.",
+  "observation_policy": "Nearestsource053same-teamspellwithin75framebridge;bridgealloppositelabels,majoritymissingball,andzeroopposingold064receipt-supportframes. No D crossings, gapfill, or added switches.",
+  "rule": "Onlyexisting077novelrecoveries<=75frames. Vetoifoneadjacentsource053same-teamspellseparatedbya1..75framebridgewith>=.5missingfractionandNOopposingreceipt-supportframe. Otherwisekeep. Bound75reusesexisting3sproposalbound;majority=.5fixedbefore081scoring. Appliesallconditionsusingobservationsonly;no conditionflagsinfeatures.",
+  "branches": {
+    "gap_fragment": 0
+  },
+  "selection": "Highestmean amongpredeclaredvariantswithmean>=053+.002,FP<077and<=053,misses<=053,shortmatches>053;zero lost070recoveredindividualspells,zero070matchedshortspellloss,noadditional053lossvs070. Eachnoisefoldnondeclinevs053;clean/masked/longgapfoldloss<=.01. Passingwinnerrequiresfrozendifferent-error-drawauditbeforepromotion.",
+  "history": "Adaptivefollow-upafter079/080andexternalerrorattributionontwoheavilyreusedBundesligagames/draws,notindependenttest. No fitting,thresholdsweep,challengeassets/video/labels/publicscore. Thresholdsnotfittochallengeorselectedbysweep.",
+  "source_sha256": {
+    "gap_fragment.py": "28ffed5ee0fe3db51ca918728e90fff20ef19ba91b4a1ce2b8a3547f5deef759",
+    "gap_fragment_experiment.py": "f0cd0037e4e45b8969d9823d875f6d50ee924cf9b17c22915dc82a1db42db01b"
+  },
+  "input_report_sha256": "4b69c96af56c31af2843299b82108cd94029445ae9d3b9d13b7d038ef9ae2c71"
+}

@@ -1,6 +1,6 @@
 # Possession Lens
 
-Frame-by-frame home, away and dead-ball possession from automatic football tracking, with a local interactive dashboard. Built by Hrishikesh Karmalkar, Basel, Omar, Michail and Paul. Registered team: **Visca el Barça, visca Catalunya**.
+Frame-by-frame home, away and dead-ball possession from automatic football tracking, with a local interactive dashboard. Built by Hrishikesh Karmalkar, Basel, Michail and Omar. Registered team: **Visca el Barça, visca Catalunya**.
 
 ## Reproduce the submission
 
@@ -44,9 +44,9 @@ Choose the **Possession Lens (Python3.12, GRU)** kernel. The notebook reads save
 
 Candidate053 combines an externally trained two-layer bidirectional GRU, tree-based control/dead-ball experts, a retained context RNN and structured H/A/D decoding. It uses508 observation features and offline future context. Missing ball is not automatically dead play; there is no hard minimum possession duration.
 
-The mean official possession-spell F1 is **0.628641** on two heavily reused Bundesliga development matches across four tracking conditions. A frozen different-error-draw check on the same games scores0.622752. These are not independent-match tests, challenge accuracy or competition ranking. A separate partial-provider check regressed; transfer remains a limitation. [Technical document](<docs/submission/Visca el Barça, visca Catalunya.md>).
+The mean official possession-spell F1 is **0.628641** on two heavily reused Bundesliga development matches across four tracking conditions. A frozen different-error-draw check on the same games scores0.622752. These are not independent-match tests, challenge accuracy or competition ranking. A separate partial-provider check regressed; transfer remains a limitation. [Technical document (PDF)](<docs/submission/Visca el Barça, visca Catalunya.pdf>) · [Markdown source](<docs/submission/Visca el Barça, visca Catalunya.md>).
 
-Later recovery/calibration experiments are preserved but failed release safeguards. The strongest bounded recovery prototype scores0.631917 on reused development data but adds false positives. Automatic Smart Tagging was audited; an external provider-event phase pilot lost genuine recoveries and does not validate transfer to Metrica tags. Neither replaces053. [Research reports](reports/external/) · [Release status](docs/submission/RELEASE_STATUS.md).
+Later experiments remain research only. Fine-tuned GRU083 reaches0.632989 on reused development data but loses six previously matched short possessions and regresses on a noisy fold. Receipt/gap guards and short-preserving decoding also fail release checks. No newly acquired match was used: the later run replays five existing historical training games and adds eight synthetic error views. Automatic Smart Tagging/event-phase pilots do not validate transfer and are not submitted. None replaces053. [Research reports](reports/external/) · [Release status](docs/submission/RELEASE_STATUS.md).
 
 ## Project layout
 

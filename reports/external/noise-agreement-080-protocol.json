@@ -1,0 +1,20 @@
+{
+  "version": "noise-agreement-080",
+  "motivation": "079cleanup left strong but incorrect local support unchanged. Test independent053unsmoothedprior confirmation of receipt evidence under observation-detected duplicates; no global smoothing or stricter duration.",
+  "data": "Existing IDSSE/Sportec first-division Bundesliga WMX/WN1, CC BY4.0. Opposite-match frozen069teacher; no new fitting, downloads, challenge inputs/video/labels/publicscore.",
+  "starting_candidate": "077matched14, exactlyreplayedfrom079casecache. 079proposalstart/end/team only; noGT-derivedeventselection.",
+  "detector": "Same-team persistent trajectories: >=250co-visibleframes,co-visible/unionvisibility>=.95,separation95thpercentile<=.5m. Prefermostvisiblethensmoothesttrack. No jersey/name mapping or reference labels. Whole-half offline rule, not a synthetic-condition flag.",
+  "rule": "Onlynovel077recoverieswhenpersistentduplicatesfound;old064receipt support required. Keepunless NOsameproposalframe within tolerance of anyreceiptsupport hasconditional053candidateprior>.5. No support/no duplicate=>keep. Tieslackmajority. Twofixedtolerances0and3frames(.12s);lookinsidecandidateonly,nomissing/Dcrossings.",
+  "branches": {
+    "exact_prior": 0,
+    "tolerant_prior": 3
+  },
+  "selection": "Highestmean amongpredeclaredvariantswithmean>=053+.002,FP<077and<=053,misses<=053,shortmatches>053;zero lost070recoveredindividualspells,zero070matchedshortspellloss,noadditional053lossvs070. Eachnoisefoldnondeclinevs053;clean/masked/longgapfoldloss<=.01. Passingwinnerrequiresfrozendifferent-error-drawauditbeforepromotion.",
+  "history": "Adaptivefollow-upafter079ontwoheavilyreusedexternalBundesligagames/draws,notindependenttest. No fitting,thresholdsweep,challengeassets,video,labelsorpublicscore.",
+  "source_sha256": {
+    "noise_agreement.py": "e85696b4a19a6b68030731b7a2edd2586ae08815f4444b5d96b80f1b56a81086",
+    "noise_agreement_experiment.py": "c391cced333a0ae5cffc21b9f9833e53d2de72e198bda666f72348618534deec",
+    "tracking_stability.py": "92db1c1ccd635866895b49ba9563e3f43cc8467cba62b839b5917ecea301c04e"
+  },
+  "input_report_sha256": "4b69c96af56c31af2843299b82108cd94029445ae9d3b9d13b7d038ef9ae2c71"
+}
